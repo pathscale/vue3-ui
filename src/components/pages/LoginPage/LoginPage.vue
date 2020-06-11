@@ -1,6 +1,6 @@
 <script>
-  import LoginForm from './LoginForm.vue';
-  import { useState } from './state';
+  import LoginForm from '../../views/LoginForm/LoginForm.vue';
+  import { useState } from '../../../state';
 
   const LoginPage = {
     components: { LoginForm },

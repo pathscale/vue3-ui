@@ -1,6 +1,6 @@
 <script>
   import { reactive, watchEffect, computed, onMounted } from 'vue';
-  import TextInput from '../TextInput/TextInput.vue';
+  import TextInput from '../../primitives/TextInput/TextInput.vue';
 
   const LoginForm = {
     components: { TextInput },

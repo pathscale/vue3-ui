@@ -1,12 +1,11 @@
 <template>
-  <component :is="variant" :class="`${state.styles} font-sans font-normal`">
+  <component :is="variant" :class="`font-sans font-normal text-white ${variant}`">
     <slot />
   </component>
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, reactive } from "vue";
-import { propsToStyles } from '../../utils';
+import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "Typography",
@@ -19,32 +18,27 @@ export default defineComponent({
         return ["p", "h1", "h2", "h3", "h4", "h5", "h6"].includes(value);
       }
     },
-    color: {
-      type: String,
-      default: "dark",
-    },
-  },
-  setup(props: any, context: any) {
-    const state = reactive({
-      styles: computed(() => propsToStyles({
-        props,
-        transform: {
-          variant: {
-            h1: "text-6xl",
-            h2: "text-5xl",
-            h3: "text-4xl",
-            h4: "text-3xl",
-            h5: "text-2xl",
-            h6: "text-xl",
-          },
-          color: {
-            light: "text-white",
-            dark: "text-black"
-          }
-        },
-      })),
-    });
-    return { state };
   },
 });
 </script>
+
+<style scoped>
+  .h1 {
+    @apply text-6xl;
+  }
+  .h2 {
+    @apply text-5xl;
+  }
+  .h3 {
+    @apply text-4xl;
+  }
+  .h4 {
+    @apply text-3xl;
+  }
+  .h5 {
+    @apply text-2xl;
+  }
+  .h6 {
+    @apply text-xl;
+  }
+</style>

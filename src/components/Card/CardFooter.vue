@@ -1,6 +1,8 @@
 <template>
-  <div class="my-4">
-    <slot />
+  <div class="px-6 py-4">
+    <p class="text-gray-700 text-base">
+      <slot />
+    </p>
   </div>
 </template>
 
@@ -8,6 +10,6 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "CardTitle",
+  name: "CardFooter",
 });
 </script>

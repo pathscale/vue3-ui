@@ -2,7 +2,7 @@
   import { reactive, watchEffect, computed, onMounted } from 'vue';
   import TextInput from '../../primitives/TextInput/TextInput.vue';
 
-  const LoginForm = {
+  export default {
     components: { TextInput },
     emits: ['login'],
     setup(props, { emit }) {
@@ -24,15 +24,11 @@
       watchEffect(() => {
         status.email = state.email.length > 2 ? 'valid' : 'error';
         status.password = state.password.length > 2 ? 'valid' : 'error';
-
-        // console.log('state', state.email, state.password);
-        // console.log('status', status.email, status.password);
       });
 
       return { state, status, sendLogin, isValid };
     }
   };
-  export default LoginForm;
 </script>
 
 <template>

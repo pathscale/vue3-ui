@@ -1,5 +1,5 @@
 import { createApp } from 'vue';
-import LoginPage from './components/pages/LoginPage/LoginPage.vue';
+import { LoginLayout } from './components';
 import { stateSymbol, state } from './state';
 
-createApp(LoginPage).provide(stateSymbol, state).mount('#app');
+createApp(LoginLayout).provide(stateSymbol, state).mount('#app');

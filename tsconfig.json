@@ -1,10 +1,9 @@
 {
   "compilerOptions": {
-    "target": "esnext",
+    "target": "es2017",
     "module": "esnext",
     "strict": true,
-    "jsx": "preserve",
-    "importHelpers": true,
+    "importHelpers": false,
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "esModuleInterop": true,
@@ -18,26 +17,9 @@
     },
     "lib": [
       "esnext",
-      "dom",
-      "dom.iterable",
-      "scripthost"
-    ],
-    "types": [
-      "@vue/compiler-core/dist/compiler-core",
-      "@vue/compiler-dom/dist/compiler-dom",
-      "@vue/compiler-sfc/dist/compiler-sfc",
-      "@vue/compiler-ssr/dist/compiler-ssr",
-      "@vue/reactivity/dist/reactivity",
-      "@vue/runtime-core/dist/runtime-core",
-      "@vue/runtime-dom/dist/runtime-dom",
-      "node"
+      "dom"
     ]
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue"
-  ],
   "exclude": [
     "node_modules"
   ]

@@ -14,6 +14,7 @@ export { default as TabComponent } from "./compounds/Tabs/Tab.vue";
 export { default as TabsComponent } from "./compounds/Tabs/Tabs.vue";
 export { default as TooltipComponent } from "./compounds/Tooltip/Tooltip.vue";
 export { default as TypographyComponent } from "./primitives/Typography/Typography.vue";
+export { default as TextInputComponent } from "./primitives/TextInput/TextInput.vue";
 
 export { default as LoginFormPanel } from "./panels/LoginForm/LoginForm.vue";
 

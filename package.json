@@ -5,12 +5,16 @@
   "author": "PathScale (https://vue3.dev/)",
   "contributors": [],
   "engines": {},
-  "main": "src/components/index.js",
-  "module": "src/components/index.js",
+  "main": "dist/index.umd.js",
+  "module": "dist/index.umd.js",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "scripts": {
     "build": "vue-cli-service build src/components/index.js --target lib --name index --dest dist/",
+    "release": "np",
     "lint": "eslint --ext .js,.ts,.vue,.md,.html --max-warnings=0 .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\""
   },
   "repository": {
     "type": "git",
@@ -38,11 +42,11 @@
     "vue": "^3.0.0-beta.14"
   },
   "devDependencies": {
+    "@mysticatea/eslint-plugin": "^13.0.0",
     "@vue/cli-plugin-babel": "^4.4.1",
     "@vue/cli-plugin-typescript": "^4.4.1",
     "@vue/cli-service": "^4.4.1",
     "@vue/compiler-sfc": "^3.0.0-beta.14",
-    "@mysticatea/eslint-plugin": "^13.0.0",
     "eslint": "^7.2.0",
     "eslint-config-ash-nazg": "^22.3.0",
     "eslint-config-prettier": "^6.11.0",
@@ -63,6 +67,7 @@
     "eslint-plugin-standard": "^4.0.1",
     "eslint-plugin-unicorn": "^20.1.0",
     "eslint-plugin-vue": "^7.0.0-alpha.5",
+    "np": "^6.2.4",
     "prettier": "^2.0.5",
     "typescript": "^3.9.5",
     "vue-cli-plugin-vue-next": "^0.1.3"

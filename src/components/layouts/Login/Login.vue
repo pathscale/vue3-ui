@@ -2,7 +2,7 @@
   import LoginForm from '../../panels/LoginForm/LoginForm.vue';
   import { useState } from '../../../state';
 
-  export default  {
+  const Login = {
     components: { LoginForm },
     setup() {
       const state = useState();
@@ -17,6 +17,8 @@
       return { sendLogin };
     }
   };
+
+  export default Login;
 </script>
 
 <template>

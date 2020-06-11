@@ -2,7 +2,7 @@
   import { reactive, watchEffect, computed, onMounted } from 'vue';
   import TextInput from '../../primitives/TextInput/TextInput.vue';
 
-  export default {
+  const LoginForm = {
     components: { TextInput },
     emits: ['login'],
     setup(props, { emit }) {
@@ -29,6 +29,8 @@
       return { state, status, sendLogin, isValid };
     }
   };
+
+  export default LoginForm;
 </script>
 
 <template>

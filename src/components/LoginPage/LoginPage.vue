@@ -2,13 +2,13 @@
   import LoginForm from './LoginForm.vue';
   import { useState } from './state';
 
-  export default {
+  const LoginPage = {
     components: { LoginForm },
     setup() {
       const state = useState();
 
       const sendLogin = ({ email }) => {
-        console.log('login', email);
+        // console.log('login', email);
         if (state) {
           state.isLoggedIn = true;
           state.email = email;
@@ -17,9 +17,10 @@
 
       return { sendLogin };
     }
-  }
+  };
+  export default LoginPage;
 </script>
 
 <template>
-  <LoginForm @login="sendLogin"></LoginForm>
+  <LoginForm @login="sendLogin" />
 </template>

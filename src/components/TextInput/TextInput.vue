@@ -1,7 +1,7 @@
 <script>
   import { ref, watchEffect } from 'vue';
 
-  export default {
+  const TextInput = {
     props: {
       name: {
         type: String,
@@ -27,9 +27,11 @@
       return { value };
     }
   };
+
+  export default TextInput;
 </script>
 
 <template>
-  <label :for="name"></label>
+  <label :for="name" />
   <input type="text" :name="name" :id="name" :class="{ error: status === 'error' }" v-model="value" />
 </template>

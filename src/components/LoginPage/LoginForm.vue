@@ -2,7 +2,7 @@
   import { reactive, watchEffect, computed, onMounted } from 'vue';
   import TextInput from '../TextInput/TextInput.vue';
 
-  export default {
+  const LoginForm = {
     components: { TextInput },
     emits: ['login'],
     setup(props, { emit }) {
@@ -25,19 +25,22 @@
         status.email = state.email.length > 2 ? 'valid' : 'error';
         status.password = state.password.length > 2 ? 'valid' : 'error';
 
-        console.log('state', state.email, state.password);
-        console.log('status', status.email, status.password);
+        // console.log('state', state.email, state.password);
+        // console.log('status', status.email, status.password);
       });
 
       return { state, status, sendLogin, isValid };
     }
   };
+  export default LoginForm;
 </script>
 
 <template>
   <form>
     <TextInput name="email" v-model="state.email" status="valid" />
     <TextInput name="password" v-model="state.password" status="valid" />
-    <button type="button" @click="sendLogin" :disabled="!isValid">Login</button>
+    <button type="button" @click="sendLogin" :disabled="!isValid">
+      Login
+    </button>
   </form>
 </template>

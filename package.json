@@ -47,7 +47,7 @@
     "eslint-plugin-eslint-comments": "^3.2.0",
     "eslint-plugin-html": "^6.0.2",
     "eslint-plugin-import": "git+https://github.com/pathscale/eslint-plugin-import.git",
-    "eslint-plugin-jsdoc": "^25.4.3",
+    "eslint-plugin-jsdoc": "^27.0.6",
     "eslint-plugin-markdown": "^1.0.2",
     "eslint-plugin-no-unsanitized": "^3.1.2",
     "eslint-plugin-no-use-extend-native": "^0.5.0",

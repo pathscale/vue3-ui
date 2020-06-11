@@ -17,4 +17,4 @@ export { default as TypographyComponent } from "./primitives/Typography/Typograp
 
 export { default as LoginFormPanel } from "./panels/LoginForm/LoginForm.vue";
 
-export { default as LoginLayout } from "./layouts/Login/Login";
+export { default as LoginLayout } from "./layouts/Login/Login.vue";

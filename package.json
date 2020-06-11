@@ -4,9 +4,9 @@
   "description": "Very clean Vue3 components styled with love and care.",
   "author": "PathScale (https://vue3.dev/)",
   "contributors": [],
-  "engines": {
-  },
-  "main": "index.js",
+  "engines": {},
+  "main": "src/components/index.js",
+  "module": "src/components/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -24,6 +24,10 @@
     "url": "https://github.com/pathscale/vue3-ui/issues"
   },
   "homepage": "https://github.com/pathscale/vue3-ui#readme",
-  "dependencies": {},
+  "dependencies": {
+    "autoprefixer": "^9.8.0",
+    "tailwindcss": "^1.4.6",
+    "vue": "^3.0.0-beta.14"
+  },
   "devDependencies": {}
 }

@@ -1,8 +1,6 @@
 <template>
-  <div class="px-6 py-4">
-    <p class="text-gray-700 text-base">
-      <slot />
-    </p>
+  <div class="bg-teal-500 py-6 px-6 flex">
+    <slot />
   </div>
 </template>
 
@@ -10,6 +8,6 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-    name: 'CardFooter',
+    name: 'Appbar',
 })
 </script>

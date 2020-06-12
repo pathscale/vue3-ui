@@ -1,5 +1,5 @@
 <template>
-  <div class="px-6 py-4">
+  <div class="py-2 px-2">
     <p class="text-gray-700 text-base">
       <slot />
     </p>
@@ -7,9 +7,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: "CardBody",
-});
+    name: 'CardBody',
+})
 </script>

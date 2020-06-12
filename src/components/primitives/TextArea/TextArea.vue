@@ -1,10 +1,12 @@
 <template>
   <div class="mt-4">
     <label :for="name" v-if="label" class="text-white">{{ label }}</label>
-    <input
+    <textarea
       :name="name"
       v-model="value"
       v-bind="$attrs"
+      rows="4"
+      cols="50"
       class="transition ease-in-out duration-300 bg-transparent block w-full px-2 py-4 border-b-2 focus:outline-none focus:z-10 border-wine focus:border-wine-lighter placeholder-gray-400 relative sm:leading-5 sm:text-sm text-white mb-1" />
   </div>
 </template>
@@ -13,7 +15,7 @@
 import { defineComponent, ref, watchEffect } from 'vue'
 
 export default defineComponent({
-    name: 'TextInput',
+    name: 'TextArea',
     props: {
         label: {
             type: String,

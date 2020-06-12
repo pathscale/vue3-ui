@@ -5,28 +5,26 @@
   </div>
 </template>
 
-
 <script lang="ts">
-import { defineComponent, ref, watchEffect } from "vue";
+import { defineComponent, ref, watchEffect } from 'vue'
 
 export default defineComponent({
-  name: "Checkbox",
-  props: {
-    modelValue: {
-      type: Boolean,
-      required: true
+    name: 'Checkbox',
+    props: {
+        modelValue: {
+            type: Boolean,
+            required: true,
+        },
     },
-  },
-  emits: ['update:modelValue'],
-  setup(props: any, { emit }) {  
-    const value = ref(props.modelValue);
-    watchEffect(() => {
-        emit('update:modelValue', value.value);
-    });
-    return { value };
-  }
-});
+    emits: ['update:modelValue'],
+    setup(props: any, { emit }) {
+        const value = ref(props.modelValue)
+        watchEffect(() => {
+            emit('update:modelValue', value.value)
+        })
+        return { value }
+    },
+})
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

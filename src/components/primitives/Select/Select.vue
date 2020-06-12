@@ -8,21 +8,21 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watchEffect } from "vue";
+import { defineComponent, ref, watchEffect } from 'vue'
 
 export default defineComponent({
-  name: "Select",
-  props: {
-    modelValue: {
-      type: String,
-      required: true
-    }
-  },
-  emits: ['update:modelValue'],
-  setup(props, { emit }) {
-    const value = ref(props.modelValue);
-    watchEffect(() =>  emit("update:modelValue", value.value))
-    return { value };
-  }
-});
+    name: 'Select',
+    props: {
+        modelValue: {
+            type: String,
+            required: true,
+        },
+    },
+    emits: ['update:modelValue'],
+    setup(props, { emit }) {
+        const value = ref(props.modelValue)
+        watchEffect(() => emit('update:modelValue', value.value))
+        return { value }
+    },
+})
 </script>

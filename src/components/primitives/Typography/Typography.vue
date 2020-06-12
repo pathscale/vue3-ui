@@ -1,44 +1,46 @@
 <template>
-  <component :is="variant" :class="`font-sans font-normal text-white ${variant}`">
+  <component
+    :is="variant"
+    :class="`font-sans font-normal text-white ${variant}`">
     <slot />
   </component>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: "Typography",
-  props: {
-    variant: {
-      type: String,
-      require: true,
-      default: "p",
-      validator(value: string) {
-        return ["p", "h1", "h2", "h3", "h4", "h5", "h6"].includes(value);
-      }
+    name: 'Typography',
+    props: {
+        variant: {
+            type: String,
+            require: true,
+            default: 'p',
+            validator(value: string) {
+                return ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(value)
+            },
+        },
     },
-  },
-});
+})
 </script>
 
 <style scoped>
-  .h1 {
+.h1 {
     @apply text-6xl;
-  }
-  .h2 {
+}
+.h2 {
     @apply text-5xl;
-  }
-  .h3 {
+}
+.h3 {
     @apply text-4xl;
-  }
-  .h4 {
+}
+.h4 {
     @apply text-3xl;
-  }
-  .h5 {
+}
+.h5 {
     @apply text-2xl;
-  }
-  .h6 {
+}
+.h6 {
     @apply text-xl;
-  }
+}
 </style>

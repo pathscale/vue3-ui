@@ -1,10 +1,10 @@
 {
   "name": "@pathscale/vue3-ui",
-  "sideEffects": false,
   "version": "0.1.2",
   "description": "Very clean Vue3 components styled with love and care.",
   "author": "PathScale (https://vue3.dev/)",
   "contributors": [],
+  "sideEffects": false,
   "engines": {},
   "module": "dist/bundle.js",
   "publishConfig": {

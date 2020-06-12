@@ -6,13 +6,13 @@
   "author": "PathScale (https://vue3.dev/)",
   "contributors": [],
   "engines": {},
-  "main": "dist/index.umd.js",
-  "module": "dist/index.umd.js",
+  "module": "dist/bundle.js",
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
   },
   "scripts": {
+    "serve": "vue-cli-service serve",
     "rollup": "rollup -c",
     "build": "vue-cli-service build src/components/index.js --target lib --name index --dest dist/",
     "release": "np",

@@ -1,5 +1,6 @@
 {
   "name": "@pathscale/vue3-ui",
+  "sideEffects": false,
   "version": "0.1.2",
   "description": "Very clean Vue3 components styled with love and care.",
   "author": "PathScale (https://vue3.dev/)",
@@ -12,6 +13,7 @@
     "registry": "https://registry.npmjs.org/"
   },
   "scripts": {
+    "rollup": "rollup -c",
     "build": "vue-cli-service build src/components/index.js --target lib --name index --dest dist/",
     "release": "np",
     "lint": "eslint --ext .js,.ts,.vue,.md,.html --max-warnings=0 .",
@@ -43,6 +45,8 @@
   },
   "devDependencies": {
     "@mysticatea/eslint-plugin": "^13.0.0",
+    "@rollup/plugin-node-resolve": "^8.0.1",
+    "@rollup/plugin-typescript": "^4.1.2",
     "@vue/cli-plugin-babel": "^4.4.1",
     "@vue/cli-plugin-typescript": "^4.4.1",
     "@vue/cli-service": "^4.4.1",
@@ -70,7 +74,13 @@
     "eslint-plugin-vue": "^7.0.0-alpha.5",
     "np": "^6.2.4",
     "prettier": "^2.0.5",
+    "rollup": "^2.15.0",
+    "rollup-plugin-css-only": "^2.1.0",
+    "rollup-plugin-typescript": "^1.0.1",
+    "rollup-plugin-typescript2": "^0.27.1",
+    "rollup-plugin-vue": "^6.0.0-beta.6",
     "tailwindcss": "^1.4.6",
+    "tslib": "^2.0.0",
     "typescript": "^3.9.5",
     "vue": "^3.0.0-beta.14",
     "vue-cli-plugin-vue-next": "^0.1.3"

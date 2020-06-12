@@ -7,6 +7,8 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
+// Might avoid this in the future with https://github.com/ktsn/vuetype/issues/31
+// @ts-ignore
 import { addToStore, useStore } from "./Tabs.vue"
 
 export default defineComponent({

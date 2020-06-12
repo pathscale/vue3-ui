@@ -1,5 +1,5 @@
 import vue from 'rollup-plugin-vue'
-import css from 'rollup-plugin-css-only'
+import postcss from 'rollup-plugin-postcss'
 import resolve from '@rollup/plugin-node-resolve';
 
 // import typescript from '@rollup/plugin-typescript'
@@ -16,11 +16,9 @@ export default {
     },
     plugins: [
         resolve(),
+        vue(),
         // Vue plugin won't handle CSS currently
-        css(),
-        vue({
-          css: false
-        }),
+        postcss(),
         typescript()
         // with @rollup/plugin-typescript
         /*

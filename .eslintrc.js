@@ -31,6 +31,7 @@ module.exports = {
         "webpack.config.js",
         ".3rdparty-eslintrc.js",
         "tailwind.config.js",
+        ".np-config.js"
       ],
       extends: [
         "ash-nazg/sauron-node",

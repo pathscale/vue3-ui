@@ -10,7 +10,7 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-    name: 'TextInput',
+    name: 'ProgressIndicator',
     props: {
         label: {
             type: String,

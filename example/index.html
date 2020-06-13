@@ -9,16 +9,21 @@
 
   <script type="module">
 
-  import {createApp, h} from '../node_modules/vue/dist/vue.runtime.esm-browser.prod.js';
+  import {createApp} from '../node_modules/vue/dist/vue.esm-browser.js';
+  // import {createApp, h} from '../node_modules/vue/dist/vue.runtime.esm-browser.prod.js';
+
   import {ProgressIndicatorComponent, CheckboxComponent} from "../dist/bundle-browser.js";
 
   createApp({
+    template: 'Some <b>HTML</b> with components: <ProgressIndicatorComponent /><CheckboxComponent />',
+    components: {
+      ProgressIndicatorComponent,
+      CheckboxComponent
+    }
+    /*
     render () {
-      // Per devs in Vue Discord, seems not possible to use strings with
-      //  component elements like `<AlertComponent>` (whether within
-      //  `template`, `render`, or `setup`), but this `createElement`
-      //  syntax (see https://vuejs.org/v2/guide/render-function.html#createElement-Arguments )
-      //  is at least HTML-like and decent enough for rapid prototyping
+      // This `createElement` syntax (see https://vuejs.org/v2/guide/render-function.html#createElement-Arguments )
+      //  can be used, even with the smaller runtime build
       // These docs also seems to indicate that duplicates are not
       //  allowed, suggesting use of factory functions instead, but
       //  not seeming to get errors in Vue 3 here if using multiple instances
@@ -29,6 +34,7 @@
         h(CheckboxComponent)
       ]);
     }
+    */
   }).mount('#app');
 
   </script>

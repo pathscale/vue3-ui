@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <title>Welcome to Vue</title>
+  <!-- Suppress 404 favicon logging -->
+  <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+
+  <script type="module">
+
+  import {createApp} from '../node_modules/vue/dist/vue.runtime.esm-browser.prod.js';
+  import {AlertComponent} from "../dist/bundle-browser.js";
+
+  createApp(AlertComponent).mount('#app')
+
+  </script>
+</head>
+<body>
+  <div id="app"></div>
+</body>
+</html>

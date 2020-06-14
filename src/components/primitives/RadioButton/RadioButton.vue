@@ -21,7 +21,7 @@ export default defineComponent({
     },
   },
   emits: ['update:modelValue'],
-  setup(props: any, { emit }) {  
+  setup(props, { emit }) {  
     const checked = ref(props.modelValue);
     watchEffect(() => {
         emit('update:modelValue', checked.value);

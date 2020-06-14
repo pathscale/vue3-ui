@@ -16,7 +16,7 @@ export default defineComponent({
             type: String,
             require: true,
             default: 'p',
-            validator(value: string) {
+            validator(value) {
                 return ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(value)
             },
         },

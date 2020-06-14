@@ -24,17 +24,12 @@ import { defineComponent, provide, inject, ref } from 'vue'
 
 const TabsSymbol = Symbol('Tabs')
 
-interface Store {
-    currentTab: String
-    tabs: Array<Object>
-}
-
-export function provideStore(store: Store) {
+export function provideStore(store) {
     const storeRef = ref(store)
     provide(TabsSymbol, storeRef)
 }
 
-export function useStore(): { value: any } {
+export function useStore() {
     const store = inject(TabsSymbol)
     if (!store) {
         // throw error, no store provided
@@ -43,7 +38,7 @@ export function useStore(): { value: any } {
     return store
 }
 
-export function addToStore(tab: any) {
+export function addToStore(tab) {
     const tabs = useStore()
     tabs.value.tabs.push(tab)
 }
@@ -51,14 +46,14 @@ export function addToStore(tab: any) {
 export default defineComponent({
     name: 'Tabs',
     props: {},
-    setup(props: any) {
+    setup(props) {
         provideStore({ currentTab: '1', tabs: [] })
         const tabs = useStore()
-        function setCurrentTab(id: String) {
+        function setCurrentTab(id) {
             tabs.value.currentTab = id
         }
 
-        const activeClass = (id: String) => {
+        const activeClass = (id) => {
             return {
                 'border-b-2 border-wine text-wine flex-justify-between hover:bg-wine-darker hover:bg-opacity-20 bg-grey-darker':
                     tabs.value.currentTab === id,

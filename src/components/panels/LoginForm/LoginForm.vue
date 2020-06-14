@@ -45,7 +45,9 @@
     </Field>
 
     <Field>
-      <Button type="is-success" @click="sendLogin" :disabled="!isValid">Login</Button>
+      <Button type="is-success" @click="sendLogin" :disabled="!isValid">
+        Login
+      </Button>
     </Field>
   </form>
 </template>

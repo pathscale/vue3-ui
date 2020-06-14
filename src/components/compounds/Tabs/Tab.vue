@@ -25,7 +25,7 @@ export default defineComponent({
             required: true,
         },
     },
-    setup(props: any, { emit }) {
+    setup(props, { emit }) {
         const tabs = useStore()
         addToStore({ ...props })
         return { tabs }

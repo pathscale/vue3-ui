@@ -20,7 +20,7 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "Chips",
-  setup(props: any, context: any) {    
+  setup(props, context) {    
     return { name: "Chips" };
   }
 });

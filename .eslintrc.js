@@ -10,19 +10,13 @@ module.exports = {
     "plugin:vue/vue3-strongly-recommended",
     "plugin:import/errors",
     "plugin:import/warnings",
-    "plugin:import/typescript",
     "plugin:prettier/recommended",
   ],
   globals: {
     Atomics: "readonly",
     SharedArrayBuffer: "readonly",
   },
-  parserOptions: {
-    ecmaVersion: 2018,
-    parser: "@typescript-eslint/parser",
-    sourceType: "module",
-  },
-  plugins: ["vue", "@typescript-eslint"],
+  plugins: ["vue"],
   overrides: [
     {
       files: [
@@ -30,7 +24,6 @@ module.exports = {
         "postcss.config.js",
         "webpack.config.js",
         ".3rdparty-eslintrc.js",
-        "tailwind.config.js",
         ".np-config.js"
       ],
       extends: [
@@ -38,7 +31,6 @@ module.exports = {
         "plugin:vue/vue3-strongly-recommended",
         "plugin:import/errors",
         "plugin:import/warnings",
-        "plugin:import/typescript",
         "plugin:prettier/recommended",
       ],
       env: {

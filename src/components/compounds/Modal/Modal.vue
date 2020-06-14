@@ -18,7 +18,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import { defineComponent, ref, onMounted } from 'vue'
 
 export default defineComponent({
@@ -38,7 +38,7 @@ export default defineComponent({
         },
     },
     emits: ['update:modelValue'],
-    setup(props: any, { emit }) {
+    setup(props, { emit }) {
       const show = ref(props.modelValue)
       onMounted(() => {
             emit('update:modelValue', show)
@@ -49,7 +49,6 @@ export default defineComponent({
 </script>
 
 <style scoped>
-
 .modal {
   display: block;
   position: fixed;

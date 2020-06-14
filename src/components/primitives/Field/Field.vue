@@ -6,14 +6,17 @@
 </template>
 
 <script>
-  export default {
+import { defineComponent } from 'vue'
+
+  export default defineComponent({
     name: 'Field',
     props: {
       label: {
         type: String,
+        default: null,
       },
     },
-  }
+  })
 </script>
 
 

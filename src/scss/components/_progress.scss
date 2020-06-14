@@ -1,0 +1,59 @@
+$progress-text-color: $white !default;
+
+.progress-wrapper {
+    position: relative;
+    overflow: hidden;
+
+    &:not(:last-child) {
+        margin-bottom: 1.5rem;
+    }
+
+    .progress-value {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: calc(#{$size-normal} / 1.5);
+        line-height: $size-normal;
+        font-weight: bold;
+        color: $progress-text-color;
+        white-space: nowrap;
+    }
+
+    .progress {
+        margin-bottom: 0;
+
+        &.is-small {
+            + .progress-value {
+                font-size: calc(#{$size-small} / 1.5);
+                line-height: $size-small;
+            }
+        }
+        &.is-medium {
+            + .progress-value {
+                font-size: calc(#{$size-medium} / 1.5);
+                line-height: $size-medium;
+            }
+        }
+        &.is-large {
+            + .progress-value {
+                font-size: calc(#{$size-large} / 1.5);
+                line-height: $size-large;
+            }
+        }
+
+        // TODO Remove below when the following PR will be merged in Bulma:
+        // https://github.com/jgthms/bulma/pull/2540
+        // From this Bulma Issue:
+        // https://github.com/jgthms/bulma/issues/2539
+        &:indeterminate {
+            &::-ms-fill {
+                animation-name: none
+            }
+        }
+
+        &::-webkit-progress-value {
+            transition: width 0.5s ease;
+        }
+    }
+}

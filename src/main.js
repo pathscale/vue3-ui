@@ -1,5 +1,5 @@
 import { createApp } from 'vue';
-import { LoginLayout } from './components';
-import { stateSymbol, state } from './state';
+import App from './App.vue';
+import './scss/vue3-ui-build.scss';
 
-createApp(LoginLayout).provide(stateSymbol, state).mount('#app');
+createApp(App).mount('#app');

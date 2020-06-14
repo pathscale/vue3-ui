@@ -12,15 +12,14 @@
     "registry": "https://registry.npmjs.org/"
   },
   "scripts": {
-    "example": "open http://localhost:5000/examples/ && npm start",
-    "start": "serve",
-    "vue-serve-example": "npm run vue-serve -- src/components/primitives/RadioButton/RadioButton.vue",
-    "vue-serve": "echo 'This option is currently broken but should work' && vue serve",
-    "serve": "vue-cli-service serve",
+    "start": "vue-cli-service serve",
     "rollup": "rollup -c",
-    "build": "vue-cli-service build src/components/index.js --target lib --name index --dest dist/",
-    "release": "np",
     "lint": "eslint --ext .js,.ts,.vue,.md,.html --max-warnings=0 .",
+    "release": "np",
+    "build": "vue-cli-service build src/components/index.js --target lib --name index --dest dist/",
+    "vue-serve": "echo 'This option is currently broken but should work' && vue serve",
+    "vue-serve-example": "npm run vue-serve -- src/components/primitives/RadioButton/RadioButton.vue",
+    "example": "open http://localhost:5000/examples/ && npm start",
     "test": "echo \"Error: no test specified\""
   },
   "repository": {
@@ -51,7 +50,6 @@
     "@mysticatea/eslint-plugin": "^13.0.0",
     "@rollup/plugin-node-resolve": "^8.0.1",
     "@rollup/plugin-replace": "^2.3.3",
-    "@rollup/plugin-typescript": "^4.1.2",
     "@vue/cli-plugin-babel": "^4.4.1",
     "@vue/cli-service": "^4.4.1",
     "@vue/compiler-sfc": "^3.0.0-beta.14",
@@ -81,13 +79,9 @@
     "prettier": "^2.0.5",
     "rollup": "^2.16.0",
     "rollup-plugin-postcss": "^3.1.2",
-    "rollup-plugin-typescript": "^1.0.1",
-    "rollup-plugin-typescript2": "^0.27.1",
     "rollup-plugin-vue": "^6.0.0-beta.6",
     "serve": "^11.3.2",
-    "tailwindcss": "^1.4.6",
     "tslib": "^2.0.0",
-    "typescript": "^3.9.5",
     "vue": "^3.0.0-beta.14",
     "vue-cli-plugin-vue-next": "^0.1.3"
   }

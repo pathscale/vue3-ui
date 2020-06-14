@@ -15,7 +15,15 @@
   import {ProgressIndicatorComponent, CheckboxComponent} from "../dist/bundle-browser.js";
 
   createApp({
-    template: 'Some <b>HTML</b> with components: <ProgressIndicatorComponent /><CheckboxComponent />',
+    // See `html-template.html` for putting inside an HTML `<template>`
+    //  element instead (with the advantage of syntax highlighting), but
+    //  see the comment in that file on its inability to allow self-closing
+    //  element syntax.
+    template: /* html */ `
+      Some <b>HTML</b> with components:
+      <ProgressIndicatorComponent />
+      <CheckboxComponent />
+    `,
     components: {
       ProgressIndicatorComponent,
       CheckboxComponent

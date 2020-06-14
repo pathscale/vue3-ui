@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <title>Welcome to Vue</title>
+  <!-- Suppress 404 favicon logging -->
+  <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+
+  <script type="module">
+
+  import {createApp} from '../node_modules/vue/dist/vue.esm-browser.js';
+
+  import {ProgressIndicatorComponent, CheckboxComponent} from "../dist/bundle-browser.js";
+
+  createApp({
+    template: '#template',
+    components: {
+      ProgressIndicatorComponent,
+      CheckboxComponent
+    }
+  }).mount('#app');
+
+  </script>
+</head>
+<body>
+  <!--
+  NOTE: In using this approach, one cannot use self-closing elements as
+  HTML does not recognize custom elements as being void elements (e.g.,
+  like `<input>`). To avoid this problem see `/example/index.html` whose
+  template string can allow
+  -->
+  <template id="template">
+    Some <b>HTML</b> with components:
+    <progress-indicator-component></progress-indicator-component>
+    <checkbox-component></checkbox-component>
+  </template>
+  <div id="app"></div>
+</body>
+</html>

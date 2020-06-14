@@ -14,6 +14,8 @@
   "scripts": {
     "example": "open http://localhost:5000/examples/ && npm start",
     "start": "serve",
+    "vue-serve-example": "npm run vue-serve -- src/components/primitives/RadioButton/RadioButton.vue",
+    "vue-serve": "echo 'This option is currently broken but should work' && vue serve",
     "serve": "vue-cli-service serve",
     "rollup": "rollup -c",
     "build": "vue-cli-service build src/components/index.js --target lib --name index --dest dist/",

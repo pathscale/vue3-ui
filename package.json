@@ -16,11 +16,11 @@
     "rollup": "rollup -c",
     "lint": "eslint --ext .js,.ts,.vue,.md,.html --max-warnings=0 .",
     "release": "np",
-    "build": "vue-cli-service build src/components/index.js --target lib --name index --dest dist/",
-    "vue-serve": "echo 'This option is currently broken but should work' && vue serve",
-    "vue-serve-example": "npm run vue-serve -- src/components/primitives/RadioButton/RadioButton.vue",
-    "example": "open http://localhost:5000/examples/ && npm start",
-    "test": "echo \"Error: no test specified\""
+    "__build": "vue-cli-service build src/components/index.js --target lib --name index --dest dist/",
+    "__vue-serve": "echo 'This option is currently broken but should work' && vue serve",
+    "__vue-serve-example": "npm run vue-serve -- src/components/primitives/RadioButton/RadioButton.vue",
+    "__example": "open http://localhost:5000/examples/ && npm start",
+    "__test": "echo \"Error: no test specified\""
   },
   "repository": {
     "type": "git",

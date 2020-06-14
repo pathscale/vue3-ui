@@ -8,13 +8,20 @@ import replace from '@rollup/plugin-replace';
 // eslint-disable-next-line import/no-anonymous-default-export -- Used internally by Rollup
 export default [{
     input: 'src/components/index.ts',
+    external: ['vue'],
     output: {
         format: 'esm',
         file: 'dist/bundle.js'
     },
     plugins: [
-        resolve(),
-        vue(),
+        resolve({
+          extensions: ['.vue', '.js']
+        }),
+        vue({
+          template: {
+            isProduction: true
+          }
+        }),
         // Vue plugin won't handle CSS currently
         postcss(),
         typescript()
@@ -26,8 +33,14 @@ export default [{
         file: 'dist/bundle-browser.js'
     },
     plugins: [
-        resolve(),
-        vue(),
+        resolve({
+          extensions: ['.vue', '.js']
+        }),
+        vue({
+          template: {
+            isProduction: false
+          }
+        }),
         // Vue plugin won't handle CSS currently
         postcss(),
         typescript(),

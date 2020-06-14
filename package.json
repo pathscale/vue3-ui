@@ -12,7 +12,7 @@
     "registry": "https://registry.npmjs.org/"
   },
   "scripts": {
-    "example": "open http://localhost:5000/example/ && npm start",
+    "example": "open http://localhost:5000/examples/ && npm start",
     "start": "serve",
     "serve": "vue-cli-service serve",
     "rollup": "rollup -c",

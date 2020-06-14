@@ -1,70 +1,78 @@
 <template>
-  <div>
-    <p class="tooltip">
-      <slot />
-      <span class="tooltiptext">{{ content }}</span>
-    </p>
-  </div>
+  <span
+    :data-label="label"
+    :class="[newType, position, size, {
+      'b-tooltip': active,
+      'is-square': square,
+      'is-animated': newAnimated,
+      'is-always': always,
+      'is-multiline': multilined,
+      'is-dashed': dashed
+    }]"
+    :style="{'transition-delay': `${newDelay}ms`}">
+    <slot />
+  </span>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
+<script>
+import { defineComponent, computed } from 'vue'
+import config from '../../../utils/config'
+
 
 export default defineComponent({
-    name: 'Tooltip',
+    name: 'BTooltip',
     props: {
-        placement: {
-            type: String,
-            required: true,
+        active: {
+            type: Boolean,
+            default: true
         },
-        content: {
+        type: {
             type: String,
-            required: true,
+            default: null
         },
+        label: {
+            type: String,
+            required: true
+        },
+        position: {
+            type: String,
+            default: 'is-top',
+            validator(value) {
+                return [
+                    'is-top',
+                    'is-bottom',
+                    'is-left',
+                    'is-right'
+                ].includes(value)
+            }
+        },
+        always: Boolean,
+        animated: Boolean,
+        square: Boolean,
+        dashed: Boolean,
+        multilined: Boolean,
+        size: {
+            type: String,
+            default: 'is-medium'
+        },
+        delay: {
+            type: Number,
+            default: null
+        }
     },
+
+    setup(props) {
+        const newType = computed(() => {
+            return props.type || config.defaultTooltipType
+        })
+        const newAnimated = computed(() => {
+            return props.animated || config.defaultTooltipAnimated
+        })
+        const newDelay = computed(() => {
+            return props.delay || config.defaultTooltipDelay
+        })
+
+        return { newType, newAnimated, newDelay}
+    }
 })
 </script>
-
-<style scoped>
-.tooltip {
-    position: relative;
-    display: inline-block;
-    border-bottom: 1px dotted black;
-}
-
-/* Tooltip text */
-.tooltip .tooltiptext {
-    visibility: hidden;
-    width: 120px;
-    background-color: #555;
-    color: #fff;
-    text-align: center;
-    padding: 5px 0;
-    border-radius: 6px;
-
-    position: absolute;
-    z-index: 1;
-    bottom: 125%;
-    left: 50%;
-    margin-left: -60px;
-
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-
-.tooltip .tooltiptext::after {
-    content: '';
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: #555 transparent transparent transparent;
-}
-
-.tooltip:hover .tooltiptext {
-    visibility: visible;
-    opacity: 1;
-}
-</style>

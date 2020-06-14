@@ -1,28 +1,26 @@
 <template>
-  <div class="mt-4">
-    <label :for="name" v-if="label" class="text-white">{{ label }}</label>
+  <div class="control">
     <input
       :name="name"
+      :type="type"
       v-model="value"
-      v-bind="$attrs"
-      class="transition ease-in-out duration-300 bg-transparent block w-full px-2 py-4 border-b-2 focus:outline-none focus:z-10 border-wine focus:border-wine-lighter placeholder-gray-400 relative sm:leading-5 sm:text-sm text-white mb-1" />
+      class="input" />
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import { defineComponent, ref, watchEffect } from 'vue'
 
 export default defineComponent({
-    name: 'TextInput',
+    name: 'Input',
     props: {
-        label: {
-            type: String,
-            required: false,
-            default: null,
-        },
         name: {
             type: String,
             required: true,
+        },
+        type: {
+            type: String,
+            default: 'text',
         },
         modelValue: {
             type: String,

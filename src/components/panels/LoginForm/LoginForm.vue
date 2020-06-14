@@ -1,9 +1,11 @@
 <script>
   import { reactive, watchEffect, computed, onMounted } from 'vue';
-  import TextInput from '../../primitives/TextInput/TextInput.vue';
+  import Input from '../../primitives/Input/Input.vue';
+  import Field from '../../primitives/Field/Field.vue';
+  import Button from '../../primitives/Button/Button.vue';
 
   const LoginForm = {
-    components: { TextInput },
+    components: { Input, Field, Button },
     emits: ['login'],
     setup(props, { emit }) {
       const state = reactive({ email: 'asd', password: 'edc' });
@@ -34,11 +36,16 @@
 </script>
 
 <template>
-  <form>
-    <TextInput name="email" v-model="state.email" status="valid" />
-    <TextInput name="password" v-model="state.password" status="valid" />
-    <button type="button" @click="sendLogin" :disabled="!isValid">
-      Login
-    </button>
+  <form class="box">
+    <Field label="Email">
+      <Input name="email" v-model="state.email" status="valid" />
+    </Field>
+    <Field label="Password">
+      <Input name="password" type="password" v-model="state.password" status="valid" />
+    </Field>
+
+    <Field>
+      <Button success @click="sendLogin" :disabled="!isValid">Login</Button>
+    </Field>
   </form>
 </template>

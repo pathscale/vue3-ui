@@ -3,12 +3,13 @@
   import Input from '../../primitives/Input/Input.vue';
   import Field from '../../primitives/Field/Field.vue';
   import Button from '../../primitives/Button/Button.vue';
+  import Switch from '../../primitives/Switch/Switch.vue';
 
   const LoginForm = {
-    components: { Input, Field, Button },
+    components: { Input, Field, Button, Switch },
     emits: ['login'],
     setup(props, { emit }) {
-      const state = reactive({ email: 'asd', password: 'edc' });
+      const state = reactive({ email: 'asd', password: 'edc', remember: false });
       const status = reactive({ email: 'valid', password: 'valid' });
 
       const isValid = computed(() => status.email === 'valid' && status.password === 'valid');
@@ -48,6 +49,12 @@
       <Button type="is-success" @click="sendLogin" :disabled="!isValid">
         Login
       </Button>
+    </Field>
+
+    <Field>
+      <Switch type="is-primary" passive-type="is-warning" v-model="state.remember">
+        Remember me
+      </Switch>
     </Field>
   </form>
 </template>

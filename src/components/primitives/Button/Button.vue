@@ -25,7 +25,7 @@ import { defineComponent, computed } from 'vue'
 
 export default defineComponent({
   // extrange behaviour for value 'Button', conflicts with :is on line 3, recursive loop?
-  name: 'ButtonComponent',
+  name: 'VButton',
   props: {
       type: {
           type: String,

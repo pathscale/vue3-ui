@@ -47,15 +47,20 @@
   <Button type="is-info" expanded>
     Button
   </Button>
+  <h1 class="title is-1">
+    Progress
+  </h1>
+  <Progress type="is-success" value="35" />
 </template>
 
 <script>
 import { ref } from 'vue';
 import Button from '../components/primitives/Button/Button.vue';
 import Checkbox from '../components/primitives/Checkbox/Checkbox.vue';
+import Progress from '../components/primitives/Progress/Progress.vue';
 
 const View = {
-    components: { Button, Checkbox },
+    components: { Button, Checkbox, Progress },
     setup(props) {
         const toggle = ref(true);
         return { toggle };

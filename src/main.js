@@ -1,5 +1,5 @@
 import { createApp } from 'vue';
-import { LoginLayout } from './components';
+import Showcase from './views/Showcase.vue';
 import { stateSymbol, state } from './state';
 
-createApp(LoginLayout).provide(stateSymbol, state).mount('#app');
+createApp(Showcase).provide(stateSymbol, state).mount('#app');

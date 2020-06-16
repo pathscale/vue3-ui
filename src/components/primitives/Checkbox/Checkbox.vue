@@ -1,30 +1,65 @@
 <template>
-  <div>
-    <input type="checkbox" id="checkbox" v-model="value" />
-    <label for="checkbox">{{ value }}</label>
-  </div>
+  <label
+    class="b-checkbox checkbox"
+    :class="[size, { 'is-disabled': disabled }]"
+    ref="label"
+    :disabled="disabled"
+    @click="focus"
+    @keydown.prevent.enter="label.click()">
+    <input
+      v-model="value"
+      :indeterminate.prop="indeterminate"
+      type="checkbox"
+      ref="input"
+      @click.stop
+      :disabled="disabled"
+      :required="required"
+      :name="name"
+      :value="nativeValue"
+      :true-value="trueValue"
+      :false-value="falseValue" />
+    <span class="check" :class="type" />
+    <span class="control-label"><slot /></span>
+  </label>
 </template>
 
-<script lang="ts">
+<script>
 import { defineComponent, ref, watchEffect } from 'vue'
+import CheckRadioMixin from '../../../mixins/CheckRadio.js'
 
 export default defineComponent({
-    name: 'Checkbox',
+    name: 'VCheckbox',
     props: {
-        modelValue: {
+        ...CheckRadioMixin.props,
+        indeterminate: {
             type: Boolean,
-            required: true,
+            default: false,
         },
+        trueValue: {
+            type: [String, Number, Boolean, Function, Object, Array],
+            default: true
+        },
+        falseValue: {
+            type: [String, Number, Boolean, Function, Object, Array],
+            default: false
+        }
     },
     emits: ['update:modelValue'],
     setup(props, { emit }) {
-        const value = ref(props.modelValue)
+        // references
+        const label = ref(null);
+        const input = ref(null);
+        // state
+        const value = ref(props.modelValue);
+        // MacOS FireFox and Safari do not focus when clicked
+        const focus = () => {
+            input.value.focus()
+        };
+        // watch for changes in value
         watchEffect(() => {
             emit('update:modelValue', value.value)
         })
-        return { value }
-    },
+        return { label, input, value, focus }
+    }
 })
 </script>
-
-<style scoped></style>

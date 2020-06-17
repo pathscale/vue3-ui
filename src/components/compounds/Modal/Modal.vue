@@ -1,86 +1,280 @@
 <template>
-  <!-- // portal is not working -->
-  <div :target="`${id}`" class="modal" v-if="show">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" @click="show = false">
-          <span>×</span>
-        </button>
-        <h4 class="modal-title" v-if="title">
-          {{ title }}
-        </h4>
+  <transition
+    :name="animation"
+    @after-enter="afterEnter"
+    @before-leave="beforeLeave"
+    @after-leave="afterLeave">
+    <div
+      v-if="!destroyed"
+      v-show="isActive"
+      class="modal is-active"
+      :class="[{'is-full-screen': fullScreen}, customClass]"
+      v-trap-focus="trapFocus"
+      tabindex="-1"
+      :role="ariaRole"
+      :aria-modal="ariaModal">
+      <div class="modal-background" @click="cancel('outside')" />
+      <div
+        class="animation-content"
+        :class="{ 'modal-content': !hasModalCard }"
+        :style="customStyle">
+        <component
+          v-if="component"
+          v-bind="props"
+          v-on="events"
+          :is="component"
+          @close="close" />
+        <div
+          v-else-if="content"
+          v-html="content" />
+        <slot v-else />
+        <button
+          type="button"
+          v-if="showX"
+          v-show="!animating"
+          class="modal-close is-large"
+          @click="cancel('x')" />
       </div>
-      <div class="modal-body">
-        <slot />
-      </div>
-      <div class="modal-footer" />
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
-import { defineComponent, ref, onMounted } from 'vue'
+import trapFocus from '../../../directives/trapFocus'
+import { removeElement } from '../../../utils/helpers'
+import config from '../../../utils/config'
 
-export default defineComponent({
-    name: 'Modal',
-    props: {
-        id: {
-            type: String,
-            required: true,
-        },
-        title: {
-            type: String,
-            default: null,
-        },
-        modelValue: {
-            type: Boolean,
-            required: true,
-        },
+export default {
+name: 'RModal',
+directives: {
+    trapFocus
+},
+props: {
+    active: Boolean,
+    component: [Object, Function],
+    content: String,
+    programmatic: Boolean,
+    props: Object,
+    events: Object,
+    width: {
+        type: [String, Number],
+        default: 960
     },
-    emits: ['update:modelValue'],
-    setup(props, { emit }) {
-      const show = ref(props.modelValue)
-      onMounted(() => {
-            emit('update:modelValue', show)
-      })
-         return { show }
+    hasModalCard: Boolean,
+    animation: {
+        type: String,
+        default: 'zoom-out'
     },
-})
+    canCancel: {
+        type: [Array, Boolean],
+        default() {
+            return config.defaultModalCanCancel
+        }
+    },
+    onCancel: {
+        type: Function,
+        default() {}
+    },
+    scroll: {
+        type: String,
+        default() {
+            return config.defaultModalScroll
+                ? config.defaultModalScroll
+                : 'clip'
+        },
+        validator(value) {
+            return [
+                'clip',
+                'keep'
+            ].includes(value)
+        }
+    },
+    fullScreen: Boolean,
+    trapFocus: {
+        type: Boolean,
+        default() {
+            return config.defaultTrapFocus
+        }
+    },
+    customClass: String,
+    ariaRole: {
+        type: String,
+        validator(value) {
+            return [
+                'dialog',
+                'alertdialog'
+            ].includes(value)
+        }
+    },
+    ariaModal: Boolean,
+    destroyOnHide: {
+        type: Boolean,
+        default: true
+    }
+},
+data() {
+    return {
+        isActive: this.active || false,
+        savedScrollTop: null,
+        newWidth: typeof this.width === 'number'
+            ? this.width + 'px'
+            : this.width,
+        animating: true,
+        destroyed: !this.active
+    }
+},
+computed: {
+    cancelOptions() {
+        return typeof this.canCancel === 'boolean'
+            ? this.canCancel
+                ? config.defaultModalCanCancel
+                : []
+            : this.canCancel
+    },
+    showX() {
+        return this.cancelOptions.includes('x')
+    },
+    customStyle() {
+        if (!this.fullScreen) {
+            return { maxWidth: this.newWidth }
+        }
+        return null
+    }
+},
+watch: {
+    active(value) {
+        this.isActive = value
+    },
+    isActive(value) {
+        if (value) this.destroyed = false
+        this.handleScroll()
+        this.$nextTick(() => {
+            if (value && this.$el && this.$el.focus) {
+                this.$el.focus()
+            }
+        })
+    }
+},
+methods: {
+    handleScroll() {
+        if (typeof window === 'undefined') return
+
+        if (this.scroll === 'clip') {
+            if (this.isActive) {
+                document.documentElement.classList.add('is-clipped')
+            } else {
+                document.documentElement.classList.remove('is-clipped')
+            }
+            return
+        }
+
+        this.savedScrollTop = !this.savedScrollTop
+            ? document.documentElement.scrollTop
+            : this.savedScrollTop
+
+        if (this.isActive) {
+            document.body.classList.add('is-noscroll')
+        } else {
+            document.body.classList.remove('is-noscroll')
+        }
+
+        if (this.isActive) {
+            document.body.style.top = `-${this.savedScrollTop}px`
+            return
+        }
+
+        document.documentElement.scrollTop = this.savedScrollTop
+        document.body.style.top = null
+        this.savedScrollTop = null
+    },
+
+    /**
+     * Close the Modal if canCancel and call the onCancel prop (function).
+     * @param method
+     */
+    cancel(method) {
+        if (!this.cancelOptions.includes(method)) return
+
+        Reflect.apply(this.onCancel, null, arguments)
+        this.close()
+    },
+
+    /**
+    * Call the onCancel prop (function).
+    * Emit events, and destroy modal if it's programmatic.
+    */
+    close() {
+        this.$emit('close')
+        this.$emit('update:active', false)
+
+        // Timeout for the animation complete before destroying
+        if (this.programmatic) {
+            this.isActive = false
+            setTimeout(() => {
+                this.$destroy()
+                removeElement(this.$el)
+            }, 150)
+        }
+    },
+
+    /**
+     * Keypress event that is bound to the document.
+     * @param event
+     */
+    keyPress(event) {
+        // Esc key
+        if (this.isActive && event.keyCode === 27) this.cancel('escape')
+    },
+
+    /**
+    * Transition after-enter hook
+    */
+    afterEnter() {
+        this.animating = false
+    },
+
+    /**
+    * Transition before-leave hook
+    */
+    beforeLeave() {
+        this.animating = true
+    },
+
+    /**
+    * Transition after-leave hook
+    */
+    afterLeave() {
+        if (this.destroyOnHide) {
+            this.destroyed = true
+        }
+    }
+},
+created() {
+    if (typeof window !== 'undefined') {
+        document.addEventListener('keyup', this.keyPress)
+    }
+},
+beforeMount() {
+    // Insert the Modal component in body tag
+    // only if it's programmatic
+    this.programmatic && document.body.appendChild(this.$el)
+},
+mounted() {
+    if (this.programmatic) this.isActive = true
+    else if (this.isActive) this.handleScroll()
+},
+beforeDestroy() {
+    if (typeof window !== 'undefined') {
+        document.removeEventListener('keyup', this.keyPress)
+        // reset scroll
+        document.documentElement.classList.remove('is-clipped')
+        const savedScrollTop = !this.savedScrollTop
+            ? document.documentElement.scrollTop
+            : this.savedScrollTop
+        document.body.classList.remove('is-noscroll')
+        document.documentElement.scrollTop = savedScrollTop
+        document.body.style.top = null
+    }
+}
+}
 </script>
-
-<style scoped>
-.modal {
-  display: block;
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgb(0,0,0);
-  background-color: rgba(0,0,0,0.4);
-}
-
-.modal-content {
-  background-color: #fefefe;
-  margin: 15% auto;
-  padding: 15px;
-  border: 1px solid #888;
-  width: 80%;
-}
-
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-</style>

@@ -1,14 +1,11 @@
 <template>
-  <div class="pt-4 px-2" v-if="tabs.currentTab == id">
+  <div class="pt-4 px-2" v-if="tabs.activeTab == id">
     <slot />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-
-// Might avoid this in the future with https://github.com/ktsn/vuetype/issues/31
-// @ts-ignore
 import { addToStore, useStore } from './Tabs.vue'
 
 export default defineComponent({
@@ -16,13 +13,18 @@ export default defineComponent({
     props: {
         id: {
             type: String,
-            default: '0',
+            default:'0' ,
             required: true,
         },
-        title: {
+        label: {
             type: String,
             default: '',
             required: true,
+        },
+        disabled: Boolean,
+        visible: {
+            type: Boolean,
+            default: true
         },
     },
     setup(props, { emit }) {

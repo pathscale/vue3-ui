@@ -4,13 +4,13 @@
       <template v-for="t in tabs.tabs">
         <li
           class="-mb-px mr-1 w-full"
-          @click="setCurrentTab(t.id)"
+          @click="setActiveTab(t.id)"
           :key="t">
           <a
-            :class="activeClass(t.id)"
-            class="transition ease-in-out duration-300 text-white py-4 px-6 block focus:outline-none uppercase hover:bg-white hover:bg-opacity-10"
+            :class="{ 'is-active': tabs.activeTab == t.id, 'is-disabled': t.disabled }"
+            class="transition ease-in-out duration-300 py-4 px-6 block focus:outline-none uppercase hover:bg-opacity-10"
             href="#">
-            {{ t.title }}
+            {{ t.label }}
           </a>
         </li>
       </template>
@@ -19,8 +19,8 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, provide, inject, ref } from 'vue'
+<script>
+import { defineComponent, provide, inject, ref, watchEffect } from 'vue'
 
 const TabsSymbol = Symbol('Tabs')
 
@@ -45,25 +45,31 @@ export function addToStore(tab) {
 
 export default defineComponent({
     name: 'Tabs',
-    props: {},
-    setup(props) {
-        provideStore({ currentTab: '1', tabs: [] })
+    props: {
+       modelValue: {
+            type: [Number, String],
+            required: true,
+        },
+    },
+    emits: ['update:modelValue'],
+    setup(props, { emit }) {
+        provideStore({ activeTab: 0, tabs: [] })
         const tabs = useStore()
-        function setCurrentTab(id) {
-            tabs.value.currentTab = id
+        function setActiveTab(id) {
+            tabs.value.activeTab = id
         }
 
-        const activeClass = (id) => {
-            return {
-                'border-b-2 border-wine text-wine flex-justify-between hover:bg-wine-darker hover:bg-opacity-20 bg-grey-darker':
-                    tabs.value.currentTab === id,
-            }
-        }
+        watchEffect(() => {
+            setActiveTab(props.modelValue)
+        })
+
+        watchEffect(() => {
+          emit('update:modelValue', tabs.value.activeTab)
+        })
 
         return {
             tabs,
-            setCurrentTab,
-            activeClass,
+            setActiveTab,
         }
     },
 })

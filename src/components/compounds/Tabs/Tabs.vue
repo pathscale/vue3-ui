@@ -1,26 +1,27 @@
 <template>
-  <div class="pt-4">
-    <ul class="flex border-b">
-      <template v-for="t in tabs.tabs">
-        <li
-          class="-mb-px mr-1 w-full"
-          @click="setActiveTab(t.id)"
-          :key="t">
-          <a
+  <section>
+    <nav class="tabs" :class="[size, type]">
+      <ul>
+        <template v-for="t in tabs.tabs">
+          <li
             :class="{ 'is-active': tabs.activeTab == t.id, 'is-disabled': t.disabled }"
-            class="transition ease-in-out duration-300 py-4 px-6 block focus:outline-none uppercase hover:bg-opacity-10"
-            href="#">
-            {{ t.label }}
-          </a>
-        </li>
-      </template>
-    </ul>
+            @click="setActiveTab(t.id)"
+            :key="t">
+            <a>
+              {{ t.label }}
+            </a>
+          </li>
+        </template>
+      </ul>
+    </nav>
     <slot />
-  </div>
+  </section>
 </template>
 
 <script>
 import { defineComponent, provide, inject, ref, watchEffect } from 'vue'
+import config from '../../../utils/config'
+
 
 const TabsSymbol = Symbol('Tabs')
 
@@ -34,7 +35,6 @@ export function useStore() {
     if (!store) {
         // throw error, no store provided
     }
-    // @ts-ignore
     return store
 }
 
@@ -49,6 +49,13 @@ export default defineComponent({
        modelValue: {
             type: [Number, String],
             required: true,
+        },
+        size: { type: String, default: null},
+        type: {
+            type: String,
+            default() {
+                return config.defaultTabsType
+            }
         },
     },
     emits: ['update:modelValue'],

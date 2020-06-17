@@ -1,5 +1,5 @@
 <template>
-  <div class="pt-4 px-2" v-if="tabs.activeTab == id">
+  <div v-if="tabs.activeTab == id">
     <slot />
   </div>
 </template>

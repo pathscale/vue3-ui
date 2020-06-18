@@ -2,20 +2,22 @@
   <div class="container">
     <div class="columns is-vcentered">
       <div class="column is-one-fifth">
-        <slot name="left"></slot>
+        <slot name="left" />
       </div>
       <div class="column">
-        <slot name="main"></slot>
+        <slot name="main" />
       </div>
       <div class="column is-one-fifth">
-        <slot name="right"></slot>
+        <slot name="right" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  export default {
+  const Columns ={
     name: 'Columns'
   };
+  
+  export default Columns;
 </script>

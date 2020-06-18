@@ -3,20 +3,20 @@
     <div class="navbar-brand">
       <slot name="navbar-brand">
         <a class="navbar-item" href="https://bulma.io">
-          <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+          <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28" />
         </a>
       </slot>
     </div>
 
     <div class="navbar-menu">
       <div class="navbar-start">
-        <slot name="navbar-left"></slot>
+        <slot name="navbar-left" />
       </div>
 
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
-            <slot name="navbar-right"></slot>
+            <slot name="navbar-right" />
           </div>
         </div>
       </div>
@@ -25,7 +25,9 @@
 </template>
 
 <script>
-  export default {
+  const Nav = {
     name: 'Nav'
   };
+
+  export default Nav;
 </script>

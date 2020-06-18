@@ -7,7 +7,7 @@
   </select>
 </template>
 
-<script lang="ts">
+<script>
 import { defineComponent, ref, watchEffect } from 'vue'
 
 export default defineComponent({

@@ -51,6 +51,7 @@
 </template>
 
 <script>
+/* eslint no-shadow: ["error", { "allow": ["event"] }] -- prevent warning  'event' is already declared in the upper scope */
 import { defineComponent } from "vue";
 
 export default defineComponent({

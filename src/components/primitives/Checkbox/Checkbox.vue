@@ -24,6 +24,7 @@
 </template>
 
 <script>
+/* eslint no-shadow: ["error", { "allow": ["focus"] }] -- prevent warning  'focus' is already declared in the upper scope */
 import { defineComponent, ref, watchEffect } from 'vue'
 import CheckRadioMixin from '../../../mixins/CheckRadio.js'
 

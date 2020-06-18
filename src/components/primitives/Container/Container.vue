@@ -1,16 +1,3 @@
-<template>
-  <div
-    class="container"
-    :class="[type]"
-    :style="[ bg ? {
-      'background-image': `url(${bg})`,
-      'background-size': 'cover',
-      'background-repeat': 'no-repeat',
-    } : {}]">
-    <slot />
-  </div>
-</template>
-
 <script>
 import { defineComponent } from 'vue'
 
@@ -28,3 +15,16 @@ export default defineComponent({
     }
 })
 </script>
+
+<template>
+  <div
+    class="container"
+    :class="[type]"
+    :style="[ bg ? {
+      'background-image': `url(${bg})`,
+      'background-size': 'cover',
+      'background-repeat': 'no-repeat',
+    } : {}]">
+    <slot />
+  </div>
+</template>

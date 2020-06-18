@@ -1,3 +1,11 @@
+<script>
+  const Nav = {
+    name: 'Nav'
+  };
+
+  export default Nav;
+</script>
+
 <template>
   <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
@@ -23,11 +31,3 @@
     </div>
   </nav>
 </template>
-
-<script>
-  const Nav = {
-    name: 'Nav'
-  };
-
-  export default Nav;
-</script>

@@ -1,30 +1,7 @@
-<template>
-  <component
-    :is="computedTag"
-    class="button"
-    :type="nativeType"
-    v-bind="$attrs"
-    :class="[size, type, {
-      'is-rounded': rounded,
-      'is-loading': loading,
-      'is-outlined': outlined,
-      'is-fullwidth': expanded,
-      'is-inverted': inverted,
-      'is-focused': focused,
-      'is-active': active,
-      'is-hovered': hovered,
-      'is-selected': selected
-    }]">
-    <span v-if="label">{{ label }}</span>
-    <slot />
-  </component>
-</template>
-
 <script>
-import { defineComponent, computed } from 'vue'
+import { computed } from 'vue'
 
-export default defineComponent({
-  // extrange behaviour for value 'Button', conflicts with :is on line 3, recursive loop?
+const Button ={
   name: 'VButton',
   props: {
       type: {
@@ -88,5 +65,29 @@ export default defineComponent({
     const computedTag = computed(() => attrs.disabled ? 'button' : props.tag)
     return { computedTag }
   }
-})
+}
+
+export default Button;
 </script>
+
+<template>
+  <component
+    :is="computedTag"
+    class="button"
+    :type="nativeType"
+    v-bind="$attrs"
+    :class="[size, type, {
+      'is-rounded': rounded,
+      'is-loading': loading,
+      'is-outlined': outlined,
+      'is-fullwidth': expanded,
+      'is-inverted': inverted,
+      'is-focused': focused,
+      'is-active': active,
+      'is-hovered': hovered,
+      'is-selected': selected
+    }]">
+    <span v-if="label">{{ label }}</span>
+    <slot />
+  </component>
+</template>

@@ -1,28 +1,8 @@
-<template>
-  <!-- // portal is not working -->
-  <div :target="`${id}`" class="modal" v-if="show">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" @click="show = false">
-          <span>×</span>
-        </button>
-        <h4 class="modal-title" v-if="title">
-          {{ title }}
-        </h4>
-      </div>
-      <div class="modal-body">
-        <slot />
-      </div>
-      <div class="modal-footer" />
-    </div>
-  </div>
-</template>
-
 <script>
-import { defineComponent, ref, onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 
-export default defineComponent({
-    name: 'Modal',
+const Modal = {
+    name: 'VModal',
     props: {
         id: {
             type: String,
@@ -45,8 +25,30 @@ export default defineComponent({
       })
          return { show }
     },
-})
+};
+
+export default Modal;
 </script>
+
+<template>
+  <!-- // portal is not working -->
+  <div :target="`${id}`" class="modal" v-if="show">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" @click="show = false">
+          <span>×</span>
+        </button>
+        <h4 class="modal-title" v-if="title">
+          {{ title }}
+        </h4>
+      </div>
+      <div class="modal-body">
+        <slot />
+      </div>
+      <div class="modal-footer" />
+    </div>
+  </div>
+</template>
 
 <style scoped>
 .modal {

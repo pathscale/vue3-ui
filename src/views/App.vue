@@ -1,3 +1,13 @@
+<script>
+  import { ColumnsLayout, LoginFormPanel, NavLayout } from "../components"
+
+  const App = {
+    components: { ColumnsLayout, NavLayout, LoginFormPanel }
+  }
+
+  export default App
+</script>
+
 <template>
   <NavLayout />
   <div class="hero is-fullheight">
@@ -18,13 +28,3 @@
     </div>
   </div>
 </template>
-
-<script>
-  import { ColumnsLayout, LoginFormPanel, NavLayout } from "../components"
-
-  const App = {
-    components: { ColumnsLayout, NavLayout, LoginFormPanel }
-  }
-
-  export default App
-</script>

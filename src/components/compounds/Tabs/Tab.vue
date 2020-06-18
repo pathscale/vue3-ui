@@ -1,15 +1,8 @@
-<template>
-  <div v-if="tabs.activeTab == id">
-    <slot />
-  </div>
-</template>
-
 <script>
-import { defineComponent } from 'vue'
 import { addToStore, useStore } from './Tabs.vue'
 
-export default defineComponent({
-    name: 'Tab',
+const Tab = {
+    name: 'VTab',
     props: {
         id: {
             type: String,
@@ -32,5 +25,13 @@ export default defineComponent({
         addToStore({ ...props })
         return { tabs }
     },
-})
+}
+
+export default Tab;
 </script>
+
+<template>
+  <div v-if="tabs.activeTab == id">
+    <slot />
+  </div>
+</template>

@@ -1,25 +1,9 @@
-<template>
-  <span
-    :data-label="label"
-    :class="[newType, position, size, {
-      'b-tooltip': active,
-      'is-square': square,
-      'is-animated': newAnimated,
-      'is-always': always,
-      'is-multiline': multilined,
-      'is-dashed': dashed
-    }]"
-    :style="{'transition-delay': `${newDelay}ms`}">
-    <slot />
-  </span>
-</template>
-
 <script>
-import { defineComponent, computed } from 'vue'
+import { computed } from 'vue'
 import config from '../../../utils/config'
 
-export default defineComponent({
-    name: 'BTooltip',
+const Tooltip = {
+    name: 'VTooltip',
     props: {
         active: {
             type: Boolean,
@@ -65,5 +49,23 @@ export default defineComponent({
 
         return { newType, newAnimated, newDelay}
     }
-})
+};
+
+export default Tooltip;
 </script>
+
+<template>
+  <span
+    :data-label="label"
+    :class="[newType, position, size, {
+      'b-tooltip': active,
+      'is-square': square,
+      'is-animated': newAnimated,
+      'is-always': always,
+      'is-multiline': multilined,
+      'is-dashed': dashed
+    }]"
+    :style="{'transition-delay': `${newDelay}ms`}">
+    <slot />
+  </span>
+</template>

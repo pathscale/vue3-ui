@@ -1,33 +1,7 @@
-<template>
-  <label
-    class="switch"
-    :class="[size, {
-      'is-disabled': disabled,
-      'is-rounded': rounded,
-      'is-outlined': outlined,
-    }]"
-    :disabled="disabled">
-    <input
-      v-model="value"
-      type="checkbox"
-      @click.stop
-      :disabled="disabled"
-      :name="name"
-      :required="required"
-      :value="nativeValue"
-      :true-value="trueValue"
-      :false-value="falseValue" />
-    <span
-      class="check"
-      :class="[(passiveType &&`${passiveType}-passive`),type]" />
-    <span class="control-label"><slot /></span>
-  </label>
-</template>
-
 <script>
-import { defineComponent, ref, watchEffect } from 'vue';
+import { ref, watchEffect } from 'vue';
 
-export default defineComponent({
+const Switch = {
     name: 'VSwitch',
     props: {
         modelValue: {
@@ -88,5 +62,33 @@ export default defineComponent({
         })
         return { value }
     }
-});
+};
+
+export default Switch;
 </script>
+
+<template>
+  <label
+    class="switch"
+    :class="[size, {
+      'is-disabled': disabled,
+      'is-rounded': rounded,
+      'is-outlined': outlined,
+    }]"
+    :disabled="disabled">
+    <input
+      v-model="value"
+      type="checkbox"
+      @click.stop
+      :disabled="disabled"
+      :name="name"
+      :required="required"
+      :value="nativeValue"
+      :true-value="trueValue"
+      :false-value="falseValue" />
+    <span
+      class="check"
+      :class="[(passiveType &&`${passiveType}-passive`),type]" />
+    <span class="control-label"><slot /></span>
+  </label>
+</template>

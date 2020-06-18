@@ -1,3 +1,37 @@
+<script>
+/* eslint no-shadow: ["error", { "allow": ["event"] }] -- prevent warning  'event' is already declared in the upper scope */
+const Tag = {
+  name: "VTag",
+  props: {
+    attached: Boolean,
+    closable: Boolean,
+    type: { type: String, default: null },
+    size: { type: String, default: null },
+    rounded: Boolean,
+    disabled: Boolean,
+    ellipsis: Boolean,
+    tabstop: {
+      type: Boolean,
+      default: true
+    },
+    ariaCloseLabel: { type: String, default: null },
+    closeType: { type: String, default: null },
+    closeIcon: { type: String, default: null },
+    closeIconPack: { type: String, default: null },
+    closeIconType: { type: String, default: null }
+  },
+  setup(props, { emit }) {
+    const close = function (event) {
+      if (props.disabled) return
+      emit('close', event)
+    }
+    return { close }
+  }
+};
+
+export default Tag;
+</script>
+
 <template>
   <div v-if="attached && closable" class="tags has-addons">
     <span
@@ -49,40 +83,3 @@
       @keyup.delete.prevent="close" />
   </span>
 </template>
-
-<script>
-/* eslint no-shadow: ["error", { "allow": ["event"] }] -- prevent warning  'event' is already declared in the upper scope */
-import { defineComponent } from "vue";
-
-export default defineComponent({
-  name: "VTag",
-  props: {
-    attached: Boolean,
-    closable: Boolean,
-    type: { type: String, default: null },
-    size: { type: String, default: null },
-    rounded: Boolean,
-    disabled: Boolean,
-    ellipsis: Boolean,
-    tabstop: {
-      type: Boolean,
-      default: true
-    },
-    ariaCloseLabel: { type: String, default: null },
-    closeType: { type: String, default: null },
-    closeIcon: { type: String, default: null },
-    closeIconPack: { type: String, default: null },
-    closeIconType: { type: String, default: null }
-  },
-  setup(props, { emit }) {
-    const close = function (event) {
-      if (props.disabled) return
-      emit('close', event)
-    }
-    return { close }
-  }
-});
-</script>
-
-<style scoped>
-</style>

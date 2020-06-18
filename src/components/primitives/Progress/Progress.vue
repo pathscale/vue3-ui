@@ -1,25 +1,7 @@
-<template>
-  <div class="progress-wrapper">
-    <progress
-      ref="progress"
-      class="progress"
-      :class="newType"
-      :max="max"
-      :value="value">
-      {{ newValue }}
-    </progress>
-    <p
-      v-if="showValue"
-      class="progress-value">
-      <slot>{{ newValue }}</slot>
-    </p>
-  </div>
-</template>
-
 <script>
-import { defineComponent, computed, watchEffect, nextTick, ref } from 'vue'
+import { computed, watchEffect, nextTick, ref } from 'vue'
 
-export default defineComponent({
+const Progress = {
     name: 'VProgress',
      props: {
         type: {
@@ -102,5 +84,25 @@ export default defineComponent({
 
       return { isIndeterminate, newType, newValue }
     }
-})
+}
+
+export default Progress;
 </script>
+
+<template>
+  <div class="progress-wrapper">
+    <progress
+      ref="progress"
+      class="progress"
+      :class="newType"
+      :max="max"
+      :value="value">
+      {{ newValue }}
+    </progress>
+    <p
+      v-if="showValue"
+      class="progress-value">
+      <slot>{{ newValue }}</slot>
+    </p>
+  </div>
+</template>

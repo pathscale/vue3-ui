@@ -1,27 +1,6 @@
-<template>
-  <section>
-    <nav class="tabs" :class="[size, type]">
-      <ul>
-        <template v-for="t in tabs.tabs">
-          <li
-            :class="{ 'is-active': tabs.activeTab == t.id, 'is-disabled': t.disabled }"
-            @click="setActiveTab(t.id)"
-            :key="t">
-            <a>
-              {{ t.label }}
-            </a>
-          </li>
-        </template>
-      </ul>
-    </nav>
-    <slot />
-  </section>
-</template>
-
 <script>
-import { defineComponent, provide, inject, ref, watchEffect } from 'vue'
+import { provide, inject, ref, watchEffect } from 'vue'
 import config from '../../../utils/config'
-
 
 const TabsSymbol = Symbol('Tabs')
 
@@ -43,8 +22,8 @@ export function addToStore(tab) {
     tabs.value.tabs.push(tab)
 }
 
-export default defineComponent({
-    name: 'Tabs',
+const Tabs = {
+    name: 'VTabs',
     props: {
        modelValue: {
             type: [Number, String],
@@ -79,5 +58,27 @@ export default defineComponent({
             setActiveTab,
         }
     },
-})
+}
+
+export default Tabs;
 </script>
+
+<template>
+  <section>
+    <nav class="tabs" :class="[size, type]">
+      <ul>
+        <template v-for="t in tabs.tabs">
+          <li
+            :class="{ 'is-active': tabs.activeTab == t.id, 'is-disabled': t.disabled }"
+            @click="setActiveTab(t.id)"
+            :key="t">
+            <a>
+              {{ t.label }}
+            </a>
+          </li>
+        </template>
+      </ul>
+    </nav>
+    <slot />
+  </section>
+</template>

@@ -1,13 +1,7 @@
-<template>
-  <div class="control">
-    <input class="input" v-bind="$attrs" v-model="value" />
-  </div>
-</template>
-
 <script>
-import { defineComponent, ref, watchEffect } from 'vue'
+import { ref, watchEffect } from 'vue'
 
-export default defineComponent({
+const Input = {
     name: 'Input',
     inheritAttrs: false,
     emits: ['update:modelValue'],
@@ -17,5 +11,13 @@ export default defineComponent({
 
         return { value }
     },
-})
+}
+
+export default Input;
 </script>
+
+<template>
+  <div class="control">
+    <input class="input" v-bind="$attrs" v-model="value" />
+  </div>
+</template>

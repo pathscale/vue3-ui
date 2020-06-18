@@ -1,34 +1,9 @@
-<template>
-  <label
-    class="b-checkbox checkbox"
-    :class="[size, { 'is-disabled': disabled }]"
-    ref="label"
-    :disabled="disabled"
-    @click="focus"
-    @keydown.prevent.enter="label.click()">
-    <input
-      v-model="value"
-      :indeterminate.prop="indeterminate"
-      type="checkbox"
-      ref="input"
-      @click.stop
-      :disabled="disabled"
-      :required="required"
-      :name="name"
-      :value="nativeValue"
-      :true-value="trueValue"
-      :false-value="falseValue" />
-    <span class="check" :class="type" />
-    <span class="control-label"><slot /></span>
-  </label>
-</template>
-
 <script>
 /* eslint no-shadow: ["error", { "allow": ["focus"] }] -- prevent warning  'focus' is already declared in the upper scope */
-import { defineComponent, ref, watchEffect } from 'vue'
+import { ref, watchEffect } from 'vue'
 import CheckRadioMixin from '../../../mixins/CheckRadio.js'
 
-export default defineComponent({
+const Checkbox = {
     name: 'VCheckbox',
     props: {
         ...CheckRadioMixin.props,
@@ -62,5 +37,32 @@ export default defineComponent({
         })
         return { label, input, value, focus }
     }
-})
+}
+
+export default Checkbox;
 </script>
+
+<template>
+  <label
+    class="b-checkbox checkbox"
+    :class="[size, { 'is-disabled': disabled }]"
+    ref="label"
+    :disabled="disabled"
+    @click="focus"
+    @keydown.prevent.enter="label.click()">
+    <input
+      v-model="value"
+      :indeterminate.prop="indeterminate"
+      type="checkbox"
+      ref="input"
+      @click.stop
+      :disabled="disabled"
+      :required="required"
+      :name="name"
+      :value="nativeValue"
+      :true-value="trueValue"
+      :false-value="falseValue" />
+    <span class="check" :class="type" />
+    <span class="control-label"><slot /></span>
+  </label>
+</template>

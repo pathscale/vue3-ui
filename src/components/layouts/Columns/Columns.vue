@@ -1,3 +1,11 @@
+<script>
+  const Columns ={
+    name: 'Columns'
+  };
+  
+  export default Columns;
+</script>
+
 <template>
   <div class="container">
     <div class="columns is-vcentered">
@@ -13,11 +21,3 @@
     </div>
   </div>
 </template>
-
-<script>
-  const Columns ={
-    name: 'Columns'
-  };
-  
-  export default Columns;
-</script>

@@ -1,14 +1,5 @@
-<template>
-  <div class="field">
-    <label v-if="label" class="label">{{ label }}</label>
-    <slot />
-  </div>
-</template>
-
 <script>
-import { defineComponent } from 'vue'
-
-  export default defineComponent({
+  const Field = {
     name: 'Field',
     props: {
       label: {
@@ -16,9 +7,14 @@ import { defineComponent } from 'vue'
         default: null,
       },
     },
-  })
+  }
+  
+  export default Field;
 </script>
 
-
-
-
+<template>
+  <div class="field">
+    <label v-if="label" class="label">{{ label }}</label>
+    <slot />
+  </div>
+</template>

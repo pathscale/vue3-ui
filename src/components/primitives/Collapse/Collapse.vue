@@ -1,7 +1,7 @@
 <script>
-import { defineComponent, ref, h } from 'vue'
+import { ref, h } from 'vue'
 
-export default defineComponent({
+const Collapse = {
     name: 'VCollapse',
     props: {
         open: {
@@ -53,5 +53,7 @@ export default defineComponent({
             props.position === 'is-top' ? [trigger, content] : [content, trigger])
 
     }
-})
+}
+
+export default Collapse;
 </script>

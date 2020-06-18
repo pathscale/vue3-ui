@@ -1,5 +1,4 @@
 import { createApp } from 'vue';
-import Showcase from './views/Showcase.vue';
 import App from './views/App.vue';
 import { stateSymbol, state } from './state';
 

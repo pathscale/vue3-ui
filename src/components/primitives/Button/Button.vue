@@ -77,31 +77,11 @@ export default defineComponent({
       },
       nativeType: {
         type: String,
-        default: 'button',
-        validator(value) {
-            return [
-                'button',
-                'submit',
-                'reset'
-            ].includes(value)
-        }
+        default: 'button'
       },
       tag: {
         type: String,
-        default: 'button',
-        validator(value) {
-          return [
-            'a',
-            'button',
-            'input',
-            'router-link',
-            'nuxt-link',
-            'n-link',
-            'RouterLink',
-            'NuxtLink',
-            'NLink'
-          ].includes(value)
-        }
+        default: 'button'
       }
   },
   setup(props, { attrs }) {

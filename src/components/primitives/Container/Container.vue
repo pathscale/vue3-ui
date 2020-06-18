@@ -19,10 +19,7 @@ export default defineComponent({
     props: {
         type: {
             type: String,
-            default: '',
-            validator(value) {
-                return ['is-fluid', 'is-widescreen', 'is-fullhd'].includes(value);
-            }
+            default: ''
         },
         bg: {
             type: Object,

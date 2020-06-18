@@ -44,13 +44,7 @@ export default defineComponent({
         },
         format: {
             type: String,
-            default: 'raw',
-            validator(value) {
-                return [
-                    'raw',
-                    'percent'
-                ].includes(value)
-            }
+            default: 'raw'
         },
         precision: {
             type: Number,

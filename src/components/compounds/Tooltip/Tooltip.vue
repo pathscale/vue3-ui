@@ -18,7 +18,6 @@
 import { defineComponent, computed } from 'vue'
 import config from '../../../utils/config'
 
-
 export default defineComponent({
     name: 'BTooltip',
     props: {
@@ -36,15 +35,7 @@ export default defineComponent({
         },
         position: {
             type: String,
-            default: 'is-top',
-            validator(value) {
-                return [
-                    'is-top',
-                    'is-bottom',
-                    'is-left',
-                    'is-right'
-                ].includes(value)
-            }
+            default: 'is-top'
         },
         always: Boolean,
         animated: Boolean,

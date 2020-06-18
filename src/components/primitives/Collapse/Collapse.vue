@@ -18,13 +18,7 @@ export default defineComponent({
         },
         position: {
             type: String,
-            default: 'is-top',
-            validator(value) {
-                return [
-                    'is-top',
-                    'is-bottom'
-                ].includes(value)
-            }
+            default: 'is-top'
         }
     },
     render(props) {

@@ -9,7 +9,7 @@
     components: { Input, Field, Button, Switch },
     emits: ['login'],
     setup(props, { emit }) {
-      const state = reactive({ email: 'asd', password: 'edc', remember: false });
+      const state = reactive({ email: '', password: '', remember: false });
       const status = reactive({ email: 'valid', password: 'valid' });
 
       const isValid = computed(() => status.email === 'valid' && status.password === 'valid');
@@ -39,10 +39,10 @@
 <template>
   <form class="box">
     <Field label="Email">
-      <Input name="email" v-model="state.email" status="valid" />
+      <Input name="email" v-model="state.email" placeholder="Enter email" />
     </Field>
     <Field label="Password">
-      <Input name="password" type="password" v-model="state.password" status="valid" />
+      <Input name="password" type="password" v-model="state.password" placeholder="Enter password" />
     </Field>
 
     <Field>

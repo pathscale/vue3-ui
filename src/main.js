@@ -1,3 +1,4 @@
+import '@pathscale/bulma-css-var-only/css/bulma.css';
 import { createApp } from 'vue';
 import App from './views/App.vue';
 import { stateSymbol, state } from './state';

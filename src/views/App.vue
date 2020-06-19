@@ -2,7 +2,15 @@
   import { ColumnsLayout, LoginFormPanel, NavLayout } from "../components"
 
   const App = {
-    components: { ColumnsLayout, NavLayout, LoginFormPanel }
+    components: { ColumnsLayout, NavLayout, LoginFormPanel },
+    setup() {
+      return {
+        changeColor() {
+          const root = document.documentElement;
+          root.style.setProperty('--bulma-success', '#000000');
+        }
+      }
+    }
   }
 
   export default App
@@ -22,7 +30,7 @@
           <a class="button is-light">Log in</a>
         </template>
         <template #main>
-          <LoginFormPanel />
+          <LoginFormPanel @login="changeColor" />
         </template>
       </ColumnsLayout>
     </div>

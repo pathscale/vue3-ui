@@ -13,3 +13,9 @@ export { default as Input } from "./primitives/Input/Input.vue";
 export { default as Progress } from "./primitives/Progress/Progress.vue";
 export { default as Select } from "./primitives/Select/Select.vue";
 export { default as Switch } from "./primitives/Switch/Switch.vue";
+
+export { default as Modal } from "./compounds/Modal/Modal.vue";
+export { default as Tab } from "./compounds/Tabs/Tab.vue";
+export { default as Tabs } from "./compounds/Tabs/Tabs.vue";
+export { default as Tag } from "./compounds/Tag/Tag.vue";
+export { default as Tooltip } from "./compounds/Tooltip/Tooltip.vue";

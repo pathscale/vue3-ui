@@ -4,7 +4,7 @@ export { default as NavLayout } from "./layouts/Nav/Nav.vue";
 
 export { default as LoginFormPanel } from "./panels/LoginForm/LoginForm.vue";
 
-export { default as Button } from "./primitives/Select/Select.vue";
+export { default as Button } from "./primitives/Button/Button.vue";
 export { default as Checkbox } from "./primitives/Checkbox/Checkbox.vue";
 export { default as Collapse } from "./primitives/Collapse/Collapse.vue";
 export { default as Container } from "./primitives/Container/Container.vue";

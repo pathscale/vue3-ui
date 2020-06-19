@@ -1,6 +1,5 @@
 <script>
 import { computed } from 'vue'
-import config from '../../../utils/config'
 
 const Tooltip = {
     name: 'VTooltip',
@@ -11,7 +10,7 @@ const Tooltip = {
         },
         type: {
             type: String,
-            default: null
+            default: 'is-primary'
         },
         label: {
             type: String,
@@ -32,19 +31,19 @@ const Tooltip = {
         },
         delay: {
             type: Number,
-            default: null
+            default: 0
         }
     },
 
     setup(props) {
         const newType = computed(() => {
-            return props.type || config.defaultTooltipType
+            return props.type
         })
         const newAnimated = computed(() => {
-            return props.animated || config.defaultTooltipAnimated
+            return props.animated
         })
         const newDelay = computed(() => {
-            return props.delay || config.defaultTooltipDelay
+            return props.delay
         })
 
         return { newType, newAnimated, newDelay}

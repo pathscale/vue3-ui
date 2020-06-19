@@ -1,6 +1,5 @@
 <script>
 import { provide, inject, ref, watchEffect } from 'vue'
-import config from '../../../utils/config'
 
 const TabsSymbol = Symbol('Tabs')
 
@@ -32,9 +31,7 @@ const Tabs = {
         size: { type: String, default: null},
         type: {
             type: String,
-            default() {
-                return config.defaultTabsType
-            }
+            default: null
         },
     },
     emits: ['update:modelValue'],

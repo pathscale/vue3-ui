@@ -73,7 +73,7 @@ export default Button;
 <template>
   <component
     :is="computedTag"
-    class="vbutton"
+    class="button"
     :type="nativeType"
     v-bind="$attrs"
     :class="[size, type, {

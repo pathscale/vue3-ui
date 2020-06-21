@@ -1,5 +1,5 @@
 <script>
-import { provide, inject, ref, watchEffect, computed } from 'vue'
+import { provide, inject, ref, watchEffect, computed, onUpdated, nextTick } from 'vue'
 
 const TabsSymbol = Symbol('Tabs')
 
@@ -36,12 +36,24 @@ const Tabs = {
     },
     emits: ['update:modelValue'],
     setup(props, { emit }) {
+        const height = ref(null);
         provideStore({ activeTab: 0, tabs: [] })
         const tabs = useStore()
         function setActiveTab(id) {
             tabs.value.activeTab = id
         }
 
+        // TODO Replace this with a reference to child
+        const tabContentID = `${Math.random().toString(36).slice(2, 7)}`
+        onUpdated(() => {
+          nextTick(() => {
+            height.value = document.querySelector(`#${tabContentID}`).children[0].clientHeight
+          })
+        })
+        
+        const contentHeight = computed(() => {
+          return `height:${height.value}px`
+        })
         watchEffect(() => {
             setActiveTab(props.modelValue)
         })
@@ -63,9 +75,11 @@ const Tabs = {
         })
 
         return {
-            tabs,
+            contentHeight,
+            navClasses,
             setActiveTab,
-            navClasses
+            tabContentID,
+            tabs,
         }
     },
 }
@@ -80,7 +94,7 @@ export default Tabs;
         <template v-for="t in tabs.tabs">
           <li
             :class="{ 'is-active': tabs.activeTab == t.id, 'is-disabled': t.disabled }"
-            @click="setActiveTab(t.id)"
+            @click="setActiveTab(t.id);"
             :key="t">
             <a>
               {{ t.label }}
@@ -89,6 +103,9 @@ export default Tabs;
         </template>
       </ul>
     </nav>
-    <slot />
+    <!-- // TODO Move css to right place -->
+    <div :id="tabContentID" style="transition:height 0.5s linear; overflow: hidden;" :style="contentHeight">
+      <slot />
+    </div>
   </section>
 </template>

@@ -62,7 +62,7 @@ export default Tabs;
 
 <template>
   <section>
-    <nav class="tabs" :class="[size, type]">
+    <nav class="tabs is-boxed is-fullwidth" :class="[size, type]">
       <ul>
         <template v-for="t in tabs.tabs">
           <li

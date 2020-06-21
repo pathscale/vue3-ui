@@ -8,7 +8,7 @@
 
 <template>
   <div class="container">
-    <div class="columns is-vcentered is-centered">
+    <div class="columns is-centered">
       <div class="column">
         <slot name="left" />
       </div>

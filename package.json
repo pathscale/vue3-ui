@@ -15,7 +15,7 @@
     "start": "vue-cli-service serve",
     "build": "rollup -c",
     "lint": "eslint --ext .js,.ts,.vue,.md,.html --max-warnings=0 .",
-    "release": "np",
+    "release": "npm run build && np",
     "__build": "vue-cli-service build src/components/index.js --target lib --name index --dest dist/",
     "__vue-serve": "echo 'This option is currently broken but should work' && vue serve",
     "__vue-serve-example": "npm run vue-serve -- src/components/primitives/RadioButton/RadioButton.vue",

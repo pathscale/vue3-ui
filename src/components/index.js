@@ -19,3 +19,5 @@ export { default as Tab } from "./compounds/Tabs/Tab.vue";
 export { default as Tabs } from "./compounds/Tabs/Tabs.vue";
 export { default as Tag } from "./compounds/Tag/Tag.vue";
 export { default as Tooltip } from "./compounds/Tooltip/Tooltip.vue";
+
+import '../index.css';

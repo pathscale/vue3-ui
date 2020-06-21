@@ -5,8 +5,7 @@ const Tab = {
     name: 'VTab',
     props: {
         id: {
-            type: String,
-            default:'0' ,
+            type: [Number, String],
             required: true,
         },
         label: {

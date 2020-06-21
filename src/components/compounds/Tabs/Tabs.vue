@@ -1,5 +1,5 @@
 <script>
-import { provide, inject, ref, watchEffect } from 'vue'
+import { provide, inject, ref, watchEffect, computed } from 'vue'
 
 const TabsSymbol = Symbol('Tabs')
 
@@ -24,15 +24,15 @@ export function addToStore(tab) {
 const Tabs = {
     name: 'VTabs',
     props: {
-       modelValue: {
+        modelValue: {
             type: [Number, String],
             required: true,
         },
         size: { type: String, default: null},
-        type: {
-            type: String,
-            default: null
-        },
+        type: { type: String,  default: null },
+        expanded: Boolean,
+        position: String,
+        vertical: Boolean,
     },
     emits: ['update:modelValue'],
     setup(props, { emit }) {
@@ -50,9 +50,22 @@ const Tabs = {
           emit('update:modelValue', tabs.value.activeTab)
         })
 
+        const navClasses = computed(() => {
+            return [
+                props.type,
+                props.size,
+                {
+                    [props.position]: props.position && !props.vertical,
+                    'is-fullwidth': props.expanded,
+                    'is-toggle-rounded is-toggle': props.type === 'is-toggle-rounded'
+                }
+            ]
+        })
+
         return {
             tabs,
             setActiveTab,
+            navClasses
         }
     },
 }
@@ -62,7 +75,7 @@ export default Tabs;
 
 <template>
   <section>
-    <nav class="tabs is-boxed is-fullwidth" :class="[size, type]">
+    <nav class="tabs" :class="navClasses">
       <ul>
         <template v-for="t in tabs.tabs">
           <li

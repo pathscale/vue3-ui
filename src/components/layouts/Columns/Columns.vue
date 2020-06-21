@@ -8,14 +8,14 @@
 
 <template>
   <div class="container">
-    <div class="columns is-vcentered">
-      <div class="column is-one-fifth">
+    <div class="columns is-vcentered is-centered">
+      <div class="column">
         <slot name="left" />
       </div>
       <div class="column">
         <slot name="main" />
       </div>
-      <div class="column is-one-fifth">
+      <div class="column">
         <slot name="right" />
       </div>
     </div>

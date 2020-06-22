@@ -1,6 +1,6 @@
 <script>
   const Field = {
-    name: 'Field',
+    name: 'VField',
     props: {
       label: {
         type: String,

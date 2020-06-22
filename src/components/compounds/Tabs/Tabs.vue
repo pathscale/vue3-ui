@@ -103,8 +103,7 @@ export default Tabs;
         </template>
       </ul>
     </nav>
-    <!-- // TODO Move css to right place -->
-    <div :id="tabContentID" style="transition:height 0.5s linear; overflow: hidden;" :style="contentHeight">
+    <div :id="tabContentID" class="is-animated" :style="contentHeight">
       <slot />
     </div>
   </section>

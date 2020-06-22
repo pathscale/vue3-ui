@@ -1,3 +1,7 @@
+.is-animated {
+    transition:height 0.5s linear; 
+    overflow: hidden;
+}
 .icon {
     display: block;
     text-indent: -9999px;

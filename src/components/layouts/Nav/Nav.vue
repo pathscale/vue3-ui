@@ -1,6 +1,6 @@
 <script>
   const Nav = {
-    name: 'Nav'
+    name: 'VNav'
   };
 
   export default Nav;

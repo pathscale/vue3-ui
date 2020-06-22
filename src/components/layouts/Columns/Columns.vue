@@ -1,6 +1,6 @@
 <script>
   const Columns ={
-    name: 'Columns'
+    name: 'VColumns'
   };
   
   export default Columns;

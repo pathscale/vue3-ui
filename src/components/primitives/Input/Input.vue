@@ -2,7 +2,7 @@
 import { ref, watchEffect } from 'vue'
 
 const Input = {
-    name: 'Input',
+    name: 'VInput',
     inheritAttrs: false,
     emits: ['update:modelValue'],
     setup(props, { emit, attrs }) {

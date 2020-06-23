@@ -36,21 +36,22 @@ const Tabs = {
     },
     emits: ['update:modelValue'],
     setup(props, { emit }) {
-        const height = ref(null);
+      const height = ref(null);
+
+      const content = ref(null)
+
         provideStore({ activeTab: 0, tabs: [] })
         const tabs = useStore()
         function setActiveTab(id) {
             tabs.value.activeTab = id
         }
 
-        // TODO Replace this with a reference to child
-        const tabContentID = `${Math.random().toString(36).slice(2, 7)}`
         onUpdated(() => {
           nextTick(() => {
-            height.value = document.querySelector(`#${tabContentID}`).children[0].clientHeight
+            height.value = content.value.children[0].clientHeight
           })
         })
-        
+
         const contentHeight = computed(() => {
           return `height:${height.value}px`
         })
@@ -78,8 +79,8 @@ const Tabs = {
             contentHeight,
             navClasses,
             setActiveTab,
-            tabContentID,
             tabs,
+            content
         }
     },
 }
@@ -103,7 +104,7 @@ export default Tabs;
         </template>
       </ul>
     </nav>
-    <div :id="tabContentID" class="is-animated" :style="contentHeight">
+    <div ref="content" class="is-animated" :style="contentHeight">
       <slot />
     </div>
   </section>

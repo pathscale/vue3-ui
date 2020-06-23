@@ -55,6 +55,7 @@ export default Select
         @focus="$emit('focus', $event)">
         <template v-if="placeholder">
           <option
+            class="has-background-dark has-text-light"
             v-if="value == null"
             :value="null"
             disabled

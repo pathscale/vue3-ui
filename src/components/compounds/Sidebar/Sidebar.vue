@@ -90,16 +90,16 @@ const Sidebar = {
         
         watchEffect(() => {
             const open = props.right ? !props.open : props.open
-            state.transitionName.value = !open ? 'slide-prev' : 'slide-next'
+            state.transitionName = !open ? 'slide-prev' : 'slide-next'
         })
 
         function beforeEnter() {
-            state.animating.value = true
+            state.animating = true
         }
 
         
         function afterEnter() {
-            state.animating.value = false
+            state.animating = false
         }
 
         return { state, rootClasses, cancelOptions, isStatic, isFixed, isAbsolute, beforeEnter, afterEnter }

@@ -1,44 +1,82 @@
-<script>
-  // import { reactive } from 'vue'  
-  // import { VTextArea, VInput } from "../components"
-  
-  const App = {
-    // components: { VTextArea, VInput },
-    setup() {
-      return {
-        changeColor() {
-          const root = document.documentElement;
-          root.style.setProperty('--bulma-success', '#000000');
-        }
-      }
-    }
-  }
+<template>
+  <div class="sidebar-page">
+    <section class="hero is-fullheight sidebar-layout">
+      <v-sidebar
+        position="static"
+        :mobile="mobile"
+        :expand-on-hover="expandOnHover"
+        :reduce="reduce"
+        type="is-light"
+        fullheight
+        :open="open">
+        <div class="p-1">
+          <div class="block">
+            <h1>VSidebar</h1>
+          </div>
+        </div>
+      </v-sidebar>
 
-  export default App
+      <div class="p-1">
+        <v-field>
+          <v-switch v-model="open">
+            Open
+          </v-switch>
+        </v-field>
+        <v-field>
+          <v-switch v-model="reduce">
+            Reduced
+          </v-switch>
+        </v-field>
+        <v-field>
+          <v-switch v-model="expandOnHover">
+            Expand on hover
+          </v-switch>
+        </v-field>
+        <v-field label="Mobile Layout">
+          <v-select v-model="mobile">
+            <option value="reduce">
+              Reduced
+            </option>
+            <option value="hide">
+              Hidden
+            </option>
+            <option value="fullwidth">
+              Fullwidth
+            </option>
+          </v-select>
+        </v-field>
+      </div>
+    </section>
+  </div>
+</template>
+
+<script>
+import { VSidebar, VSelect, VField, VSwitch } from "../components"
+
+const Component = {
+  components: { VSidebar, VSelect, VField, VSwitch },
+  data() {
+    return {
+      open: true,
+      expandOnHover: true,
+      mobile: "reduce",
+      reduce: true
+    };
+  }
+};
+export default Component;
 </script>
 
-<template>
-  <div>
-    <h1>I'm the playground</h1>
-  </div>
-  <!-- <div>
-    <NavLayout />
-    <div class="hero is-fullheight">
-      <div class="hero-body">
-        <ColumnsLayout>
-          <template #navbar-left>
-            <a class="navbar-item">Home</a>
-            <a class="navbar-item">Documentation</a>
-          </template>
-          <template #navbar-right>
-            <a class="button is-primary">Sign up</a>
-            <a class="button is-light">Log in</a>
-          </template>
-          <template #main>
-            <LoginFormPanel @login="changeColor" />
-          </template>
-        </ColumnsLayout>
-      </div>
-    </div>
-  </div>   -->
-</template>
+<style>
+.p-1 {
+	 padding: 1em;
+}
+ .sidebar-page {
+	 display: flex;
+	 width: 100%;
+}
+ .sidebar-page .sidebar-layout {
+	 display: flex;
+	 flex-direction: row;
+}
+</style>

@@ -1,5 +1,5 @@
 <script>
-import { ref, watchEffect } from 'vue'
+import { ref, watchEffect, computed } from 'vue'
 
 const Input = {
     name: 'VInput',
@@ -19,7 +19,7 @@ const Input = {
         const value = ref(attrs.modelValue)
         watchEffect(() => emit('update:modelValue', value.value))
 
-        const rootClasses = () => {
+        const rootClasses = computed(() => {
             return [
                 props.size,
                 {
@@ -27,15 +27,15 @@ const Input = {
                     'is-loading': props.loading,
                 }
             ]
-        };
+        });
 
-        const inputClasses = () => {
+        const inputClasses = computed(() => {
             return [
                 props.statusType,
                 props.size,
                 { 'is-rounded': props.rounded }
             ]
-        }
+        })
         return { value, rootClasses, inputClasses }
     },
 }

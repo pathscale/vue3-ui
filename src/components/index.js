@@ -11,6 +11,7 @@ export { default as VCollapse } from "./primitives/Collapse/Collapse.vue";
 export { default as VContainer } from "./primitives/Container/Container.vue";
 export { default as VField } from "./primitives/Field/Field.vue";
 export { default as VInput } from "./primitives/Input/Input.vue";
+export { default as VTextArea } from "./primitives/Textarea/Textarea.vue";
 export { default as VProgress } from "./primitives/Progress/Progress.vue";
 export { default as VSelect } from "./primitives/Select/Select.vue";
 export { default as VSwitch } from "./primitives/Switch/Switch.vue";

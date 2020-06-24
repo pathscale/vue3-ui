@@ -1,10 +1,9 @@
 <script>
-  import ColumnsLayout from "../components/ColumnsLayout.vue";
-  import LoginFormPanel from "../components/LoginFormPanel.vue"
-  import NavLayout from "../components/NavLayout.vue"
-
+  // import { reactive } from 'vue'  
+  // import { VTextArea, VInput } from "../components"
+  
   const App = {
-    components: { ColumnsLayout, NavLayout, LoginFormPanel },
+    // components: { VTextArea, VInput },
     setup() {
       return {
         changeColor() {
@@ -20,6 +19,9 @@
 
 <template>
   <div>
+    <h1>I'm the playground</h1>
+  </div>
+  <!-- <div>
     <NavLayout />
     <div class="hero is-fullheight">
       <div class="hero-body">
@@ -38,5 +40,5 @@
         </ColumnsLayout>
       </div>
     </div>
-  </div>  
+  </div>   -->
 </template>

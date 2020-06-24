@@ -5,7 +5,14 @@ export { default as VLogin } from "./layouts/Login/Login.vue";
 export { default as VNav } from "./layouts/Nav/Nav.vue";
 export { default as VNavbar } from "./layouts/Navbar/Navbar.vue";
 
+
 export { default as VButton } from "./primitives/Button/Button.vue";
+export { default as VCard } from "./primitives/Card/Card.vue";
+export { default as VCardContent } from "./primitives/Card/CardContent.vue";
+export { default as VCardFooter } from "./primitives/Card/CardFooter.vue";
+export { default as VCardFooterItem } from "./primitives/Card/CardFooterItem.vue";
+export { default as VCardHeader } from "./primitives/Card/CardHeader.vue";
+export { default as VCardImage } from "./primitives/Card/CardImage.vue";
 export { default as VCheckbox } from "./primitives/Checkbox/Checkbox.vue";
 export { default as VCollapse } from "./primitives/Collapse/Collapse.vue";
 export { default as VContainer } from "./primitives/Container/Container.vue";

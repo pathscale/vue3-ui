@@ -6,14 +6,26 @@ const Input = {
     inheritAttrs: false,
     emits: ['update:modelValue'],
     props: {
-        customClass: {
+        // https://bulma.io/documentation/form/input/#colors
+        color: {
             type: String,
-            default: ''
+            default: '',
         },
-        size: String,
-        expanded: Boolean,
-        loading: Boolean,
-        rounded: Boolean,
+        // https://bulma.io/documentation/form/input/#sizes
+        size: {
+            type: String,
+            default: '',
+        },
+        // https://bulma.io/documentation/form/input/#styles
+        rounded: {
+            type: Boolean,
+            default: false,
+        },
+        // https://bulma.io/documentation/form/input/#states
+        loading: {
+            type: Boolean,
+            default: false,
+        },
     },
     setup(props, { emit, attrs }) {
         const value = ref(attrs.modelValue)
@@ -23,7 +35,6 @@ const Input = {
             return [
                 props.size,
                 {
-                    'is-expanded': props.expanded,
                     'is-loading': props.loading,
                 }
             ]
@@ -31,9 +42,13 @@ const Input = {
 
         const inputClasses = computed(() => {
             return [
+                props.color,
                 props.statusType,
                 props.size,
-                { 'is-rounded': props.rounded }
+                { 
+                    'is-rounded': props.rounded,
+                    'is-expanded': props.expanded
+                }
             ]
         })
         return { value, rootClasses, inputClasses }
@@ -47,6 +62,6 @@ export default Input;
   <div
     class="control"
     :class="rootClasses">
-    <input class="input" v-bind="$attrs" v-model="value" :class="[inputClasses, customClass]" />
+    <input class="input" v-bind="$attrs" v-model="value" :class="inputClasses" />
   </div>
 </template>

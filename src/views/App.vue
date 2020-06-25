@@ -2,9 +2,10 @@
   <div>
     <div>
       <VTextarea />
+      <VButton @click="setRounded">Almafa</VButton>
     </div>
     <div class="sidebar-page">
-      <section class="hero is-fullheight sidebar-layout">      
+      <section class="hero is-fullheight sidebar-layout">
         <v-sidebar
           position="static"
           :mobile="mobile"
@@ -56,16 +57,25 @@
 </template>
 
 <script>
-import { VTextarea, VInput, VSidebar, VSelect, VField, VSwitch } from "../components"
+import { VTextarea, VInput, VSidebar, VSelect, VField, VSwitch, VButton, useGlobalSettings } from "../components";
 
 const Component = {
-  components: { VTextarea, VInput, VSidebar, VSelect, VField, VSwitch },
+  components: { VTextarea, VInput, VSidebar, VSelect, VField, VSwitch, VButton },
   data() {
     return {
       open: true,
       expandOnHover: true,
       mobile: "reduce",
       reduce: true
+    };
+  },
+  setup() {
+    const settings = useGlobalSettings();
+
+    return {
+      setRounded() {
+        settings.button.rounded = true;
+      }
     };
   }
 };

@@ -28,6 +28,9 @@ const Textarea = {
         watchEffect(() => emit('update:modelValue', value.value))
         
         const valueLength = computed(() => value.value.length)
+        watchEffect(() => {
+            console.log(valueLength)
+        })
         const rootClasses = computed(() => {
             return [
                 props.size,
@@ -61,6 +64,7 @@ export default Textarea;
     <textarea
       ref="textarea"
       class="textarea"
+      v-model="value"
       :class="[inputClasses, customClass]"
       :maxlength="maxlength"      
       v-bind="$attrs" />

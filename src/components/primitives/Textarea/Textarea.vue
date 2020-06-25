@@ -63,10 +63,7 @@ export default Textarea;
       class="textarea"
       :class="[inputClasses, customClass]"
       :maxlength="maxlength"      
-      v-bind="$attrs"
-      @input="onInput"
-      @blur="onBlur"
-      @focus="onFocus" />
+      v-bind="$attrs" />
     <small
       v-if="maxlength && hasCounter"
       class="help counter"

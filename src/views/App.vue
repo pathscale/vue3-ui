@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <VTextarea v-model="state.felipe" class="felipe" @click="felipe" loading rounded />
+      <VTextarea v-model="state.felipetest" />
       <VButton @click="setRounded">Almafa</VButton>
     </div>
     <div class="sidebar-page">
@@ -64,11 +64,11 @@ const Component = {
   components: { VTextarea, VInput, VSidebar, VSelect, VField, VSwitch, VButton },
   setup(){
     const state = reactive({
-      value: 10,
+      felipetest: 1010,
       open: true,
       expandOnHover: true,
       mobile:'reduce',
-      reduce:true
+      reduce:true,
     })
     const settings = useGlobalSettings();
 

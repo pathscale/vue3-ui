@@ -1,14 +1,49 @@
 <script>
-import { ref } from 'vue'
+import { ref, watchEffect, computed } from 'vue'
 
 const Textarea = {
     name: 'VTextarea',
     inheritAttrs: false,
-
+    emits:['update:modelValue'],
+    props: {
+        value: [Number, String],
+        hasCounter: {
+            type: Boolean,
+        },
+        customClass: {
+            type: String,
+            default: ''
+        },
+        size: String,
+        expanded: Boolean,
+        loading: Boolean,
+        rounded: Boolean,
+    },
     setup(props, { emit, attrs }) {
         const value = ref(attrs.modelValue)
+        watchEffect(() => emit('update:modelValue', value.value))
+        
+        const valueLength = computed(() => value.value.length)
+        const rootClasses = computed(() => {
+            return [
+                props.size,
+                {
+                    'is-expanded': props.expanded,
+                    'is-loading': props.loading,
+                }
+            ]
+        });
 
-        return { value }
+        const inputClasses = computed(() => {
+            return [
+                props.statusType,
+                props.size,
+                { 'is-rounded': props.rounded }
+            ]
+        })
+
+
+        return { value, rootClasses, inputClasses, valueLength }
     },
 }
 
@@ -16,14 +51,23 @@ export default Textarea;
 </script>
 
 <template>
-  <textarea
-    ref="textarea"
-    class="textarea"
-    :class="[inputClasses, customClass]"
-    :maxlength="maxlength"
-    :value="computedValue"
-    v-bind="$attrs"
-    @input="onInput"
-    @blur="onBlur"
-    @focus="onFocus" />
+  <div
+    class="control"
+    :class="rootClasses">
+    <textarea
+      ref="textarea"
+      class="textarea"
+      :class="[inputClasses, customClass]"
+      :maxlength="maxlength"      
+      v-bind="$attrs"
+      @input="onInput"
+      @blur="onBlur"
+      @focus="onFocus" />
+    <small
+      v-if="maxlength && hasCounter"
+      class="help counter"
+      :class="{ 'is-invisible': !isFocused }">
+      {{ valueLength }} / {{ maxlength }}
+    </small>
+  </div>
 </template>

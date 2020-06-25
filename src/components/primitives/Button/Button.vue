@@ -17,7 +17,10 @@ const Button ={
           type: String,
           default: null,
       },
-      rounded: {},
+      rounded: {
+        type: Boolean,
+        default: undefined
+      },
       loading: {
         type: Boolean,
         default: false,

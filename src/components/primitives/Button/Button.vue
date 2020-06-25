@@ -19,7 +19,7 @@ const Button ={
       },
       rounded: {
         type: Boolean,
-        default: undefined
+        default: null
       },
       loading: {
         type: Boolean,

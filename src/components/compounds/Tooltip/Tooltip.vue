@@ -57,7 +57,7 @@ export default Tooltip;
   <span
     :data-label="label"
     :class="[newType, position, size, {
-      'b-tooltip': active,
+      'v-tooltip': active,
       'is-square': square,
       'is-animated': newAnimated,
       'is-always': always,

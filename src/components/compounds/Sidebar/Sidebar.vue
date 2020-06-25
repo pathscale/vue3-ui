@@ -1,5 +1,5 @@
 <template>
-  <div class="b-sidebar">
+  <div class="v-sidebar">
     <div
       class="sidebar-background"
       v-if="overlay && open" />

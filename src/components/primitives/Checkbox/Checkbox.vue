@@ -44,7 +44,7 @@ export default Checkbox;
 
 <template>
   <label
-    class="b-checkbox checkbox"
+    class="v-checkbox checkbox"
     :class="[size, { 'is-disabled': disabled }]"
     ref="label"
     :disabled="disabled"

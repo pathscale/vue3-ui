@@ -52,16 +52,7 @@ export default Tag;
                {'is-rounded': rounded},
                closeIcon ? 'has-delete-icon' : 'is-delete']"
       @click="close"
-      @keyup.delete.prevent="close">
-      <b-icon
-        custom-class=""
-        v-if="closeIcon"
-        :icon="closeIcon"
-        :size="size"
-        :type="closeIconType"
-        :pack="closeIconPack" />
-      <a />
-    </a>
+      @keyup.delete.prevent="close" />
   </div>
   <span
     v-else

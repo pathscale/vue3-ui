@@ -15,11 +15,15 @@ const Textarea = {
             default: ''
         },
         size: String,
+        maxlength: Number,
+
         expanded: Boolean,
         loading: Boolean,
         rounded: Boolean,
     },
     setup(props, { emit, attrs }) {
+        console.log(props)
+        console.log(attrs)
         const value = ref(attrs.modelValue)
         watchEffect(() => emit('update:modelValue', value.value))
         

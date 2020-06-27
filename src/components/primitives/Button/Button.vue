@@ -65,7 +65,7 @@ const Button ={
   setup(props, { attrs }) {
     const settings = useGlobalSettings()
 
-    const computedRounded = computed(() => props.rounded == null && settings ? settings.button.rounded : props.rounded)
+    const computedRounded = computed(() => props.rounded === null && settings ? settings.button.rounded : props.rounded)
 
     const computedTag = computed(() => attrs.disabled ? 'button' : props.tag)
     return { computedTag, computedRounded }

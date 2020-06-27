@@ -19,12 +19,13 @@ const Select = {
         expanded: Boolean,
         loading: Boolean,
         rounded: Boolean,
+        color: String,
     },
     emits: ['update:modelValue', 'blur', 'focus'],
     setup(props, { emit }) {
         const value = ref(props.modelValue)
         const spanClasses = computed(() => {
-            return [props.size, {
+            return [props.size, props.color, {
                 'is-fullwidth': props.expanded,
                 'is-loading': props.loading,
                 'is-multiple': props.multiple,

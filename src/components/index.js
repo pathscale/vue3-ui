@@ -30,4 +30,8 @@ export { default as VTag } from "./compounds/Tag/Tag.vue";
 export { default as VTooltip } from "./compounds/Tooltip/Tooltip.vue";
 export { default as VSidebar } from "./compounds/Sidebar/Sidebar.vue";
 
+export { default as VMenu } from "./compounds/Menu/Menu.vue";
+export { default as VMenuItem } from "./compounds/Menu/MenuItem.vue";
+export { default as VMenuList } from "./compounds/Menu/MenuList.vue";
+
 export * from "./global-settings";

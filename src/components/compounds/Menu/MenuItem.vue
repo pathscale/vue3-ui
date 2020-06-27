@@ -24,9 +24,10 @@ const Component = {
             default: ''
         }
     },
-    setup(props) {
+    setup(props, { emit }) {
         const newActive = ref(props.active)
         const newExpanded = ref(props.expanded)
+        const content = ref(null)
 
         const ariaRoleMenu = computed(() => {
             return props.ariaRole === 'menuitem' ? props.ariaRole : null
@@ -38,26 +39,38 @@ const Component = {
         watchEffect(() => {
             newExpanded.value = props.expanded
         })
-        return { newActive, newExpanded, ariaRoleMenu}
+
+        function onClick(event) {
+          // TODO Disable active previous item
+          if (props.disabled) return
+          newExpanded.value = !newExpanded.value
+          emit('update:expanded', newActive.value)
+          newActive.value = true
+          emit('update:active', newActive.value )
+        }
+        return { newActive, newExpanded, ariaRoleMenu, onClick, content }
     }
 }
 export default Component
 </script>
 
 <template>
-  <li :role="ariaRole">
+  <li :role="ariaRole" ref="content">
     <component
       :is="tag"
       v-bind="$attrs"
       :class="{
-        'is-active': active,
-        'is-disabled': disabled
-      }">
-      <span>{{ label }}</span>
+        'is-active': newActive,
+        'is-disabled': newExpanded
+      }"
+      @click="onClick($event)">
+      <span v-if="label">
+        {{ label }}</span>
       <slot
+        v-else
         name="label"
-        :expanded="expanded"
-        :active="active" />
+        :expanded="newExpanded"
+        :active="newActive" />
     </component>
     <!-- sub menu items -->
     <template v-if="$slots.default">

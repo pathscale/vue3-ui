@@ -40,48 +40,48 @@ const Tabs = {
 
       const content = ref(null)
 
-        provideStore({ activeTab: 0, tabs: [] })
-        const tabs = useStore()
-        function setActiveTab(id) {
-            tabs.value.activeTab = id
-        }
+      provideStore({ activeTab: 0, tabs: [] })
+      const tabs = useStore()
+      function setActiveTab(id) {
+          tabs.value.activeTab = id
+      }
 
-        onUpdated(() => {
-          nextTick(() => {
-            height.value = content.value.children[0].clientHeight
-          })
+      onUpdated(() => {
+        nextTick(() => {
+          height.value = content.value.children[0].clientHeight
         })
+      })
 
-        const contentHeight = computed(() => {
-          return `height:${height.value}px`
-        })
-        watchEffect(() => {
-            setActiveTab(props.modelValue)
-        })
+      const contentHeight = computed(() => {
+        return `height:${height.value}px`
+      })
+      watchEffect(() => {
+          setActiveTab(props.modelValue)
+      })
 
-        watchEffect(() => {
-          emit('update:modelValue', tabs.value.activeTab)
-        })
+      watchEffect(() => {
+        emit('update:modelValue', tabs.value.activeTab)
+      })
 
-        const navClasses = computed(() => {
-            return [
-                props.type,
-                props.size,
-                {
-                    [props.position]: props.position && !props.vertical,
-                    'is-fullwidth': props.expanded,
-                    'is-toggle-rounded is-toggle': props.type === 'is-toggle-rounded'
-                }
-            ]
-        })
+      const navClasses = computed(() => {
+          return [
+              props.type,
+              props.size,
+              {
+                  [props.position]: props.position && !props.vertical,
+                  'is-fullwidth': props.expanded,
+                  'is-toggle-rounded is-toggle': props.type === 'is-toggle-rounded'
+              }
+          ]
+      })
 
-        return {
-            contentHeight,
-            navClasses,
-            setActiveTab,
-            tabs,
-            content
-        }
+      return {
+          contentHeight,
+          navClasses,
+          setActiveTab,
+          tabs,
+          content
+      }
     },
 }
 

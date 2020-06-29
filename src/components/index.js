@@ -29,6 +29,9 @@ export { default as VTabs } from "./compounds/Tabs/Tabs.vue";
 export { default as VTag } from "./compounds/Tag/Tag.vue";
 export { default as VTooltip } from "./compounds/Tooltip/Tooltip.vue";
 export { default as VSidebar } from "./compounds/Sidebar/Sidebar.vue";
+export { default as VDropdown } from "./compounds/Dropdown/Dropdown.vue";
+export { default as VDropdownItem } from "./compounds/Dropdown/DropdownItem.vue";
+
 
 export { default as VMenu } from "./compounds/Menu/Menu.vue";
 export { default as VMenuItem } from "./compounds/Menu/MenuItem.vue";

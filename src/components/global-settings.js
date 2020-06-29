@@ -17,7 +17,7 @@ export const createGlobalSettings = () => {
 
   return {
     ...settings,
-    install: app => {
+    install(app) {
       app.provide(globalSettingsSymbol, settings);
     }
   };

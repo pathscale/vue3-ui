@@ -40,12 +40,12 @@ const Component = {
             newExpanded.value = props.expanded
         })
 
-        function onClick(event) {
-          // TODO Disable active previous item
+        function onClick() {
+          // TODO Disable previous active item
           if (props.disabled) return
           newExpanded.value = !newExpanded.value
           emit('update:expanded', newActive.value)
-          newActive.value = true
+          // newActive.value = true
           emit('update:active', newActive.value )
         }
         return { newActive, newExpanded, ariaRoleMenu, onClick, content }

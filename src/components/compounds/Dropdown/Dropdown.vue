@@ -1,27 +1,3 @@
-<template>
-  <div class="dropdown" :class="rootClasses">
-    <div
-      role="button"
-      ref="trigger"
-      class="dropdown-trigger"
-      @click="toggle"
-      aria-haspopup="true">
-      <slot name="trigger" />
-    </div>
-    <transition :name="animation">
-      <div 
-        v-show="(!disabled && (state.isActive || hoverable)) || inline"
-        class="dropdown-menu" 
-        role="menu" 
-        :aria-hidden="!state.isActive">
-        <div class="dropdown-content" :role="ariaRole" @click="selectItem">
-          <slot />
-        </div>
-      </div>
-    </transition>
-  </div>
-</template>
-
 <script>
 import { reactive, computed } from "vue"
 
@@ -94,7 +70,29 @@ const Component = {
 
       return { state, toggle, rootClasses, selectItem}
     }
-}
-    export default Component
-
+  }
+export default Component
 </script>
+<template>
+  <div class="dropdown" :class="rootClasses">
+    <div
+      role="button"
+      ref="trigger"
+      class="dropdown-trigger"
+      @click="toggle"
+      aria-haspopup="true">
+      <slot name="trigger" />
+    </div>
+    <transition :name="animation">
+      <div 
+        v-show="(!disabled && (state.isActive || hoverable)) || inline"
+        class="dropdown-menu" 
+        role="menu" 
+        :aria-hidden="!state.isActive">
+        <div class="dropdown-content" :role="ariaRole" @click="selectItem">
+          <slot />
+        </div>
+      </div>
+    </transition>
+  </div>
+</template>

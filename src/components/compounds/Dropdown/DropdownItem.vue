@@ -1,24 +1,3 @@
-<template>
-  <hr v-if="separator" class="dropdown-divider" />
-  <a
-    v-else-if="!custom && !hasLink"
-    class="dropdown-item"
-    :class="anchorClasses"
-    @click="selectItem"
-    :role="ariaRoleItem"
-    :tabindex="isFocusable ? 0 : null">
-    <slot />
-  </a>
-  <div
-    v-else
-    :class="itemClasses"
-    @click="selectItem"
-    :role="ariaRoleItem"
-    :tabindex="isFocusable ? 0 : null">
-    <slot />
-  </div>
-</template>
-
 <script>
 import { computed } from "vue"
 
@@ -84,3 +63,23 @@ const Component = {
 
 export default Component
 </script>
+<template>
+  <hr v-if="separator" class="dropdown-divider" />
+  <a
+    v-else-if="!custom && !hasLink"
+    class="dropdown-item"
+    :class="anchorClasses"
+    @click="selectItem"
+    :role="ariaRoleItem"
+    :tabindex="isFocusable ? 0 : null">
+    <slot />
+  </a>
+  <div
+    v-else
+    :class="itemClasses"
+    @click="selectItem"
+    :role="ariaRoleItem"
+    :tabindex="isFocusable ? 0 : null">
+    <slot />
+  </div>
+</template>

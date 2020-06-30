@@ -25,7 +25,7 @@ const Component = {
             type: String,
             default: 'fade'
         },
-        closeOnClick: {  // TODO Pending
+        closeOnClick: { 
             type: Boolean,
             default: true
         },
@@ -56,19 +56,18 @@ const Component = {
         state.isActive = !state.isActive
       }
 
-      /**
-        * Click listener from DropdownItem.
-        *   1. Set new selected item.
-        *   2. Emit input event to update the user v-model.
-        *   3. Close the dropdown.
-      */
-
       function selectItem() {
         // TODO
         state.isActive = false
       }
 
-      return { state, toggle, rootClasses, selectItem}
+      function closeMenu() {
+        if (props.closeOnClick) {
+          state.isActive = false
+        }
+      }
+
+      return { state, toggle, rootClasses, selectItem, closeMenu}
     }
   }
 export default Component
@@ -80,7 +79,9 @@ export default Component
       ref="trigger"
       class="dropdown-trigger"
       @click="toggle"
-      aria-haspopup="true">
+      aria-haspopup="true"
+      tabindex="-1"
+      @focusout="closeMenu">
       <slot name="trigger" />
     </div>
     <transition :name="animation">
@@ -89,7 +90,7 @@ export default Component
         class="dropdown-menu" 
         role="menu" 
         :aria-hidden="!state.isActive">
-        <div class="dropdown-content" :role="ariaRole" @click="selectItem">
+        <div class="dropdown-content" :role="ariaRole">
           <slot />
         </div>
       </div>

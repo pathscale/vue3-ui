@@ -1,0 +1,377 @@
+{
+  "ColumnsLayout": [
+    "h1"
+  ],
+  "LoginFormPanel": [
+    "h1"
+  ],
+  "NavLayout": [
+    "h1"
+  ],
+  "Accordion": [
+    "accordion",
+    "accordion-content",
+    "accordion-trigger",
+    "div",
+    "slot",
+    "transition"
+  ],
+  "AccordionContent": [
+    "div",
+    "slot"
+  ],
+  "Dropdown": [
+    "div",
+    "dropdown",
+    "dropdown-content",
+    "dropdown-menu",
+    "dropdown-trigger",
+    "slot",
+    "transition"
+  ],
+  "DropdownItem": [
+    "a",
+    "div",
+    "dropdown-divider",
+    "dropdown-item",
+    "hr",
+    "slot"
+  ],
+  "Menu": [
+    "div",
+    "menu",
+    "slot"
+  ],
+  "MenuItem": [
+    "component",
+    "is-active",
+    "is-disabled",
+    "li",
+    "slot",
+    "span",
+    "template",
+    "transition",
+    "ul"
+  ],
+  "MenuList": [
+    "menu-label",
+    "menu-list",
+    "p",
+    "slot",
+    "ul"
+  ],
+  "Modal": [
+    "button",
+    "close",
+    "div",
+    "h4",
+    "modal",
+    "modal-body",
+    "modal-content",
+    "modal-footer",
+    "modal-header",
+    "modal-title",
+    "slot",
+    "span"
+  ],
+  "Navbar": [
+    "div"
+  ],
+  "NavbarBurger": [
+    "a",
+    "burger",
+    "is-active",
+    "navbar-burger",
+    "span"
+  ],
+  "NavbarDropdown": [
+    "a",
+    "div",
+    "has-dropdown",
+    "is-active",
+    "is-arrowless",
+    "is-boxed",
+    "is-hoverable",
+    "is-right",
+    "navbar-dropdown",
+    "navbar-item",
+    "navbar-link",
+    "slot",
+    "template"
+  ],
+  "NavbarItem": [
+    "component",
+    "is-active",
+    "navbar-item",
+    "slot"
+  ],
+  "Sidebar": [
+    "div",
+    "sidebar-background",
+    "sidebar-content",
+    "slot",
+    "transition",
+    "v-sidebar"
+  ],
+  "Tab": [
+    "a",
+    "div",
+    "is-active",
+    "is-animated",
+    "is-disabled",
+    "li",
+    "nav",
+    "section",
+    "slot",
+    "tabs",
+    "template",
+    "ul"
+  ],
+  "Tabs": [
+    "a",
+    "div",
+    "is-active",
+    "is-animated",
+    "is-disabled",
+    "li",
+    "nav",
+    "section",
+    "slot",
+    "tabs",
+    "template",
+    "ul"
+  ],
+  "Tag": [
+    "a",
+    "delete",
+    "div",
+    "has-addons",
+    "has-delete-icon",
+    "has-ellipsis",
+    "is-delete",
+    "is-rounded",
+    "is-small",
+    "slot",
+    "span",
+    "tag",
+    "tags"
+  ],
+  "Tooltip": [
+    "is-always",
+    "is-animated",
+    "is-dashed",
+    "is-multiline",
+    "is-square",
+    "slot",
+    "span",
+    "v-tooltip"
+  ],
+  "Login": [
+    "Button",
+    "Field",
+    "Input",
+    "LoginForm",
+    "Switch",
+    "box",
+    "button",
+    "check",
+    "column",
+    "columns",
+    "component",
+    "container",
+    "control",
+    "control-label",
+    "div",
+    "field",
+    "form",
+    "input",
+    "is-3-widescreen",
+    "is-4-desktop",
+    "is-5-tablet",
+    "is-active",
+    "is-centered",
+    "is-disabled",
+    "is-focused",
+    "is-fullwidth",
+    "is-hovered",
+    "is-inverted",
+    "is-loading",
+    "is-outlined",
+    "is-rounded",
+    "is-selected",
+    "label",
+    "slot",
+    "span",
+    "switch"
+  ],
+  "Nav": [
+    "a",
+    "buttons",
+    "div",
+    "img",
+    "nav",
+    "navbar",
+    "navbar-brand",
+    "navbar-end",
+    "navbar-item",
+    "navbar-menu",
+    "navbar-start",
+    "slot"
+  ],
+  "LoginForm": [
+    "Button",
+    "Field",
+    "Input",
+    "Switch",
+    "box",
+    "button",
+    "check",
+    "component",
+    "control",
+    "control-label",
+    "div",
+    "field",
+    "form",
+    "input",
+    "is-active",
+    "is-disabled",
+    "is-focused",
+    "is-fullwidth",
+    "is-hovered",
+    "is-inverted",
+    "is-loading",
+    "is-outlined",
+    "is-rounded",
+    "is-selected",
+    "label",
+    "slot",
+    "span",
+    "switch"
+  ],
+  "Button": [
+    "button",
+    "component",
+    "is-active",
+    "is-focused",
+    "is-fullwidth",
+    "is-hovered",
+    "is-inverted",
+    "is-loading",
+    "is-outlined",
+    "is-rounded",
+    "is-selected",
+    "slot",
+    "span"
+  ],
+  "Card": [
+    "card",
+    "component",
+    "slot"
+  ],
+  "CardContent": [
+    "card-content",
+    "div",
+    "slot"
+  ],
+  "CardFooter": [
+    "card-footer",
+    "component",
+    "slot"
+  ],
+  "CardFooterItem": [
+    "card-footer-item",
+    "div",
+    "slot"
+  ],
+  "CardHeader": [
+    "card-header",
+    "card-header-title",
+    "component",
+    "p",
+    "slot"
+  ],
+  "CardImage": [
+    "card-image",
+    "div",
+    "slot"
+  ],
+  "Checkbox": [
+    "check",
+    "checkbox",
+    "control-label",
+    "input",
+    "is-disabled",
+    "label",
+    "slot",
+    "span",
+    "v-checkbox"
+  ],
+  "Collapse": [],
+  "Column": [
+    "column",
+    "div",
+    "slot"
+  ],
+  "Columns": [
+    "columns",
+    "div",
+    "slot"
+  ],
+  "Container": [
+    "container",
+    "div",
+    "slot"
+  ],
+  "Field": [
+    "div",
+    "field",
+    "label",
+    "slot"
+  ],
+  "Input": [
+    "control",
+    "div",
+    "input"
+  ],
+  "Progress": [
+    "div",
+    "p",
+    "progress",
+    "progress-value",
+    "progress-wrapper",
+    "slot"
+  ],
+  "Select": [
+    "control",
+    "div",
+    "has-background-dark",
+    "has-text-light",
+    "is-expanded",
+    "option",
+    "select",
+    "slot",
+    "span",
+    "template"
+  ],
+  "Switch": [
+    "check",
+    "control-label",
+    "input",
+    "is-disabled",
+    "is-outlined",
+    "is-rounded",
+    "label",
+    "slot",
+    "span",
+    "switch"
+  ],
+  "Textarea": [
+    "control",
+    "counter",
+    "div",
+    "help",
+    "is-invisible",
+    "small",
+    "textarea"
+  ]
+}

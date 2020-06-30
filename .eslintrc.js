@@ -1,4 +1,4 @@
-"use strict";
+'use strict'
 
 module.exports = {
   env: {
@@ -6,32 +6,32 @@ module.exports = {
     es6: true,
   },
   extends: [
-    "ash-nazg/sauron",
-    "plugin:vue/vue3-strongly-recommended",
-    "plugin:import/errors",
-    "plugin:import/warnings",
-    "plugin:prettier/recommended",
+    'ash-nazg/sauron',
+    'plugin:vue/vue3-strongly-recommended',
+    'plugin:import/errors',
+    'plugin:import/warnings',
+    'plugin:prettier/recommended',
   ],
   globals: {
-    Atomics: "readonly",
-    SharedArrayBuffer: "readonly",
+    Atomics: 'readonly',
+    SharedArrayBuffer: 'readonly',
   },
-  plugins: ["vue"],
+  plugins: ['vue'],
   overrides: [
     {
       files: [
-        ".eslintrc.js",
-        "postcss.config.js",
-        "webpack.config.js",
-        ".3rdparty-eslintrc.js",
-        ".np-config.js"
+        '.eslintrc.js',
+        'postcss.config.js',
+        'webpack.config.js',
+        '.3rdparty-eslintrc.js',
+        '.np-config.js',
       ],
       extends: [
-        "ash-nazg/sauron-node",
-        "plugin:vue/vue3-strongly-recommended",
-        "plugin:import/errors",
-        "plugin:import/warnings",
-        "plugin:prettier/recommended",
+        'ash-nazg/sauron-node',
+        'plugin:vue/vue3-strongly-recommended',
+        'plugin:import/errors',
+        'plugin:import/warnings',
+        'plugin:prettier/recommended',
       ],
       env: {
         node: true,
@@ -44,66 +44,66 @@ module.exports = {
       },
       parserOptions: {
         ecmaVersion: 2018,
-        sourceType: "script",
+        sourceType: 'script',
       },
       rules: {
-        strict: ["error", "global"],
-        "import/no-commonjs": "off",
+        strict: ['error', 'global'],
+        'import/no-commonjs': 'off',
 
         // Disabling for now
-        "require-unicode-regexp": "off",
-        "prefer-named-capture-group": "off",
+        'require-unicode-regexp': 'off',
+        'prefer-named-capture-group': 'off',
       },
     },
     {
-      files: "src/shims-vue.d.ts",
+      files: 'src/shims-vue.d.ts',
       rules: {
         // No imports/exports in plain declaration file
-        "import/unambiguous": "off",
+        'import/unambiguous': 'off',
       },
     },
     {
-      files: "*.vue",
+      files: '*.vue',
       rules: {
-        "prettier/prettier": "off",
+        'prettier/prettier': 'off',
       },
     },
   ],
   rules: {
-    "no-restricted-syntax": [
-      "error",
+    'no-restricted-syntax': [
+      'error',
       {
-        selector: "ImportNamespaceSpecifier",
+        selector: 'ImportNamespaceSpecifier',
         message:
-          "As it is wasteful to use all named imports, use only those " +
-          "which are needed (or switch to a default import).",
+          'As it is wasteful to use all named imports, use only those ' +
+          'which are needed (or switch to a default import).',
       },
     ],
 
     // Disabling for now
-    "import/extensions": "off",
-    "jsdoc/require-jsdoc": "off",
-    "require-unicode-regexp": "off",
-    "prefer-named-capture-group": "off",
+    'import/extensions': 'off',
+    'jsdoc/require-jsdoc': 'off',
+    'require-unicode-regexp': 'off',
+    'prefer-named-capture-group': 'off',
 
     // Keep this here so can uncomment to check inline disabling
     // "eslint-comments/no-use": "error",
 
-    "vue/max-attributes-per-line": "off",
-    "vue/html-closing-bracket-newline": [
-      "error",
+    'vue/max-attributes-per-line': 'off',
+    'vue/html-closing-bracket-newline': [
+      'error',
       {
-        singleline: "never",
-        multiline: "never",
+        singleline: 'never',
+        multiline: 'never',
       },
     ],
-    "vue/html-self-closing": [
-      "error",
+    'vue/html-self-closing': [
+      'error',
       {
         html: {
-          void: "always",
+          void: 'always',
         },
       },
     ],
   },
-};
+}

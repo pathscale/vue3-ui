@@ -1,5 +1,5 @@
 import { runInNewContext } from 'vm'
-import { context, falsy, truthy } from './data'
+import { textual, falsy, truthy } from './data'
 
 export default function (raw: string): string[] {
   const data = `[${raw}]`
@@ -8,8 +8,8 @@ export default function (raw: string): string[] {
   // console.log(data)
 
   const res = [
-    ...(runInNewContext(data, { ...context, ...truthy }) as []),
-    ...(runInNewContext(data, { ...context, ...falsy }) as []),
+    ...(runInNewContext(data, { ...textual, ...truthy }) as []),
+    ...(runInNewContext(data, { ...textual, ...falsy }) as []),
   ] as (string | Record<string, string> | (string | Record<string, string>)[])[]
 
   for (const item of res) {

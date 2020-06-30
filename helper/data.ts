@@ -1,6 +1,6 @@
 // TODO: Figure out how to keep variables up-to-date
 
-export const context = {
+export const textual = {
   position: undefined,
   size: undefined,
   type: undefined,

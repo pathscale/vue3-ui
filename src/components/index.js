@@ -31,6 +31,8 @@ export { default as VTooltip } from "./compounds/Tooltip/Tooltip.vue";
 export { default as VSidebar } from "./compounds/Sidebar/Sidebar.vue";
 export { default as VDropdown } from "./compounds/Dropdown/Dropdown.vue";
 export { default as VDropdownItem } from "./compounds/Dropdown/DropdownItem.vue";
+export { default as VAccordion } from "./compounds/Accordion/Accordion.vue";
+export { default as VAccordionContent } from "./compounds/Accordion/AccordionContent.vue";
 
 
 export { default as VMenu } from "./compounds/Menu/Menu.vue";

@@ -20,6 +20,10 @@ const Accordion = {
     },
     color: {
       type: String
+    },
+    hover: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -29,7 +33,8 @@ const Accordion = {
       style: {
         backgroundColor: props.background,
         color: props.color
-      }
+      },
+      hover: props.hover
     })
     const rootClasses = computed(() => {
       return [{
@@ -42,7 +47,6 @@ const Accordion = {
       if (props.disabled) return
       state.isExpanded = !state.isExpanded
     }
-
     return { state, toggle, rootClasses }
   }
 }
@@ -54,6 +58,16 @@ export default Accordion
     <div
       role="button"
       ref="trigger"
+      v-if="hover"
+      class="accordion-trigger"
+      @mouseover="toggle"
+      @mouseleave="toggle">
+      <slot name="trigger" />
+    </div>
+    <div
+      role="button"
+      ref="trigger"
+      v-else
       class="accordion-trigger"
       @click="toggle">
       <slot name="trigger" />

@@ -15,10 +15,10 @@ const Accordion = {
       type: Boolean,
       default: false
     },
-    title: {
-      type: String
+    background: {
+      type: String,
     },
-    content: {
+    color: {
       type: String
     }
   },
@@ -26,7 +26,10 @@ const Accordion = {
   setup(props) {
     const state = reactive({
       isExpanded: props.expanded,
-      style: {}
+      style: {
+        backgroundColor: props.background,
+        color: props.color
+      }
     })
     const rootClasses = computed(() => {
       return [{
@@ -47,7 +50,7 @@ export default Accordion
 </script>
 
 <template>
-  <div class="accordion" :class="rootClasses">
+  <div class="accordion" :class="rootClasses" :style="state.style">
     <div
       role="button"
       ref="trigger"

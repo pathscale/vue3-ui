@@ -22,6 +22,7 @@ export { default as VProgress } from "./primitives/Progress/Progress.vue";
 export { default as VSelect } from "./primitives/Select/Select.vue";
 export { default as VSwitch } from "./primitives/Switch/Switch.vue";
 export { default as VTextarea } from "./primitives/Textarea/Textarea.vue";
+export { default as VFile } from "./primitives/FileInput/FileInput.vue";
 
 export { default as VAccordion } from "./compounds/Accordion/Accordion.vue";
 export { default as VAccordionContent } from "./compounds/Accordion/AccordionContent.vue";

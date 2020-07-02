@@ -328,6 +328,21 @@
     "label",
     "slot"
   ],
+  "FileInput": [
+    "div",
+    "file",
+    "file-cta",
+    "file-input",
+    "file-label",
+    "file-name",
+    "has-name",
+    "input",
+    "is-boxed",
+    "is-fullwidth",
+    "label",
+    "slot",
+    "span"
+  ],
   "Input": [
     "control",
     "div",

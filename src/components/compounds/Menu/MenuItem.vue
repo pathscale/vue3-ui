@@ -60,11 +60,12 @@ export default Component
       :is="tag"
       v-bind="$attrs"
       :class="{
+        'is-flex': icon,
         'is-active': newActive,
         'is-disabled': newExpanded
       }"
       @click="onClick($event)">
-      <span v-if="icon"> {{ icon }} </span>
+      <span v-if="icon" class="pr-2">{{ icon }} </span>
       <span v-if="label">
         {{ label }}</span>
       <slot

@@ -4,13 +4,11 @@
       class="sidebar-background"
       v-if="overlay && open" />
     <transition
-      :name="state.transitionName"
-      @before-enter="beforeEnter"
-      @after-enter="afterEnter">
+      :name="state.transitionName">
       <div
         v-show="open"
         ref="sidebarContent"
-        class="sidebar-content"
+        class="sidebar-content is-width-animated"
         :class="rootClasses">
         <slot />
       </div>
@@ -40,12 +38,12 @@ const Sidebar = {
         },
         reduce: Boolean,
         expandOnHover: Boolean,
-        expandOnHoverFixed: Boolean,
+        expandOnHoverFixed: Boolean, // TODO
         canCancel: {
             type: [Array, Boolean],
         },
         onCancel: {
-            type: Function,
+            type: Function, // TODO
         }
     },
     setup(props) {
@@ -93,16 +91,7 @@ const Sidebar = {
             state.transitionName = !open ? 'slide-prev' : 'slide-next'
         })
 
-        function beforeEnter() {
-            state.animating = true
-        }
-
-        
-        function afterEnter() {
-            state.animating = false
-        }
-
-        return { state, rootClasses, cancelOptions, isStatic, isFixed, isAbsolute, beforeEnter, afterEnter }
+        return { state, rootClasses, cancelOptions, isStatic, isFixed, isAbsolute }
     },
 }
 

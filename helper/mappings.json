@@ -46,7 +46,9 @@
     "component",
     "is-active",
     "is-disabled",
+    "is-flex",
     "li",
+    "pr-2",
     "slot",
     "span",
     "template",
@@ -107,6 +109,7 @@
   ],
   "Sidebar": [
     "div",
+    "is-width-animated",
     "sidebar-background",
     "sidebar-content",
     "slot",

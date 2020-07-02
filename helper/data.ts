@@ -29,6 +29,7 @@ export const truthy = {
   arrowless: true,
   collapsible: true,
   hasName: true,
+  icon: true,
   fullwidth: true,
   right: true,
   boxed: true,

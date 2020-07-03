@@ -38,7 +38,8 @@ export { default as VTab } from "./compounds/Tabs/Tab.vue";
 export { default as VTabs } from "./compounds/Tabs/Tabs.vue";
 export { default as VTag } from "./compounds/Tag/Tag.vue";
 export { default as VTooltip } from "./compounds/Tooltip/Tooltip.vue";
-
+export { default as VMessage } from "./compounds/Message/Message.vue";
+export { default as VMessageWrapper } from "./compounds/Message/MessageWrapper.vue";
 
 
 export * from "./global-settings";

@@ -1,6 +1,7 @@
 import '../index.css';
 
 export { default as VLogin } from "./layouts/Login/Login.vue";
+
 export { default as VButton } from "./primitives/Button/Button.vue";
 export { default as VCard } from "./primitives/Card/Card.vue";
 export { default as VCardContent } from "./primitives/Card/CardContent.vue";
@@ -14,12 +15,14 @@ export { default as VColumn } from "./primitives/Columns/Column.vue";
 export { default as VColumns } from "./primitives/Columns/Columns.vue";
 export { default as VContainer } from "./primitives/Container/Container.vue";
 export { default as VField } from "./primitives/Field/Field.vue";
+export { default as VFile } from "./primitives/FileInput/FileInput.vue";
+export { default as VImage } from "./primitives/Image/Image.vue";
 export { default as VInput } from "./primitives/Input/Input.vue";
 export { default as VProgress } from "./primitives/Progress/Progress.vue";
 export { default as VSelect } from "./primitives/Select/Select.vue";
 export { default as VSwitch } from "./primitives/Switch/Switch.vue";
 export { default as VTextarea } from "./primitives/Textarea/Textarea.vue";
-export { default as VFile } from "./primitives/FileInput/FileInput.vue";
+
 
 export { default as VAccordion } from "./compounds/Accordion/Accordion.vue";
 export { default as VAccordionContent } from "./compounds/Accordion/AccordionContent.vue";

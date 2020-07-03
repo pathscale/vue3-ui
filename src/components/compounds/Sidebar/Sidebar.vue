@@ -1,21 +1,3 @@
-<template>
-  <div class="v-sidebar">
-    <div
-      class="sidebar-background"
-      v-if="overlay && open" />
-    <transition
-      :name="state.transitionName">
-      <div
-        v-show="open"
-        ref="sidebarContent"
-        class="sidebar-content is-width-animated"
-        :class="rootClasses">
-        <slot />
-      </div>
-    </transition>
-  </div>
-</template>
-
 <script>
 import { reactive, computed, watchEffect } from "vue"
 
@@ -44,6 +26,14 @@ const Sidebar = {
         },
         onCancel: {
             type: Function, // TODO
+        },
+        width: {
+            type: [Number, String],
+            default: 260
+        },
+        miniWidth: {
+            type: [Number, String],
+            default: 80
         }
     },
     setup(props) {
@@ -68,6 +58,11 @@ const Sidebar = {
                 'is-fullwidth-mobile': props.mobile === 'fullwidth'
             }]
         })
+
+        const rootStyles = computed(() => {
+            return `width: ${props.reduce ? props.miniWidth : props.width}px`
+        })
+
         const cancelOptions = computed(() => {
             return typeof props.canCancel === 'boolean'
                 ? props.canCancel
@@ -91,9 +86,27 @@ const Sidebar = {
             state.transitionName = !open ? 'slide-prev' : 'slide-next'
         })
 
-        return { state, rootClasses, cancelOptions, isStatic, isFixed, isAbsolute }
+        return { state, rootClasses, rootStyles, cancelOptions, isStatic, isFixed, isAbsolute }
     },
 }
 
 export default Sidebar
 </script>
+<template>
+  <div class="v-sidebar">
+    <div
+      class="sidebar-background"
+      v-if="overlay && open" />
+    <transition
+      :name="state.transitionName">
+      <div
+        v-show="open"
+        ref="sidebarContent"
+        class="sidebar-content is-width-animated"
+        :class="rootClasses"
+        :style="rootStyles">
+        <slot />
+      </div>
+    </transition>
+  </div>
+</template>

@@ -1,14 +1,5 @@
 {
-  "ColumnsLayout": [
-    "h1"
-  ],
-  "LoginFormPanel": [
-    "h1"
-  ],
-  "NavLayout": [
-    "h1"
-  ],
-  "Accordion": [
+  "VAccordion": [
     "accordion",
     "accordion-content",
     "accordion-trigger",
@@ -16,11 +7,11 @@
     "slot",
     "transition"
   ],
-  "AccordionContent": [
+  "VAccordionContent": [
     "div",
     "slot"
   ],
-  "Dropdown": [
+  "VDropdown": [
     "div",
     "dropdown",
     "dropdown-content",
@@ -29,7 +20,7 @@
     "slot",
     "transition"
   ],
-  "DropdownItem": [
+  "VDropdownItem": [
     "a",
     "div",
     "dropdown-divider",
@@ -37,12 +28,12 @@
     "hr",
     "slot"
   ],
-  "Menu": [
+  "VMenu": [
     "div",
     "menu",
     "slot"
   ],
-  "MenuItem": [
+  "VMenuItem": [
     "component",
     "is-active",
     "is-disabled",
@@ -55,14 +46,14 @@
     "transition",
     "ul"
   ],
-  "MenuList": [
+  "VMenuList": [
     "menu-label",
     "menu-list",
     "p",
     "slot",
     "ul"
   ],
-  "Modal": [
+  "VModal": [
     "button",
     "close",
     "div",
@@ -76,7 +67,7 @@
     "slot",
     "span"
   ],
-  "Navbar": [
+  "VNavbar": [
     "a",
     "burger",
     "div",
@@ -91,14 +82,14 @@
     "slot",
     "span"
   ],
-  "NavbarBurger": [
+  "VNavbarBurger": [
     "a",
     "burger",
     "is-active",
     "navbar-burger",
     "span"
   ],
-  "NavbarDropdown": [
+  "VNavbarDropdown": [
     "a",
     "div",
     "has-dropdown",
@@ -113,13 +104,13 @@
     "slot",
     "template"
   ],
-  "NavbarItem": [
+  "VNavbarItem": [
     "component",
     "is-active",
     "navbar-item",
     "slot"
   ],
-  "Sidebar": [
+  "VSidebar": [
     "div",
     "is-width-animated",
     "sidebar-background",
@@ -128,7 +119,7 @@
     "transition",
     "v-sidebar"
   ],
-  "Tab": [
+  "VTab": [
     "a",
     "div",
     "is-active",
@@ -142,7 +133,7 @@
     "template",
     "ul"
   ],
-  "Tabs": [
+  "VTabs": [
     "a",
     "div",
     "is-active",
@@ -156,7 +147,7 @@
     "template",
     "ul"
   ],
-  "Tag": [
+  "VTag": [
     "a",
     "delete",
     "div",
@@ -171,7 +162,7 @@
     "tag",
     "tags"
   ],
-  "Tooltip": [
+  "VTooltip": [
     "is-always",
     "is-animated",
     "is-dashed",
@@ -181,7 +172,7 @@
     "span",
     "v-tooltip"
   ],
-  "Login": [
+  "VLogin": [
     "Button",
     "Field",
     "Input",
@@ -219,37 +210,7 @@
     "span",
     "switch"
   ],
-  "LoginForm": [
-    "Button",
-    "Field",
-    "Input",
-    "Switch",
-    "box",
-    "button",
-    "check",
-    "component",
-    "control",
-    "control-label",
-    "div",
-    "field",
-    "form",
-    "input",
-    "is-active",
-    "is-disabled",
-    "is-focused",
-    "is-fullwidth",
-    "is-hovered",
-    "is-inverted",
-    "is-loading",
-    "is-outlined",
-    "is-rounded",
-    "is-selected",
-    "label",
-    "slot",
-    "span",
-    "switch"
-  ],
-  "Button": [
+  "VButton": [
     "button",
     "component",
     "is-active",
@@ -264,39 +225,39 @@
     "slot",
     "span"
   ],
-  "Card": [
+  "VCard": [
     "card",
     "component",
     "slot"
   ],
-  "CardContent": [
+  "VCardContent": [
     "card-content",
     "div",
     "slot"
   ],
-  "CardFooter": [
+  "VCardFooter": [
     "card-footer",
     "component",
     "slot"
   ],
-  "CardFooterItem": [
+  "VCardFooterItem": [
     "card-footer-item",
     "div",
     "slot"
   ],
-  "CardHeader": [
+  "VCardHeader": [
     "card-header",
     "card-header-title",
     "component",
     "p",
     "slot"
   ],
-  "CardImage": [
+  "VCardImage": [
     "card-image",
     "div",
     "slot"
   ],
-  "Checkbox": [
+  "VCheckbox": [
     "check",
     "checkbox",
     "control-label",
@@ -307,29 +268,29 @@
     "span",
     "v-checkbox"
   ],
-  "Collapse": [],
-  "Column": [
+  "VCollapse": [],
+  "VColumn": [
     "column",
     "div",
     "slot"
   ],
-  "Columns": [
+  "VColumns": [
     "columns",
     "div",
     "slot"
   ],
-  "Container": [
+  "VContainer": [
     "container",
     "div",
     "slot"
   ],
-  "Field": [
+  "VField": [
     "div",
     "field",
     "label",
     "slot"
   ],
-  "FileInput": [
+  "VFile": [
     "div",
     "file",
     "file-cta",
@@ -344,12 +305,12 @@
     "slot",
     "span"
   ],
-  "Input": [
+  "VInput": [
     "control",
     "div",
     "input"
   ],
-  "Progress": [
+  "VProgress": [
     "div",
     "p",
     "progress",
@@ -357,7 +318,7 @@
     "progress-wrapper",
     "slot"
   ],
-  "Select": [
+  "VSelect": [
     "control",
     "div",
     "has-background-dark",
@@ -369,7 +330,7 @@
     "span",
     "template"
   ],
-  "Switch": [
+  "VSwitch": [
     "check",
     "control-label",
     "input",
@@ -381,7 +342,7 @@
     "span",
     "switch"
   ],
-  "Textarea": [
+  "VTextarea": [
     "control",
     "counter",
     "div",

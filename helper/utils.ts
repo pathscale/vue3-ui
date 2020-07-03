@@ -1,3 +1,4 @@
+import path from 'path'
 import { parse } from 'query-string'
 
 /** Parsed Vue SFC query */
@@ -32,4 +33,10 @@ export function parseQuery(id: string): Query {
     src: 'src' in raw,
     scoped: 'scoped' in raw,
   } as Query
+}
+
+export function normalizePath(...paths: string[]): string {
+  const f = path.join(...paths).replace(/\\/g, '/')
+  if (/^\.[/\\]/.test(paths[0])) return `./${f}`
+  return f
 }

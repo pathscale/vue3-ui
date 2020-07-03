@@ -1,35 +1,42 @@
 import path from 'path'
 import fs from 'fs-extra'
 import fg from 'fast-glob'
+import * as jsparser from '@babel/parser'
+import traverse from '@babel/traverse'
+import { getWhitelist } from './analyzer'
+import { normalizePath } from './utils'
+import { isVueSFC } from './analyzer-utils'
 
-import { rollup, OutputAsset } from 'rollup'
-import resolve from '@rollup/plugin-node-resolve'
-import vue from 'rollup-plugin-vue'
-import styles from 'rollup-plugin-styles'
-import gatherer from './plugin'
-
-// TODO: Migrate helper to @babel/parser approach
-async function getWhitelist(file: string): Promise<string[]> {
-  const bundle = await rollup({
-    input: file,
-    plugins: [resolve({ preferBuiltins: true }), gatherer(), vue(), styles()],
-  })
-  const { output } = await bundle.generate({})
-  const whitelistFile = output.find(f => f.fileName === 'whitelist') as OutputAsset
-  const whitelist = JSON.parse(Buffer.from(whitelistFile.source).toString('utf8')) as string[]
-  return whitelist
-}
+const srcDir = path.resolve(__dirname, '..', 'src')
 
 async function main(): Promise<void> {
+  const namesMap: Record<string, string> = {}
+  const inputFile = normalizePath(srcDir, 'components', 'index.js')
+  const inputCode = fs.readFileSync(inputFile, 'utf-8')
+
+  let ast = jsparser.parse(inputCode, { sourceType: 'unambiguous' })
+  traverse(ast, {
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    ExportNamedDeclaration({ node }) {
+      if (!node.source) return
+      const { value } = node.source
+      if (!isVueSFC(value)) return
+      for (const spec of node.specifiers) {
+        if (spec.type !== 'ExportSpecifier') return
+        if (spec.local.name !== 'default') return
+        namesMap[path.parse(value).name] = spec.exported.name
+      }
+    },
+  })
+
   const mappings: Record<string, string[]> = {}
+  const pattern = normalizePath(srcDir, '**', '*.vue')
+  const files = ((await fg(pattern)) as string[]).sort()
 
-  const pattern = path.resolve(__dirname, '..', 'src', '**', '*.vue').replace(/\\/g, '/')
-  const vueFiles = (await fg(pattern)).sort() as string[]
-
-  for await (const file of vueFiles) {
-    if (path.parse(file).name === 'App') continue
-    const whitelist = await getWhitelist(file)
-    mappings[path.parse(file).name] = whitelist
+  for await (const file of files) {
+    const name = namesMap[path.parse(file).name]
+    if (!name) continue
+    mappings[name] = getWhitelist(file)
   }
 
   fs.writeFileSync(path.join(__dirname, 'mappings.json'), JSON.stringify(mappings, null, '  '))

@@ -77,7 +77,19 @@
     "span"
   ],
   "Navbar": [
-    "div"
+    "a",
+    "burger",
+    "div",
+    "is-active",
+    "nav",
+    "navbar",
+    "navbar-brand",
+    "navbar-burger",
+    "navbar-end",
+    "navbar-menu",
+    "navbar-start",
+    "slot",
+    "span"
   ],
   "NavbarBurger": [
     "a",
@@ -206,20 +218,6 @@
     "slot",
     "span",
     "switch"
-  ],
-  "Nav": [
-    "a",
-    "buttons",
-    "div",
-    "img",
-    "nav",
-    "navbar",
-    "navbar-brand",
-    "navbar-end",
-    "navbar-item",
-    "navbar-menu",
-    "navbar-start",
-    "slot"
   ],
   "LoginForm": [
     "Button",

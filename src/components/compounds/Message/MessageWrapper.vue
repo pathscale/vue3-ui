@@ -1,24 +1,7 @@
 <script>
 const Message = {
   name: "VMessageWrapper",
-  props: {
-    content: {
-      type: String,
-      default: null
-    },
-    author: {
-      type: String,
-      default: null
-    },
-    timestamp: {
-      type: String,
-      default: null
-    },
-    transparent: {
-      type: Boolean,
-      default: false
-    }
-  },
+  props: {},
 }
 export default Message
 </script>

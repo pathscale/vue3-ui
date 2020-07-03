@@ -14,10 +14,6 @@ const Message = {
       type: String,
       default: null
     },
-    transparent: {
-      type: Boolean,
-      default: false
-    },
     alignment: {
       type: String,
       default: "msg-left"
@@ -28,9 +24,7 @@ export default Message
 </script>
 
 <template>
-  <div :class="[alignment, {
-    'is-transparent': transparent
-  }]">
+  <div :class="[alignment]">
     <div>
       <span class="msg-author">{{ author }}</span> 
       <span class="msg-time">{{ timestamp }}</span>

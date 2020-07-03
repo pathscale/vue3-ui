@@ -22,8 +22,8 @@ async function main(): Promise<void> {
       const { value } = node.source
       if (!isVueSFC(value)) return
       for (const spec of node.specifiers) {
-        if (spec.type !== 'ExportSpecifier') return
-        if (spec.local.name !== 'default') return
+        if (spec.type !== 'ExportSpecifier') continue
+        if (spec.local.name !== 'default') continue
         namesMap[path.parse(value).name] = spec.exported.name
       }
     },

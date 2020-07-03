@@ -53,6 +53,18 @@
     "slot",
     "ul"
   ],
+  "VMessage": [
+    "div",
+    "msg-author",
+    "msg-content",
+    "msg-time",
+    "span"
+  ],
+  "VMessageWrapper": [
+    "div",
+    "message-wrapper",
+    "slot"
+  ],
   "VModal": [
     "button",
     "close",

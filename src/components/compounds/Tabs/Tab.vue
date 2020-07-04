@@ -1,13 +1,11 @@
 <script>
+import { computed } from 'vue'
 import { addToStore, useStore } from './Tabs.vue'
+
 
 const Tab = {
     name: 'VTab',
     props: {
-        id: {
-            type: [Number, String],
-            required: true,
-        },
         label: {
             type: String,
             default: '',
@@ -21,8 +19,12 @@ const Tab = {
     },
     setup(props, { emit }) {
         const tabs = useStore()
-        addToStore({ ...props })
-        return { tabs }
+        const id = JSON.parse(JSON.stringify(tabs.value.tabs)).length // TODO Figure how get this value properly
+        const transitionName = computed(() => {
+          return tabs.value.activeTab < id ? 'slide-right' : 'slide-left'
+        })
+        addToStore({ ...props, id })
+        return { tabs, id, transitionName }
     },
 }
 
@@ -30,7 +32,12 @@ export default Tab;
 </script>
 
 <template>
-  <div v-if="tabs.activeTab == id">
+  <transition v-if="tabs.animated" :name="transitionName">
+    <div v-if="tabs.activeTab == id">
+      <slot />
+    </div>
+  </transition>
+  <div v-else-if="tabs.activeTab == id">
     <slot />
   </div>
 </template>

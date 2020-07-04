@@ -33,6 +33,8 @@ const Tabs = {
         expanded: Boolean,
         position: String,
         vertical: Boolean,
+        vanimated: Boolean,
+        animated: Boolean,
     },
     emits: ['update:modelValue'],
     setup(props, { emit }) {
@@ -40,7 +42,8 @@ const Tabs = {
 
       const content = ref(null)
 
-      provideStore({ activeTab: 0, tabs: [] })
+
+      provideStore({ activeTab: 0, tabs: [], animated: props.animated })
       const tabs = useStore()
       function setActiveTab(id) {
           tabs.value.activeTab = id
@@ -104,7 +107,7 @@ export default Tabs;
         </template>
       </ul>
     </nav>
-    <div ref="content" class="is-height-animated" :style="contentHeight">
+    <div ref="content" :class="{'is-height-animated': vanimated}" :style="contentHeight">
       <slot />
     </div>
   </section>

@@ -137,13 +137,13 @@
     "div",
     "is-active",
     "is-disabled",
-    "is-height-animated",
     "li",
     "nav",
     "section",
     "slot",
     "tabs",
     "template",
+    "transition",
     "ul"
   ],
   "VTabs": [
@@ -151,7 +151,6 @@
     "div",
     "is-active",
     "is-disabled",
-    "is-height-animated",
     "li",
     "nav",
     "section",

@@ -107,7 +107,7 @@ export default Tabs;
         </template>
       </ul>
     </nav>
-    <div ref="content" :class="{'is-height-animated': vanimated}" :style="contentHeight">
+    <div ref="content" :class="[{'is-height-animated': vanimated}]" :style="contentHeight">
       <slot />
     </div>
   </section>

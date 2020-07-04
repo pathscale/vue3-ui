@@ -25,7 +25,7 @@ export { default as VTextarea } from "./primitives/Textarea/Textarea.vue";
 
 
 export { default as VAccordion } from "./compounds/Accordion/Accordion.vue";
-export { default as VAccordionContent } from "./compounds/Accordion/AccordionContent.vue";
+export { default as VACcordionMenu } from "./compounds/Accordion/AccordionMenu.vue";
 export { default as VDropdown } from "./compounds/Dropdown/Dropdown.vue";
 export { default as VDropdownItem } from "./compounds/Dropdown/DropdownItem.vue";
 export { default as VMenu } from "./compounds/Menu/Menu.vue";

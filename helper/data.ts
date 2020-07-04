@@ -3,6 +3,7 @@
 export const textual = {
   position: undefined,
   size: undefined,
+  radio: undefined,
   type: undefined,
   color: undefined,
   alignment: undefined,
@@ -27,6 +28,7 @@ export const truthy = {
   ellipsis: true,
   disabled: true,
   arrowless: true,
+  centered: true,
   collapsible: true,
   hasName: true,
   icon: true,

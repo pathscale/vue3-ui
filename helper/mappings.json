@@ -5,9 +5,10 @@
     "accordion-trigger",
     "div",
     "slot",
-    "transition"
+    "span"
   ],
-  "VAccordionContent": [
+  "VAccordionMenu": [
+    "accordion-menu",
     "div",
     "slot"
   ],
@@ -316,6 +317,13 @@
     "label",
     "slot",
     "span"
+  ],
+  "VImage": [
+    "container",
+    "figure",
+    "image",
+    "img",
+    "is-rounded"
   ],
   "VInput": [
     "control",

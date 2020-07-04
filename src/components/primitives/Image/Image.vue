@@ -15,6 +15,9 @@ const Button = {
       rounded: {
         type: Boolean,
       },
+      centered: {
+        type: Boolean,
+      },
   }
 }
 
@@ -22,10 +25,11 @@ export default Button;
 </script>
 
 <template>
-  <img
-    class="image"
-    v-bind="$attrs"
-    :class="[size, radio, {
+  <figure class="image" :class="[size, radio, {
+    'container': centered
+  }]">
+    <img v-bind="$attrs" :class="{
       'is-rounded': rounded
-    }]" />
+    }" />
+  </figure>
 </template>

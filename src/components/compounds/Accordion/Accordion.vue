@@ -67,17 +67,17 @@ export default Accordion
 </script>
 
 <template>
-  <div class="accordion1" :class="rootClasses" :style="state.style">
+  <div class="accordion" :class="rootClasses" :style="state.style">
     <div
       role="button"
       ref="trigger"
       v-if="hover"
-      class="accordion-trigger1"
+      class="accordion-trigger"
       @mouseover="open"
       @mouseleave="close">
       <slot name="trigger" />
       <span 
-        class="accordion-content1" 
+        class="accordion-content" 
         v-show="state.isExpanded"
         :aria-hidden="!state.isExpanded">
         <slot name="content" />
@@ -87,47 +87,9 @@ export default Accordion
       role="button"
       ref="trigger"
       v-else
-      class="accordion-trigger1"
+      class="accordion-trigger"
       @click="toggle">
       <slot name="trigger" />
     </div>
   </div>
 </template>
-
-<style>
-.accordion-menu {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  width: 320px;
-}
-.accordion1 {
-  flex: 1;
-  height: 100%;
-  -webkit-box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
-  box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
-  transition: flex 0.8s ease;
-}
-.accordion1 .accordion-trigger1 {
-  display: flex;
-  align-items: center;
-  justify-content: inherit;
-  line-height: normal;
-  position: relative;
-  min-width: 32px;
-  padding: 0px 10px;
-  height: 100%;
-  width: 100%;
-  border-radius: 0;
-}
-.accordion1:hover {
-  flex: 4;
-  background-color: #292929;
-}
-.accordion-menu:hover {
-  width: 320px;
-}
-.accordion-content1 {
-  padding: 0px 8px;
-}
-</style>

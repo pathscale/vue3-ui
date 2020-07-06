@@ -74,7 +74,6 @@ export default Component
         :expanded="newExpanded"
         :active="newActive" />
     </component>
-    <!-- sub menu items -->
     <template v-if="$slots.default">
       <transition :name="animation">
         <ul v-show="newExpanded">

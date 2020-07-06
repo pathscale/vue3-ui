@@ -4,48 +4,50 @@ import { ref, onMounted } from 'vue'
 const Modal = {
     name: 'VModal',
     props: {
-        id: {
-            type: String,
-            required: true,
-        },
-        title: {
-            type: String,
-            default: null,
-        },
         modelValue: {
             type: Boolean,
             required: true,
         },
+        card: Boolean
     },
     emits: ['update:modelValue'],
     setup(props, { emit }) {
-      const show = ref(props.modelValue)
+      const active = ref(props.modelValue)
       onMounted(() => {
-            emit('update:modelValue', show)
+            emit('update:modelValue', active)
       })
-         return { show }
+
+      function close() {
+        emit('update:modelValue', false)
+      }
+      return { active, close }
     },
 };
 
 export default Modal;
 </script>
-
 <template>
-  <!-- // portal is not working -->
-  <div :target="`${id}`" class="modal" v-if="show">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" @click="show = false">
-          <span>×</span>
-        </button>
-        <h4 class="modal-title" v-if="title">
-          {{ title }}
-        </h4>
-      </div>
-      <div class="modal-body">
+  <div class="modal" :class="[{'is-active': active}]">
+    <div class="modal-background" @click="close" />
+    <template v-if="!card">
+      <div class="modal-content">
         <slot />
       </div>
-      <div class="modal-footer" />
+      <button class="modal-close" aria-label="close" @click="close" />
+    </template>
+    <div v-else class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">
+          <slot name="title" />
+        </p>
+        <button class="delete" aria-label="close" @click="close" />
+      </header>
+      <div class="modal-card-body">
+        <slot name="content" />
+      </div>
+      <footer class="modal-card-foot">
+        <slot name="footer" />
+      </footer>
     </div>
   </div>
 </template>

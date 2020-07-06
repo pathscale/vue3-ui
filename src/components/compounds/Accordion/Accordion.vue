@@ -28,6 +28,10 @@ const Accordion = {
     to: {
       type: Object,
       default: null
+    },
+    isActive: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -44,9 +48,13 @@ const Accordion = {
     const rootClasses = computed(() => {
       return [{
         'is-horizontal': props.isHorizontal,
-        'is-vertical': !props.isHorizontal
+        'is-vertical': !props.isHorizontal,
+        'accordion-active': props.isActive,
+        'accordion-default': !props.isActive
       }]
     })
+
+    const { isActive } = props
 
     function toggle() {
       if (props.disabled) return
@@ -60,7 +68,7 @@ const Accordion = {
       state.isExpanded = false
     }
 
-    return { state, toggle, open, close, rootClasses }
+    return { state, toggle, open, close, rootClasses, isActive }
   }
 }
 export default Accordion
@@ -76,10 +84,8 @@ export default Accordion
       @mouseover="open"
       @mouseleave="close">
       <slot name="trigger" />
-      <span 
-        class="accordion-content" 
-        v-show="state.isExpanded"
-        :aria-hidden="!state.isExpanded">
+      <span
+        class="accordion-content">
         <slot name="content" />
       </span>
     </div>

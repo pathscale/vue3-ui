@@ -55,6 +55,7 @@ export const truthy = {
   multilined: true,
   dashed: true,
   vanimated: true,
+  isActive: true
 }
 
 export const falsy = {

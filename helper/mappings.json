@@ -1,16 +1,18 @@
 {
   "VAccordion": [
     "accordion",
+    "accordion-active",
     "accordion-content",
+    "accordion-default",
     "accordion-trigger",
     "div",
-    "slot",
+    "is-horizontal",
+    "is-vertical",
     "span"
   ],
   "VAccordionMenu": [
     "accordion-menu",
-    "div",
-    "slot"
+    "div"
   ],
   "VDropdown": [
     "div",
@@ -18,73 +20,97 @@
     "dropdown-content",
     "dropdown-menu",
     "dropdown-trigger",
-    "slot",
+    "fade",
+    "is-active",
+    "is-disabled",
+    "is-expanded",
+    "is-hoverable",
+    "is-inline",
+    "is-mobile-modal",
     "transition"
   ],
   "VDropdownItem": [
     "a",
+    "click",
     "div",
     "dropdown-divider",
     "dropdown-item",
+    "has-link",
     "hr",
-    "slot"
+    "is-active",
+    "is-disabled",
+    "is-paddingless",
+    "listitem",
+    "menuitem"
   ],
   "VMenu": [
     "div",
-    "menu",
-    "slot"
+    "menu"
   ],
   "VMenuItem": [
+    "a",
     "component",
     "is-active",
     "is-disabled",
     "is-flex",
     "li",
+    "menuitem",
     "pr-2",
-    "slot",
+    "slide",
     "span",
     "template",
     "transition",
-    "ul"
+    "ul",
+    "update:active",
+    "update:expanded"
   ],
   "VMenuList": [
     "menu-label",
     "menu-list",
     "p",
-    "slot",
     "ul"
   ],
   "VMessage": [
     "div",
     "msg-author",
     "msg-content",
+    "msg-left",
     "msg-time",
     "span"
   ],
   "VMessageWrapper": [
     "div",
-    "message-wrapper",
-    "slot"
+    "message-wrapper"
   ],
   "VModal": [
     "button",
-    "close",
+    "delete",
     "div",
-    "h4",
+    "footer",
+    "header",
+    "is-active",
     "modal",
-    "modal-body",
+    "modal-background",
+    "modal-card",
+    "modal-card-body",
+    "modal-card-foot",
+    "modal-card-head",
+    "modal-card-title",
+    "modal-close",
     "modal-content",
-    "modal-footer",
-    "modal-header",
-    "modal-title",
-    "slot",
-    "span"
+    "p",
+    "template"
   ],
   "VNavbar": [
     "a",
     "burger",
     "div",
+    "has-shadow",
     "is-active",
+    "is-fixed-bottom",
+    "is-fixed-top",
+    "is-spaced",
+    "is-transparent",
     "nav",
     "navbar",
     "navbar-brand",
@@ -92,7 +118,6 @@
     "navbar-end",
     "navbar-menu",
     "navbar-start",
-    "slot",
     "span"
   ],
   "VNavbarBurger": [
@@ -114,21 +139,42 @@
     "navbar-dropdown",
     "navbar-item",
     "navbar-link",
-    "slot",
     "template"
   ],
   "VNavbarItem": [
+    "a",
     "component",
     "is-active",
-    "navbar-item",
-    "slot"
+    "navbar-item"
   ],
   "VSidebar": [
+    "absolute",
+    "boolean",
     "div",
+    "escape",
+    "fixed",
+    "fullwidth",
+    "hide",
+    "is-absolute",
+    "is-fixed",
+    "is-fullheight",
+    "is-fullwidth",
+    "is-fullwidth-mobile",
+    "is-hidden-mobile",
+    "is-mini",
+    "is-mini-expand",
+    "is-mini-expand-fixed",
+    "is-mini-mobile",
+    "is-right",
+    "is-static",
     "is-width-animated",
+    "outside",
+    "reduce",
     "sidebar-background",
     "sidebar-content",
-    "slot",
+    "slide-left",
+    "slide-right",
+    "static",
     "transition",
     "v-sidebar"
   ],
@@ -137,11 +183,15 @@
     "div",
     "is-active",
     "is-disabled",
+    "is-fullwidth",
     "is-height-animated",
+    "is-toggle",
+    "is-toggle-rounded",
     "li",
     "nav",
     "section",
-    "slot",
+    "slide-left",
+    "slide-right",
     "tabs",
     "template",
     "transition",
@@ -152,17 +202,20 @@
     "div",
     "is-active",
     "is-disabled",
+    "is-fullwidth",
     "is-height-animated",
+    "is-toggle",
+    "is-toggle-rounded",
     "li",
     "nav",
     "section",
-    "slot",
     "tabs",
     "template",
     "ul"
   ],
   "VTag": [
     "a",
+    "close",
     "delete",
     "div",
     "has-addons",
@@ -171,7 +224,6 @@
     "is-delete",
     "is-rounded",
     "is-small",
-    "slot",
     "span",
     "tag",
     "tags"
@@ -180,18 +232,15 @@
     "is-always",
     "is-animated",
     "is-dashed",
+    "is-medium",
     "is-multiline",
+    "is-primary",
     "is-square",
-    "slot",
+    "is-top",
     "span",
     "v-tooltip"
   ],
   "VLogin": [
-    "Button",
-    "Field",
-    "Input",
-    "LoginForm",
-    "Switch",
     "box",
     "button",
     "check",
@@ -202,6 +251,7 @@
     "control",
     "control-label",
     "div",
+    "error",
     "field",
     "form",
     "input",
@@ -211,6 +261,7 @@
     "is-active",
     "is-centered",
     "is-disabled",
+    "is-expanded",
     "is-focused",
     "is-fullwidth",
     "is-hovered",
@@ -220,9 +271,11 @@
     "is-rounded",
     "is-selected",
     "label",
-    "slot",
+    "login",
     "span",
-    "switch"
+    "switch",
+    "valid",
+    "whatever"
   ],
   "VButton": [
     "button",
@@ -236,40 +289,36 @@
     "is-outlined",
     "is-rounded",
     "is-selected",
-    "slot",
     "span"
   ],
   "VCard": [
     "card",
     "component",
-    "slot"
+    "div"
   ],
   "VCardContent": [
     "card-content",
-    "div",
-    "slot"
+    "div"
   ],
   "VCardFooter": [
     "card-footer",
     "component",
-    "slot"
+    "footer"
   ],
   "VCardFooterItem": [
     "card-footer-item",
-    "div",
-    "slot"
+    "div"
   ],
   "VCardHeader": [
     "card-header",
     "card-header-title",
     "component",
-    "p",
-    "slot"
+    "header",
+    "p"
   ],
   "VCardImage": [
     "card-image",
-    "div",
-    "slot"
+    "div"
   ],
   "VCheckbox": [
     "check",
@@ -278,31 +327,48 @@
     "input",
     "is-disabled",
     "label",
-    "slot",
     "span",
     "v-checkbox"
   ],
-  "VCollapse": [],
+  "VCollapse": [
+    "aria-expanded",
+    "close",
+    "collapse",
+    "collapse-content",
+    "collapse-trigger",
+    "div",
+    "fade",
+    "id",
+    "is-top",
+    "open",
+    "show",
+    "transition",
+    "update:open"
+  ],
   "VColumn": [
     "column",
     "div",
-    "slot"
+    "is-narrow"
   ],
   "VColumns": [
     "columns",
     "div",
-    "slot"
+    "is-centered",
+    "is-desktop",
+    "is-gapless",
+    "is-mobile",
+    "is-multiline",
+    "is-variable",
+    "is-vcentered"
   ],
   "VContainer": [
     "container",
-    "div",
-    "slot"
+    "div"
   ],
   "VField": [
     "div",
     "field",
-    "label",
-    "slot"
+    "label"
   ],
   "VFile": [
     "div",
@@ -315,8 +381,8 @@
     "input",
     "is-boxed",
     "is-fullwidth",
+    "is-primary",
     "label",
-    "slot",
     "span"
   ],
   "VImage": [
@@ -329,25 +395,37 @@
   "VInput": [
     "control",
     "div",
-    "input"
+    "input",
+    "is-expanded",
+    "is-loading",
+    "is-rounded"
   ],
   "VProgress": [
     "div",
+    "is-darkgrey",
     "p",
+    "percent",
     "progress",
     "progress-value",
     "progress-wrapper",
-    "slot"
+    "raw",
+    "value"
   ],
   "VSelect": [
+    "blur",
     "control",
     "div",
+    "focus",
     "has-background-dark",
     "has-text-light",
+    "is-empty",
     "is-expanded",
+    "is-fullwidth",
+    "is-loading",
+    "is-multiple",
+    "is-rounded",
     "option",
     "select",
-    "slot",
     "span",
     "template"
   ],
@@ -359,7 +437,6 @@
     "is-outlined",
     "is-rounded",
     "label",
-    "slot",
     "span",
     "switch"
   ],
@@ -369,6 +446,7 @@
     "div",
     "help",
     "is-invisible",
+    "is-loading",
     "small",
     "textarea"
   ]

@@ -77,6 +77,12 @@ export function getWhitelist(input: string): string[] {
     const ast = jsparser.parse(code, { sourceType: 'unambiguous' })
     traverse(ast, {
       // eslint-disable-next-line @typescript-eslint/naming-convention
+      StringLiteral({ node }) {
+        if (!isVueSFC(id)) return
+        for (const cl of node.value.split(' ')) whitelist.add(cl)
+      },
+
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       ExportNamedDeclaration({ node }) {
         if (!node.source) return
         const depId = resolveSource(id, node.source.value)
@@ -98,5 +104,18 @@ export function getWhitelist(input: string): string[] {
     traverseSource(id, code)
   }
 
-  return [...whitelist].sort()
+  const wl = [...whitelist]
+    // Delete some garbage
+    .filter(_v => {
+      const v = _v.trim()
+      const garbage = ['vue', 'slot']
+      if (!v) return false
+      if (/[A-Z]/.test(v)) return false
+      if (/[\.\\\/]/.test(v)) return false
+      if (garbage.includes(v)) return false
+      return true
+    })
+    .sort()
+
+  return wl
 }

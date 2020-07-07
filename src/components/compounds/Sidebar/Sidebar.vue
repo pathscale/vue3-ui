@@ -83,7 +83,7 @@ const Sidebar = {
         
         watchEffect(() => {
             const open = props.right ? !props.open : props.open
-            state.transitionName = !open ? 'slide-prev' : 'slide-next'
+            state.transitionName = !open ? 'slide-right' : 'slide-left'
         })
 
         return { state, rootClasses, rootStyles, cancelOptions, isStatic, isFixed, isAbsolute }

@@ -1,4 +1,7 @@
 // TODO: Figure out how to keep variables up-to-date
+// TODO: Dynamic `transition` name search logic
+
+export const transitions = ['fade']
 
 export const textual = {
   position: undefined,

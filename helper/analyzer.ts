@@ -7,9 +7,19 @@ import * as htmlparser from 'htmlparser2'
 import getDynamicClasses from './get-dynamic-classes'
 import { normalizePath } from './utils'
 import { parseSFC, isVueSFC } from './analyzer-utils'
+import { transitions } from './data'
 
 export function getWhitelist(input: string): string[] {
   const extensions = ['.ts', '.tsx', '.mjs', '.js', '.jsx', '.vue', '.json']
+
+  const animationSuffixes = [
+    '-enter',
+    '-enter-active',
+    '-enter-to',
+    '-leave',
+    '-leave-active',
+    '-leave-to',
+  ]
 
   const isSupported = (id: string) => {
     const lowerId = normalizePath(id.toLowerCase())
@@ -20,11 +30,20 @@ export function getWhitelist(input: string): string[] {
   const whitelist = new Set<string>()
   const traversed = new Set<string>()
   const idList = [normalizePath(path.resolve(input))]
+  // const animationList: string[] = []
 
   const parser = new htmlparser.Parser(
     {
-      onopentagname(name) {
+      onopentag(name, attrs) {
         whitelist.add(name)
+
+        if (name === 'transition') {
+          for (const transition of transitions)
+            for (const suffix of animationSuffixes) whitelist.add(transition + suffix)
+
+          if (attrs.name) for (const suffix of animationSuffixes) whitelist.add(attrs.name + suffix)
+          // if (attrs[':name']) animationList.push(attrs[':name'])
+        }
       },
 
       onattribute(name, data) {
@@ -77,6 +96,18 @@ export function getWhitelist(input: string): string[] {
     const ast = jsparser.parse(code, { sourceType: 'unambiguous' })
     traverse(ast, {
       // eslint-disable-next-line @typescript-eslint/naming-convention
+      // Identifier({ node, parent }) {
+      //   if (!isVueSFC(id)) return
+      //   if (!animationList.includes(node.name)) return
+      //   if (parent.type === 'MemberExpression' || parent.type === 'ObjectProperty') {
+      //     console.log(parent)
+      //   }
+      //   // console.log(id, node.name, parent.type)
+      //   node
+      //   parent
+      // },
+
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       StringLiteral({ node }) {
         if (!isVueSFC(id)) return
         for (const cl of node.value.split(' ')) whitelist.add(cl)
@@ -111,7 +142,7 @@ export function getWhitelist(input: string): string[] {
       const garbage = ['vue', 'slot']
       if (!v) return false
       if (/[A-Z]/.test(v)) return false
-      if (/[\.\\\/]/.test(v)) return false
+      if (/[./:\\]/.test(v)) return false
       if (garbage.includes(v)) return false
       return true
     })

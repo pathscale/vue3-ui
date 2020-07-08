@@ -21,6 +21,12 @@
     "dropdown-menu",
     "dropdown-trigger",
     "fade",
+    "fade-enter",
+    "fade-enter-active",
+    "fade-enter-to",
+    "fade-leave",
+    "fade-leave-active",
+    "fade-leave-to",
     "is-active",
     "is-disabled",
     "is-expanded",
@@ -50,6 +56,12 @@
   "VMenuItem": [
     "a",
     "component",
+    "fade-enter",
+    "fade-enter-active",
+    "fade-enter-to",
+    "fade-leave",
+    "fade-leave-active",
+    "fade-leave-to",
     "is-active",
     "is-disabled",
     "is-flex",
@@ -60,9 +72,7 @@
     "span",
     "template",
     "transition",
-    "ul",
-    "update:active",
-    "update:expanded"
+    "ul"
   ],
   "VMenuList": [
     "menu-label",
@@ -152,6 +162,12 @@
     "boolean",
     "div",
     "escape",
+    "fade-enter",
+    "fade-enter-active",
+    "fade-enter-to",
+    "fade-leave",
+    "fade-leave-active",
+    "fade-leave-to",
     "fixed",
     "fullwidth",
     "hide",
@@ -181,6 +197,12 @@
   "VTab": [
     "a",
     "div",
+    "fade-enter",
+    "fade-enter-active",
+    "fade-enter-to",
+    "fade-leave",
+    "fade-leave-active",
+    "fade-leave-to",
     "is-active",
     "is-disabled",
     "is-fullwidth",
@@ -342,8 +364,7 @@
     "is-top",
     "open",
     "show",
-    "transition",
-    "update:open"
+    "transition"
   ],
   "VColumn": [
     "column",

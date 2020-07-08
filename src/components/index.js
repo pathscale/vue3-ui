@@ -28,6 +28,7 @@ export { default as VAccordion } from "./compounds/Accordion/Accordion.vue";
 export { default as VAccordionMenu } from "./compounds/Accordion/AccordionMenu.vue";
 export { default as VDropdown } from "./compounds/Dropdown/Dropdown.vue";
 export { default as VDropdownItem } from "./compounds/Dropdown/DropdownItem.vue";
+export { default as VMedia } from "./compounds/Media/Media.vue";
 export { default as VMenu } from "./compounds/Menu/Menu.vue";
 export { default as VMenuItem } from "./compounds/Menu/MenuItem.vue";
 export { default as VMenuList } from "./compounds/Menu/MenuList.vue";
@@ -41,8 +42,6 @@ export { default as VTab } from "./compounds/Tabs/Tab.vue";
 export { default as VTabs } from "./compounds/Tabs/Tabs.vue";
 export { default as VTag } from "./compounds/Tag/Tag.vue";
 export { default as VTooltip } from "./compounds/Tooltip/Tooltip.vue";
-export { default as VMessage } from "./compounds/Message/Message.vue";
-export { default as VMessageWrapper } from "./compounds/Message/MessageWrapper.vue";
 
 
 export * from "./global-settings";

@@ -66,6 +66,14 @@
     "listitem",
     "menuitem"
   ],
+  "VMedia": [
+    "article",
+    "div",
+    "media",
+    "media-content",
+    "media-left",
+    "media-right"
+  ],
   "VMenu": [
     "div",
     "menu"
@@ -113,18 +121,6 @@
     "menu-list",
     "p",
     "ul"
-  ],
-  "VMessage": [
-    "div",
-    "msg-author",
-    "msg-content",
-    "msg-left",
-    "msg-time",
-    "span"
-  ],
-  "VMessageWrapper": [
-    "div",
-    "message-wrapper"
   ],
   "VModal": [
     "button",

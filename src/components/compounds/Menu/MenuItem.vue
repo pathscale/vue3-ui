@@ -11,10 +11,6 @@ const Component = {
         disabled: Boolean,
         iconPack: String,
         icon: String,
-        animation: {
-            type: String,
-            default: 'slide'
-        },
         tag: {
             type: String,
             default: 'a'
@@ -75,7 +71,7 @@ export default Component
         :active="newActive" />
     </component>
     <template v-if="$slots.default">
-      <transition :name="animation">
+      <transition name="slide">
         <ul v-show="newExpanded">
           <slot />
         </ul>

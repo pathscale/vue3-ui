@@ -21,10 +21,6 @@ const Component = {
             type: String,
             default: null
         },
-        animation: {
-            type: String,
-            default: 'fade'
-        },
         closeOnClick: { 
             type: Boolean,
             default: true
@@ -84,7 +80,7 @@ export default Component
       @focusout="closeMenu">
       <slot name="trigger" />
     </div>
-    <transition :name="animation">
+    <transition name="fade">
       <div 
         v-show="(!disabled && (state.isActive || hoverable)) || inline"
         class="dropdown-menu" 

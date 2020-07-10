@@ -7,6 +7,14 @@ const Accordion = {
     isHorizontal: {
       type: Boolean
     },
+    triggerRight: {
+      type: Boolean,
+      default: false
+    },
+    triggerLeft: {
+      type: Boolean,
+      default: false
+    },
     expanded: {
       type: Boolean,
       default: false
@@ -49,8 +57,17 @@ const Accordion = {
       return [{
         'is-horizontal': props.isHorizontal,
         'is-vertical': !props.isHorizontal,
-        'accordion-active': props.isActive,
-        'accordion-default': !props.isActive
+        'accordion-active': props.isActive && props.hover,
+        'accordion-default': !props.isActive && props.hover,
+				'accordion-type-hover': props.hover,
+				'accordion-type-click': !props.hover
+      }]
+    })
+
+    const triggerClasses = computed(() => {
+      return [{
+        'trigger-right': props.triggerRight,
+        'trigger-left': props.triggerLeft
       }]
     })
 
@@ -68,14 +85,14 @@ const Accordion = {
       state.isExpanded = false
     }
 
-    return { state, toggle, open, close, rootClasses, isActive }
+    return { state, toggle, open, close, rootClasses, triggerClasses, isActive }
   }
 }
 export default Accordion
 </script>
 
 <template>
-  <div class="accordion" :class="rootClasses" :style="state.style">
+  <div :class="rootClasses" :style="state.style">
     <div
       role="button"
       ref="trigger"
@@ -89,13 +106,21 @@ export default Accordion
         <slot name="content" />
       </span>
     </div>
-    <div
-      role="button"
-      ref="trigger"
-      v-else
-      class="accordion-trigger"
-      @click="toggle">
-      <slot name="trigger" />
+    <div v-else>
+      <div class="accordion-header px-4 py-4 my-2">
+        <slot name="header" />
+        <div
+          role="button"
+          ref="trigger"
+          class="accordion-trigger-click"
+          :class="triggerClasses"
+          @click="toggle">
+          <slot name="trigger" />
+        </div>
+      </div>
+      <span v-if="state.isExpanded" class="px-4 py-4" >
+        <slot name="content" />
+      </span>
     </div>
   </div>
 </template>

@@ -21,6 +21,7 @@ export const textual = {
   computedClasses: undefined,
   anchorClasses: undefined,
   itemClasses: undefined,
+  triggerClasses: undefined,
 }
 
 export const truthy = {
@@ -59,7 +60,7 @@ export const truthy = {
   multilined: true,
   dashed: true,
   vanimated: true,
-  isActive: true,
+  isActive: true
 }
 
 export const falsy = {

@@ -1,14 +1,22 @@
 {
   "VAccordion": [
-    "accordion",
     "accordion-active",
     "accordion-content",
     "accordion-default",
+    "accordion-header",
     "accordion-trigger",
+    "accordion-trigger-click",
+    "accordion-type-click",
+    "accordion-type-hover",
     "div",
     "is-horizontal",
     "is-vertical",
-    "span"
+    "my-2",
+    "px-4",
+    "py-4",
+    "span",
+    "trigger-left",
+    "trigger-right"
   ],
   "VAccordionMenu": [
     "accordion-menu",

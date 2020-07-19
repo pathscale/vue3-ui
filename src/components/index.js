@@ -1,7 +1,5 @@
 import '../index.css';
 
-export { default as VLogin } from "./layouts/Login/Login.vue";
-
 export { default as VButton } from "./primitives/Button/Button.vue";
 export { default as VCard } from "./primitives/Card/Card.vue";
 export { default as VCardContent } from "./primitives/Card/CardContent.vue";
@@ -23,7 +21,6 @@ export { default as VSelect } from "./primitives/Select/Select.vue";
 export { default as VSwitch } from "./primitives/Switch/Switch.vue";
 export { default as VTextarea } from "./primitives/Textarea/Textarea.vue";
 
-
 export { default as VAccordion } from "./compounds/Accordion/Accordion.vue";
 export { default as VAccordionMenu } from "./compounds/Accordion/AccordionMenu.vue";
 export { default as VDropdown } from "./compounds/Dropdown/Dropdown.vue";
@@ -42,6 +39,5 @@ export { default as VTab } from "./compounds/Tabs/Tab.vue";
 export { default as VTabs } from "./compounds/Tabs/Tabs.vue";
 export { default as VTag } from "./compounds/Tag/Tag.vue";
 export { default as VTooltip } from "./compounds/Tooltip/Tooltip.vue";
-
 
 export * from "./global-settings";

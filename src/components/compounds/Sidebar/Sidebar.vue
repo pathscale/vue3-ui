@@ -93,7 +93,7 @@ const Sidebar = {
 export default Sidebar
 </script>
 <template>
-  <div class="v-sidebar">
+  <div class="v-sidebar" :style="rootStyles">
     <div
       class="sidebar-background"
       v-if="overlay && open" />

@@ -1,5 +1,5 @@
 <script>
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import NavbarBurger from './NavbarBurger.vue'
 
 const Component = {
@@ -38,6 +38,7 @@ const Component = {
         shadow: Boolean
     },
     setup(props) {
+        const isActive = ref(false);
         const rootClasses = computed(() => {
             return [
                 props.type,
@@ -51,7 +52,7 @@ const Component = {
                 ]
             }
         )
-        return { rootClasses }
+        return { rootClasses, isActive }
     }
 }
 
@@ -61,9 +62,9 @@ export default Component
   <nav class="navbar" role="navigation" aria-label="main navigation" :class="rootClasses">
     <div class="navbar-brand">
       <slot name="brand" />
-      <navbar-burger />
+      <navbar-burger :isActive="isActive" @click="isActive = !isActive" />
     </div>
-    <div class="navbar-menu">
+    <div class="navbar-menu" :class="{'is-active': isActive}">
       <div class="navbar-start">
         <slot name="start" />
       </div><div class="navbar-end">

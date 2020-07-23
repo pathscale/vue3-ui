@@ -2,9 +2,10 @@
   <a
     role="button"
     class="navbar-burger burger"
-    :class="{ 'is-active': isOpened }"
+    :class="{ 'is-active': isActive }"
     aria-label="menu"
-    :aria-expanded="isOpened">
+    :aria-expanded="isActive"
+    >
     <span aria-hidden="true" />
     <span aria-hidden="true" />
     <span aria-hidden="true" />
@@ -15,10 +16,7 @@
 const Component = {
     name: 'NavbarBurger',
     props: {
-        isOpened: {
-            type: Boolean,
-            default: false
-        }
+        isActive: Boolean
     }
 }
 export default Component

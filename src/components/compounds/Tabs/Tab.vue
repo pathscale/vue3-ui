@@ -1,5 +1,5 @@
 <script>
-import { computed } from 'vue'
+import { computed, ref, watchEffect } from 'vue'
 import { addToStore, useStore } from './Tabs.vue'
 
 
@@ -18,13 +18,22 @@ const Tab = {
         },
     },
     setup(props, { emit }) {
+        const content = ref(null);
+
         const tabs = useStore()
         const id = JSON.parse(JSON.stringify(tabs.value.tabs)).length // TODO Figure how get this value properly
         const transitionName = computed(() => {
           return tabs.value.activeTab < id ? 'slide-right' : 'slide-left'
         })
+
+        watchEffect(() => {
+            if (content.value) {
+                tabs.value.activeHeight = content.value.offsetHeight
+            }
+        })
+
         addToStore({ ...props, id })
-        return { tabs, id, transitionName }
+        return { tabs, id, transitionName, content}
     },
 }
 
@@ -33,11 +42,11 @@ export default Tab;
 
 <template>
   <transition v-if="tabs.animated" :name="transitionName">
-    <div v-if="tabs.activeTab == id">
+    <div v-if="tabs.activeTab == id" ref="content">
       <slot />
     </div>
   </transition>
-  <div v-else-if="tabs.activeTab == id">
+  <div v-else-if="tabs.activeTab == id" ref="content">
     <slot />
   </div>
 </template>

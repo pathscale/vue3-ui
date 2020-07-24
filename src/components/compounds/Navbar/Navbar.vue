@@ -62,7 +62,7 @@ export default Component
   <nav class="navbar" role="navigation" aria-label="main navigation" :class="rootClasses">
     <div class="navbar-brand">
       <slot name="brand" />
-      <navbar-burger :isActive="isActive" @click="isActive = !isActive" />
+      <navbar-burger :is-active="isActive" @click="isActive = !isActive" />
     </div>
     <div class="navbar-menu" :class="{'is-active': isActive}">
       <div class="navbar-start">

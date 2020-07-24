@@ -4,8 +4,7 @@
     class="navbar-burger burger"
     :class="{ 'is-active': isActive }"
     aria-label="menu"
-    :aria-expanded="isActive"
-    >
+    :aria-expanded="isActive">
     <span aria-hidden="true" />
     <span aria-hidden="true" />
     <span aria-hidden="true" />

@@ -2,7 +2,9 @@
   <div>
     <div>
       <VTextarea v-model="state.felipetest" />
-      <VButton @click="setRounded">Almafa</VButton>
+      <VButton @click="setRounded">
+        Almafa
+      </VButton>
     </div>
     <div class="sidebar-page">
       <section class="hero is-fullheight sidebar-layout">

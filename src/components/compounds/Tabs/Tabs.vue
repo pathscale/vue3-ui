@@ -1,5 +1,5 @@
 <script>
-import { provide, inject, ref, watchEffect, computed, onUpdated, nextTick } from 'vue'
+import { provide, inject, ref, watchEffect, computed } from 'vue'
 
 const TabsSymbol = Symbol('Tabs')
 
@@ -38,25 +38,14 @@ const Tabs = {
     },
     emits: ['update:modelValue'],
     setup(props, { emit }) {
-      const height = ref(null);
-
-      const content = ref(null)
-
-
-      provideStore({ activeTab: 0, tabs: [], animated: props.animated })
+      provideStore({ activeTab: 0, activeHeight: null, tabs: [], animated: props.animated })
       const tabs = useStore()
       function setActiveTab(id) {
           tabs.value.activeTab = id
       }
 
-      onUpdated(() => {
-        nextTick(() => {
-          height.value = content.value.children[0].clientHeight
-        })
-      })
-
       const contentHeight = computed(() => {
-        return `height:${height.value}px`
+        return `height:${tabs.value.activeHeight}px`
       })
       watchEffect(() => {
           setActiveTab(props.modelValue)
@@ -82,8 +71,7 @@ const Tabs = {
           contentHeight,
           navClasses,
           setActiveTab,
-          tabs,
-          content
+          tabs
       }
     },
 }
@@ -107,7 +95,7 @@ export default Tabs;
         </template>
       </ul>
     </nav>
-    <div ref="content" :class="[{'is-height-animated': vanimated}]" :style="contentHeight">
+    <div :class="[{'is-height-animated': vanimated}]" :style="contentHeight">
       <slot />
     </div>
   </section>

@@ -30,6 +30,7 @@
     "build": "rollup -c --environment NODE_ENV:production",
     "postbuild": "shx cp helper/mappings.json dist",
     "lint": "eslint --ext .js,.ts,.vue,.md,.html --max-warnings=0 .",
+    "lint-fix": "eslint --ext .js,.ts,.vue,.md,.html --fix .",
     "prepublishOnly": "npm run build",
     "release": "npm run build && np",
     "start": "vue-cli-service serve"

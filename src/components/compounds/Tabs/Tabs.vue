@@ -36,7 +36,7 @@ const Tabs = {
         vanimated: Boolean,
         animated: Boolean,
     },
-    emits: ['update:modelValue'],
+    emits: ['update:modelValue', 'change'],
     setup(props, { emit }) {
       provideStore({ activeTab: 0, activeHeight: null, tabs: [], animated: props.animated })
       const tabs = useStore()
@@ -53,6 +53,7 @@ const Tabs = {
 
       watchEffect(() => {
         emit('update:modelValue', tabs.value.activeTab)
+        emit('change', tabs.value.activeTab)
       })
 
       const navClasses = computed(() => {

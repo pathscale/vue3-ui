@@ -252,6 +252,7 @@
   ],
   "VTab": [
     "a",
+    "change",
     "div",
     "fade-enter",
     "fade-enter-active",
@@ -295,6 +296,7 @@
   ],
   "VTabs": [
     "a",
+    "change",
     "div",
     "is-active",
     "is-disabled",
@@ -453,10 +455,17 @@
   "VInput": [
     "control",
     "div",
+    "has-icons-left",
+    "has-icons-right",
+    "i",
+    "icon",
     "input",
     "is-expanded",
+    "is-left",
     "is-loading",
-    "is-rounded"
+    "is-right",
+    "is-rounded",
+    "span"
   ],
   "VProgress": [
     "div",

@@ -12,7 +12,8 @@
             loading: { type: Boolean, default: false },
             hasIconsLeft: { type: Boolean, default: false },
             hasIconsRight: { type: Boolean, default: false },
-            icon: { type: String, default: '' }
+            leftIcon: { type: String, default: '' },
+            rightIcon: { type: String, default: '' }
         },
         setup(props, { emit, attrs }) {
             const value = ref(attrs.modelValue)
@@ -53,10 +54,10 @@
     :class="rootClasses">
     <input class="input" v-bind="$attrs" v-model="value" :class="inputClasses" />
     <span v-if="hasIconsLeft" class="icon is-left">
-        <i>&#xa9;</i>
+        <i>{{ leftIcon }}</i>
     </span>
     <span v-if="hasIconsRight" class="icon is-right">
-        <i>&#xa9;</i>
+        <i>{{ rightIcon }}</i>
     </span>
   </div>
 </template>

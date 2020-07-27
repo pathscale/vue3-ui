@@ -10,6 +10,9 @@
             size: { type: String, default: '' },
             rounded: { type: Boolean, default: false },
             loading: { type: Boolean, default: false },
+            hasIconsLeft: { type: Boolean, default: false },
+            hasIconsRight: { type: Boolean, default: false },
+            icon: { type: String, default: '' }
         },
         setup(props, { emit, attrs }) {
             const value = ref(attrs.modelValue)
@@ -20,6 +23,8 @@
                     props.size,
                     {
                         'is-loading': props.loading,
+                        'has-icons-left': props.hasIconsLeft,
+                        'has-icons-right': props.hasIconsRight
                     }
                 ]
             });
@@ -47,5 +52,11 @@
     class="control"
     :class="rootClasses">
     <input class="input" v-bind="$attrs" v-model="value" :class="inputClasses" />
+    <span v-if="hasIconsLeft" class="icon is-left">
+        <i>&#xa9;</i>
+    </span>
+    <span v-if="hasIconsRight" class="icon is-right">
+        <i>&#xa9;</i>
+    </span>
   </div>
 </template>

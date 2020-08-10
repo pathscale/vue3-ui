@@ -1,6 +1,6 @@
 <script>
 import { computed } from 'vue'
-import { useGlobalSettings } from '../../global-settings';
+// import { useGlobalSettings } from '../../global-settings';
 
 const Button ={
   name: 'VButton',
@@ -63,12 +63,12 @@ const Button ={
       }
   },
   setup(props, { attrs }) {
+    /*
     const settings = useGlobalSettings()
-
     const computedRounded = computed(() => props.rounded === null && settings ? settings.button.rounded : props.rounded)
-
+    */
     const computedTag = computed(() => attrs.disabled ? 'button' : props.tag)
-    return { computedTag, computedRounded }
+    return { computedTag }
   }
 }
 
@@ -82,7 +82,7 @@ export default Button;
     :type="nativeType"
     v-bind="$attrs"
     :class="[size, type, {
-      'is-rounded': computedRounded,
+      'is-rounded': rounded,
       'is-loading': loading,
       'is-outlined': outlined,
       'is-fullwidth': expanded,

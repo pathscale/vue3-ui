@@ -1,5 +1,5 @@
 <script>
-import { computed, ref } from 'vue'
+import { computed, ref, watchEffect } from 'vue'
 import NavbarBurger from './NavbarBurger.vue'
 
 const Component = {
@@ -35,10 +35,20 @@ const Component = {
             default: true
         },
         spaced: Boolean,
-        shadow: Boolean
+        shadow: Boolean,
+        modelValue: Boolean
     },
-    setup(props) {
-        const isActive = ref(false);
+    setup(props, { emit }) {
+        const isActive = ref(props.modelValue);
+
+        watchEffect(() => {
+            emit('update:modelValue', isActive.value)
+        })
+
+        watchEffect(() => {
+            isActive.value = props.modelValue;
+        })
+
         const rootClasses = computed(() => {
             return [
                 props.type,

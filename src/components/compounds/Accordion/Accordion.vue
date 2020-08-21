@@ -118,9 +118,9 @@ export default Accordion
           <slot name="trigger" />
         </div>
       </div>
-      <span v-if="state.isExpanded" class="px-4 py-4">
+      <div v-if="state.isExpanded">
         <slot name="content" />
-      </span>
+      </div>
     </div>
   </div>
 </template>

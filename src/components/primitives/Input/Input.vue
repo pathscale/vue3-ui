@@ -54,10 +54,10 @@
     :class="rootClasses">
     <input class="input" v-bind="$attrs" v-model="value" :class="inputClasses" />
     <span v-if="hasIconsLeft" class="icon is-left">
-        <i>{{ leftIcon }}</i>
+      <i>{{ leftIcon }}</i>
     </span>
     <span v-if="hasIconsRight" class="icon is-right">
-        <i>{{ rightIcon }}</i>
+      <i>{{ rightIcon }}</i>
     </span>
   </div>
 </template>

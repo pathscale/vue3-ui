@@ -3,14 +3,14 @@ import { computed, watchEffect, nextTick, ref } from 'vue'
 
 const Progress = {
     name: 'VProgress',
-     props: {
+    props: {
         type: {
             type: [String, Object],
             default: 'is-darkgrey'
         },
         size: {
-          type: String,
-          default: null
+            type: String,
+            default: null
         },
         value: {
             type: Number,
@@ -39,7 +39,6 @@ const Progress = {
     },
     setup(props, { slot }) {
       const progress = ref(null)
-
 
       function toFixed(num) {
             let fixed = (Number(`${Math.round(Number(`${num}e${props.precision}`))}e${-props.precision}`)).toFixed(props.precision)

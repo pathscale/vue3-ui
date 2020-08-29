@@ -1,9 +1,3 @@
-<template>
-  <div class="menu">
-    <slot />
-  </div>
-</template>
-
 <script>
 const Component = {
     name: 'VMenu',
@@ -20,3 +14,9 @@ const Component = {
 }
 export default Component
 </script>
+
+<template>
+  <div class="menu">
+    <slot />
+  </div>
+</template>

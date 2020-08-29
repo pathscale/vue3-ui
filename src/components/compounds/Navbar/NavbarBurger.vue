@@ -1,3 +1,13 @@
+<script>
+const Component = {
+    name: 'NavbarBurger',
+    props: {
+        isActive: Boolean
+    }
+}
+export default Component
+</script>
+
 <template>
   <a
     role="button"
@@ -10,13 +20,3 @@
     <span aria-hidden="true" />
   </a>
 </template>
-
-<script>
-const Component = {
-    name: 'NavbarBurger',
-    props: {
-        isActive: Boolean
-    }
-}
-export default Component
-</script>

@@ -4,20 +4,20 @@ const Button = {
   name: 'VImage',
   inheritAttrs: false,
   props: {
-      size: {
-          type: String,
-          default: null
-      },
-      radio: {
-          type: String,
-          default: null,
-      },
-      rounded: {
-        type: Boolean,
-      },
-      centered: {
-        type: Boolean,
-      },
+    size: {
+      type: String,
+      default: null
+    },
+    radio: {
+      type: String,
+      default: null,
+    },
+    rounded: {
+      type: Boolean,
+    },
+    centered: {
+      type: Boolean,
+    },
   }
 }
 

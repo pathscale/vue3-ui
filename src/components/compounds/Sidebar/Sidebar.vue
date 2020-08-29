@@ -1,7 +1,6 @@
 <script>
 import { reactive, computed, watchEffect } from "vue"
 
-
 const Sidebar = {
     name: 'VSidebar',
     props: {

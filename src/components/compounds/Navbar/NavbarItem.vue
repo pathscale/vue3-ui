@@ -1,17 +1,4 @@
-<template>
-  <component
-    :is="tag"
-    class="navbar-item"
-    :class="{
-      'is-active': active
-    }"
-    v-bind="$attrs">
-    <slot />
-  </component>
-</template>
-
 <script>
-
 const Component = {
     name: 'VNavbarItem',
     inheritAttrs: false,
@@ -25,3 +12,16 @@ const Component = {
 }
 export default Component
 </script>
+
+<template>
+  <component
+    :is="tag"
+    class="navbar-item"
+    :class="{
+      'is-active': active
+    }"
+    v-bind="$attrs">
+    <slot />
+  </component>
+</template>
+

@@ -1,40 +1,3 @@
-<template>
-  <div
-    class="navbar-item has-dropdown"
-    :class="{
-      'is-hoverable': state.isHoverable,
-      'is-active': state.newActive
-    }"
-    @mouseenter="checkHoverable"
-    @focusout="closeMenu"
-    tabindex="-1">
-    <a
-      class="navbar-link"
-      :class="{
-        'is-arrowless': arrowless,
-        'is-active': state.newActive && collapsible
-      }"
-      role="menuitem"
-      aria-haspopup="true"
-      href="#"
-      @click.prevent="state.newActive = !state.newActive">
-      <template v-if="label">
-        {{ label }}
-      </template>
-      <slot v-else name="label" />
-    </a>
-    <div
-      v-show="!collapsible || (collapsible && state.newActive)"
-      class="navbar-dropdown"
-      :class="{
-        'is-right': right,
-        'is-boxed': boxed,
-      }">
-      <slot />
-    </div>
-  </div>
-</template>
-
 <script>
 import { watchEffect, reactive } from "vue"
 
@@ -86,3 +49,40 @@ const Component = {
 }
 export default Component
 </script>
+
+<template>
+  <div
+    class="navbar-item has-dropdown"
+    :class="{
+      'is-hoverable': state.isHoverable,
+      'is-active': state.newActive
+    }"
+    @mouseenter="checkHoverable"
+    @focusout="closeMenu"
+    tabindex="-1">
+    <a
+      class="navbar-link"
+      :class="{
+        'is-arrowless': arrowless,
+        'is-active': state.newActive && collapsible
+      }"
+      role="menuitem"
+      aria-haspopup="true"
+      href="#"
+      @click.prevent="state.newActive = !state.newActive">
+      <template v-if="label">
+        {{ label }}
+      </template>
+      <slot v-else name="label" />
+    </a>
+    <div
+      v-show="!collapsible || (collapsible && state.newActive)"
+      class="navbar-dropdown"
+      :class="{
+        'is-right': right,
+        'is-boxed': boxed,
+      }">
+      <slot />
+    </div>
+  </div>
+</template>

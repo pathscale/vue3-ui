@@ -2,17 +2,17 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-    name: 'VContainer',
-    props: {
-        type: {
-            type: String,
-            default: ''
-        },
-        bg: {
-            type: Object,
-            default: null,
-        }
-    }
+  name: 'VContainer',
+  props: {
+    type: {
+      type: String,
+      default: ''
+    },
+    bg: {
+      type: Object,
+      default: null,
+  }
+}
 })
 </script>
 

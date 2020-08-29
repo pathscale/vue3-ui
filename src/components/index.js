@@ -23,6 +23,8 @@ export { default as VTextarea } from "./primitives/Textarea/Textarea.vue";
 
 export { default as VAccordion } from "./compounds/Accordion/Accordion.vue";
 export { default as VAccordionMenu } from "./compounds/Accordion/AccordionMenu.vue";
+export { default as VBreadcrumb } from "./compounds/Breadcrumb/Breadcrumb.vue";
+export { default as VBreadcrumbItem } from "./compounds/Breadcrumb/BreadcrumbItem.vue";
 export { default as VDropdown } from "./compounds/Dropdown/Dropdown.vue";
 export { default as VDropdownItem } from "./compounds/Dropdown/DropdownItem.vue";
 export { default as VMedia } from "./compounds/Media/Media.vue";

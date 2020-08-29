@@ -1,27 +1,27 @@
 <script>
-    import { computed } from 'vue';
+  import { computed } from 'vue';
 
-    const Column = {
-        name: 'VColumn',
-        props: {
-            size: { type: String, default: '' },
-            offset: { type: String, default: '' },
-            narrow: { type: Boolean, default: false },
-        },
-        setup(props) {
-            const computedClasses = computed(() => [
-                props.size,
-                props.offset,
-                {
-                    'is-narrow': props.narrow
-                }
-            ]);
-
-            return { computedClasses };
+  const Column = {
+    name: 'VColumn',
+    props: {
+      size: { type: String, default: '' },
+      offset: { type: String, default: '' },
+      narrow: { type: Boolean, default: false },
+    },
+    setup(props) {
+      const computedClasses = computed(() => [
+        props.size,
+        props.offset,
+        {
+          'is-narrow': props.narrow
         }
-    };
+      ]);
 
-    export default Column;
+      return { computedClasses };
+    }
+  };
+
+  export default Column;
 </script>
 
 <template>

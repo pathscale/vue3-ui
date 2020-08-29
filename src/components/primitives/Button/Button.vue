@@ -5,70 +5,70 @@ import { computed } from 'vue'
 const Button ={
   name: 'VButton',
   props: {
-      type: {
-          type: String,
-          default: 'button'
-      },
-      size: {
-          type: String,
-          default: null
-      },
-      label: {
-          type: String,
-          default: null,
-      },
-      rounded: {
-        type: Boolean,
-        default: null
-      },
-      loading: {
-        type: Boolean,
-        default: false,
-      },
-      outlined: {
-        type: Boolean,
-        default: false,
-      },
-      expanded: {
-        type: Boolean,
-        default: false,
-      },
-      inverted: {
-        type: Boolean,
-        default: false,
-      },
-      focused: {
-        type: Boolean,
-        default: false,
-      },
-      active: {
-        type: Boolean,
-        default: false,
-      },
-      hovered: {
-        type: Boolean,
-        default: false,
-      },
-      selected: {
-        type: Boolean,
-        default: false,
-      },
-      nativeType: {
-        type: String,
-        default: 'button'
-      },
-      tag: {
-        type: String,
-        default: 'button'
-      }
+    type: {
+      type: String,
+      default: 'button'
+    },
+    size: {
+      type: String,
+      default: null
+    },
+    label: {
+      type: String,
+      default: null,
+    },
+    rounded: {
+      type: Boolean,
+      default: null
+    },
+    loading: {
+      type: Boolean,
+      default: false,
+    },
+    outlined: {
+      type: Boolean,
+      default: false,
+    },
+    expanded: {
+      type: Boolean,
+      default: false,
+    },
+    inverted: {
+      type: Boolean,
+      default: false,
+    },
+    focused: {
+      type: Boolean,
+      default: false,
+    },
+    active: {
+      type: Boolean,
+      default: false,
+    },
+    hovered: {
+      type: Boolean,
+      default: false,
+    },
+    selected: {
+      type: Boolean,
+      default: false,
+    },
+    nativeType: {
+      type: String,
+      default: 'button'
+    },
+    tag: {
+      type: String,
+      default: 'button'
+    }
   },
   setup(props, { attrs }) {
-    /*
-    const settings = useGlobalSettings()
-    const computedRounded = computed(() => props.rounded === null && settings ? settings.button.rounded : props.rounded)
-    */
-    const computedTag = computed(() => attrs.disabled ? 'button' : props.tag)
-    return { computedTag }
+  /*
+  const settings = useGlobalSettings()
+  const computedRounded = computed(() => props.rounded === null && settings ? settings.button.rounded : props.rounded)
+  */
+  const computedTag = computed(() => attrs.disabled ? 'button' : props.tag)
+  return { computedTag }
   }
 }
 

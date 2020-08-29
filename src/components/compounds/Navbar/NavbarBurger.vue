@@ -1,9 +1,9 @@
 <script>
 const Component = {
-    name: 'NavbarBurger',
-    props: {
-        isActive: Boolean
-    }
+  name: 'NavbarBurger',
+  props: {
+    isActive: Boolean
+  }
 }
 export default Component
 </script>

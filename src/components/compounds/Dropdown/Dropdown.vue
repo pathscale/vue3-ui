@@ -4,28 +4,28 @@ import { reactive, computed } from "vue"
 const Component = {
     name: 'VDropdown',
     props: {
-        value: {
-            type: [String, Number, Boolean, Object, Array, Function],
-            default: null
-        },
-        disabled: Boolean,
-        hoverable: Boolean,
-        inline: Boolean,
-        position: {
-            type: String,
-        },
-        mobileModal: {
-            type: Boolean,
-        },
-        ariaRole: {
-            type: String,
-            default: null
-        },
-        closeOnClick: { 
-            type: Boolean,
-            default: true
-        },
-        expanded: Boolean,
+      value: {
+        type: [String, Number, Boolean, Object, Array, Function],
+        default: null
+      },
+      disabled: Boolean,
+      hoverable: Boolean,
+      inline: Boolean,
+      position: {
+        type: String,
+      },
+      mobileModal: {
+        type: Boolean,
+      },
+      ariaRole: {
+        type: String,
+        default: null
+      },
+      closeOnClick: { 
+        type: Boolean,
+        default: true
+      },
+      expanded: Boolean,
     },
 
     setup(props) {
@@ -38,12 +38,12 @@ const Component = {
 
       const rootClasses = computed(() => {
         return [props.position, {
-            'is-disabled': props.disabled,
-            'is-hoverable': props.hoverable,
-            'is-inline': props.inline,
-            'is-active': state.isActive || props.inline,
-            'is-mobile-modal': props.isMobileModal,
-            'is-expanded': props.expanded
+          'is-disabled': props.disabled,
+          'is-hoverable': props.hoverable,
+          'is-inline': props.inline,
+          'is-active': state.isActive || props.inline,
+          'is-mobile-modal': props.isMobileModal,
+          'is-expanded': props.expanded
         }]
       })
 

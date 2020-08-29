@@ -1,37 +1,37 @@
 <script>
 const Tooltip = {
-    name: 'VTooltip',
-    props: {
-        active: {
-            type: Boolean,
-            default: true
-        },
-        type: {
-            type: String,
-            default: 'is-primary'
-        },
-        label: {
-            type: String,
-            required: true
-        },
-        position: {
-            type: String,
-            default: 'is-top'
-        },
-        always: Boolean,
-        animated: Boolean,
-        square: Boolean,
-        dashed: Boolean,
-        multilined: Boolean,
-        size: {
-            type: String,
-            default: 'is-medium'
-        },
-        delay: {
-            type: Number,
-            default: 0
-        }
+  name: 'VTooltip',
+  props: {
+    active: {
+      type: Boolean,
+      default: true
     },
+    type: {
+      type: String,
+      default: 'is-primary'
+    },
+    label: {
+      type: String,
+      required: true
+    },
+    position: {
+      type: String,
+      default: 'is-top'
+    },
+    always: Boolean,
+    animated: Boolean,
+    square: Boolean,
+    dashed: Boolean,
+    multilined: Boolean,
+    size: {
+      type: String,
+      default: 'is-medium'
+    },
+    delay: {
+      type: Number,
+      default: 0
+    }
+  },
 };
 
 export default Tooltip;

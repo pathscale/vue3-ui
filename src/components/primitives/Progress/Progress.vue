@@ -2,86 +2,86 @@
 import { computed, watchEffect, nextTick, ref } from 'vue'
 
 const Progress = {
-    name: 'VProgress',
-    props: {
-        type: {
-            type: [String, Object],
-            default: 'is-darkgrey'
-        },
-        size: {
-            type: String,
-            default: null
-        },
-        value: {
-            type: Number,
-            default: undefined
-        },
-        max: {
-            type: Number,
-            default: 100
-        },
-        showValue: {
-            type: Boolean,
-            default: false
-        },
-        format: {
-            type: String,
-            default: 'raw'
-        },
-        precision: {
-            type: Number,
-            default: 2
-        },
-        keepTrailingZeroes: {
-            type: Boolean,
-            default: false
-        }
+  name: 'VProgress',
+  props: {
+    type: {
+      type: [String, Object],
+      default: 'is-darkgrey'
     },
-    setup(props, { slot }) {
-      const progress = ref(null)
+    size: {
+      type: String,
+      default: null
+    },
+    value: {
+      type: Number,
+      default: undefined
+    },
+    max: {
+      type: Number,
+      default: 100
+    },
+    showValue: {
+      type: Boolean,
+      default: false
+    },
+    format: {
+      type: String,
+      default: 'raw'
+    },
+    precision: {
+      type: Number,
+      default: 2
+    },
+    keepTrailingZeroes: {
+      type: Boolean,
+      default: false
+    }
+  },
+  setup(props, { slot }) {
+    const progress = ref(null)
 
-      function toFixed(num) {
-            let fixed = (Number(`${Math.round(Number(`${num}e${props.precision}`))}e${-props.precision}`)).toFixed(props.precision)
-            if (!props.keepTrailingZeroes) {
-                fixed = fixed.replace(/\.?0+$/, '')
-            }
-            return fixed
+    function toFixed(num) {
+      let fixed = (Number(`${Math.round(Number(`${num}e${props.precision}`))}e${-props.precision}`)).toFixed(props.precision)
+      if (!props.keepTrailingZeroes) {
+        fixed = fixed.replace(/\.?0+$/, '')
+      }
+      return fixed
+    }
+
+    watchEffect(() => 
+    nextTick(() => {
+      if (isIndeterminate.value) {
+        progress.value.removeAttribute('value')
+      } else {
+        progress.value.setAttribute('value', props.value)
+      }
+    })
+    )
+    
+    const isIndeterminate = computed(() => {
+      return props.value === undefined || props.value === null
+    });
+    const newType = computed(() => {
+      return [
+        props.size,
+        props.type
+      ]
+    });
+    const newValue = computed(() => {
+      if (props.value === undefined || props.value === null || Number.isNaN(props.value)) {
+        return undefined
       }
 
-      watchEffect(() => 
-        nextTick(() => {
-            if (isIndeterminate.value) {
-                progress.value.removeAttribute('value')
-            } else {
-                progress.value.setAttribute('value', props.value)
-            }
-        })
-      )
-      
-      const isIndeterminate = computed(() => {
-            return props.value === undefined || props.value === null
-        });
-        const newType = computed(() => {
-            return [
-                props.size,
-                props.type
-            ]
-        });
-        const newValue = computed(() => {
-            if (props.value === undefined || props.value === null || Number.isNaN(props.value)) {
-                return undefined
-            }
+      if (props.format === 'percent') {
+        const val = toFixed(props.value * 100 / props.max)
+        return `${val}%`
+      }
+      const val = toFixed(props.value)
+      return val
+    });
 
-            if (props.format === 'percent') {
-                const val = toFixed(props.value * 100 / props.max)
-                return `${val}%`
-            }
-            const val = toFixed(props.value)
-            return val
-        });
-
-      return { isIndeterminate, newType, newValue, progress }
-    }
+    return { isIndeterminate, newType, newValue, progress }
+  }
 }
 
 export default Progress;

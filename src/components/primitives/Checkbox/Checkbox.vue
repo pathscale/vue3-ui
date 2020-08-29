@@ -4,39 +4,39 @@ import { ref, watchEffect } from 'vue'
 import CheckRadioMixin from '../../../mixins/CheckRadio.js'
 
 const Checkbox = {
-    name: 'VCheckbox',
-    props: {
-        ...CheckRadioMixin.props,
-        indeterminate: {
-            type: Boolean,
-            default: false,
-        },
-        trueValue: {
-            type: [String, Number, Boolean, Function, Object, Array],
-            default: true
-        },
-        falseValue: {
-            type: [String, Number, Boolean, Function, Object, Array],
-            default: false
-        }
+  name: 'VCheckbox',
+  props: {
+    ...CheckRadioMixin.props,
+    indeterminate: {
+      type: Boolean,
+      default: false,
     },
-    emits: ['update:modelValue'],
-    setup(props, { emit }) {
-        // references
-        const label = ref(null);
-        const input = ref(null);
-        // state
-        const value = ref(props.modelValue);
-        // MacOS FireFox and Safari do not focus when clicked
-        const focus = () => {
-            input.value.focus()
-        };
-        // watch for changes in value
-        watchEffect(() => {
-            emit('update:modelValue', value.value)
-        })
-        return { label, input, value, focus }
+    trueValue: {
+      type: [String, Number, Boolean, Function, Object, Array],
+      default: true
+    },
+    falseValue: {
+      type: [String, Number, Boolean, Function, Object, Array],
+      default: false
     }
+  },
+  emits: ['update:modelValue'],
+  setup(props, { emit }) {
+    // references
+    const label = ref(null);
+    const input = ref(null);
+    // state
+    const value = ref(props.modelValue);
+    // MacOS FireFox and Safari do not focus when clicked
+    const focus = () => {
+      input.value.focus()
+    };
+    // watch for changes in value
+    watchEffect(() => {
+      emit('update:modelValue', value.value)
+    })
+    return { label, input, value, focus }
+  }
 }
 
 export default Checkbox;

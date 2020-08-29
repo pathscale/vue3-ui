@@ -1,14 +1,14 @@
 <script>
 const Component = {
-    name: 'VMenuList',
-    functional: true,
-    props: {
-        label: String,
-        ariaRole: {
-            type: String,
-            default: ''
-        }
+  name: 'VMenuList',
+  functional: true,
+  props: {
+    label: String,
+    ariaRole: {
+      type: String,
+      default: ''
     }
+  }
 }
 export default Component
 </script>

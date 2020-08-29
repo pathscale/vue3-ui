@@ -16,12 +16,11 @@ export default Component;
 </script>
 
 <template>
-  <li>
+  <li :class="{
+    'is-active': active
+  }">
     <component
       :is="tag"
-      :class="{
-        'is-active': active
-      }"
       v-bind="$attrs">
       <slot />
     </component>

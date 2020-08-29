@@ -1,16 +1,14 @@
 <script>
 
 const Component = {
-  name: 'VBreadcrumb',
+  name: 'VBreadcrumbItem',
+  inheritAttrs: false,
   props: {
-    inheritAttrs: false,
-    props: {
-      tag: {
-        type: String,
-        default: 'a'
-      },
-      active: Boolean
-    }
+    tag: {
+      type: String,
+      default: 'a'
+    },
+    active: Boolean
   }
 }
 
@@ -19,7 +17,12 @@ export default Component;
 
 <template>
   <li>
-    <component :is="tag" href="#" :class="[{'is-active': active}]">
+    <component
+      :is="tag"
+      :class="{
+        'is-active': active
+      }"
+      v-bind="$attrs">
       <slot />
     </component>
   </li>

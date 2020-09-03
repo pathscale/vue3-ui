@@ -22,6 +22,9 @@
     "accordion-menu",
     "div"
   ],
+  "VBreadcrumb": [
+    "breadcrumb"
+  ],
   "VDropdown": [
     "div",
     "dropdown",

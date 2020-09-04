@@ -1,29 +1,28 @@
 {
   "VAccordion": [
-    "accordion-active",
     "accordion-content",
-    "accordion-default",
     "accordion-header",
     "accordion-trigger",
     "accordion-trigger-click",
-    "accordion-type-click",
-    "accordion-type-hover",
     "div",
-    "is-horizontal",
-    "is-vertical",
     "my-2",
     "px-4",
     "py-4",
-    "span",
-    "trigger-left",
-    "trigger-right"
+    "span"
   ],
   "VAccordionMenu": [
     "accordion-menu",
     "div"
   ],
   "VBreadcrumb": [
-    "breadcrumb"
+    "breadcrumb",
+    "nav",
+    "ul"
+  ],
+  "VBreadcrumbItem": [
+    "component",
+    "is-active",
+    "li"
   ],
   "VDropdown": [
     "div",
@@ -37,12 +36,6 @@
     "fade-leave",
     "fade-leave-active",
     "fade-leave-to",
-    "is-active",
-    "is-disabled",
-    "is-expanded",
-    "is-hoverable",
-    "is-inline",
-    "is-mobile-modal",
     "slide-enter",
     "slide-enter-active",
     "slide-enter-to",
@@ -65,17 +58,10 @@
   ],
   "VDropdownItem": [
     "a",
-    "click",
     "div",
     "dropdown-divider",
     "dropdown-item",
-    "has-link",
-    "hr",
-    "is-active",
-    "is-disabled",
-    "is-paddingless",
-    "listitem",
-    "menuitem"
+    "hr"
   ],
   "VMedia": [
     "article",
@@ -90,7 +76,6 @@
     "menu"
   ],
   "VMenuItem": [
-    "a",
     "component",
     "fade-enter",
     "fade-enter-active",
@@ -102,7 +87,6 @@
     "is-disabled",
     "is-flex",
     "li",
-    "menuitem",
     "pr-2",
     "slide-enter",
     "slide-enter-active",
@@ -156,12 +140,7 @@
     "a",
     "burger",
     "div",
-    "has-shadow",
     "is-active",
-    "is-fixed-bottom",
-    "is-fixed-top",
-    "is-spaced",
-    "is-transparent",
     "nav",
     "navbar",
     "navbar-brand",
@@ -193,40 +172,19 @@
     "template"
   ],
   "VNavbarItem": [
-    "a",
     "component",
     "is-active",
     "navbar-item"
   ],
   "VSidebar": [
-    "absolute",
-    "boolean",
     "div",
-    "escape",
     "fade-enter",
     "fade-enter-active",
     "fade-enter-to",
     "fade-leave",
     "fade-leave-active",
     "fade-leave-to",
-    "fixed",
-    "fullwidth",
-    "hide",
-    "is-absolute",
-    "is-fixed",
-    "is-fullheight",
-    "is-fullwidth",
-    "is-fullwidth-mobile",
-    "is-hidden-mobile",
-    "is-mini",
-    "is-mini-expand",
-    "is-mini-expand-fixed",
-    "is-mini-mobile",
-    "is-right",
-    "is-static",
     "is-width-animated",
-    "outside",
-    "reduce",
     "sidebar-background",
     "sidebar-content",
     "slide-enter",
@@ -235,27 +193,23 @@
     "slide-leave",
     "slide-leave-active",
     "slide-leave-to",
-    "slide-left",
     "slide-left-enter",
     "slide-left-enter-active",
     "slide-left-enter-to",
     "slide-left-leave",
     "slide-left-leave-active",
     "slide-left-leave-to",
-    "slide-right",
     "slide-right-enter",
     "slide-right-enter-active",
     "slide-right-enter-to",
     "slide-right-leave",
     "slide-right-leave-active",
     "slide-right-leave-to",
-    "static",
     "transition",
     "v-sidebar"
   ],
   "VTab": [
     "a",
-    "change",
     "div",
     "fade-enter",
     "fade-enter-active",
@@ -265,10 +219,7 @@
     "fade-leave-to",
     "is-active",
     "is-disabled",
-    "is-fullwidth",
     "is-height-animated",
-    "is-toggle",
-    "is-toggle-rounded",
     "li",
     "nav",
     "section",
@@ -278,14 +229,12 @@
     "slide-leave",
     "slide-leave-active",
     "slide-leave-to",
-    "slide-left",
     "slide-left-enter",
     "slide-left-enter-active",
     "slide-left-enter-to",
     "slide-left-leave",
     "slide-left-leave-active",
     "slide-left-leave-to",
-    "slide-right",
     "slide-right-enter",
     "slide-right-enter-active",
     "slide-right-enter-to",
@@ -299,14 +248,10 @@
   ],
   "VTabs": [
     "a",
-    "change",
     "div",
     "is-active",
     "is-disabled",
-    "is-fullwidth",
     "is-height-animated",
-    "is-toggle",
-    "is-toggle-rounded",
     "li",
     "nav",
     "section",
@@ -316,7 +261,6 @@
   ],
   "VTag": [
     "a",
-    "close",
     "delete",
     "div",
     "has-addons",
@@ -333,11 +277,8 @@
     "is-always",
     "is-animated",
     "is-dashed",
-    "is-medium",
     "is-multiline",
-    "is-primary",
     "is-square",
-    "is-top",
     "span",
     "v-tooltip"
   ],
@@ -357,8 +298,7 @@
   ],
   "VCard": [
     "card",
-    "component",
-    "div"
+    "component"
   ],
   "VCardContent": [
     "card-content",
@@ -366,8 +306,7 @@
   ],
   "VCardFooter": [
     "card-footer",
-    "component",
-    "footer"
+    "component"
   ],
   "VCardFooterItem": [
     "card-footer-item",
@@ -377,7 +316,6 @@
     "card-header",
     "card-header-title",
     "component",
-    "header",
     "p"
   ],
   "VCardImage": [
@@ -394,35 +332,14 @@
     "span",
     "v-checkbox"
   ],
-  "VCollapse": [
-    "aria-expanded",
-    "close",
-    "collapse",
-    "collapse-content",
-    "collapse-trigger",
-    "div",
-    "fade",
-    "id",
-    "is-top",
-    "open",
-    "show",
-    "transition"
-  ],
+  "VCollapse": [],
   "VColumn": [
     "column",
-    "div",
-    "is-narrow"
+    "div"
   ],
   "VColumns": [
     "columns",
-    "div",
-    "is-centered",
-    "is-desktop",
-    "is-gapless",
-    "is-mobile",
-    "is-multiline",
-    "is-variable",
-    "is-vcentered"
+    "div"
   ],
   "VContainer": [
     "container",
@@ -444,7 +361,6 @@
     "input",
     "is-boxed",
     "is-fullwidth",
-    "is-primary",
     "label",
     "span"
   ],
@@ -458,42 +374,26 @@
   "VInput": [
     "control",
     "div",
-    "has-icons-left",
-    "has-icons-right",
     "i",
     "icon",
     "input",
-    "is-expanded",
     "is-left",
-    "is-loading",
     "is-right",
-    "is-rounded",
     "span"
   ],
   "VProgress": [
     "div",
-    "is-darkgrey",
     "p",
-    "percent",
     "progress",
     "progress-value",
-    "progress-wrapper",
-    "raw",
-    "value"
+    "progress-wrapper"
   ],
   "VSelect": [
-    "blur",
     "control",
     "div",
-    "focus",
     "has-background-dark",
     "has-text-light",
-    "is-empty",
     "is-expanded",
-    "is-fullwidth",
-    "is-loading",
-    "is-multiple",
-    "is-rounded",
     "option",
     "select",
     "span",
@@ -516,7 +416,6 @@
     "div",
     "help",
     "is-invisible",
-    "is-loading",
     "small",
     "textarea"
   ]

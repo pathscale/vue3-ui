@@ -4,6 +4,7 @@
 export const transitions = ['fade', 'slide', 'slide-right', 'slide-left']
 
 export const textual = {
+  separator: undefined,
   position: undefined,
   size: undefined,
   radio: undefined,

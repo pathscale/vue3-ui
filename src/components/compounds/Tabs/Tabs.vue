@@ -84,11 +84,10 @@ export default Tabs;
   <section>
     <nav class="tabs" :class="navClasses">
       <ul>
-        <template v-for="t in tabs.tabs">
+        <template v-for="t in tabs.tabs" :key="t">
           <li
             :class="{ 'is-active': tabs.activeTab == t.id, 'is-disabled': t.disabled }"
-            @click="setActiveTab(t.id);"
-            :key="t">
+            @click="setActiveTab(t.id);">
             <a>
               {{ t.label }}
             </a>

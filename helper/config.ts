@@ -11,7 +11,6 @@ export const parserOpts: jsparser.ParserOptions = {
     'decimal',
     'doExpressions',
     'dynamicImport',
-    'estree',
     'exportDefaultFrom',
     'functionBind',
     'functionSent',

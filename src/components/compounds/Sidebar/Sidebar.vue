@@ -3,6 +3,7 @@ import { reactive, computed, watchEffect } from "vue"
 
 const Sidebar = {
   name: 'VSidebar',
+  emits: ['close'],
   props: {
     open: Boolean,
     type: [String, Object],
@@ -35,7 +36,7 @@ const Sidebar = {
       default: 80
     }
   },
-  setup(props) {
+  setup(props, { emit }) {
     const state = reactive({
       transitionName: null,
       animating: true
@@ -85,7 +86,7 @@ const Sidebar = {
       state.transitionName = !open ? 'slide-right' : 'slide-left'
     })
 
-    return { state, rootClasses, rootStyles, cancelOptions }
+    return { state, rootClasses, rootStyles, cancelOptions, emit }
   },
 }
 
@@ -95,7 +96,8 @@ export default Sidebar
   <div class="v-sidebar">
     <div
       class="sidebar-background"
-      v-if="overlay && open" />
+      v-if="overlay && open"
+      @click="emit('close')" />
     <transition
       :name="state.transitionName">
       <div

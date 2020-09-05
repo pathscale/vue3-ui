@@ -209,6 +209,7 @@
   "VSidebar": [
     "absolute",
     "boolean",
+    "close",
     "div",
     "escape",
     "fade-enter",

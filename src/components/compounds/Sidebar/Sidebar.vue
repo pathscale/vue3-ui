@@ -43,9 +43,9 @@ const Sidebar = {
 
     const rootClasses = computed(() => {
       return [props.type, {
-        'is-fixed': props.isFixed,
-        'is-static': props.isStatic,
-        'is-absolute': props.isAbsolute,
+        'is-fixed': isFixed.value,
+        'is-static': isStatic.value,
+        'is-absolute': isAbsolute.value,
         'is-fullheight': props.fullheight,
         'is-fullwidth': props.fullwidth,
         'is-right': props.right,
@@ -85,7 +85,7 @@ const Sidebar = {
       state.transitionName = !open ? 'slide-right' : 'slide-left'
     })
 
-    return { state, rootClasses, rootStyles, cancelOptions, isStatic, isFixed, isAbsolute }
+    return { state, rootClasses, rootStyles, cancelOptions }
   },
 }
 

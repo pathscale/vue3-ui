@@ -8,6 +8,7 @@
     "accordion-trigger-click",
     "accordion-type-click",
     "accordion-type-hover",
+    "header-is-trigger",
     "div",
     "is-horizontal",
     "is-vertical",

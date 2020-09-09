@@ -62,7 +62,7 @@ export const truthy = {
   dashed: true,
   vanimated: true,
   isActive: true,
-  headerIsToggle: true
+  headerIsTrigger: true
 }
 
 export const falsy = {

@@ -13,7 +13,8 @@ const Input = {
     hasIconsLeft: { type: Boolean, default: false },
     hasIconsRight: { type: Boolean, default: false },
     leftIcon: { type: String, default: '' },
-    rightIcon: { type: String, default: '' }
+    rightIcon: { type: String, default: '' },
+    errorMsg: { type: String, default: '' }
   },
   setup(props, { emit, attrs }) {
     const value = ref(attrs.modelValue)
@@ -41,7 +42,8 @@ const Input = {
         }
       ]
     })
-    return { value, rootClasses, inputClasses }
+
+    return { value, rootClasses, inputClasses, props }
   },
 }
 export default Input;
@@ -51,6 +53,9 @@ export default Input;
   <div
     class="control"
     :class="rootClasses">
+    <p class="error">
+      {{ props.errorMsg }}
+    </p>
     <input class="input" v-bind="$attrs" v-model="value" :class="inputClasses" />
     <span v-if="hasIconsLeft" class="icon is-left">
       <i>{{ leftIcon }}</i>

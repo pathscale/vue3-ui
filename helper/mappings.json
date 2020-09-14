@@ -478,7 +478,8 @@
     "is-loading",
     "is-right",
     "is-rounded",
-    "span"
+    "span",
+    "error-msg"
   ],
   "VProgress": [
     "div",

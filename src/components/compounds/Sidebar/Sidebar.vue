@@ -10,7 +10,7 @@ const Sidebar = {
     overlay: Boolean,
     position: {
       type: String,
-      default: 'fixed',
+      default: null,
     },
     fullheight: Boolean,
     fullwidth: Boolean,

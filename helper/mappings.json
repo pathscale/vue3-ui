@@ -521,6 +521,10 @@
     "span",
     "switch"
   ],
+  "VTable": [
+    "data",
+    "columns"
+  ],
   "VTextarea": [
     "control",
     "counter",

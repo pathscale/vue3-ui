@@ -1,7 +1,7 @@
 <script>
-import { computed, ref, watchEffect } from 'vue'
+import { computed, reactive, watchEffect } from 'vue'
 
-const Tab = {
+const Table = {
   name: 'VTable',
   props: {
     data: {
@@ -14,19 +14,28 @@ const Tab = {
     }
   },
   setup(props, { emit }) {
-    return { props }
+    const data = reactive(props.data)
+    const sortColumn = (field) => {
+      data.sort((a, b) => {
+        console.log(a[field], b[field])
+        if(a[field] < b[field]) { return -1 };
+        if(a[field] > b[field]) { return 1 };
+        return 0;
+      })
+    }
+    return { props, data, sortColumn }
   },
 }
 
-export default Tab;
+export default Table;
 </script>
 
 <template>
   <div>
-    <table class="table">
+    <table class="table is-striped is-fullwidth">
       <thead>
         <tr>
-          <th v-for="column in props.columns" :key="column.field">{{ column.label }}</th>
+          <th v-for="column in props.columns" :key="column.field" @click="sortColumn(column.field)">{{ column.label }}</th>
         </tr>
       </thead>
       <tbody>

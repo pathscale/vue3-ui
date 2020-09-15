@@ -37,6 +37,7 @@ export { default as VNavbarBurger } from "./compounds/Navbar/NavbarBurger.vue";
 export { default as VNavbarDropdown } from "./compounds/Navbar/NavbarDropdown.vue";
 export { default as VNavbarItem } from "./compounds/Navbar/NavbarItem.vue";
 export { default as VSidebar } from "./compounds/Sidebar/Sidebar.vue";
+export { default as VTable } from "./compounds/Table/Table.vue";
 export { default as VTab } from "./compounds/Tabs/Tab.vue";
 export { default as VTabs } from "./compounds/Tabs/Tabs.vue";
 export { default as VTag } from "./compounds/Tag/Tag.vue";

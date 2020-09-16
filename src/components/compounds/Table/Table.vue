@@ -1,10 +1,10 @@
 <script>
 import { computed, reactive, ref, watchEffect } from 'vue'
-import { VInput, VButton } from '../../'
+import { VInput, VButton, VCheckbox } from '../../'
 
 const Table = {
   name: 'VTable',
-  components: { VInput, VButton },
+  components: { VInput, VButton, VCheckbox },
   props: {
     data: {
       type: Object,
@@ -17,11 +17,16 @@ const Table = {
     searchable: {
       type: Boolean,
       default: false
+    },
+    checkable: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props, { emit }) {
     const data = ref(props.data)
     const search = reactive({})
+    const selected = reactive([])
     const columns = reactive(props.columns)
     columns.forEach(col => {
       col.ascendant = true
@@ -49,7 +54,11 @@ const Table = {
       data.value = props.data
     }
 
-    return { props, columns, data, sortColumn, search, handleSearch, resetData }
+    const handleCheckbox = (data) => {
+      selected.push(data)
+    }
+
+    return { props, columns, data, sortColumn, search, handleSearch, resetData, handleCheckbox }
   },
 }
 
@@ -64,6 +73,9 @@ export default Table;
       </caption>
       <thead>
         <tr>
+          <th v-if="props.checkable">
+            <v-checkbox @input="handleCheckbox" />
+          </th>
           <th
             v-for="column in columns"
             :key="column.field"
@@ -74,6 +86,7 @@ export default Table;
       </thead>
       <tbody>
         <tr v-if="props.searchable">
+          <th v-if="props.checkable"></th>
           <td v-for="column in columns" :key="column.field">
             <input
               name="search"
@@ -86,6 +99,9 @@ export default Table;
           </td>
         </tr>
         <tr v-for="row in data" :key="row.id">
+          <td v-if="props.checkable">
+            <v-checkbox @input="handleCheckbox(row)" />
+          </td>
           <td v-for="column in row" :key="column">{{ column }}</td>
         </tr>
       </tbody>

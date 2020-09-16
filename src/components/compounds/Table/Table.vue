@@ -1,5 +1,5 @@
 <script>
-import { computed, reactive, watchEffect } from 'vue'
+import { computed, reactive, ref, watchEffect } from 'vue'
 
 const Table = {
   name: 'VTable',
@@ -15,15 +15,19 @@ const Table = {
   },
   setup(props, { emit }) {
     const data = reactive(props.data)
-    const sortColumn = (field) => {
+    const columns = reactive(props.columns)
+    columns.forEach(col => {
+      col.ascendant = true
+    });
+    const sortColumn = (col) => {
       data.sort((a, b) => {
-        console.log(a[field], b[field])
-        if(a[field] < b[field]) { return -1 };
-        if(a[field] > b[field]) { return 1 };
+        if(a[col.field] < b[col.field]) { return col.ascendant ? -1 : 1 };
+        if(a[col.field] > b[col.field]) { return col.ascendant ? 1 : -1 };
         return 0;
       })
+      col.ascendant = !col.ascendant
     }
-    return { props, data, sortColumn }
+    return { columns, data, sortColumn }
   },
 }
 
@@ -35,7 +39,7 @@ export default Table;
     <table class="table is-striped is-fullwidth">
       <thead>
         <tr>
-          <th v-for="column in props.columns" :key="column.field" @click="sortColumn(column.field)">{{ column.label }}</th>
+          <th v-for="column in columns" :key="column.field" @click="sortColumn(column)">{{ column.label }}</th>
         </tr>
       </thead>
       <tbody>

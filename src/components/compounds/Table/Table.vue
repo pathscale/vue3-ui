@@ -1,10 +1,10 @@
 <script>
 import { computed, reactive, ref, watchEffect } from 'vue'
-import { VInput } from '../../'
+import { VInput, VButton } from '../../'
 
 const Table = {
   name: 'VTable',
-  components: { VInput },
+  components: { VInput, VButton },
   props: {
     data: {
       type: Object,
@@ -28,7 +28,7 @@ const Table = {
     });
 
     const sortColumn = (col) => {
-      data.sort((a, b) => {
+      data.value.sort((a, b) => {
         if(a[col.field] < b[col.field]) { return col.ascendant ? -1 : 1 };
         if(a[col.field] > b[col.field]) { return col.ascendant ? 1 : -1 };
         return 0;
@@ -42,7 +42,14 @@ const Table = {
       })
     }
 
-    return { props, columns, data, sortColumn, search, handleSearch }
+    const resetData = () => {
+      for(const field in search) {
+        search[field] = ""
+      }
+      data.value = props.data
+    }
+
+    return { props, columns, data, sortColumn, search, handleSearch, resetData }
   },
 }
 
@@ -52,6 +59,9 @@ export default Table;
 <template>
   <div>
     <table class="table is-striped is-fullwidth">
+      <caption>
+        <v-button @click="resetData">Reset filters</v-button>
+      </caption>
       <thead>
         <tr>
           <th

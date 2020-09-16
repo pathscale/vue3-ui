@@ -39,7 +39,7 @@ export default Table;
     <table class="table is-striped is-fullwidth">
       <thead>
         <tr>
-          <th v-for="column in columns" :key="column.field" @click="sortColumn(column)">{{ column.label }}</th>
+          <th v-for="column in columns" :key="column.field" @click="sortColumn(column)">{{ column.label }} {{ column.ascendant ? "&darr;" : "	&uarr;" }}</th>
         </tr>
       </thead>
       <tbody>

@@ -22,6 +22,14 @@ const Table = {
     checkable: {
       type: Boolean,
       default: false
+    },
+    pagination: {
+      type: Boolean,
+      default: false
+    },
+    rowsPerPage: {
+      type: Number,
+      default: 5
     }
   },
   setup(props, { emit }) {
@@ -31,6 +39,7 @@ const Table = {
     const search = reactive({})
     const selected = reactive([])
     const checkedBoxes = reactive([])
+    const currentPage = ref(0)
 
     columns.forEach(col => {
       col.ascendant = true
@@ -77,7 +86,10 @@ const Table = {
       emit('checked-rows', selected)
     }
 
-    return { props, columns, data, sortColumn, search, handleSearch, resetData, handleCheckbox, checkedBoxes }
+    const switchPage = (page) => {
+      currentPage.value = page
+    }
+    return { props, columns, data, sortColumn, search, handleSearch, resetData, handleCheckbox, checkedBoxes, currentPage, switchPage }
   },
 }
 
@@ -115,7 +127,7 @@ export default Table;
               class="input has-text-black is-small is-black" />
           </td>
         </tr>
-        <tr v-for="row in data" :key="row.id">
+        <tr v-for="row in data.slice(currentPage * +props.rowsPerPage, +props.rowsPerPage * currentPage + +props.rowsPerPage)" :key="row.id">
           <td v-if="props.checkable">
             <v-checkbox v-model="checkedBoxes[data.indexOf(row)]" @input="handleCheckbox(row)" />
           </td>
@@ -123,5 +135,16 @@ export default Table;
         </tr>
       </tbody>
     </table>
+    <div v-if="props.pagination">
+      <v-button 
+        v-for="n in Math.floor(data.length / props.rowsPerPage)"
+        @click="switchPage(n-1)"
+        :key="n">
+        {{ n }}
+      </v-button>
+      <v-button v-if="data.length % props.rowsPerPage" @click="switchPage(Math.floor(data.length / props.rowsPerPage))">
+        {{ Math.floor(data.length / props.rowsPerPage) + 1 }}
+      </v-button>
+    </div>
   </div>
 </template>

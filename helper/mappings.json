@@ -263,6 +263,19 @@
     "transition",
     "v-sidebar"
   ],
+  "VTable": [
+    "table",
+    "is-striped",
+    "is-fullwidth",
+    "caption",
+    "thead",
+    "tr",
+    "th",
+    "tbody",
+    "td",
+    "input",
+    "has-text-black"
+  ],
   "VTab": [
     "a",
     "change",
@@ -520,18 +533,6 @@
     "label",
     "span",
     "switch"
-  ],
-  "VTable": [
-    "table",
-    "is-striped",
-    "is-fullwidth",
-    "caption",
-    "thead",
-    "tr",
-    "th",
-    "tbody",
-    "td",
-    "input"
   ],
   "VTextarea": [
     "control",

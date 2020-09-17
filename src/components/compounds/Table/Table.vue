@@ -1,4 +1,5 @@
 <script>
+import { clear } from 'console'
 import { computed, reactive, ref, watchEffect } from 'vue'
 import { VInput, VButton, VCheckbox } from '../../'
 
@@ -25,12 +26,22 @@ const Table = {
   },
   setup(props, { emit }) {
     const data = ref(props.data)
+    const columns = reactive(props.columns)
+
     const search = reactive({})
     const selected = reactive([])
-    const columns = reactive(props.columns)
+    const checkedBoxes = reactive([])
+
     columns.forEach(col => {
       col.ascendant = true
     });
+
+    if(props.checkable) {
+      let iterator = 0
+      data.value.forEach(row => {
+        checkedBoxes[iterator++] = 0
+      })
+    }
 
     const sortColumn = (col) => {
       data.value.sort((a, b) => {
@@ -54,11 +65,19 @@ const Table = {
       data.value = props.data
     }
 
-    const handleCheckbox = (data) => {
-      selected.push(data)
+    const handleCheckbox = (row) => {
+      const index = selected.indexOf(row)
+      if(index > -1) {
+        selected.splice(index, 1)
+        checkedBoxes[data.value.indexOf(row)] = 0
+      } else {
+        selected.push(row)
+        checkedBoxes[data.value.indexOf(row)] = 1
+      }
+      emit('checked-rows', selected)
     }
 
-    return { props, columns, data, sortColumn, search, handleSearch, resetData, handleCheckbox }
+    return { props, columns, data, sortColumn, search, handleSearch, resetData, handleCheckbox, checkedBoxes }
   },
 }
 
@@ -73,9 +92,7 @@ export default Table;
       </caption>
       <thead>
         <tr>
-          <th v-if="props.checkable">
-            <v-checkbox @input="handleCheckbox" />
-          </th>
+          <th v-if="props.checkable"></th>
           <th
             v-for="column in columns"
             :key="column.field"
@@ -100,7 +117,7 @@ export default Table;
         </tr>
         <tr v-for="row in data" :key="row.id">
           <td v-if="props.checkable">
-            <v-checkbox @input="handleCheckbox(row)" />
+            <v-checkbox v-model="checkedBoxes[data.indexOf(row)]" @input="handleCheckbox(row)" />
           </td>
           <td v-for="column in row" :key="column">{{ column }}</td>
         </tr>

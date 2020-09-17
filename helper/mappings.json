@@ -522,8 +522,16 @@
     "switch"
   ],
   "VTable": [
-    "data",
-    "columns"
+    "table",
+    "is-striped",
+    "is-fullwidth",
+    "caption",
+    "thead",
+    "tr",
+    "th",
+    "tbody",
+    "td",
+    "input"
   ],
   "VTextarea": [
     "control",

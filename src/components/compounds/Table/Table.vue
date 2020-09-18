@@ -131,7 +131,11 @@ export default Table;
           <td v-if="props.checkable">
             <v-checkbox v-model="checkedBoxes[data.indexOf(row)]" @input="handleCheckbox(row)" />
           </td>
-          <td v-for="column in row" :key="column">{{ column }}</td>
+          <td v-for="(column, field) in row" :key="column">
+            <slot :name="field" v-bind:row="column">
+              {{ column }}
+            </slot>
+          </td>
         </tr>
       </tbody>
     </table>

@@ -30,7 +30,27 @@ const Table = {
     rowsPerPage: {
       type: Number,
       default: 5
-    }
+    },
+    isBordered: {
+      type: Boolean,
+      default: false
+    },
+    isStriped: {
+      type: Boolean,
+      default: false
+    },
+    isNarrow: {
+      type: Boolean,
+      default: false
+    },
+    isHoverable: {
+      type: Boolean,
+      default: false
+    },
+    isFullwidth: {
+      type: Boolean,
+      default: false
+    },
   },
   setup(props, { emit }) {
     const data = ref(props.data)
@@ -89,7 +109,18 @@ const Table = {
     const switchPage = (page) => {
       currentPage.value = page
     }
-    return { props, columns, data, sortColumn, search, handleSearch, resetData, handleCheckbox, checkedBoxes, currentPage, switchPage }
+
+    const rootClasses = computed(() => {
+      return [{
+        'is-bordered': props.isBordered,
+        'is-striped': props.isStriped,
+        'is-narrow': props.isNarrow,
+        'is-hoverable': props.isHoverable,
+        'is-fullwidth': props.isFullwidth
+      }]
+    })
+
+    return { props, columns, data, sortColumn, search, handleSearch, resetData, handleCheckbox, checkedBoxes, currentPage, switchPage, rootClasses }
   },
 }
 
@@ -98,7 +129,7 @@ export default Table;
 
 <template>
   <div>
-    <table class="table is-striped is-fullwidth">
+    <table class="table" :class="rootClasses">
       <caption>
         <v-button @click="resetData">Reset filters</v-button>
       </caption>

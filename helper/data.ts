@@ -62,7 +62,12 @@ export const truthy = {
   dashed: true,
   vanimated: true,
   isActive: true,
-  headerIsTrigger: true
+  headerIsTrigger: true,
+  isBordered: true,
+  isStriped: true,
+  isNarrow: true,
+  isHoverablee: true,
+  isFullwidth: true
 }
 
 export const falsy = {

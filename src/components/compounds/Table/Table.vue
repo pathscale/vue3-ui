@@ -158,7 +158,10 @@ export default Table;
               class="input has-text-black is-small is-black" />
           </td>
         </tr>
-        <tr v-for="row in data.slice(currentPage * +props.rowsPerPage, +props.rowsPerPage * currentPage + +props.rowsPerPage)" :key="row.id">
+        <tr 
+          v-for="row in data.slice(currentPage * +props.rowsPerPage, +props.rowsPerPage * currentPage + +props.rowsPerPage)"
+          :key="row.id"
+          :class="checkedBoxes[data.indexOf(row)] ? 'is-selected' : ''">
           <td v-if="props.checkable">
             <v-checkbox v-model="checkedBoxes[data.indexOf(row)]" @input="handleCheckbox(row)" />
           </td>

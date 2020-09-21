@@ -128,11 +128,11 @@ export default Table;
 </script>
 
 <template>
-  <div>
+  <div class="data-grid">
+    <div class="tableHeader">
+      <v-button @click="resetData" type="is-light has-text-black" class="mt-2 ml-2">&#x21bb;</v-button>
+    </div>
     <table class="table" :class="rootClasses">
-      <caption>
-        <v-button @click="resetData">Reset filters</v-button>
-      </caption>
       <thead>
         <tr>
           <th v-if="props.checkable"></th>
@@ -173,16 +173,24 @@ export default Table;
         </tr>
       </tbody>
     </table>
-    <div v-if="props.pagination">
-      <v-button 
-        v-for="n in Math.floor(data.length / props.rowsPerPage)"
-        @click="switchPage(n-1)"
-        :key="n">
-        {{ n }}
-      </v-button>
-      <v-button v-if="data.length % props.rowsPerPage" @click="switchPage(Math.floor(data.length / props.rowsPerPage))">
-        {{ Math.floor(data.length / props.rowsPerPage) + 1 }}
-      </v-button>
+    <div class="tableFooter mb-4">
+      <nav class="pagination" role="navigation" aria-label="pagination" v-if="props.pagination">
+        <ul class="pagination-list">
+          <v-button
+            class="is-light has-text-black ml-1 mr-1"
+            v-for="n in Math.floor(data.length / props.rowsPerPage)"
+            @click="switchPage(n-1)"
+            :key="n">
+            {{ n }}
+          </v-button>
+          <v-button
+            v-if="data.length % props.rowsPerPage"
+            @click="switchPage(Math.floor(data.length / props.rowsPerPage))"
+            class="is-light has-text-black ml-1 mr-1">
+            {{ Math.floor(data.length / props.rowsPerPage) + 1 }}
+          </v-button>
+        </ul>
+      </nav>
     </div>
   </div>
 </template>

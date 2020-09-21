@@ -132,7 +132,7 @@ export default Table;
             <v-checkbox v-model="checkedBoxes[data.indexOf(row)]" @input="handleCheckbox(row)" />
           </td>
           <td v-for="(column, field) in row" :key="column">
-            <slot :name="field" v-bind:row="column">
+            <slot :name="field" v-bind:row="row">
               {{ column }}
             </slot>
           </td>

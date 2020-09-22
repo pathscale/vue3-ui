@@ -38,7 +38,7 @@ export { default as VNavbarDropdown } from "./compounds/Navbar/NavbarDropdown.vu
 export { default as VNavbarItem } from "./compounds/Navbar/NavbarItem.vue";
 export { default as VSidebar } from "./compounds/Sidebar/Sidebar.vue";
 export { default as VTable } from "./compounds/Table/Table.vue";
-export { default as DataGrid } from "./compounds/Table/DataGrid.ts";
+// export { default as DataGrid } from "./compounds/Table/DataGrid.ts";
 export { default as VTab } from "./compounds/Tabs/Tab.vue";
 export { default as VTabs } from "./compounds/Tabs/Tabs.vue";
 export { default as VTag } from "./compounds/Tag/Tag.vue";

@@ -1,7 +1,6 @@
 <script>
-import { clear } from 'console'
-import { computed, reactive, ref, watchEffect } from 'vue'
-import { VInput, VButton, VCheckbox } from '../../'
+import { computed, reactive, ref } from 'vue'
+import { VInput, VButton, VCheckbox } from "../.."
 
 const Table = {
   name: 'VTable',
@@ -130,12 +129,14 @@ export default Table;
 <template>
   <div class="data-grid">
     <div class="tableHeader">
-      <v-button @click="resetData" type="is-light has-text-black" class="mt-2 ml-2">&#x21bb;</v-button>
+      <v-button @click="resetData" type="is-light has-text-black" class="mt-2 ml-2">
+        &#x21bb;
+      </v-button>
     </div>
     <table class="table" :class="rootClasses">
       <thead>
         <tr>
-          <th v-if="props.checkable"></th>
+          <th v-if="props.checkable" />
           <th
             v-for="column in columns"
             :key="column.field"
@@ -146,7 +147,7 @@ export default Table;
       </thead>
       <tbody>
         <tr v-if="props.searchable">
-          <th v-if="props.checkable"></th>
+          <th v-if="props.checkable" />
           <td v-for="column in columns" :key="column.field">
             <input
               name="search"
@@ -166,7 +167,7 @@ export default Table;
             <v-checkbox v-model="checkedBoxes[data.indexOf(row)]" @input="handleCheckbox(row)" />
           </td>
           <td v-for="(column, field) in row" :key="column">
-            <slot :name="field" v-bind:row="row">
+            <slot :name="field" :row="row">
               {{ column }}
             </slot>
           </td>

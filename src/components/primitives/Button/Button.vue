@@ -60,6 +60,9 @@ const Button ={
     tag: {
       type: String,
       default: 'button'
+    },
+    light: {
+      type: Boolean
     }
   },
   setup(props, { attrs }) {
@@ -90,7 +93,8 @@ export default Button;
       'is-focused': focused,
       'is-active': active,
       'is-hovered': hovered,
-      'is-selected': selected
+      'is-selected': selected,
+      'is-light': light
     }]">
     <span v-if="label">{{ label }}</span>
     <slot />

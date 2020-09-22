@@ -60,54 +60,46 @@ const Table = {
     const checkedBoxes = reactive([])
     const currentPage = ref(0)
 
-    columns.forEach(col => {
-      col.ascendant = true
-    });
-
     if(props.checkable) {
       let iterator = 0
-      data.value.forEach(row => {
+      props.data.rows.forEach(row => {
         checkedBoxes[iterator++] = 0
       })
     }
 
-    const sortColumn = (col) => {
-      data.value.sort((a, b) => {
-        if(a[col.field] < b[col.field]) { return col.ascendant ? -1 : 1 };
-        if(a[col.field] > b[col.field]) { return col.ascendant ? 1 : -1 };
-        return 0;
-      })
-      col.ascendant = !col.ascendant
-    }
+    // const sortColumn = (col) => {
+    //   props.data.rows.sort((a, b) => {
+    //     if(a[col.field] < b[col.field]) { return col.ascendant ? -1 : 1 };
+    //     if(a[col.field] > b[col.field]) { return col.ascendant ? 1 : -1 };
+    //     return 0;
+    //   })
+    //   col.ascendant = !col.ascendant
+    // }
 
-    const handleSearch = (field) => {
-      data.value = props.data.filter((row) => {
-        return row[field].toString().toLowerCase().includes(search[field].toLowerCase())
-      })
-    }
+    // const handleSearch = (field) => {
+    //   props.data.rows = props.data.filter((row) => {
+    //     return row[field].toString().toLowerCase().includes(search[field].toLowerCase())
+    //   })
+    // }
 
-    
+    // const resetData = () => {
+    //   for(const field in search) {
+    //     search[field] = ""
+    //   }
+    //   props.data.rows = props.data
+    // }
 
-    const resetData = () => {
-      for(const field in search) {
-        if (Object.prototype.hasOwnProperty.call(search, field)) {
-          search[field] = ""
-        }
-      }
-      data.value = props.data
-    }
-
-    const handleCheckbox = (row) => {
-      const index = selected.indexOf(row)
-      if(index > -1) {
-        selected.splice(index, 1)
-        checkedBoxes[data.value.indexOf(row)] = 0
-      } else {
-        selected.push(row)
-        checkedBoxes[data.value.indexOf(row)] = 1
-      }
-      emit('checked-rows', selected)
-    }
+    // const handleCheckbox = (row) => {
+    //   const index = selected.indexOf(row)
+    //   if(index > -1) {
+    //     selected.splice(index, 1)
+    //     checkedBoxes[data.value.indexOf(row)] = 0
+    //   } else {
+    //     selected.push(row)
+    //     checkedBoxes[data.value.indexOf(row)] = 1
+    //   }
+    //   emit('checked-rows', selected)
+    // }
 
     const switchPage = (page) => {
       currentPage.value = page
@@ -123,7 +115,7 @@ const Table = {
       }]
     })
 
-    return { props, columns, data, sortColumn, search, handleSearch, resetData, handleCheckbox, checkedBoxes, currentPage, switchPage, rootClasses }
+    return { props, columns, data, search, checkedBoxes, currentPage, switchPage, rootClasses }
   },
 }
 
@@ -140,19 +132,16 @@ export default Table;
     <table class="table" :class="rootClasses">
       <thead>
         <tr>
-          <th v-if="props.checkable" />
           <th
-            v-for="column in columns"
-            :key="column.field"
-            @click="sortColumn(column)">
-            {{ column.label }} {{ column.ascendant ? "&darr;" : "	&uarr;" }}
+            v-for="column in props.data.columns"
+            :key="column">
+            {{ column.caption }}
           </th>
         </tr>
       </thead>
       <tbody>
         <tr v-if="props.searchable">
-          <th v-if="props.checkable" />
-          <td v-for="column in columns" :key="column.field">
+          <!-- <td v-for="column in columns" :key="column.field">
             <input
               name="search"
               type="text"
@@ -161,24 +150,20 @@ export default Table;
               color="is-dark"
               placeholder="Search"
               class="input has-text-black is-small is-black" />
-          </td>
+          </td> -->
         </tr>
         <tr 
-          v-for="row in data.slice(currentPage * +props.rowsPerPage, +props.rowsPerPage * currentPage + +props.rowsPerPage)"
-          :key="row.id"
-          :class="checkedBoxes[data.indexOf(row)] ? 'is-selected' : ''">
-          <td v-if="props.checkable">
-            <v-checkbox v-model="checkedBoxes[data.indexOf(row)]" @input="handleCheckbox(row)" />
-          </td>
-          <td v-for="(column, field) in row" :key="column">
-            <slot :name="field" :row="row">
-              {{ column }}
+          v-for="row in props.data.rows"
+          :key="row.id">
+          <td v-for="(content, field) in row" :key="content">
+            <slot :name="field" v-bind:row="row">
+              {{ content }}
             </slot>
           </td>
         </tr>
       </tbody>
     </table>
-    <div class="tableFooter mb-4">
+    <!-- <div class="tableFooter mb-4">
       <nav class="pagination" role="navigation" aria-label="pagination" v-if="props.pagination">
         <ul class="pagination-list">
           <v-button
@@ -196,6 +181,6 @@ export default Table;
           </v-button>
         </ul>
       </nav>
-    </div>
+    </div> -->
   </div>
 </template>

@@ -86,9 +86,13 @@ const Table = {
       })
     }
 
+    
+
     const resetData = () => {
       for(const field in search) {
-        search[field] = ""
+        if (Object.prototype.hasOwnProperty.call(search, field)) {
+          search[field] = ""
+        }
       }
       data.value = props.data
     }

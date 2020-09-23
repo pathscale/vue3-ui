@@ -121,7 +121,11 @@ export default Table;
 <template>
   <div class="data-grid">
     <div class="tableHeader">
-      <slot name="header" />
+      <slot name="header">
+        <v-button @click="props.data.resetFilters()" type="is-light has-text-black" class="mt-2 ml-2">
+          &#x21bb;
+        </v-button>
+      </slot>
     </div>
     <table class="table" :class="rootClasses">
       <thead>

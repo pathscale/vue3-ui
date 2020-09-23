@@ -10,10 +10,6 @@ const Table = {
       type: Object,
       default: {}
     },
-    columns: {
-      type: Object,
-      default: {}
-    },
     searchable: {
       type: Boolean,
       default: false
@@ -53,7 +49,11 @@ const Table = {
   },
   setup(props, { emit }) {
     const data = ref(props.data)
-    const columns = reactive(props.columns)
+    const columnProperties = ref(props.data.columns)
+
+    for (const colName in props.data.columns) {
+      columnProperties.value[colName].ascendant = true
+    }
 
     const search = reactive({})
     const selected = reactive([])
@@ -67,14 +67,10 @@ const Table = {
       })
     }
 
-    // const sortColumn = (col) => {
-    //   props.data.rows.sort((a, b) => {
-    //     if(a[col.field] < b[col.field]) { return col.ascendant ? -1 : 1 };
-    //     if(a[col.field] > b[col.field]) { return col.ascendant ? 1 : -1 };
-    //     return 0;
-    //   })
-    //   col.ascendant = !col.ascendant
-    // }
+    const sortColumn = (colName) => {
+      props.data.sortByColumn(colName, columnProperties.value[colName].ascendant)
+      columnProperties.value[colName].ascendant = !columnProperties.value[colName].ascendant
+    }
 
     // const handleSearch = (field) => {
     //   props.data.rows = props.data.filter((row) => {
@@ -115,7 +111,7 @@ const Table = {
       }]
     })
 
-    return { props, columns, data, search, checkedBoxes, currentPage, switchPage, rootClasses }
+    return { props, columnProperties, data, search, sortColumn, checkedBoxes, currentPage, switchPage, rootClasses }
   },
 }
 
@@ -125,17 +121,17 @@ export default Table;
 <template>
   <div class="data-grid">
     <div class="tableHeader">
-      <v-button @click="resetData" type="is-light has-text-black" class="mt-2 ml-2">
-        &#x21bb;
-      </v-button>
+      <slot name="header" />
     </div>
     <table class="table" :class="rootClasses">
       <thead>
         <tr>
           <th
             v-for="column in props.data.columns"
-            :key="column">
+            :key="column"
+            @click="sortColumn(column.name)">
             {{ column.caption }}
+            {{ columnProperties[column.name].ascendant ? "&darr;" : "	&uarr;" }}
           </th>
         </tr>
       </thead>
@@ -163,24 +159,8 @@ export default Table;
         </tr>
       </tbody>
     </table>
-    <!-- <div class="tableFooter mb-4">
-      <nav class="pagination" role="navigation" aria-label="pagination" v-if="props.pagination">
-        <ul class="pagination-list">
-          <v-button
-            class="is-light has-text-black ml-1 mr-1"
-            v-for="n in Math.floor(data.length / props.rowsPerPage)"
-            @click="switchPage(n-1)"
-            :key="n">
-            {{ n }}
-          </v-button>
-          <v-button
-            v-if="data.length % props.rowsPerPage"
-            @click="switchPage(Math.floor(data.length / props.rowsPerPage))"
-            class="is-light has-text-black ml-1 mr-1">
-            {{ Math.floor(data.length / props.rowsPerPage) + 1 }}
-          </v-button>
-        </ul>
-      </nav>
-    </div> -->
+    <div class="tableFooter">
+      <slot name="footer" />
+    </div>
   </div>
 </template>

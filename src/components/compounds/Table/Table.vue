@@ -72,19 +72,6 @@ const Table = {
       columnProperties.value[colName].ascendant = !columnProperties.value[colName].ascendant
     }
 
-    // const handleSearch = (field) => {
-    //   props.data.rows = props.data.filter((row) => {
-    //     return row[field].toString().toLowerCase().includes(search[field].toLowerCase())
-    //   })
-    // }
-
-    // const resetData = () => {
-    //   for(const field in search) {
-    //     search[field] = ""
-    //   }
-    //   props.data.rows = props.data
-    // }
-
     // const handleCheckbox = (row) => {
     //   const index = selected.indexOf(row)
     //   if(index > -1) {
@@ -141,16 +128,16 @@ export default Table;
       </thead>
       <tbody>
         <tr v-if="props.searchable">
-          <!-- <td v-for="column in columns" :key="column.field">
+          <td v-for="column in props.data.columns" :key="column.name">
             <input
               name="search"
               type="text"
-              v-model="search[column.field]"
-              @input="handleSearch(column.field)"
+              v-model="search[column.name]"
+              @input="props.data.searchColumn(column.name, search[column.name])"
               color="is-dark"
               placeholder="Search"
               class="input has-text-black is-small is-black" />
-          </td> -->
+          </td>
         </tr>
         <tr 
           v-for="row in props.data.rows"

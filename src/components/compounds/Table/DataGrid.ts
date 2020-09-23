@@ -33,6 +33,12 @@ class DataGrid {
   resetFilters() {
     this.rows = [...this.originalRows]
   }
+
+  searchColumn(colName: string, query: string) {
+    this.rows = this.originalRows.filter((row) => {
+      return row[colName].toString().toLowerCase().includes(query.toLowerCase())
+    })
+  }
 }
 
 export { DataGrid }

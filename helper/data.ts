@@ -23,6 +23,7 @@ export const textual = {
   anchorClasses: undefined,
   itemClasses: undefined,
   triggerClasses: undefined,
+  headerClasses: undefined,
 }
 
 export const truthy = {
@@ -49,6 +50,7 @@ export const truthy = {
   expanded: true,
   inverted: true,
   focused: true,
+  light: true,
   isFocused: true,
   active: true,
   hovered: true,
@@ -67,7 +69,7 @@ export const truthy = {
   isStriped: true,
   isNarrow: true,
   isHoverablee: true,
-  isFullwidth: true
+  isFullwidth: true,
 }
 
 export const falsy = {

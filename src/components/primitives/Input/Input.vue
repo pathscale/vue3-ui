@@ -10,10 +10,8 @@ const Input = {
     size: { type: String, default: '' },
     rounded: { type: Boolean, default: false },
     loading: { type: Boolean, default: false },
-    hasIconsLeft: { type: Boolean, default: false },
-    hasIconsRight: { type: Boolean, default: false },
-    leftIcon: { type: String, default: '' },
-    rightIcon: { type: String, default: '' },
+    leftIcon: { type: String, default: null },
+    rightIcon: { type: String, default: null },
     errorMsg: { type: String, default: '' }
   },
   setup(props, { emit, attrs }) {
@@ -25,8 +23,8 @@ const Input = {
         props.size,
         {
           'is-loading': props.loading,
-          'has-icons-left': props.hasIconsLeft,
-          'has-icons-right': props.hasIconsRight
+          'has-icons-left': props.leftIcon,
+          'has-icons-right': props.rightIcon
         }
       ]
     });
@@ -57,10 +55,10 @@ export default Input;
       {{ props.errorMsg }}
     </p>
     <input class="input" v-bind="$attrs" v-model="value" :class="inputClasses" />
-    <span v-if="hasIconsLeft" class="icon is-left">
+    <span v-if="leftIcon" class="icon is-left">
       <i>{{ leftIcon }}</i>
     </span>
-    <span v-if="hasIconsRight" class="icon is-right">
+    <span v-if="rightIcon" class="icon is-right">
       <i>{{ rightIcon }}</i>
     </span>
   </div>

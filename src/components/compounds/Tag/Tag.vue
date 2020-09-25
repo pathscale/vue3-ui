@@ -17,8 +17,6 @@ const Tag = {
     ariaCloseLabel: { type: String, default: null },
     closeType: { type: String, default: null },
     closeIcon: { type: String, default: null },
-    closeIconPack: { type: String, default: null },
-    closeIconType: { type: String, default: null }
   },
   setup(props, { emit }) {
     const close = function (event) {

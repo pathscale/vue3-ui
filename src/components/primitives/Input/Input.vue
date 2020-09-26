@@ -12,7 +12,7 @@ const Input = {
     loading: { type: Boolean, default: false },
     leftIcon: { type: String, default: null },
     rightIcon: { type: String, default: null },
-    errorMsg: { type: String, default: '' }
+    errorMsg: { type: String, default: null }
   },
   setup(props, { emit, attrs }) {
     const value = ref(attrs.modelValue)
@@ -51,7 +51,7 @@ export default Input;
   <div
     class="control"
     :class="rootClasses">
-    <p class="error">
+    <p v-if="errorMsg" class="error">
       {{ props.errorMsg }}
     </p>
     <input class="input" v-bind="$attrs" v-model="value" :class="inputClasses" />

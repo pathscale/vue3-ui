@@ -12,6 +12,8 @@
       maxlength: { type: String, default: '' },
       modelValue: { type: String, default: '' },
       size: { type: String, default: '' },
+      hovered: { type: Boolean,vdefault: false },
+      focused: { type: Boolean,vdefault: false },
     },
     setup(props, { emit }) {
       const value = ref(props.modelValue);
@@ -23,12 +25,18 @@
         return [
           props.size,
           {
-            'is-loading': props.loading,
+            'is-loading': props.loading
           }
         ]
       });
       const inputClasses = computed(() => {
-        return [props.size, props.color]
+        return [
+          props.size, 
+          props.color, 
+          {
+          'is-hovered': props.hovered,
+          'is-focused': props.focused,
+        }]
       });
 
       watchEffect(() => emit('update:modelValue', value.value));
@@ -54,7 +62,6 @@
       @focus="onFocus" />
     <small
       v-if="maxlength && hasCounter"
-      class="help counter"
       :class="{ 'is-invisible': !isFocused }">
       {{ valueLength }} / {{ maxlength }}
     </small>

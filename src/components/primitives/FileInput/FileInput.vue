@@ -1,6 +1,7 @@
 <script>
 const FileInput = {
   name: "VFile",
+  inheritAttrs: false,
   props: {
     hasName: {
       type: Boolean,
@@ -40,7 +41,7 @@ export default FileInput
       'is-boxed': boxed
     }]">
     <label class="file-label">
-      <input class="file-input" type="file" name="resume" />
+      <input class="file-input" type="file" v-bind="$attrs" />
       <span class="file-cta">
         <span class="file-label">
           <slot name="label" />

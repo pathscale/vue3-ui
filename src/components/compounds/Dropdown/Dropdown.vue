@@ -16,6 +16,7 @@ const Component = {
       },
       mobileModal: {
         type: Boolean,
+        default: true
       },
       ariaRole: {
         type: String,
@@ -42,7 +43,7 @@ const Component = {
           'is-hoverable': props.hoverable,
           'is-inline': props.inline,
           'is-active': state.isActive || props.inline,
-          'is-mobile-modal': props.isMobileModal,
+          'is-mobile-modal': props.mobileModal,
           'is-expanded': props.expanded
         }]
       })

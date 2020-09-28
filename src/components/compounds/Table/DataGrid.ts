@@ -41,4 +41,4 @@ class DataGrid {
   }
 }
 
-export { DataGrid }
+export default DataGrid

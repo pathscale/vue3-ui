@@ -143,7 +143,7 @@ export default Table;
           v-for="row in props.data.rows"
           :key="row.id">
           <td v-for="(content, field) in row" :key="content">
-            <slot :name="field" v-bind:row="row">
+            <slot :name="field" :row="row">
               {{ content }}
             </slot>
           </td>

@@ -46,6 +46,14 @@ const Table = {
       type: Boolean,
       default: false
     },
+    hasResetBtn: {
+      type: Boolean,
+      default: false
+    },
+    sortable: {
+      type: Boolean,
+      default: false
+    }
   },
   setup(props, { emit }) {
     const data = ref(props.data)
@@ -109,7 +117,7 @@ export default Table;
   <div class="data-grid">
     <div class="tableHeader">
       <slot name="header">
-        <v-button @click="props.data.resetFilters()" type="is-light has-text-black" class="mt-2 ml-2">
+        <v-button @click="props.data.resetFilters()" v-if="props.hasResetBtn" type="is-light has-text-black" class="mt-2 ml-2">
           &#x21bb;
         </v-button>
       </slot>
@@ -120,9 +128,11 @@ export default Table;
           <th
             v-for="column in props.data.columns"
             :key="column"
-            @click="sortColumn(column.name)">
+            @click="props.sortable ? sortColumn(column.name) : null">
             {{ column.caption }}
-            {{ columnProperties[column.name].ascendant ? "&darr;" : "	&uarr;" }}
+            <span v-if="props.sortable">
+              {{ columnProperties[column.name].ascendant ? "&darr;" : "	&uarr;" }}
+            </span>
           </th>
         </tr>
       </thead>

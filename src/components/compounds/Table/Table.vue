@@ -18,10 +18,6 @@ const Table = {
       type: Boolean,
       default: false
     },
-    checked: {
-      type: Array,
-      default: [],
-    },
     pagination: {
       type: Boolean,
       default: false
@@ -69,27 +65,20 @@ const Table = {
     }
 
     const search = reactive({})
-    const selected = reactive([])
-    const checkedBoxes = reactive([])
+    // const selected = reactive([])
+    // const checkedBoxes = reactive([])
     const currentPage = ref(0)
 
-    if(props.checkable) {
-      let iterator = 0
-      props.data.rows.forEach(row => {
-        checkedBoxes[iterator++] = 0
-      })
-    }
+    // if(props.checkable) {
+    //   let iterator = 0
+    //   props.data.rows.forEach(row => {
+    //     checkedBoxes[iterator++] = 0
+    //   })
+    // }
 
     const sortColumn = (colName) => {
       props.data.sortByColumn(colName, columnProperties.value[colName].ascendant)
       columnProperties.value[colName].ascendant = !columnProperties.value[colName].ascendant
-    }
-   
-    const toggleCheck = (event, row) => {
-      const new_checked_list = event.target.checked
-        ? [...props.checked, row]
-        : props.checked.filter(current_row => current_row.id !== row.id)
-      emit('update:checked', new_checked_list)
     }
 
     const rootClasses = computed(() => {
@@ -108,9 +97,8 @@ const Table = {
       data,
       search,
       sortColumn,
-      checkedBoxes,
+      // checkedBoxes,
       currentPage,
-      toggleCheck,
       rootClasses
     }
   },
@@ -160,7 +148,7 @@ export default Table;
           v-for="row in props.data.rows"
           :key="row.id">
           <td v-if="checkable">
-            <v-checkbox @change="toggleCheck($event, row)" />
+            <v-checkbox @change="props.data.toggleCheck($event, row)" />
           </td>
           <td v-for="(content, field) in row" :key="content">
             <slot :name="field" :row="row">

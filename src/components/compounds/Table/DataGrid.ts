@@ -2,11 +2,13 @@ class DataGrid {
   columns: object;
   rows: object[];
   originalRows: object[];
+  checkedRows: {id: any}[];
 
   constructor() {
     this.columns = {};
     this.rows = [];
     this.originalRows = [];
+    this.checkedRows = [];
   }
 
   addColumn(name: string, caption: string, dataType: string) {
@@ -38,6 +40,12 @@ class DataGrid {
     this.rows = this.originalRows.filter((row) => {
       return row[colName].toString().toLowerCase().includes(query.toLowerCase())
     })
+  }
+
+  toggleCheck(event, row) {
+    this.checkedRows = event.target.checked
+      ? [...this.checkedRows, row]
+      : this.checkedRows.filter(current_row => current_row.id !== row.id)
   }
 }
 

@@ -1,6 +1,7 @@
 <script>
 import { computed, reactive, ref } from 'vue'
 import { VInput, VButton, VCheckbox } from "../.."
+
 const Table = {
   name: 'VTable',
   components: { VInput, VButton, VCheckbox },
@@ -58,40 +59,39 @@ const Table = {
       default: false
     }
   },
+
   setup(props, { emit }) {
     const data = ref(props.data)
     const columnProperties = ref(props.data.columns)
+
     for (const colName in props.data.columns) {
       columnProperties.value[colName].ascendant = true
     }
+
     const search = reactive({})
     const selected = reactive([])
     const checkedBoxes = reactive([])
     const currentPage = ref(0)
+
     if(props.checkable) {
       let iterator = 0
       props.data.rows.forEach(row => {
         checkedBoxes[iterator++] = 0
       })
     }
+
     const sortColumn = (colName) => {
       props.data.sortByColumn(colName, columnProperties.value[colName].ascendant)
       columnProperties.value[colName].ascendant = !columnProperties.value[colName].ascendant
     }
-    // const handleCheckbox = (row) => {
-    //   const index = selected.indexOf(row)
-    //   if(index > -1) {
-    //     selected.splice(index, 1)
-    //     checkedBoxes[data.value.indexOf(row)] = 0
-    //   } else {
-    //     selected.push(row)
-    //     checkedBoxes[data.value.indexOf(row)] = 1
-    //   }
-    //   emit('checked-rows', selected)
-    // }
-    const switchPage = (page) => {
-      currentPage.value = page
+   
+    const toggleCheck = (event, row) => {
+      const new_checked_list = event.target.checked
+        ? [...props.checked, row]
+        : props.checked.filter(current_row => current_row.id !== row.id)
+      emit('update:checked', new_checked_list)
     }
+
     const rootClasses = computed(() => {
       return [{
         'is-bordered': props.isBordered,
@@ -101,7 +101,18 @@ const Table = {
         'is-fullwidth': props.isFullwidth
       }]
     })
-    return { props, columnProperties, data, search, sortColumn, checkedBoxes, currentPage, switchPage, rootClasses }
+
+    return {
+      props,
+      columnProperties,
+      data,
+      search,
+      sortColumn,
+      checkedBoxes,
+      currentPage,
+      toggleCheck,
+      rootClasses
+    }
   },
 }
 export default Table;
@@ -119,6 +130,7 @@ export default Table;
     <table class="table" :class="rootClasses">
       <thead>
         <tr>
+          <td v-if="checkable" />
           <th
             v-for="column in props.data.columns"
             :key="column"
@@ -132,6 +144,7 @@ export default Table;
       </thead>
       <tbody>
         <tr v-if="props.searchable">
+          <td v-if="checkable" />
           <td v-for="column in props.data.columns" :key="column.name">
             <input
               name="search"
@@ -146,6 +159,9 @@ export default Table;
         <tr 
           v-for="row in props.data.rows"
           :key="row.id">
+          <td v-if="checkable">
+            <v-checkbox @change="toggleCheck($event, row)" />
+          </td>
           <td v-for="(content, field) in row" :key="content">
             <slot :name="field" :row="row">
               {{ content }}

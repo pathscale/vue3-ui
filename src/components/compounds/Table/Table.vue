@@ -156,7 +156,7 @@ export default Table;
               class="input has-text-black is-small is-black" />
           </td>
         </tr>
-        <tr 
+        <tr
           v-for="row in props.data.rows"
           :key="row.id">
           <td v-if="checkable">

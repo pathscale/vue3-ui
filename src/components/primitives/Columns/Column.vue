@@ -4,14 +4,16 @@
   const Column = {
     name: 'VColumn',
     props: {
-      size: { type: String, default: '' },
-      offset: { type: String, default: '' },
-      narrow: { type: Boolean, default: false },
+      size:  String ,
+      offset:  String ,
+      narrow:  Boolean,
+      narrowBreakpoint: String
     },
     setup(props) {
       const computedClasses = computed(() => [
         props.size,
         props.offset,
+        props.narrowBreakpoint,
         {
           'is-narrow': props.narrow
         }

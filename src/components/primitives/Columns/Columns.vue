@@ -4,23 +4,22 @@
   const Columns = {
     name: 'VColumns',
     props: {
-      mobile: { type: Boolean, default: false },
-      desktop: { type: Boolean, default: false },
-      gapless: { type: Boolean, default: false },
-      variable: { type: Boolean, default: false },
-      size: { type: String , default: '' },
-      multiline: { type: Boolean, default: false },
-      hcentered: { type: Boolean, default: false },
-      vcentered: { type: Boolean, default: false },
+      mobile: Boolean,
+      desktop: Boolean,
+      gapless: Boolean,
+      gap: String,
+      multiline: Boolean,
+      hcentered: Boolean,
+      vcentered: Boolean,
     },
     setup(props) {
       const computedClasses = computed(() => [
-        props.size,
+        props.gap,
         {
           'is-mobile': props.mobile,
           'is-desktop': props.desktop,
           'is-gapless': props.gapless,
-          'is-variable': props.variable,
+          'is-variable': props.gap,
           'is-vcentered': props.vcentered,
           'is-multiline': props.multiline,
           'is-centered': props.hcentered,

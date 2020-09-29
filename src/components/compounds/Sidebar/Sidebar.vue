@@ -5,7 +5,7 @@ const Sidebar = {
   name: 'VSidebar',
   emits: ['close'],
   props: {
-    open: Boolean,
+    open: Boolean, // TODO Add support to .sync
     type: [String, Object],
     overlay: Boolean,
     position: {
@@ -21,9 +21,7 @@ const Sidebar = {
     reduce: Boolean,
     expandOnHover: Boolean,
     expandOnHoverFixed: Boolean, // TODO
-    canCancel: {
-      type: [Array, Boolean],
-    },
+    canCancel: Boolean, // TODO
     onCancel: {
       type: Function, // TODO
     },

@@ -1,10 +1,11 @@
 <script>
 import { computed, reactive, ref, watch } from 'vue'
 import { VInput, VButton, VCheckbox, VSelect } from '../..'
+import VTag from '../Tag/Tag'
 
 const Table = {
   name: 'VTable',
-  components: { VInput, VButton, VCheckbox, VSelect },
+  components: { VInput, VButton, VCheckbox, VSelect, VTag },
   props: {
     data: {
       type: Object,
@@ -58,6 +59,10 @@ const Table = {
       type: Boolean,
       default: false,
     },
+    expandable: {
+      type: Boolean,
+      default: false
+    }
   },
 
   setup(props, { emit }) {
@@ -75,6 +80,8 @@ const Table = {
     }
 
     const search = reactive({})
+
+    const expanded = ref(new Set())
 
     // whenever pagination props changes, update the class state accordingly
     // thsi way pagination settings are directly passed to props and indirectly passed to class
@@ -110,6 +117,14 @@ const Table = {
       columnProperties.value[colName].ascendant = !columnProperties.value[colName].ascendant
     }
 
+    const toggleExpanded = rowId => {
+      if (expanded.value.has(rowId)) {
+        expanded.value.delete(rowId)
+        return;
+      }
+      expanded.value.add(rowId)
+    }
+
     const rootClasses = computed(() => {
       return [
         {
@@ -132,6 +147,8 @@ const Table = {
       // checkedBoxes,
       currentPage,
       rootClasses,
+      expanded,
+      toggleExpanded
     }
   },
 }
@@ -156,6 +173,7 @@ export default Table
       <thead>
         <tr>
           <td v-if="checkable" />
+          <td v-if="expandable" />
           <th
             v-for="column in props.data.getColumns()"
             :key="column"
@@ -183,18 +201,27 @@ export default Table
             />
           </td>
         </tr>
-        <tr v-for="row in props.data.rows" :key="row.id">
+        <template v-for="row in props.data.rows" :key="row.id">
+          <tr>
           <td v-if="checkable">
             <v-checkbox @change="props.data.toggleCheck($event, row)" />
+          </td>
+          <td v-if="expandable">
+            <a><v-tag @click="toggleExpanded(row.id)" type="is-primary">{{ expanded.has(row.id) ? '&uarr;' : '&darr;' }}</v-tag></a>
           </td>
           <td v-for="column in props.data.getColumns()" :key="column.name">
             <slot :name="column.name" :row="row">
               {{ row[column.name] }}
             </slot>
           </td>
-        </tr>
+          </tr>
+        <div class="expansion" v-if="expanded.has(row.id)">
+          <slot name="expanded" :row="row" />
+        </div>
+        </template>
       </tbody>
     </table>
+    <!-- todo: move the styles to their own scope -->
     <div
       class="pagination-wrapper"
       v-if="pagination"

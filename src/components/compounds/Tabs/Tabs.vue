@@ -32,7 +32,7 @@ const Tabs = {
     type: String,
     expanded: Boolean,
     position: String,
-    vertical: Boolean,
+    vertical: Boolean, // TODO
     vanimated: Boolean,
     animated: Boolean,
   },
@@ -52,8 +52,8 @@ const Tabs = {
     })
 
     watchEffect(() => {
-    emit('update:modelValue', tabs.value.activeTab)
-    emit('change', tabs.value.activeTab)
+      emit('update:modelValue', tabs.value.activeTab)
+      emit('change', tabs.value.activeTab)
     })
 
     const navClasses = computed(() => {

@@ -67,6 +67,10 @@ class DataGrid {
     this.columns[name].show= false
   }
 
+  toggleColumn(column) {
+    column.show ? this.hideColumn(column.name) : this.showColumn(column.name)
+  }
+
   // construct new columns object with only the subobjects that have a key show as true
   getColumns() {
     return Object.keys(this.columns).filter(column => this.columns[column].show).reduce((newColumns, key) => {

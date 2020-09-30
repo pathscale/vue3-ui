@@ -19,7 +19,8 @@ class DataGrid {
     this.columns[name] = {
       name,
       caption,
-      dataType
+      dataType,
+      show: true
     }
   }
 
@@ -52,8 +53,26 @@ class DataGrid {
       : this.checkedRows.filter(current_row => current_row.id !== row.id)
   }
 
+  // pagination
   switchPage() {
     this.rows = this.originalRows.slice(this.currentPage*this.rowsPerPage, this.currentPage*this.rowsPerPage + this.rowsPerPage)
+  }
+
+  // hide / show columns
+  showColumn(name: string) {
+    this.columns[name].show = true
+  }
+
+  hideColumn(name: string) {
+    this.columns[name].show= false
+  }
+
+  // construct new columns object with only the subobjects that have a key show as true
+  getColumns() {
+    return Object.keys(this.columns).filter(column => this.columns[column].show).reduce((newColumns, key) => {
+      newColumns[key] = this.columns[key]
+      return newColumns
+    }, {})
   }
 }
 

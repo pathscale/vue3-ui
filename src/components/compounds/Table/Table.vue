@@ -157,7 +157,7 @@ export default Table
         <tr>
           <td v-if="checkable" />
           <th
-            v-for="column in props.data.columns"
+            v-for="column in props.data.getColumns()"
             :key="column"
             @click="props.sortable ? sortColumn(column.name) : null"
           >
@@ -171,7 +171,7 @@ export default Table
       <tbody>
         <tr v-if="props.searchable">
           <td v-if="checkable" />
-          <td v-for="column in props.data.columns" :key="column.name">
+          <td v-for="column in props.data.getColumns()" :key="column.name">
             <input
               name="search"
               type="text"
@@ -187,9 +187,9 @@ export default Table
           <td v-if="checkable">
             <v-checkbox @change="props.data.toggleCheck($event, row)" />
           </td>
-          <td v-for="(content, field) in row" :key="content">
-            <slot :name="field" :row="row">
-              {{ content }}
+          <td v-for="column in props.data.getColumns()" :key="column.name">
+            <slot :name="column.name" :row="row">
+              {{ row[column.name] }}
             </slot>
           </td>
         </tr>

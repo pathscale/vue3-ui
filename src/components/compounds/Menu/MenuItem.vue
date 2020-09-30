@@ -9,25 +9,17 @@ const Component = {
     active: Boolean,
     expanded: Boolean,
     disabled: Boolean,
-    iconPack: String,
     icon: String,
     tag: {
       type: String,
       default: 'a'
     },
-    ariaRole: {
-      type: String,
-      default: ''
-    }
+    ariaRole: String
   },
   setup(props, { emit }) {
     const newActive = ref(props.active)
     const newExpanded = ref(props.expanded)
     const content = ref(null)
-
-    const ariaRoleMenu = computed(() => {
-      return props.ariaRole === 'menuitem' ? props.ariaRole : null
-    })
     
     watchEffect(() => {
       newActive.value = props.active
@@ -44,7 +36,7 @@ const Component = {
       // newActive.value = true
       emit('update:active', newActive.value )
     }
-    return { newActive, newExpanded, ariaRoleMenu, onClick, content }
+    return { newActive, newExpanded, onClick, content }
   }
 }
 export default Component

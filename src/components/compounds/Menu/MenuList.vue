@@ -1,13 +1,9 @@
 <script>
 const Component = {
   name: 'VMenuList',
-  functional: true,
   props: {
     label: String,
-    ariaRole: {
-      type: String,
-      default: ''
-    }
+    ariaRole: String
   }
 }
 export default Component
@@ -17,7 +13,7 @@ export default Component
   <p v-if="label" class="menu-label">
     {{ label }}
   </p>
-  <ul class="menu-list" :role="ariaRole === 'menu' ? ariaRole : null">
+  <ul class="menu-list" :role="ariaRole">
     <slot />
   </ul>
 </template>

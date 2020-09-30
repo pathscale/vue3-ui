@@ -19,18 +19,14 @@ const Component = {
       type: Boolean,
       default: false
     },
-    isActive: {
-      type: Boolean,
-      default: false
-    },
     wrapperClass: {
       type: String
     },
-    closeOnClick: {
+    closeOnClick: { // TODO 
       type: Boolean,
       default: true
     },
-    mobileBurger: {
+    mobileBurger: { // TODO
       type: Boolean,
       default: true
     },

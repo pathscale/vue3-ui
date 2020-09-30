@@ -2,14 +2,8 @@
 const Component = {
   name: 'VMenu',
   props: {
-    accordion: {
-      type: Boolean,
-      default: true
-    },
-    activable: {
-      type: Boolean,
-      default: true
-    }
+    accordion: Boolean, // TODO
+    activable: Boolean  // TODO
   },
 }
 export default Component

@@ -3,12 +3,16 @@ class DataGrid {
   rows: object[];
   originalRows: object[];
   checkedRows: {id: any}[];
+  rowsPerPage: number;
+  currentPage: number;
 
   constructor() {
     this.columns = {};
     this.rows = [];
     this.originalRows = [];
     this.checkedRows = [];
+    this.rowsPerPage = 0;
+    this.currentPage = 0;
   }
 
   addColumn(name: string, caption: string, dataType: string) {
@@ -46,6 +50,10 @@ class DataGrid {
     this.checkedRows = event.target.checked
       ? [...this.checkedRows, row]
       : this.checkedRows.filter(current_row => current_row.id !== row.id)
+  }
+
+  switchPage() {
+    this.rows = this.originalRows.slice(this.currentPage*this.rowsPerPage, this.currentPage*this.rowsPerPage + this.rowsPerPage)
   }
 }
 

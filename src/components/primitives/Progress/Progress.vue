@@ -8,10 +8,7 @@ const Progress = {
       type: [String, Object],
       default: 'is-darkgrey'
     },
-    size: {
-      type: String,
-      default: null
-    },
+    size: String,
     value: {
       type: Number,
       default: undefined
@@ -20,10 +17,7 @@ const Progress = {
       type: Number,
       default: 100
     },
-    showValue: {
-      type: Boolean,
-      default: false
-    },
+    showValue: Boolean,
     format: {
       type: String,
       default: 'raw'
@@ -32,10 +26,7 @@ const Progress = {
       type: Number,
       default: 2
     },
-    keepTrailingZeroes: {
-      type: Boolean,
-      default: false
-    }
+    keepTrailingZeroes: Boolean
   },
   setup(props, { slot }) {
     const progress = ref(null)

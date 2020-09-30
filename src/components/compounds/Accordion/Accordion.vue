@@ -4,47 +4,24 @@ import { reactive, computed } from "vue"
 const Accordion = {
   name: "VAccordion",
   props: {
-    isHorizontal: {
-      type: Boolean
-    },
-    triggerRight: {
-      type: Boolean,
-      default: false
-    },
-    triggerLeft: {
-      type: Boolean,
-      default: false
-    },
-    expanded: {
-      type: Boolean,
-      default: false
-    },
+    isHorizontal: Boolean,
+    triggerRight: Boolean,
+    triggerLeft: Boolean,
+    expanded: Boolean,
     background: {
       type: String,
     },
     color: {
       type: String
     },
-    hover: {
-      type: Boolean,
-      default: false
-    },
-    isLink: {
-      type: Boolean,
-      default: false
-    },
+    hover: Boolean,
+    isLink: Boolean,
     to: {
       type: Object,
       default: null
     },
-    isActive: {
-      type: Boolean,
-      default: false
-    },
-    headerIsTrigger: {
-      type: Boolean,
-      default: false
-    }
+    isActive: Boolean,
+    headerIsTrigger: Boolean
   },
 
   setup(props) {

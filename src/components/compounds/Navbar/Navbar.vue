@@ -7,18 +7,9 @@ const Component = {
   components: { NavbarBurger },
   props: {
     type: [String, Object],
-    transparent: {
-      type: Boolean,
-      default: false
-    },
-    fixedTop: {
-      type: Boolean,
-      default: false
-    },
-    fixedBottom: {
-      type: Boolean,
-      default: false
-    },
+    transparent: Boolean,
+    fixedTop: Boolean,
+    fixedBottom: Boolean,
     wrapperClass: {
       type: String
     },

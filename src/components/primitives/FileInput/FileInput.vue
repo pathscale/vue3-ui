@@ -3,22 +3,10 @@ const FileInput = {
   name: "VFile",
   inheritAttrs: false,
   props: {
-    hasName: {
-      type: Boolean,
-      default: false
-    },
-    fullwidth: {
-      type: Boolean,
-      default: false
-    },
-    boxed: {
-      type: Boolean,
-      default: false
-    },
-    size: {
-      type: String,
-      default: null
-    },
+    hasName: Boolean,
+    fullwidth: Boolean,
+    boxed: Boolean,
+    size: String,
     color: {
       type: String,
       default: "is-primary"

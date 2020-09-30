@@ -12,30 +12,12 @@ const Switch = {
       type: [String, Number, Boolean, Function, Object, Array, Date],
       default: null,
     },
-    disabled: {
-      type: Boolean,
-      default: null,
-    },
-    type: {
-      type: String,
-      default: null,
-    },
-    passiveType: {
-      type: String,
-      default: null,
-    },
-    name: {
-      type: String,
-      default: null,
-    },
-    required: {
-      type: Boolean,
-      default: null,
-    },
-    size: {
-      type: String,
-      default: null,
-    },
+    disabled: Boolean,
+    type: String,
+    passiveType: String,
+    name: String,
+    required: Boolean,
+    size: String,
     trueValue: {
       type: [String, Number, Boolean, Function, Object, Array, Date],
       default: true
@@ -48,10 +30,7 @@ const Switch = {
       type: Boolean,
       default: true
     },
-    outlined: {
-      type: Boolean,
-      default: false
-    }
+    outlined: Boolean
   },
   emits: ['update:modelValue'],
   setup(props, { emit }) {

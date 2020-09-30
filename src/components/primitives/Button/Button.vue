@@ -9,50 +9,17 @@ const Button ={
       type: String,
       default: 'button'
     },
-    size: {
-      type: String,
-      default: null
-    },
-    label: {
-      type: String,
-      default: null,
-    },
-    rounded: {
-      type: Boolean,
-      default: null
-    },
-    loading: {
-      type: Boolean,
-      default: false,
-    },
-    outlined: {
-      type: Boolean,
-      default: false,
-    },
-    expanded: {
-      type: Boolean,
-      default: false,
-    },
-    inverted: {
-      type: Boolean,
-      default: false,
-    },
-    focused: {
-      type: Boolean,
-      default: false,
-    },
-    active: {
-      type: Boolean,
-      default: false,
-    },
-    hovered: {
-      type: Boolean,
-      default: false,
-    },
-    selected: {
-      type: Boolean,
-      default: false,
-    },
+    size: String,
+    label: String,
+    rounded: Boolean,
+    loading: Boolean,
+    outlined: Boolean,
+    expanded: Boolean,
+    inverted: Boolean,
+    focused: Boolean,
+    active: Boolean,
+    hovered: Boolean,
+    selected: Boolean,
     nativeType: {
       type: String,
       default: 'button'
@@ -61,9 +28,7 @@ const Button ={
       type: String,
       default: 'button'
     },
-    light: {
-      type: Boolean
-    }
+    light: Boolean
   },
   setup(props, { attrs }) {
   /*

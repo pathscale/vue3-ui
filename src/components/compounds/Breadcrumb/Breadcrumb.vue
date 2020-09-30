@@ -3,18 +3,9 @@
 const Component = {
   name: 'VBreadcrumb',
   props: {
-    alignment: {
-      type: String,
-      default: null
-    },
-    separator: {
-      type: String,
-      default: null
-    },
-    size: {
-      type: String,
-      default: null
-    },
+    alignment: String,
+    separator: String,
+    size: String,
   }
 }
 

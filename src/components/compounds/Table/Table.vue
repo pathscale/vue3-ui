@@ -11,18 +11,9 @@ const Table = {
       type: Object,
       default: {},
     },
-    searchable: {
-      type: Boolean,
-      default: false,
-    },
-    checkable: {
-      type: Boolean,
-      default: false,
-    },
-    pagination: {
-      type: Boolean,
-      default: false,
-    },
+    searchable: Boolean,
+    checkable: Boolean,
+    pagination: Boolean,
     rowsPerPage: {
       type: Number,
       default: 5,
@@ -31,38 +22,14 @@ const Table = {
       type: Array,
       default: [],
     },
-    isBordered: {
-      type: Boolean,
-      default: false,
-    },
-    isStriped: {
-      type: Boolean,
-      default: false,
-    },
-    isNarrow: {
-      type: Boolean,
-      default: false,
-    },
-    isHoverable: {
-      type: Boolean,
-      default: false,
-    },
-    isFullwidth: {
-      type: Boolean,
-      default: false,
-    },
-    hasResetBtn: {
-      type: Boolean,
-      default: false,
-    },
-    sortable: {
-      type: Boolean,
-      default: false,
-    },
-    expandable: {
-      type: Boolean,
-      default: false
-    }
+    isBordered: Boolean,
+    isStriped: Boolean,
+    isNarrow: Boolean,
+    isHoverable: Boolean,
+    isFullwidth: Boolean,
+    hasResetBtn: Boolean,
+    sortable: Boolean,
+    expandable: Boolean
   },
 
   setup(props, { emit }) {
@@ -163,8 +130,7 @@ export default Table
           @click="props.data.resetFilters()"
           v-if="props.hasResetBtn"
           type="is-light has-text-black"
-          class="mt-2 ml-2"
-        >
+          class="mt-2 ml-2">
           &#x21bb;
         </v-button>
       </slot>
@@ -177,8 +143,7 @@ export default Table
           <th
             v-for="column in props.data.getColumns()"
             :key="column"
-            @click="props.sortable ? sortColumn(column.name) : null"
-          >
+            @click="props.sortable ? sortColumn(column.name) : null">
             {{ column.caption }}
             <span v-if="props.sortable">
               {{ columnProperties[column.name].ascendant ? '&darr;' : '	&uarr;' }}
@@ -197,27 +162,26 @@ export default Table
               @input="props.data.searchColumn(column.name, search[column.name])"
               color="is-dark"
               placeholder="Search"
-              class="input has-text-black is-small is-black"
-            />
+              class="input has-text-black is-small is-black" />
           </td>
         </tr>
         <template v-for="row in props.data.rows" :key="row.id">
           <tr>
-          <td v-if="checkable">
-            <v-checkbox @change="props.data.toggleCheck($event, row)" />
-          </td>
-          <td v-if="expandable">
-            <a><v-tag @click="toggleExpanded(row.id)" type="is-primary">{{ expanded.has(row.id) ? '&uarr;' : '&darr;' }}</v-tag></a>
-          </td>
-          <td v-for="column in props.data.getColumns()" :key="column.name">
-            <slot :name="column.name" :row="row">
-              {{ row[column.name] }}
-            </slot>
-          </td>
+            <td v-if="checkable">
+              <v-checkbox @change="props.data.toggleCheck($event, row)" />
+            </td>
+            <td v-if="expandable">
+              <a><v-tag @click="toggleExpanded(row.id)" type="is-primary">{{ expanded.has(row.id) ? '&uarr;' : '&darr;' }}</v-tag></a>
+            </td>
+            <td v-for="column in props.data.getColumns()" :key="column.name">
+              <slot :name="column.name" :row="row">
+                {{ row[column.name] }}
+              </slot>
+            </td>
           </tr>
-        <div class="expansion" v-if="expanded.has(row.id)">
-          <slot name="expanded" :row="row" />
-        </div>
+          <div class="expansion" v-if="expanded.has(row.id)">
+            <slot name="expanded" :row="row" />
+          </div>
         </template>
       </tbody>
     </table>
@@ -225,11 +189,12 @@ export default Table
     <div
       class="pagination-wrapper"
       v-if="pagination"
-      style="display: flex; justify-content: flex-end"
-    >
+      style="display: flex; justify-content: flex-end">
       <v-select v-model="rowsPerPage" color="is-dark" class="has-text-dark">
         >
-        <option v-for="value in rowsPerPageOptions" :key="value" :value="value">{{ value }}</option>
+        <option v-for="value in rowsPerPageOptions" :key="value" :value="value">
+          {{ value }}
+        </option>
       </v-select>
       <!-- using :disabled wont work, so instead the click action is conditioned and the buttons are always clickable -->
       <a class="pagination-previous" @click="currentPage > 0 && (currentPage -= 1)">Previous</a>
@@ -238,9 +203,7 @@ export default Table
         @click="
           currentPage + 1 < Math.ceil(props.data.originalRows.length / rowsPerPage) &&
             (currentPage += 1)
-        "
-        >Next page</a
-      >
+        ">Next page</a>
     </div>
 
     <div class="tableFooter">

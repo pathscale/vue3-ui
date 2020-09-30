@@ -7,10 +7,7 @@ const Checkbox = {
   name: 'VCheckbox',
   props: {
     ...CheckRadioMixin.props,
-    indeterminate: {
-      type: Boolean,
-      default: false,
-    },
+    indeterminate: Boolean,
     trueValue: {
       type: [String, Number, Boolean, Function, Object, Array],
       default: true

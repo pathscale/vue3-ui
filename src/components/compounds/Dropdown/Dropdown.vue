@@ -6,7 +6,6 @@ const Component = {
     props: {
       value: {
         type: [String, Number, Boolean, Object, Array, Function],
-        default: null
       },
       disabled: Boolean,
       hoverable: Boolean,
@@ -18,10 +17,7 @@ const Component = {
         type: Boolean,
         default: true
       },
-      ariaRole: {
-        type: String,
-        default: null
-      },
+      ariaRole: String,
       closeOnClick: { 
         type: Boolean,
         default: true

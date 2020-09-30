@@ -10,9 +10,9 @@ const Input = {
     size: { type: String, default: '' },
     rounded: { type: Boolean, default: false },
     loading: { type: Boolean, default: false },
-    leftIcon: { type: String, default: null },
-    rightIcon: { type: String, default: null },
-    errorMsg: { type: String, default: null }
+    leftIcon: String,
+    rightIcon: String,
+    errorMsg: String
   },
   setup(props, { emit, attrs }) {
     const value = ref(attrs.modelValue)

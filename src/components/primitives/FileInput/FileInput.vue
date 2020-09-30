@@ -11,10 +11,7 @@ const FileInput = {
       type: String,
       default: "is-primary"
     },
-    alignment: {
-      type: String,
-      default: null
-    }
+    alignment: String
   },
 }
 export default FileInput

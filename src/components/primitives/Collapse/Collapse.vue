@@ -12,10 +12,7 @@ const Collapse = {
       type: String,
       default: 'fade'
     },
-    ariaId: {
-      type: String,
-      default: ''
-    },
+    ariaId: String,
     position: {
       type: String,
       default: 'is-top'

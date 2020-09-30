@@ -6,11 +6,9 @@ const Switch = {
   props: {
     modelValue: {
       type: [String, Number, Boolean, Function, Object, Array, Date],
-      default: null,
     },
     nativeValue: {
       type: [String, Number, Boolean, Function, Object, Array, Date],
-      default: null,
     },
     disabled: Boolean,
     type: String,

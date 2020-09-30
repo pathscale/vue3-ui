@@ -5,8 +5,8 @@ const Tag = {
   props: {
     attached: Boolean,
     closable: Boolean,
-    type: { type: String, default: null },
-    size: { type: String, default: null },
+    type: String,
+    size: String,
     rounded: Boolean,
     disabled: Boolean,
     ellipsis: Boolean,
@@ -14,9 +14,9 @@ const Tag = {
       type: Boolean,
       default: true
     },
-    ariaCloseLabel: { type: String, default: null },
-    closeType: { type: String, default: null },
-    closeIcon: { type: String, default: null },
+    ariaCloseLabel: String,
+    closeType: String,
+    closeIcon: String,
   },
   setup(props, { emit }) {
     const close = function (event) {

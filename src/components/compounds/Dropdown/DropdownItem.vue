@@ -6,7 +6,6 @@ const Component = {
   props: {
     value: {
 			type: [String, Number, Boolean, Object, Array, Function],
-			default: null
     },
     separator: Boolean,
     disabled: Boolean,

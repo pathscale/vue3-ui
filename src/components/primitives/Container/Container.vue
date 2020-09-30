@@ -1,19 +1,14 @@
 <script>
-import { defineComponent } from 'vue'
 
-export default defineComponent({
+const Component = {
   name: 'VContainer',
   props: {
-    type: {
-      type: String,
-      default: ''
-    },
-    bg: {
-      type: Object,
-      default: null,
+    type: String,
+    bg: Object,
+     
   }
 }
-})
+export default Component
 </script>
 
 <template>

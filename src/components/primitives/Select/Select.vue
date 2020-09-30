@@ -9,13 +9,13 @@ const Select = {
       type: [String, Number, Boolean, Object, Array, Function],
       default: null
     },
-    placeholder: { type: String, default: null },
+    placeholder: String,
     multiple: Boolean,
     nativeSize: {
       type: [String, Number],
       default: null
     },
-    size: { type: String, default: null },
+    size: String,
     expanded: Boolean,
     loading: Boolean,
     rounded: Boolean,

@@ -18,7 +18,6 @@ const Accordion = {
     isLink: Boolean,
     to: {
       type: Object,
-      default: null
     },
     isActive: Boolean,
     headerIsTrigger: Boolean

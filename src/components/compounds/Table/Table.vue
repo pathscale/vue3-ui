@@ -160,7 +160,7 @@ export default Table
       <tbody>
         <tr v-if="props.searchable">
           <td v-if="checkable" />
-          <td v-for="column in props.data.getColumns()" :key="column.name">
+          <td v-for="column in props.data.getColumns()" :key="column.name" :class="column.style">
             <input
               name="search"
               type="text"

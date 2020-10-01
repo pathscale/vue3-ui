@@ -8,7 +8,6 @@ export { default as VCardFooterItem } from "./primitives/Card/CardFooterItem.vue
 export { default as VCardHeader } from "./primitives/Card/CardHeader.vue";
 export { default as VCardImage } from "./primitives/Card/CardImage.vue";
 export { default as VCheckbox } from "./primitives/Checkbox/Checkbox.vue";
-export { default as VCollapse } from "./primitives/Collapse/Collapse.vue";
 export { default as VColumn } from "./primitives/Columns/Column.vue";
 export { default as VColumns } from "./primitives/Columns/Columns.vue";
 export { default as VContainer } from "./primitives/Container/Container.vue";

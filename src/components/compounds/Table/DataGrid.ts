@@ -1,3 +1,5 @@
+import { type } from "os";
+
 class DataGrid {
   columns: object;
   rows: object[];
@@ -25,9 +27,19 @@ class DataGrid {
     }
   }
 
-  addRow(content: object) {
-    this.rows.push(content)
-    this.originalRows.push(content)
+  addRow(content: object, index: number) {
+    if(typeof index !== 'undefined') {
+      this.rows.splice(index, 0, content)
+      this.originalRows.splice(index, 0, content)
+    } else {
+      this.rows.push(content)
+      this.originalRows.push(content)
+    }
+  }
+
+  deleteRow(index) {
+    this.rows.splice(index, 1)
+    this.originalRows.splice(index, 1)
   }
 
   sortByColumn(column: string, ascendant: boolean) {

@@ -10,9 +10,7 @@ const Component = {
     transparent: Boolean,
     fixedTop: Boolean,
     fixedBottom: Boolean,
-    wrapperClass: {
-      type: String
-    },
+    wrapperClass: String,
     closeOnClick: { // TODO 
       type: Boolean,
       default: true

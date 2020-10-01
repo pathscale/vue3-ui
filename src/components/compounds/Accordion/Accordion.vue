@@ -8,17 +8,10 @@ const Accordion = {
     triggerRight: Boolean,
     triggerLeft: Boolean,
     expanded: Boolean,
-    background: {
-      type: String,
-    },
-    color: {
-      type: String
-    },
+    background: String,
+    color: String,
     hover: Boolean,
     isLink: Boolean,
-    to: {
-      type: Object,
-    },
     isActive: Boolean,
     headerIsTrigger: Boolean
   },

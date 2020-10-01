@@ -10,9 +10,7 @@ const Component = {
       disabled: Boolean,
       hoverable: Boolean,
       inline: Boolean,
-      position: {
-        type: String,
-      },
+      position: String,
       mobileModal: {
         type: Boolean,
         default: true

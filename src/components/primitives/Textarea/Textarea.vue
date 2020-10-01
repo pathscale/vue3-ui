@@ -6,14 +6,14 @@
     inheritAttrs: false,
     emits:['update:modelValue'],
     props: {
-      color: { type: String, default: '' },
-      hasCounter: { type: Boolean, default: false },
-      loading: { type: Boolean, default: false },
-      maxlength: { type: String, default: '' },
-      modelValue: { type: String, default: '' },
-      size: { type: String, default: '' },
-      hovered: { type: Boolean,vdefault: false },
-      focused: { type: Boolean,vdefault: false },
+      color: String,
+      hasCounter: Boolean,
+      loading: Boolean,
+      maxlength: String,
+      modelValue: String,
+      size: String,
+      hovered: Boolean,
+      focused: Boolean,
     },
     setup(props, { emit }) {
       const value = ref(props.modelValue);

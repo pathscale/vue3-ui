@@ -16,10 +16,7 @@ const Component = {
     },
     paddingless: Boolean,
     hasLink: Boolean,
-    ariaRole: {
-			type: String,
-			default: ''
-    }
+    ariaRole: String
   },
   setup(props, { emit }) {
     const anchorClasses = computed(() => {

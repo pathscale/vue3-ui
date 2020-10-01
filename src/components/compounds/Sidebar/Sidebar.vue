@@ -15,9 +15,7 @@ const Sidebar = {
     fullheight: Boolean,
     fullwidth: Boolean,
     right: Boolean,
-    mobile: {
-      type: String
-    },
+    mobile: String,
     reduce: Boolean,
     expandOnHover: Boolean,
     expandOnHoverFixed: Boolean, // TODO

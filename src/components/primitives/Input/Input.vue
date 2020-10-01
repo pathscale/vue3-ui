@@ -6,10 +6,10 @@ const Input = {
   inheritAttrs: false,
   emits: ['update:modelValue'],
   props: {
-    color: { type: String, default: '' },
-    size: { type: String, default: '' },
-    rounded: { type: Boolean, default: false },
-    loading: { type: Boolean, default: false },
+    color: String,
+    size: String,
+    rounded: Boolean,
+    loading: Boolean,
     leftIcon: String,
     rightIcon: String,
     errorMsg: String

@@ -148,6 +148,7 @@ export default Table
           <th
             v-for="column in props.data.getColumns()"
             :key="column"
+            :class="column.style"
             @click="props.sortable ? sortColumn(column.name) : null">
             {{ column.caption }}
             <span v-if="props.sortable">
@@ -178,7 +179,7 @@ export default Table
             <td v-if="expandable">
               <a><v-tag @click="toggleExpanded(row.id)" type="is-primary">{{ expanded.has(row.id) ? '&uarr;' : '&darr;' }}</v-tag></a>
             </td>
-            <td v-for="column in props.data.getColumns()" :key="column.name">
+            <td v-for="column in props.data.getColumns()" :key="column.name" :class="column.style">
               <slot :name="column.name" :row="row">
                 {{ row[column.name] }}
               </slot>

@@ -15,11 +15,12 @@ class DataGrid {
     this.currentPage = 0;
   }
 
-  addColumn(name: string, caption: string, dataType: string) {
+  addColumn(name: string, caption: string, dataType: string, style: string) {
     this.columns[name] = {
       name,
       caption,
       dataType,
+      style,
       show: true
     }
   }

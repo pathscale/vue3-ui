@@ -104,6 +104,10 @@ const Table = {
       ]
     })
 
+    const countColumns = computed(() => {
+      return Object.keys(data.value.getColumns()).length + (props.checkable ? 1 : 0) + (props.expandable ? 1 : 0)
+    })
+
     return {
       props,
       columnProperties,
@@ -115,7 +119,8 @@ const Table = {
       currentPage,
       rootClasses,
       expanded,
-      toggleExpanded
+      toggleExpanded,
+      countColumns
     }
   },
 }
@@ -179,9 +184,11 @@ export default Table
               </slot>
             </td>
           </tr>
-          <div class="expansion" v-if="expanded.has(row.id)">
-            <slot name="expanded" :row="row" />
-          </div>
+          <tr class="expansion" v-if="expanded.has(row.id)">
+            <td :colspan="countColumns">
+              <slot name="expanded" :row="row" />
+            </td>
+          </tr>
         </template>
       </tbody>
     </table>

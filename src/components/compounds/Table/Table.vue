@@ -73,13 +73,6 @@ const Table = {
       props.data.switchPage()
     }
 
-    // if(props.checkable) {
-    //   let iterator = 0
-    //   props.data.rows.forEach(row => {
-    //     checkedBoxes[iterator++] = 0
-    //   })
-    // }
-
     const sortColumn = colName => {
       props.data.sortByColumn(colName, columnProperties.value[colName].ascendant)
       columnProperties.value[colName].ascendant = !columnProperties.value[colName].ascendant
@@ -113,6 +106,16 @@ const Table = {
       )
     })
 
+    const handleBackPage = () => {
+      if (currentPage > 0) 
+       currentPage -= 1
+    }
+
+    const handleNextPage = () => {
+      if (currentPage + 1 < Math.ceil(data.originalRows.length / rowsPerPage))
+        currentPage += 1
+    }
+
     return {
       props,
       columnProperties,
@@ -120,12 +123,13 @@ const Table = {
       search,
       sortColumn,
       rowsPerPage,
-      // checkedBoxes,
       currentPage,
       rootClasses,
       expanded,
       toggleExpanded,
       countColumns,
+      handleBackPage,
+      handleNextPage
     }
   },
 }
@@ -226,12 +230,10 @@ export default Table
         </option>
       </v-select>
       <!-- using :disabled wont work, so instead the click action is conditioned and the buttons are always clickable -->
-      <a class="pagination-previous" @click="currentPage > 0 && (currentPage -= 1)">Previous</a>
+      <a class="pagination-previous" @click="handleBackPage">Previous</a>
       <a
         class="pagination-next"
-        @click="
-          currentPage + 1 < Math.ceil(data.originalRows.length / rowsPerPage) && (currentPage += 1)
-        "
+        @click="handleNextPage"
         >Next page</a
       >
     </div>

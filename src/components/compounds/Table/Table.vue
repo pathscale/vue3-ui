@@ -29,7 +29,8 @@ const Table = {
     isFullwidth: Boolean,
     hasResetBtn: Boolean,
     sortable: Boolean,
-    expandable: Boolean
+    expandable: Boolean,
+    draggable: Boolean,
   },
 
   setup(props, { emit }) {
@@ -87,7 +88,7 @@ const Table = {
     const toggleExpanded = rowId => {
       if (expanded.value.has(rowId)) {
         expanded.value.delete(rowId)
-        return;
+        return
       }
       expanded.value.add(rowId)
     }
@@ -105,7 +106,11 @@ const Table = {
     })
 
     const countColumns = computed(() => {
-      return Object.keys(data.value.getColumns()).length + (props.checkable ? 1 : 0) + (props.expandable ? 1 : 0)
+      return (
+        Object.keys(data.value.getColumns()).length +
+        (props.checkable ? 1 : 0) +
+        (props.expandable ? 1 : 0)
+      )
     })
 
     return {
@@ -120,7 +125,7 @@ const Table = {
       rootClasses,
       expanded,
       toggleExpanded,
-      countColumns
+      countColumns,
     }
   },
 }
@@ -132,10 +137,11 @@ export default Table
     <div class="tableHeader">
       <slot name="header">
         <v-button
-          @click="props.data.resetFilters()"
-          v-if="props.hasResetBtn"
+          @click="data.resetFilters()"
+          v-if="hasResetBtn"
           type="is-light has-text-black"
-          class="mt-2 ml-2">
+          class="mt-2 ml-2"
+        >
           &#x21bb;
         </v-button>
       </slot>
@@ -146,40 +152,54 @@ export default Table
           <td v-if="checkable" />
           <td v-if="expandable" />
           <th
-            v-for="column in props.data.getColumns()"
+            v-for="column in data.getColumns()"
             :key="column"
             :class="column.style"
-            @click="props.sortable ? sortColumn(column.name) : null">
+            @click="sortable ? sortColumn(column.name) : null"
+          >
             {{ column.caption }}
-            <span v-if="props.sortable">
+            <span v-if="sortable">
               {{ columnProperties[column.name].ascendant ? '&darr;' : '	&uarr;' }}
             </span>
           </th>
         </tr>
       </thead>
       <tbody>
-        <tr v-if="props.searchable">
+        <tr v-if="searchable">
           <td v-if="checkable" />
-          <td v-for="column in props.data.getColumns()" :key="column.name" :class="column.style">
+          <td v-for="column in data.getColumns()" :key="column.name" :class="column.style">
             <input
               name="search"
               type="text"
               v-model="search[column.name]"
-              @input="props.data.searchColumn(column.name, search[column.name])"
+              @input="data.searchColumn(column.name, search[column.name])"
               color="is-dark"
               placeholder="Search"
-              class="input has-text-black is-small is-black" />
+              class="input has-text-black is-small is-black"
+            />
           </td>
         </tr>
-        <template v-for="row in props.data.rows" :key="row.id">
-          <tr>
+        <template v-for="(row, idx) in data.rows" :key="idx">
+          <tr
+            :draggable="draggable"
+            @dragstart="data.onDragStart($event, row, idx)"
+            @dragend="data.onDragEnd($event, row, idx)"
+            @drop="data.onDrop($event, row, idx)"
+            @dragover="data.onDragOver($event, row, idx)"
+            @dragleave="data.onDragLeave($event, row, idx)"
+            :class="{ 'has-background-primary': row.selected, 'has-text-white': row.selected }"
+          >
             <td v-if="checkable">
-              <v-checkbox @change="props.data.toggleCheck($event, row)" />
+              <v-checkbox @change="data.toggleCheck($event, row)" />
             </td>
             <td v-if="expandable">
-              <a><v-tag @click="toggleExpanded(row.id)" type="is-primary">{{ expanded.has(row.id) ? '&uarr;' : '&darr;' }}</v-tag></a>
+              <a
+                ><v-tag @click="toggleExpanded(row.id)" type="is-primary">{{
+                  expanded.has(row.id) ? '&uarr;' : '&darr;'
+                }}</v-tag></a
+              >
             </td>
-            <td v-for="column in props.data.getColumns()" :key="column.name" :class="column.style">
+            <td v-for="column in data.getColumns()" :key="column.name" :class="column.style">
               <slot :name="column.name" :row="row">
                 {{ row[column.name] }}
               </slot>
@@ -197,7 +217,8 @@ export default Table
     <div
       class="pagination-wrapper"
       v-if="pagination"
-      style="display: flex; justify-content: flex-end">
+      style="display: flex; justify-content: flex-end"
+    >
       <v-select v-model="rowsPerPage" color="is-dark" class="has-text-dark">
         >
         <option v-for="value in rowsPerPageOptions" :key="value" :value="value">
@@ -209,9 +230,10 @@ export default Table
       <a
         class="pagination-next"
         @click="
-          currentPage + 1 < Math.ceil(props.data.originalRows.length / rowsPerPage) &&
-            (currentPage += 1)
-        ">Next page</a>
+          currentPage + 1 < Math.ceil(data.originalRows.length / rowsPerPage) && (currentPage += 1)
+        "
+        >Next page</a
+      >
     </div>
 
     <div class="tableFooter">

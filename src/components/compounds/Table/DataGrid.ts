@@ -1,12 +1,15 @@
 import { type } from "os";
+import { threadId } from "worker_threads";
 
 class DataGrid {
   columns: object;
-  rows: object[];
+  rows: any[];
   originalRows: object[];
   checkedRows: {id: any}[];
   rowsPerPage: number;
   currentPage: number;
+  draggingRow: {id: any};
+  draggingRowIdx: number;
 
   constructor() {
     this.columns = {};
@@ -15,6 +18,8 @@ class DataGrid {
     this.checkedRows = [];
     this.rowsPerPage = 0;
     this.currentPage = 0;
+    this.draggingRow = null;
+    this.draggingRowIdx = null;
   }
 
   addColumn(name: string, caption: string, dataType: string, style: string) {
@@ -90,6 +95,37 @@ class DataGrid {
       newColumns[key] = this.columns[key]
       return newColumns
     }, {})
+  }
+
+  /**
+   * Row dragging methods
+  */
+  onDragStart(event, row, idx) {
+    this.draggingRow = row;
+    this.draggingRowIdx = idx;
+  }
+
+  onDragEnd(event, row, idx) {
+    // do nothing
+  }
+
+  // callback called when user drops a row
+  onDrop(event, row, idx) {
+    const chunk = this.rows.splice(this.draggingRowIdx, 1)
+    this.rows.splice(idx, 0, chunk[0])
+
+    // remove selected from all rows
+    this.rows.forEach(row => row.selected = false)
+  }
+
+  // the event must be prevented for the onDrop method to get called
+  onDragOver(event, row, idx) {
+    this.rows[idx].selected = true
+    event.preventDefault()
+  }
+
+  onDragLeave(event, row, idx) {
+    this.rows[idx].selected = false
   }
 }
 

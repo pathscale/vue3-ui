@@ -10,7 +10,10 @@ const Switch = {
     nativeValue: {
       type: [String, Number, Boolean, Function, Object, Array, Date],
     },
-    disabled: Boolean,
+    disabled: {
+      type: Boolean,
+      default: null
+    },
     type: String,
     passiveType: String,
     name: String,

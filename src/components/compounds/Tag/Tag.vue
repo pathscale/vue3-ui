@@ -8,7 +8,10 @@ const Tag = {
     type: String,
     size: String,
     rounded: Boolean,
-    disabled: Boolean,
+    disabled: {
+      type: Boolean,
+      default: null
+    },
     ellipsis: Boolean,
     tabstop: {
       type: Boolean,

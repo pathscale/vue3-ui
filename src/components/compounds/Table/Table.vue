@@ -30,26 +30,18 @@ const Table = {
     hasResetBtn: Boolean,
     sortable: Boolean,
     expandable: Boolean,
-    draggable: Boolean,
+    draggableRows: Boolean,
+    draggableColumns: Boolean,
     editable: Boolean
   },
 
   setup(props, { emit }) {
-    // general state
+    // datagrid instance reference
     const data = ref(props.data)
-    const columnProperties = ref(props.data.columns)
-
-    // pagination state
     const pagination = ref(props.pagination)
     const rowsPerPage = ref(props.rowsPerPage)
     const currentPage = ref(0)
-
-    for (const colName in props.data.columns) {
-      columnProperties.value[colName].ascendant = true
-    }
-
     const search = reactive({})
-
     const expanded = ref(new Set())
 
     // whenever pagination props changes, update the class state accordingly
@@ -74,9 +66,9 @@ const Table = {
       props.data.switchPage()
     }
 
-    const sortColumn = colName => {
-      props.data.sortByColumn(colName, columnProperties.value[colName].ascendant)
-      columnProperties.value[colName].ascendant = !columnProperties.value[colName].ascendant
+    const sortColumn = column => {
+      props.data.sortByColumn(column.name, column.ascendant)
+      column.ascendant = !column.ascendant
     }
 
     const toggleExpanded = rowId => {
@@ -101,7 +93,7 @@ const Table = {
 
     const countColumns = computed(() => {
       return (
-        Object.keys(data.value.getColumns()).length +
+        data.value.getColumns().length +
         (props.checkable ? 1 : 0) +
         (props.expandable ? 1 : 0)
       )
@@ -119,7 +111,6 @@ const Table = {
 
     return {
       props,
-      columnProperties,
       data,
       search,
       sortColumn,
@@ -157,14 +148,20 @@ export default Table
           <td v-if="checkable" />
           <td v-if="expandable" />
           <th
-            v-for="column in data.getColumns()"
-            :key="column"
-            :class="column.style"
-            @click="sortable ? sortColumn(column.name) : null"
+            v-for="(column, idx) in data.getColumns()"
+            :key="idx"
+            :class="{ ...column.style, 'has-text-primary': column.selected }"
+            @click="sortable ? sortColumn(column) : null"
+            :draggable="draggableColumns"
+            @dragstart="data.onDragStartColumn($event, row, idx)"
+            @dragend="data.onDragEndColumn($event, column, idx)"
+            @drop="data.onDropColumn($event, column, idx)"
+            @dragover="data.onDragOverColumn($event, column, idx)"
+            @dragleave="data.onDragLeaveColumn($event, column, idx)"
           >
             {{ column.caption }}
             <span v-if="sortable">
-              {{ columnProperties[column.name].ascendant ? '&darr;' : '	&uarr;' }}
+              {{ column.ascendant ? '&darr;' : '	&uarr;' }}
             </span>
           </th>
         </tr>
@@ -186,12 +183,12 @@ export default Table
         </tr>
         <template v-for="(row, idx) in data.rows" :key="idx">
           <tr
-            :draggable="draggable"
-            @dragstart="data.onDragStart($event, row, idx)"
-            @dragend="data.onDragEnd($event, row, idx)"
-            @drop="data.onDrop($event, row, idx)"
-            @dragover="data.onDragOver($event, row, idx)"
-            @dragleave="data.onDragLeave($event, row, idx)"
+            :draggable="draggableRows"
+            @dragstart="data.onDragStartRow($event, row, idx)"
+            @dragend="data.onDragEndRow($event, row, idx)"
+            @drop="data.onDropRow($event, row, idx)"
+            @dragover="data.onDragOverRow($event, row, idx)"
+            @dragleave="data.onDragLeaveRow($event, row, idx)"
             :class="{ 'has-background-primary': row.selected, 'has-text-white': row.selected }"
           >
             <td v-if="checkable">

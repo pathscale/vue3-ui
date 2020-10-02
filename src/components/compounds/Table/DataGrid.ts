@@ -2,7 +2,7 @@ import { type } from "os";
 import { threadId } from "worker_threads";
 
 class DataGrid {
-  columns: object;
+  columns: any[];
   rows: any[];
   originalRows: object[];
   checkedRows: {id: any}[];
@@ -10,9 +10,11 @@ class DataGrid {
   currentPage: number;
   draggingRow: {id: any};
   draggingRowIdx: number;
+  draggingColumn: {id: any};
+  draggingColumnIdx: number;
 
   constructor() {
-    this.columns = {};
+    this.columns = [];
     this.rows = [];
     this.originalRows = [];
     this.checkedRows = [];
@@ -20,16 +22,19 @@ class DataGrid {
     this.currentPage = 0;
     this.draggingRow = null;
     this.draggingRowIdx = null;
+    this.draggingColumn = null;
+    this.draggingColumnIdx = null;
   }
 
   addColumn(name: string, caption: string, dataType: string, style: string) {
-    this.columns[name] = {
+    this.columns.push({
       name,
       caption,
       dataType,
       style,
-      show: true
-    }
+      show: true,
+      ascendant: true
+    })
   }
 
   addRow(content: object, index: number) {
@@ -80,41 +85,29 @@ class DataGrid {
     this.rows = this.originalRows.slice(this.currentPage*this.rowsPerPage, this.currentPage*this.rowsPerPage + this.rowsPerPage)
   }
 
-  // hide / show columns
-  showColumn(name: string) {
-    this.columns[name].show = true
-  }
-
-  hideColumn(name: string) {
-    this.columns[name].show= false
-  }
-
-  toggleColumn(column) {
-    column.show ? this.hideColumn(column.name) : this.showColumn(column.name)
+  toggleColumn({ name } : { name: string }) {
+    this.columns = this.columns.map(column => column.name === name ? ({ ...column, show: !column.show }) : column)
   }
 
   // construct new columns object with only the subobjects that have a key show as true
   getColumns() {
-    return Object.keys(this.columns).filter(column => this.columns[column].show).reduce((newColumns, key) => {
-      newColumns[key] = this.columns[key]
-      return newColumns
-    }, {})
+    return this.columns.filter(column => column.show)
   }
 
   /**
    * Row dragging methods
   */
-  onDragStart(event, row, idx) {
+  onDragStartRow(event, row, idx) {
     this.draggingRow = row;
     this.draggingRowIdx = idx;
   }
 
-  onDragEnd(event, row, idx) {
+  onDragEndRow(event, row, idx) {
     // do nothing
   }
 
   // callback called when user drops a row
-  onDrop(event, row, idx) {
+  onDropRow(event, row, idx) {
     const chunk = this.rows.splice(this.draggingRowIdx, 1)
     this.rows.splice(idx, 0, chunk[0])
 
@@ -123,13 +116,44 @@ class DataGrid {
   }
 
   // the event must be prevented for the onDrop method to get called
-  onDragOver(event, row, idx) {
+  onDragOverRow(event, row, idx) {
     this.rows[idx].selected = true
     event.preventDefault()
   }
 
-  onDragLeave(event, row, idx) {
+  onDragLeaveRow(event, row, idx) {
     this.rows[idx].selected = false
+  }
+
+  /**
+   * Column dragging methods
+   */
+  onDragStartColumn(event, column, idx) {
+    this.draggingColumn = column;
+    this.draggingColumnIdx = idx;
+  }
+
+  onDragEndColumn(event, row, idx) {
+    // do nothing
+  }
+
+  // callback called when user drops a column
+  onDropColumn(event, column, idx) {
+    const chunk = this.columns.splice(this.draggingColumnIdx, 1)
+    this.columns.splice(idx, 0, chunk[0])
+
+    // remove selected from all columns
+    this.columns.forEach(column => column.selected = false)
+  }
+
+  // the event must be prevented for the onDrop method to get called
+  onDragOverColumn(event, column, idx) {
+    this.columns[idx].selected = true
+    event.preventDefault()
+  }
+
+  onDragLeaveColumn(event, column, idx) {
+    this.columns[idx].selected = false
   }
 }
 

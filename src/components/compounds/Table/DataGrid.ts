@@ -155,6 +155,14 @@ class DataGrid {
   onDragLeaveColumn(event, column, idx) {
     this.columns[idx].selected = false
   }
+
+  // returns an object that maps column names to column instances
+  getColumnsObject() {
+    return this.columns.reduce((obj, column) => {
+      obj[column.name] = column
+      return obj;
+    } , {})
+  }
 }
 
 export default DataGrid

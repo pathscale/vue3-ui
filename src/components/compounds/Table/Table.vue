@@ -107,13 +107,13 @@ const Table = {
     })
 
     const handleBackPage = () => {
-      if (currentPage > 0) 
-       currentPage -= 1
+      if (currentPage.value > 0) 
+       currentPage.value -= 1
     }
 
     const handleNextPage = () => {
-      if (currentPage + 1 < Math.ceil(data.originalRows.length / rowsPerPage))
-        currentPage += 1
+      if (currentPage.value + 1 < Math.ceil(data.value.originalRows.length / rowsPerPage.value))
+        currentPage.value += 1
     }
 
     return {

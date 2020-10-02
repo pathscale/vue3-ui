@@ -47,6 +47,10 @@ class DataGrid {
     this.originalRows.splice(index, 1)
   }
 
+  editCell(row, column, newValue) {
+    row[column.name] = newValue
+  }
+
   sortByColumn(column: string, ascendant: boolean) {
     this.rows.sort((a, b) => {
       if(a[column] < b[column]) { return ascendant ? -1 : 1 };

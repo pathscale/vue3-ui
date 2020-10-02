@@ -31,6 +31,7 @@ const Table = {
     sortable: Boolean,
     expandable: Boolean,
     draggable: Boolean,
+    editable: Boolean
   },
 
   setup(props, { emit }) {
@@ -203,7 +204,11 @@ export default Table
                 }}</v-tag></a
               >
             </td>
-            <td v-for="column in data.getColumns()" :key="column.name" :class="column.style">
+            <td
+              v-for="column in data.getColumns()"
+              :key="column.name" :class="column.style"
+              :contenteditable='props.editable'
+              v-on:blur="data.editCell(row, column, $event.target.textContent)">
               <slot :name="column.name" :row="row">
                 {{ row[column.name] }}
               </slot>

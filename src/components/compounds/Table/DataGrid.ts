@@ -1,6 +1,3 @@
-import { type } from "os";
-import { threadId } from "worker_threads";
-
 class DataGrid {
   columns: any[];
   rows: any[];
@@ -80,7 +77,6 @@ class DataGrid {
       : this.checkedRows.filter(current_row => current_row.id !== row.id)
   }
 
-  // pagination
   switchPage() {
     this.rows = this.originalRows.slice(this.currentPage*this.rowsPerPage, this.currentPage*this.rowsPerPage + this.rowsPerPage)
   }
@@ -89,34 +85,25 @@ class DataGrid {
     this.columns = this.columns.map(column => column.name === name ? ({ ...column, show: !column.show }) : column)
   }
 
-  // construct new columns object with only the subobjects that have a key show as true
+  // returns visible columns
   getColumns() {
     return this.columns.filter(column => column.show)
   }
 
-  /**
-   * Row dragging methods
-  */
   onDragStartRow(event, row, idx) {
     this.draggingRow = row;
     this.draggingRowIdx = idx;
   }
 
-  onDragEndRow(event, row, idx) {
-    // do nothing
-  }
-
-  // callback called when user drops a row
   onDropRow(event, row, idx) {
     const chunk = this.rows.splice(this.draggingRowIdx, 1)
     this.rows.splice(idx, 0, chunk[0])
-
-    // remove selected from all rows
-    this.rows.forEach(row => row.selected = false)
+    this.resetDraggingRow()
   }
 
-  // the event must be prevented for the onDrop method to get called
   onDragOverRow(event, row, idx) {
+    if (this.draggingRowIdx === null) return;
+
     this.rows[idx].selected = true
     event.preventDefault()
   }
@@ -125,35 +112,40 @@ class DataGrid {
     this.rows[idx].selected = false
   }
 
-  /**
-   * Column dragging methods
-   */
+  resetDraggingRow() {
+    this.rows.forEach(row => row.selected = false)
+    this.draggingRow = null;
+    this.draggingRowIdx = null;
+  }
+
   onDragStartColumn(event, column, idx) {
     this.draggingColumn = column;
     this.draggingColumnIdx = idx;
-  }
-
-  onDragEndColumn(event, row, idx) {
-    // do nothing
   }
 
   // callback called when user drops a column
   onDropColumn(event, column, idx) {
     const chunk = this.columns.splice(this.draggingColumnIdx, 1)
     this.columns.splice(idx, 0, chunk[0])
-
-    // remove selected from all columns
-    this.columns.forEach(column => column.selected = false)
+    this.resetDraggingColumn()
   }
 
   // the event must be prevented for the onDrop method to get called
   onDragOverColumn(event, column, idx) {
+    if (this.draggingColumnIdx === null) return;
+
     this.columns[idx].selected = true
     event.preventDefault()
   }
 
   onDragLeaveColumn(event, column, idx) {
     this.columns[idx].selected = false
+  }
+
+  resetDraggingColumn() {
+    this.columns.forEach(column => column.selected = false)
+    this.draggingColumn = null;
+    this.draggingColumnIdx = null;
   }
 
   // returns an object that maps column names to column instances

@@ -154,7 +154,6 @@ export default Table
             @click="sortable ? sortColumn(column) : null"
             :draggable="draggableColumns"
             @dragstart="data.onDragStartColumn($event, row, idx)"
-            @dragend="data.onDragEndColumn($event, column, idx)"
             @drop="data.onDropColumn($event, column, idx)"
             @dragover="data.onDragOverColumn($event, column, idx)"
             @dragleave="data.onDragLeaveColumn($event, column, idx)"
@@ -185,7 +184,6 @@ export default Table
           <tr
             :draggable="draggableRows"
             @dragstart="data.onDragStartRow($event, row, idx)"
-            @dragend="data.onDragEndRow($event, row, idx)"
             @drop="data.onDropRow($event, row, idx)"
             @dragover="data.onDragOverRow($event, row, idx)"
             @dragleave="data.onDragLeaveRow($event, row, idx)"

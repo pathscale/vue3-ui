@@ -32,7 +32,8 @@ const Table = {
     expandable: Boolean,
     draggableRows: Boolean,
     draggableColumns: Boolean,
-    editable: Boolean
+    editable: Boolean,
+    groupBy: String,
   },
 
   setup(props, { emit }) {
@@ -42,7 +43,8 @@ const Table = {
     const rowsPerPage = ref(props.rowsPerPage)
     const currentPage = ref(0)
     const search = reactive({})
-    const expanded = ref(new Set())
+    const expandedRows = ref(new Set())
+    const expandedGroups = ref(new Set())
 
     // whenever pagination props changes, update the class state accordingly
     // thsi way pagination settings are directly passed to props and indirectly passed to class
@@ -72,11 +74,19 @@ const Table = {
     }
 
     const toggleExpanded = rowId => {
-      if (expanded.value.has(rowId)) {
-        expanded.value.delete(rowId)
+      if (expandedRows.value.has(rowId)) {
+        expandedRows.value.delete(rowId)
         return
       }
-      expanded.value.add(rowId)
+      expandedRows.value.add(rowId)
+    }
+
+    const toggleExpandedGroup = group => {
+      if (expandedGroups.value.has(group)) {
+        expandedGroups.value.delete(group)
+        return
+      }
+      expandedGroups.value.add(group)
     }
 
     const rootClasses = computed(() => {
@@ -92,16 +102,11 @@ const Table = {
     })
 
     const countColumns = computed(() => {
-      return (
-        data.value.getColumns().length +
-        (props.checkable ? 1 : 0) +
-        (props.expandable ? 1 : 0)
-      )
+      return data.value.getColumns().length + (props.checkable ? 1 : 0) + (props.expandable ? 1 : 0)
     })
 
     const handleBackPage = () => {
-      if (currentPage.value > 0) 
-       currentPage.value -= 1
+      if (currentPage.value > 0) currentPage.value -= 1
     }
 
     const handleNextPage = () => {
@@ -117,11 +122,13 @@ const Table = {
       rowsPerPage,
       currentPage,
       rootClasses,
-      expanded,
+      expandedRows,
       toggleExpanded,
+      expandedGroups,
+      toggleExpandedGroup,
       countColumns,
       handleBackPage,
-      handleNextPage
+      handleNextPage,
     }
   },
 }
@@ -180,43 +187,74 @@ export default Table
             />
           </td>
         </tr>
-        <template v-for="(row, idx) in data.rows" :key="idx">
-          <tr
-            :draggable="draggableRows"
-            @dragstart="data.onDragStartRow($event, row, idx)"
-            @drop="data.onDropRow($event, row, idx)"
-            @dragover="data.onDragOverRow($event, row, idx)"
-            @dragleave="data.onDragLeaveRow($event, row, idx)"
-            :class="{ 'has-background-primary': row.selected, 'has-text-white': row.selected }"
-          >
-            <td v-if="checkable">
-              <v-checkbox @change="data.toggleCheck($event, row)" />
-            </td>
-            <td v-if="expandable">
-              <a
-                ><v-tag @click="toggleExpanded(row.id)" type="is-primary">{{
-                  expanded.has(row.id) ? '&uarr;' : '&darr;'
-                }}</v-tag></a
+        <template v-if="!groupBy">
+          <template v-for="(row, idx) in data.rows" :key="idx">
+            <tr
+              :draggable="draggableRows"
+              @dragstart="data.onDragStartRow($event, row, idx)"
+              @drop="data.onDropRow($event, row, idx)"
+              @dragover="data.onDragOverRow($event, row, idx)"
+              @dragleave="data.onDragLeaveRow($event, row, idx)"
+              :class="{ 'has-background-primary': row.selected, 'has-text-white': row.selected }"
+            >
+              <td v-if="checkable">
+                <v-checkbox @change="data.toggleCheck($event, row)" />
+              </td>
+              <td v-if="expandable">
+                <a @click="toggleExpanded(row.id)" class="is-primary">{{
+                  expandedRows.has(row.id) ? '&uarr;' : '&darr;'
+                }}</a>
+              </td>
+              <td
+                v-for="column in data.getColumns()"
+                :key="column.name"
+                :class="column.style"
+                :contenteditable="props.editable"
+                v-on:blur="data.editCell(row, column, $event.target.textContent)"
               >
-            </td>
-            <td
-              v-for="column in data.getColumns()"
-              :key="column.name" :class="column.style"
-              :contenteditable='props.editable'
-              v-on:blur="data.editCell(row, column, $event.target.textContent)">
-              <slot :name="column.name" :row="row">
-                {{ row[column.name] }}
-              </slot>
-            </td>
-          </tr>
-          <tr class="expansion" v-if="expanded.has(row.id)">
-            <td :colspan="countColumns">
-              <slot name="expanded" :row="row" />
-            </td>
-          </tr>
+                <slot :name="column.name" :row="row">
+                  {{ row[column.name] }}
+                </slot>
+              </td>
+            </tr>
+            <tr class="expansion" v-if="expandedRows.has(row.id)">
+              <td :colspan="countColumns">
+                <slot name="expanded" :row="row" />
+              </td>
+            </tr>
+          </template>
+        </template>
+
+        <template v-if="groupBy">
+          <template v-for="(group, idx) in data.groups(groupBy)" :key="idx">
+            <tr>
+              <td :colspan="countColumns">
+                <a @click="toggleExpandedGroup(group)" class="mr-4">{{
+                  expandedGroups.has(group) ? '&darr;' : '&rarr;'
+                }}</a>
+                {{ groupBy }}: <v-tag type="is-primary" class="mx-4">{{ group }} </v-tag>
+              </td>
+            </tr>
+            <template v-if="expandedGroups.has(group)">
+              <tr v-for="(row, idx) in data.filterRows(groupBy, group)" :key="idx">
+                <td
+                  v-for="column in data.getColumns()"
+                  :key="column.name"
+                  :class="column.style"
+                  :contenteditable="props.editable"
+                  v-on:blur="data.editCell(row, column, $event.target.textContent)"
+                >
+                  <slot :name="column.name" :row="row">
+                    {{ row[column.name] }}
+                  </slot>
+                </td>
+              </tr>
+            </template>
+          </template>
         </template>
       </tbody>
     </table>
+
     <!-- todo: move the styles to their own scope -->
     <div
       class="pagination-wrapper"
@@ -231,11 +269,7 @@ export default Table
       </v-select>
       <!-- using :disabled wont work, so instead the click action is conditioned and the buttons are always clickable -->
       <a class="pagination-previous" @click="handleBackPage">Previous</a>
-      <a
-        class="pagination-next"
-        @click="handleNextPage"
-        >Next page</a
-      >
+      <a class="pagination-next" @click="handleNextPage">Next page</a>
     </div>
 
     <div class="tableFooter">

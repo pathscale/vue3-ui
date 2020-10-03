@@ -155,6 +155,17 @@ class DataGrid {
       return obj;
     } , {})
   }
+
+  groups(column) {
+    return this.rows.reduce((set, row) => {
+      set.add(row[column])
+      return set;
+    }, new Set())
+  }
+
+  filterRows(column, value) {
+    return this.rows.filter(row => row[column] === value)
+  }
 }
 
 export default DataGrid

@@ -345,6 +345,7 @@
     "has-shadow",
     "has-text-black",
     "has-text-light",
+    "has-text-primary",
     "has-text-white",
     "header",
     "header-is-trigger",

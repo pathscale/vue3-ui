@@ -34,6 +34,7 @@ const Table = {
     draggableColumns: Boolean,
     editable: Boolean,
     groupBy: String,
+    sticky: Boolean,
   },
 
   setup(props, { emit }) {
@@ -136,7 +137,7 @@ export default Table
 </script>
 
 <template>
-  <div class="data-grid">
+  <div class="data-grid" :class="{'table-container': sticky, 'sticky-table': sticky }">
     <div class="tableHeader">
       <slot name="header">
         <v-button
@@ -149,7 +150,7 @@ export default Table
         </v-button>
       </slot>
     </div>
-    <table class="table" :class="rootClasses">
+    <table class="table" :class="rootClasses" style="position: relative;">
       <thead>
         <tr>
           <td v-if="checkable" />
@@ -157,7 +158,7 @@ export default Table
           <th
             v-for="(column, idx) in data.getColumns()"
             :key="idx"
-            :class="{ ...column.style, 'has-text-primary': column.selected }"
+            :class="{ ...column.style, 'has-text-primary': column.selected, 'sticky-row': sticky }"
             @click="sortable ? sortColumn(column) : null"
             :draggable="draggableColumns"
             @dragstart="data.onDragStartColumn($event, row, idx)"
@@ -208,7 +209,7 @@ export default Table
               <td
                 v-for="column in data.getColumns()"
                 :key="column.name"
-                :class="column.style"
+                :class="{... column.style, 'sticky-column': column.sticky }"
                 :contenteditable="props.editable"
                 v-on:blur="data.editCell(row, column, $event.target.textContent)"
               >
@@ -257,9 +258,8 @@ export default Table
 
     <!-- todo: move the styles to their own scope -->
     <div
-      class="pagination-wrapper"
+      class="pagination-container"
       v-if="pagination"
-      style="display: flex; justify-content: flex-end"
     >
       <v-select v-model="rowsPerPage" color="is-dark" class="has-text-dark">
         >

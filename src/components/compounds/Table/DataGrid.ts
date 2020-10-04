@@ -23,14 +23,15 @@ class DataGrid {
     this.draggingColumnIdx = null;
   }
 
-  addColumn(name: string, caption: string, dataType: string, style: string) {
+  addColumn(name: string, caption: string, dataType: string, style: string, sticky: boolean = false) {
     this.columns.push({
       name,
       caption,
       dataType,
       style,
       show: true,
-      ascendant: true
+      ascendant: true,
+      sticky
     })
   }
 

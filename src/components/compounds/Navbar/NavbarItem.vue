@@ -1,3 +1,18 @@
+<script>
+const Component = {
+  name: 'VNavbarItem',
+  inheritAttrs: false,
+  props: {
+    tag: {
+      type: String,
+      default: 'a'
+    },
+    active: Boolean
+  }
+}
+export default Component
+</script>
+
 <template>
   <component
     :is="tag"
@@ -10,18 +25,3 @@
   </component>
 </template>
 
-<script>
-
-const Component = {
-    name: 'VNavbarItem',
-    inheritAttrs: false,
-    props: {
-        tag: {
-            type: String,
-            default: 'a'
-        },
-        active: Boolean
-    }
-}
-export default Component
-</script>

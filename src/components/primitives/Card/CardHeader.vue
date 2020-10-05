@@ -2,10 +2,7 @@
 const Component ={
   name: 'VCardHeader',
   props: {
-    title: {
-      type: String,
-      default: null
-    },
+    title: String,
     tag: {
       type: String,
       default: 'header'

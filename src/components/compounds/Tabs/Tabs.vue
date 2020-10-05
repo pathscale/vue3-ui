@@ -1,91 +1,80 @@
 <script>
-import { provide, inject, ref, watchEffect, computed, onUpdated, nextTick } from 'vue'
+import { provide, inject, ref, watchEffect, computed } from 'vue'
 
 const TabsSymbol = Symbol('Tabs')
 
 export function provideStore(store) {
-    const storeRef = ref(store)
-    provide(TabsSymbol, storeRef)
+  const storeRef = ref(store)
+  provide(TabsSymbol, storeRef)
 }
 
 export function useStore() {
-    const store = inject(TabsSymbol)
-    if (!store) {
-        // throw error, no store provided
-    }
-    return store
+  const store = inject(TabsSymbol)
+  if (!store) {
+    // throw error, no store provided
+  }
+  return store
 }
 
 export function addToStore(tab) {
-    const tabs = useStore()
-    tabs.value.tabs.push(tab)
+  const tabs = useStore()
+  tabs.value.tabs.push(tab)
 }
 
 const Tabs = {
-    name: 'VTabs',
-    props: {
-        modelValue: {
-            type: [Number, String],
-            required: true,
-        },
-        size: { type: String, default: null},
-        type: { type: String,  default: null },
-        expanded: Boolean,
-        position: String,
-        vertical: Boolean,
-        vanimated: Boolean,
-        animated: Boolean,
+  name: 'VTabs',
+  props: {
+    modelValue: {
+      type: [Number, String],
+      required: true,
     },
-    emits: ['update:modelValue'],
-    setup(props, { emit }) {
-      const height = ref(null);
+    size: String,
+    type: String,
+    expanded: Boolean,
+    position: String,
+    vertical: Boolean, // TODO
+    vanimated: Boolean,
+    animated: Boolean,
+  },
+  emits: ['update:modelValue', 'change'],
+  setup(props, { emit }) {
+    provideStore({ activeTab: 0, activeHeight: null, tabs: [], animated: props.animated })
+    const tabs = useStore()
+    function setActiveTab(id) {
+      tabs.value.activeTab = id
+    }
 
-      const content = ref(null)
+    const contentHeight = computed(() => {
+    return `height:${tabs.value.activeHeight}px`
+    })
+    watchEffect(() => {
+      setActiveTab(props.modelValue)
+    })
 
+    watchEffect(() => {
+      emit('update:modelValue', tabs.value.activeTab)
+      emit('change', tabs.value.activeTab)
+    })
 
-      provideStore({ activeTab: 0, tabs: [], animated: props.animated })
-      const tabs = useStore()
-      function setActiveTab(id) {
-          tabs.value.activeTab = id
-      }
+    const navClasses = computed(() => {
+      return [
+        props.type,
+        props.size,
+        {
+          [props.position]: props.position && !props.vertical,
+          'is-fullwidth': props.expanded,
+          'is-toggle-rounded is-toggle': props.type === 'is-toggle-rounded'
+        }
+      ]
+    })
 
-      onUpdated(() => {
-        nextTick(() => {
-          height.value = content.value.children[0].clientHeight
-        })
-      })
-
-      const contentHeight = computed(() => {
-        return `height:${height.value}px`
-      })
-      watchEffect(() => {
-          setActiveTab(props.modelValue)
-      })
-
-      watchEffect(() => {
-        emit('update:modelValue', tabs.value.activeTab)
-      })
-
-      const navClasses = computed(() => {
-          return [
-              props.type,
-              props.size,
-              {
-                  [props.position]: props.position && !props.vertical,
-                  'is-fullwidth': props.expanded,
-                  'is-toggle-rounded is-toggle': props.type === 'is-toggle-rounded'
-              }
-          ]
-      })
-
-      return {
-          contentHeight,
-          navClasses,
-          setActiveTab,
-          tabs,
-          content
-      }
-    },
+    return {
+      contentHeight,
+      navClasses,
+      setActiveTab,
+      tabs
+    }
+  },
 }
 
 export default Tabs;
@@ -95,11 +84,10 @@ export default Tabs;
   <section>
     <nav class="tabs" :class="navClasses">
       <ul>
-        <template v-for="t in tabs.tabs">
+        <template v-for="t in tabs.tabs" :key="t">
           <li
             :class="{ 'is-active': tabs.activeTab == t.id, 'is-disabled': t.disabled }"
-            @click="setActiveTab(t.id);"
-            :key="t">
+            @click="setActiveTab(t.id);">
             <a>
               {{ t.label }}
             </a>
@@ -107,7 +95,7 @@ export default Tabs;
         </template>
       </ul>
     </nav>
-    <div ref="content" :class="[{'is-height-animated': vanimated}]" :style="contentHeight">
+    <div :class="[{'is-height-animated': vanimated}]" :style="contentHeight">
       <slot />
     </div>
   </section>

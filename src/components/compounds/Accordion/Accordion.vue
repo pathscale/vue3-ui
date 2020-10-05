@@ -4,43 +4,16 @@ import { reactive, computed } from "vue"
 const Accordion = {
   name: "VAccordion",
   props: {
-    isHorizontal: {
-      type: Boolean
-    },
-    triggerRight: {
-      type: Boolean,
-      default: false
-    },
-    triggerLeft: {
-      type: Boolean,
-      default: false
-    },
-    expanded: {
-      type: Boolean,
-      default: false
-    },
-    background: {
-      type: String,
-    },
-    color: {
-      type: String
-    },
-    hover: {
-      type: Boolean,
-      default: false
-    },
-    isLink: {
-      type: Boolean,
-      default: false
-    },
-    to: {
-      type: Object,
-      default: null
-    },
-    isActive: {
-      type: Boolean,
-      default: false
-    }
+    isHorizontal: Boolean,
+    triggerRight: Boolean,
+    triggerLeft: Boolean,
+    expanded: Boolean,
+    background: String,
+    color: String,
+    hover: Boolean,
+    isLink: Boolean,
+    isActive: Boolean,
+    headerIsTrigger: Boolean
   },
 
   setup(props) {
@@ -51,7 +24,8 @@ const Accordion = {
         color: props.color
       },
       hover: props.hover,
-      isLink: props.isLink
+      isLink: props.isLink,
+      headerIsTrigger: props.headerIsTrigger
     })
     const rootClasses = computed(() => {
       return [{
@@ -60,10 +34,14 @@ const Accordion = {
         'accordion-active': props.isActive && props.hover,
         'accordion-default': !props.isActive && props.hover,
 				'accordion-type-hover': props.hover,
-				'accordion-type-click': !props.hover
+        'accordion-type-click': !props.hover
       }]
     })
-
+    const headerClasses = computed(() => {
+      return [{
+        'header-is-trigger': props.headerIsTrigger
+      }]
+    })
     const triggerClasses = computed(() => {
       return [{
         'trigger-right': props.triggerRight,
@@ -85,7 +63,7 @@ const Accordion = {
       state.isExpanded = false
     }
 
-    return { state, toggle, open, close, rootClasses, triggerClasses, isActive }
+    return { state, toggle, open, close, rootClasses, headerClasses, triggerClasses, isActive }
   }
 }
 export default Accordion
@@ -107,20 +85,23 @@ export default Accordion
       </span>
     </div>
     <div v-else>
-      <div class="accordion-header px-4 py-4 my-2">
+      <div
+        :class="headerClasses"
+        class="accordion-header" 
+        @click="state.headerIsTrigger ? toggle() : null">
         <slot name="header" />
         <div
           role="button"
           ref="trigger"
           class="accordion-trigger-click"
           :class="triggerClasses"
-          @click="toggle">
+          @click="state.headerIsTrigger ? null : toggle()">
           <slot name="trigger" />
         </div>
       </div>
-      <span v-if="state.isExpanded" class="px-4 py-4" >
+      <div v-if="state.isExpanded">
         <slot name="content" />
-      </span>
+      </div>
     </div>
   </div>
 </template>

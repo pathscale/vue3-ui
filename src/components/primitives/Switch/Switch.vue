@@ -2,66 +2,46 @@
 import { ref, watchEffect } from 'vue';
 
 const Switch = {
-    name: 'VSwitch',
-    props: {
-        modelValue: {
-            type: [String, Number, Boolean, Function, Object, Array, Date],
-            default: null,
-        },
-        nativeValue: {
-            type: [String, Number, Boolean, Function, Object, Array, Date],
-            default: null,
-        },
-        disabled: {
-            type: Boolean,
-            default: null,
-        },
-        type: {
-            type: String,
-            default: null,
-        },
-        passiveType: {
-            type: String,
-            default: null,
-        },
-        name: {
-            type: String,
-            default: null,
-        },
-        required: {
-            type: Boolean,
-            default: null,
-        },
-        size: {
-            type: String,
-            default: null,
-        },
-        trueValue: {
-            type: [String, Number, Boolean, Function, Object, Array, Date],
-            default: true
-        },
-        falseValue: {
-            type: [String, Number, Boolean, Function, Object, Array, Date],
-            default: false
-        },
-        rounded: {
-            type: Boolean,
-            default: true
-        },
-        outlined: {
-            type: Boolean,
-            default: false
-        }
+  name: 'VSwitch',
+  props: {
+    modelValue: {
+      type: [String, Number, Boolean, Function, Object, Array, Date],
     },
-    emits: ['update:modelValue'],
-    setup(props, { emit }) {
-        const value = ref(props.modelValue)
+    nativeValue: {
+      type: [String, Number, Boolean, Function, Object, Array, Date],
+    },
+    disabled: {
+      type: Boolean,
+      default: null
+    },
+    type: String,
+    passiveType: String,
+    name: String,
+    required: Boolean,
+    size: String,
+    trueValue: {
+      type: [String, Number, Boolean, Function, Object, Array, Date],
+      default: true
+    },
+    falseValue: {
+      type: [String, Number, Boolean, Function, Object, Array, Date],
+      default: false
+    },
+    rounded: {
+      type: Boolean,
+      default: true
+    },
+    outlined: Boolean
+  },
+  emits: ['update:modelValue'],
+  setup(props, { emit }) {
+    const value = ref(props.modelValue)
 
-        watchEffect(() => {
-            emit('update:modelValue', value.value)
-        })
-        return { value }
-    }
+    watchEffect(() => {
+      emit('update:modelValue', value.value)
+    })
+    return { value }
+  }
 };
 
 export default Switch;

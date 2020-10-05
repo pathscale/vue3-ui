@@ -4,6 +4,7 @@
 export const transitions = ['fade', 'slide', 'slide-right', 'slide-left']
 
 export const textual = {
+  separator: undefined,
   position: undefined,
   size: undefined,
   radio: undefined,
@@ -22,6 +23,7 @@ export const textual = {
   anchorClasses: undefined,
   itemClasses: undefined,
   triggerClasses: undefined,
+  headerClasses: undefined,
 }
 
 export const truthy = {
@@ -48,6 +50,7 @@ export const truthy = {
   expanded: true,
   inverted: true,
   focused: true,
+  light: true,
   isFocused: true,
   active: true,
   hovered: true,
@@ -60,7 +63,13 @@ export const truthy = {
   multilined: true,
   dashed: true,
   vanimated: true,
-  isActive: true
+  isActive: true,
+  headerIsTrigger: true,
+  isBordered: true,
+  isStriped: true,
+  isNarrow: true,
+  isHoverablee: true,
+  isFullwidth: true,
 }
 
 export const falsy = {

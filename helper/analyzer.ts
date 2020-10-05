@@ -8,6 +8,7 @@ import getDynamicClasses from './get-dynamic-classes'
 import { normalizePath } from './utils'
 import { parseSFC, isVueSFC } from './analyzer-utils'
 import { transitions } from './data'
+import { parserOpts } from './config'
 
 export function getWhitelist(input: string): string[] {
   const extensions = ['.ts', '.tsx', '.mjs', '.js', '.jsx', '.vue', '.json']
@@ -93,7 +94,7 @@ export function getWhitelist(input: string): string[] {
     const code = extract(rawCode, id)
     if (!code) return
 
-    const ast = jsparser.parse(code, { sourceType: 'unambiguous' })
+    const ast = jsparser.parse(code, parserOpts)
     traverse(ast, {
       // eslint-disable-next-line @typescript-eslint/naming-convention
       // Identifier({ node, parent }) {

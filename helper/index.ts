@@ -6,6 +6,7 @@ import traverse from '@babel/traverse'
 import { getWhitelist } from './analyzer'
 import { normalizePath } from './utils'
 import { isVueSFC } from './analyzer-utils'
+import { parserOpts } from './config'
 
 const srcDir = path.resolve(__dirname, '..', 'src')
 
@@ -14,7 +15,7 @@ async function main(): Promise<void> {
   const inputFile = normalizePath(srcDir, 'components', 'index.js')
   const inputCode = fs.readFileSync(inputFile, 'utf-8')
 
-  let ast = jsparser.parse(inputCode, { sourceType: 'unambiguous' })
+  let ast = jsparser.parse(inputCode, parserOpts)
   traverse(ast, {
     // eslint-disable-next-line @typescript-eslint/naming-convention
     ExportNamedDeclaration({ node }) {

@@ -2,26 +2,26 @@
 import { ref, onMounted } from 'vue'
 
 const Modal = {
-    name: 'VModal',
-    props: {
-        modelValue: {
-            type: Boolean,
-            required: true,
-        },
-        card: Boolean
+  name: 'VModal',
+  props: {
+    modelValue: {
+      type: Boolean,
+      required: true,
     },
-    emits: ['update:modelValue'],
-    setup(props, { emit }) {
-      const active = ref(props.modelValue)
-      onMounted(() => {
-            emit('update:modelValue', active)
-      })
+    card: Boolean
+  },
+  emits: ['update:modelValue'],
+  setup(props, { emit }) {
+    const active = ref(props.modelValue)
+    onMounted(() => {
+      emit('update:modelValue', active)
+    })
 
-      function close() {
-        emit('update:modelValue', false)
-      }
-      return { active, close }
-    },
+    function close() {
+    emit('update:modelValue', false)
+    }
+    return { active, close }
+  },
 };
 
 export default Modal;

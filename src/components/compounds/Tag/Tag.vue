@@ -5,20 +5,21 @@ const Tag = {
   props: {
     attached: Boolean,
     closable: Boolean,
-    type: { type: String, default: null },
-    size: { type: String, default: null },
+    type: String,
+    size: String,
     rounded: Boolean,
-    disabled: Boolean,
+    disabled: {
+      type: Boolean,
+      default: null
+    },
     ellipsis: Boolean,
     tabstop: {
       type: Boolean,
       default: true
     },
-    ariaCloseLabel: { type: String, default: null },
-    closeType: { type: String, default: null },
-    closeIcon: { type: String, default: null },
-    closeIconPack: { type: String, default: null },
-    closeIconType: { type: String, default: null }
+    ariaCloseLabel: String,
+    closeType: String,
+    closeIcon: String,
   },
   setup(props, { emit }) {
     const close = function (event) {

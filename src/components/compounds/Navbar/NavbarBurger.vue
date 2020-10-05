@@ -1,25 +1,22 @@
+<script>
+const Component = {
+  name: 'NavbarBurger',
+  props: {
+    isActive: Boolean
+  }
+}
+export default Component
+</script>
+
 <template>
   <a
     role="button"
     class="navbar-burger burger"
-    :class="{ 'is-active': isOpened }"
+    :class="{ 'is-active': isActive }"
     aria-label="menu"
-    :aria-expanded="isOpened">
+    :aria-expanded="isActive">
     <span aria-hidden="true" />
     <span aria-hidden="true" />
     <span aria-hidden="true" />
   </a>
 </template>
-
-<script>
-const Component = {
-    name: 'NavbarBurger',
-    props: {
-        isOpened: {
-            type: Boolean,
-            default: false
-        }
-    }
-}
-export default Component
-</script>

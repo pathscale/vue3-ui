@@ -1,3 +1,55 @@
+<script>
+import { watchEffect, reactive } from "vue"
+
+
+const Component = {
+  name: 'BNavbarDropdown',
+  props: {
+    label: String,
+    hoverable: Boolean,
+    active: Boolean,
+    right: Boolean,
+    arrowless: Boolean,
+    boxed: Boolean,
+    closeOnClick: {
+      type: Boolean,
+      default: true
+    },
+    collapsible: Boolean
+
+  },
+  setup(props) {
+    const state = reactive(
+    {
+      newActive: props.active,
+      isHoverable: props.hoverable,
+    }
+    )
+    watchEffect(() => {
+    state.newActive = props.active
+    })
+
+    function showMenu() {
+    state.newActive = true
+    }
+
+    function closeMenu() {
+    state.newActive = !props.closeOnClick
+    if (props.hoverable && props.closeOnClick) {
+      state.isHoverable = false
+    }
+    }
+    function checkHoverable() {
+    if (props.hoverable) {
+      state.isHoverable = true
+    }
+    }
+    return { state, showMenu, closeMenu, checkHoverable }
+  }
+}
+export default Component
+</script>
+
 <template>
   <div
     class="navbar-item has-dropdown"
@@ -34,55 +86,3 @@
     </div>
   </div>
 </template>
-
-<script>
-import { watchEffect, reactive } from "vue"
-
-
-const Component = {
-    name: 'BNavbarDropdown',
-    props: {
-        label: String,
-        hoverable: Boolean,
-        active: Boolean,
-        right: Boolean,
-        arrowless: Boolean,
-        boxed: Boolean,
-        closeOnClick: {
-            type: Boolean,
-            default: true
-        },
-        collapsible: Boolean
-
-    },
-    setup(props) {
-      const state = reactive(
-        {
-          newActive: props.active,
-          isHoverable: props.hoverable,
-        }
-      )
-      watchEffect(() => {
-        state.newActive = props.active
-      })
-
-      function showMenu() {
-        state.newActive = true
-      }
-
-      function closeMenu() {
-        state.newActive = !props.closeOnClick
-        if (props.hoverable && props.closeOnClick) {
-            state.isHoverable = false
-        }
-      }
-      function checkHoverable() {
-        if (props.hoverable) {
-            state.isHoverable = true
-        }
-      }
-      return { state, showMenu, closeMenu, checkHoverable }
-    }
-}
-export default Component
-</script>

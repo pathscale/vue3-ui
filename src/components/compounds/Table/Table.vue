@@ -227,7 +227,9 @@ export default Table
                 <a @click="toggleExpandedGroup(group)" class="mr-4">{{
                   expandedGroups.has(group) ? '&darr;' : '&rarr;'
                 }}</a>
-                {{ groupBy }}: <v-tag type="is-primary" class="mx-4">{{ group }} </v-tag>
+                {{ groupBy }}: <v-tag type="is-primary" class="mx-4">
+                  {{ group }}
+                </v-tag>
               </td>
             </tr>
             <template v-if="expandedGroups.has(group)">

@@ -61,6 +61,14 @@ module.exports = {
       plugins: ['@typescript-eslint'],
       parser: '@typescript-eslint/parser',
       rules: {
+        // Reenable later
+        'eslint-comments/require-description': 0,
+        'eslint-comments/no-unused-disable': 0,
+
+        // '@typescript-eslint/no-unsafe-assignment': ['error'],
+        // '@typescript-eslint/no-unsafe-member-access': ['error'],
+        // '@typescript-eslint/no-unsafe-return': ['error'],
+        // '@typescript-eslint/naming-convention': ['error'],
         // Reenable later?
         '@typescript-eslint/explicit-module-boundary-types': 0,
       },

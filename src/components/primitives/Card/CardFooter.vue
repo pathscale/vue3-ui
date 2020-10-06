@@ -1,5 +1,5 @@
 <script>
-const Component ={
+const Component = {
   name: 'VCardFooter',
   props: {
     tag: {

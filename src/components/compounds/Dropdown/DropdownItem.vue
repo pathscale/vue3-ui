@@ -1,29 +1,30 @@
 <script>
-import { computed } from "vue"
+import { computed, inject } from 'vue'
+import { DropdownSymbol } from './Dropdown'
 
 const Component = {
   name: 'VDropdownItem',
   props: {
     value: {
-			type: [String, Number, Boolean, Object, Array, Function],
+      type: [String, Number, Boolean, Object, Array, Function],
     },
     separator: Boolean,
     disabled: Boolean,
     custom: Boolean,
     focusable: {
-			type: Boolean,
-			default: true
+      type: Boolean,
+      default: true,
     },
     paddingless: Boolean,
     hasLink: Boolean,
-    ariaRole: String
+    ariaRole: String,
   },
-  setup(props, { emit }) {
+  setup(props, context) {
     const anchorClasses = computed(() => {
       return {
         'is-disabled': props.disabled,
         'is-paddingless': props.paddingless,
-        'is-active': isActive.value
+        'is-active': isActive.value,
       }
     })
     const itemClasses = computed(() => {
@@ -32,7 +33,7 @@ const Component = {
         'is-disabled': props.disabled,
         'is-paddingless': props.paddingless,
         'is-active': isActive.value,
-        'has-link': props.hasLink
+        'has-link': props.hasLink,
       }
     })
     const ariaRoleItem = computed(() => {
@@ -48,13 +49,23 @@ const Component = {
       return props.hasLink ? false : props.focusable
     })
 
-    function selectItem() {
+    const { selectItem } = inject(DropdownSymbol)
+
+    const selectItem = () => {
       if (!isClickable.value) return
-      // this.$parent.selectItem(this.value) TODO
-      emit('click')
+      selectItem(props.value)
     }
-    return { anchorClasses, itemClasses, ariaRoleItem, isClickable, isActive, isFocusable, selectItem}
-  }
+    
+    return {
+      anchorClasses,
+      itemClasses,
+      ariaRoleItem,
+      isClickable,
+      isActive,
+      isFocusable,
+      selectItem,
+    }
+  },
 }
 
 export default Component
@@ -67,8 +78,9 @@ export default Component
     class="dropdown-item"
     :class="anchorClasses"
     @click="selectItem"
-    :role="ariaRoleItem"
-    :tabindex="isFocusable ? 0 : null">
+    :role="ariaRoleItem"  
+    :tabindex="isFocusable ? 0 : null"
+  >
     <slot />
   </a>
   <div
@@ -76,7 +88,8 @@ export default Component
     :class="itemClasses"
     @click="selectItem"
     :role="ariaRoleItem"
-    :tabindex="isFocusable ? 0 : null">
+    :tabindex="isFocusable ? 0 : null"
+  >
     <slot />
   </div>
 </template>

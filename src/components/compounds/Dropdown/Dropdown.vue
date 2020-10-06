@@ -1,5 +1,7 @@
 <script>
-import { reactive, computed } from "vue"
+import { reactive, computed, inject, provide } from "vue"
+
+export const DropdownSymbol = Symbol('Dropdown')
 
 const Component = {
   name: 'VDropdown',
@@ -23,13 +25,13 @@ const Component = {
     expanded: Boolean,
   },
 
-  setup(props) {
-    const state = reactive({
-      selected: props.value,
-      style: {},
-      isActive: false,
-      isHoverable: props.hoverable,
-    })
+    setup(props, { emit }) {
+      const state = reactive({
+        selected: props.value,
+        style: {},
+        isActive: false,
+        isHoverable: props.hoverable,
+      })
 
     const rootClasses = computed(() => {
       return [props.position, {
@@ -42,24 +44,26 @@ const Component = {
       }]
     })
 
-    function toggle() {
-      if (props.disabled) return
-      state.isActive = !state.isActive
-    }
-
-    function selectItem() {
-      // TODO
-      state.isActive = false
-    }
-
-    function closeMenu() {
-      if (props.closeOnClick) {
-        state.isActive = false
+      const toggle = () => {
+        if (props.disabled) return
+        state.isActive = !state.isActive
       }
-    }
 
-    return { state, toggle, rootClasses, selectItem, closeMenu }
-  }
+      const closeMenu = () => {
+        if (props.closeOnClick) {
+          state.isActive = false
+        }
+      }
+
+      const selectItem = (newValue) => {
+        emit('update:modelValue', newValue)
+        closeMenu()
+      }
+
+      provide(DropdownSymbol, { selectItem, value: props.value })
+
+      return { state, toggle, rootClasses, selectItem, closeMenu}
+    }
 }
 
 export default Component
@@ -73,8 +77,7 @@ export default Component
       class="dropdown-trigger"
       @click="toggle"
       aria-haspopup="true"
-      tabindex="-1"
-      @focusout="closeMenu">
+      tabindex="-1">
       <slot name="trigger" />
     </div>
     <transition name="fade">

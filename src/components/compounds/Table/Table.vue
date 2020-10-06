@@ -232,7 +232,7 @@ export default Table
               </td>
             </tr>
             <template v-if="expandedGroups.has(group)">
-              <tr v-for="(row, idx) in data.filterRows(groupBy, group)" :key="idx">
+              <tr v-for="(row, rowIdx) in data.filterRows(groupBy, group)" :key="rowIdx">
                 <td
                   v-for="column in data.getColumns()"
                   :key="column.name"

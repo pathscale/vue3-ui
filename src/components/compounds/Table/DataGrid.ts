@@ -56,8 +56,8 @@ class DataGrid {
 
   sortByColumn(column: string, ascendant: boolean) {
     this.rows.sort((a, b) => {
-      if(a[column] < b[column]) { return ascendant ? -1 : 1 };
-      if(a[column] > b[column]) { return ascendant ? 1 : -1 };
+      if(a[column] < b[column]) { return ascendant ? -1 : 1 }
+      if(a[column] > b[column]) { return ascendant ? 1 : -1 }
       return 0;
     })
   }

@@ -56,6 +56,16 @@ module.exports = {
       },
     },
     {
+      files: '*.ts',
+      extends: ['plugin:import/typescript', 'plugin:@typescript-eslint/recommended'],
+      plugins: ['@typescript-eslint'],
+      parser: '@typescript-eslint/parser',
+      rules: {
+        // Reenable later?
+        '@typescript-eslint/explicit-module-boundary-types': 0,
+      },
+    },
+    {
       files: 'src/shims-vue.d.ts',
       rules: {
         // No imports/exports in plain declaration file

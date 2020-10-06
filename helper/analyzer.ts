@@ -1,9 +1,9 @@
 import path from 'path'
 import fs from 'fs-extra'
 import { sync as resolveSync } from 'resolve'
-import * as jsparser from '@babel/parser'
+import { parse as jsparserParse } from '@babel/parser'
 import traverse from '@babel/traverse'
-import * as htmlparser from 'htmlparser2'
+import { Parser as HtmlparserParser } from 'htmlparser2'
 import getDynamicClasses from './get-dynamic-classes'
 import { normalizePath } from './utils'
 import { parseSFC, isVueSFC } from './analyzer-utils'
@@ -33,7 +33,7 @@ export function getWhitelist(input: string): string[] {
   const idList = [normalizePath(path.resolve(input))]
   // const animationList: string[] = []
 
-  const parser = new htmlparser.Parser(
+  const parser = new HtmlparserParser(
     {
       onopentag(name, attrs) {
         whitelist.add(name)
@@ -56,7 +56,7 @@ export function getWhitelist(input: string): string[] {
         if (name === ':class') {
           const classes = getDynamicClasses(data)
           for (const c of classes) whitelist.add(c)
-          return
+          // return
         }
       },
     },
@@ -68,7 +68,7 @@ export function getWhitelist(input: string): string[] {
     const { template, script } = parseSFC(code, id)
     if (template?.content) parser.parseComplete(template.content)
     if (script?.content) return script.content
-    return
+    return undefined
   }
 
   function resolveSource(id: string, value: string): string | undefined {
@@ -94,7 +94,7 @@ export function getWhitelist(input: string): string[] {
     const code = extract(rawCode, id)
     if (!code) return
 
-    const ast = jsparser.parse(code, parserOpts)
+    const ast = jsparserParse(code, parserOpts)
     traverse(ast, {
       // eslint-disable-next-line @typescript-eslint/naming-convention
       // Identifier({ node, parent }) {

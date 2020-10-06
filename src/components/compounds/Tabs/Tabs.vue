@@ -45,8 +45,9 @@ const Tabs = {
     }
 
     const contentHeight = computed(() => {
-    return `height:${tabs.value.activeHeight}px`
+      return `height:${tabs.value.activeHeight}px`
     })
+
     watchEffect(() => {
       setActiveTab(props.modelValue)
     })
@@ -86,9 +87,10 @@ export default Tabs;
       <ul>
         <template v-for="t in tabs.tabs" :key="t">
           <li
-            :class="{ 'is-active': tabs.activeTab == t.id, 'is-disabled': t.disabled }"
-            @click="setActiveTab(t.id);">
-            <a>
+            :class="{ 'is-active': tabs.activeTab == t.id }"
+            @click="!t.disabled && setActiveTab(t.id);">
+            <a :class="{'has-text-grey-light': t.disabled }" 
+               :style="`pointer-events: ${t.disabled ? 'none' : 'auto'};`">
               {{ t.label }}
             </a>
           </li>

@@ -1,5 +1,4 @@
 <script>
-
 const Component = {
   name: 'VBreadcrumb',
   props: {

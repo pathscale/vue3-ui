@@ -63,6 +63,7 @@ const Component = {
   }
 export default Component
 </script>
+
 <template>
   <div class="dropdown" :class="rootClasses">
     <div

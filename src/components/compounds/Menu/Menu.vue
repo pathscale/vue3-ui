@@ -6,6 +6,7 @@ const Component = {
     activable: Boolean  // TODO
   },
 }
+
 export default Component
 </script>
 

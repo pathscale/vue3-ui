@@ -10,6 +10,7 @@ const Component = {
     active: Boolean
   }
 }
+
 export default Component
 </script>
 

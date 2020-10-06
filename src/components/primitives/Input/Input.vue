@@ -44,6 +44,7 @@ const Input = {
     return { value, rootClasses, inputClasses, props }
   },
 }
+
 export default Input;
 </script>
 

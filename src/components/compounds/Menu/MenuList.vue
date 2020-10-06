@@ -6,6 +6,7 @@ const Component = {
     ariaRole: String
   }
 }
+
 export default Component
 </script>
 

@@ -1,7 +1,6 @@
 <script>
 import { watchEffect, reactive } from "vue"
 
-
 const Component = {
   name: 'BNavbarDropdown',
   props: {
@@ -20,33 +19,34 @@ const Component = {
   },
   setup(props) {
     const state = reactive(
-    {
-      newActive: props.active,
-      isHoverable: props.hoverable,
-    }
+      {
+        newActive: props.active,
+        isHoverable: props.hoverable,
+      }
     )
     watchEffect(() => {
-    state.newActive = props.active
+      state.newActive = props.active
     })
 
     function showMenu() {
-    state.newActive = true
+      state.newActive = true
     }
 
     function closeMenu() {
-    state.newActive = !props.closeOnClick
-    if (props.hoverable && props.closeOnClick) {
-      state.isHoverable = false
-    }
+      state.newActive = !props.closeOnClick
+      if (props.hoverable && props.closeOnClick) {
+        state.isHoverable = false
+      }
     }
     function checkHoverable() {
-    if (props.hoverable) {
-      state.isHoverable = true
-    }
+      if (props.hoverable) {
+        state.isHoverable = true
+      }
     }
     return { state, showMenu, closeMenu, checkHoverable }
   }
 }
+
 export default Component
 </script>
 

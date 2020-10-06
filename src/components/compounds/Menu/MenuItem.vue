@@ -39,6 +39,7 @@ const Component = {
     return { newActive, newExpanded, onClick, content }
   }
 }
+
 export default Component
 </script>
 

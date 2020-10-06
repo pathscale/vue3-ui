@@ -1,5 +1,4 @@
 <script>
-
 const Component = {
   name: 'VBreadcrumbItem',
   inheritAttrs: false,

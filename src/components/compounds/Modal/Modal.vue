@@ -26,6 +26,7 @@ const Modal = {
 
 export default Modal;
 </script>
+
 <template>
   <div class="modal" :class="[{'is-active': active}]">
     <div class="modal-background" @click="close" />

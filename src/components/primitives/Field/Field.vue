@@ -1,37 +1,37 @@
 <script>
 import { computed } from "vue"
 
-  const Field = {
-    name: 'VField',
-    props: {
-      type: String,
-      label: String,
-      labelFor: String,
-      message: String,
-      grouped: Boolean,
-      groupMultiline: Boolean,
-      position: String,
-      expanded: Boolean,
-      horizontal: Boolean,
-      addons: Boolean,
-      size: String,
-    },
-    setup(props) {
-      const rootClasses = computed(() => {
-        return [
-          props.position, {
-          'is-expanded': props.expanded,
-          'is-horizontal': props.horizontal,
-          'is-grouped': props.grouped,
-          'is-grouped-multiline': props.groupMultiline,
-          'has-addons': props.addons
-        }]
-      })
-      return { rootClasses }
-    }
+const Field = {
+  name: 'VField',
+  props: {
+    type: String,
+    label: String,
+    labelFor: String,
+    message: String,
+    grouped: Boolean,
+    groupMultiline: Boolean,
+    position: String,
+    expanded: Boolean,
+    horizontal: Boolean,
+    addons: Boolean,
+    size: String,
+  },
+  setup(props) {
+    const rootClasses = computed(() => {
+      return [
+        props.position, {
+        'is-expanded': props.expanded,
+        'is-horizontal': props.horizontal,
+        'is-grouped': props.grouped,
+        'is-grouped-multiline': props.groupMultiline,
+        'has-addons': props.addons
+      }]
+    })
+    return { rootClasses }
   }
+}
 
-  export default Field;
+export default Field;
 </script>
 
 <template>

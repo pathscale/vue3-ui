@@ -5,6 +5,7 @@ const Component = {
     isActive: Boolean
   }
 }
+
 export default Component
 </script>
 

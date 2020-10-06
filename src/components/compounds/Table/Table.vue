@@ -132,6 +132,7 @@ const Table = {
     }
   },
 }
+
 export default Table
 </script>
 

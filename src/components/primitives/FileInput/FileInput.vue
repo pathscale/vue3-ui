@@ -14,6 +14,7 @@ const FileInput = {
     alignment: String
   },
 }
+
 export default FileInput
 </script>
 

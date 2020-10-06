@@ -3,6 +3,7 @@ const Media = {
   name: "VMedia",
   props: {},
 }
+
 export default Media
 </script>
 

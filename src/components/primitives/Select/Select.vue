@@ -1,4 +1,3 @@
-
 <script>
 import { ref, watchEffect, computed } from 'vue'
 
@@ -39,8 +38,10 @@ const Select = {
     return { value, spanClasses }
   },
 }
+
 export default Select
 </script>
+
 <template>
   <div
     class="control"

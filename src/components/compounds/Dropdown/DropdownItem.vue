@@ -59,6 +59,7 @@ const Component = {
 
 export default Component
 </script>
+
 <template>
   <hr v-if="separator" class="dropdown-divider" />
   <a

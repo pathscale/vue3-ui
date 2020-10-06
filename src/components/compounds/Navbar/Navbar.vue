@@ -53,6 +53,7 @@ const Component = {
 
 export default Component
 </script>
+
 <template>
   <nav class="navbar" role="navigation" aria-label="main navigation" :class="rootClasses">
     <div class="navbar-brand">

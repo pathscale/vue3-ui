@@ -2,7 +2,6 @@
 import { computed, ref, watchEffect } from 'vue'
 import { addToStore, useStore } from './Tabs.vue'
 
-
 const Tab = {
   name: 'VTab',
   props: {

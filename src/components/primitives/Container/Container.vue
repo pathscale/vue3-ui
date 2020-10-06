@@ -1,5 +1,4 @@
 <script>
-
 const Component = {
   name: 'VContainer',
   props: {
@@ -8,6 +7,7 @@ const Component = {
 
   }
 }
+
 export default Component
 </script>
 

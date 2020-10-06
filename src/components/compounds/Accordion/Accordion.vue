@@ -87,7 +87,7 @@ export default Accordion
     <div v-else>
       <div
         :class="headerClasses"
-        class="accordion-header" 
+        class="accordion-header"
         @click="state.headerIsTrigger ? toggle() : null">
         <slot name="header" />
         <div

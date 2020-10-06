@@ -24,4 +24,3 @@ export default Component
     <slot />
   </component>
 </template>
-

@@ -76,7 +76,7 @@ const Sidebar = {
     const isAbsolute = computed(() => {
       return props.position === 'absolute'
     })
-    
+
     watchEffect(() => {
       const open = props.right ? !props.open : props.open
       state.transitionName = !open ? 'slide-right' : 'slide-left'

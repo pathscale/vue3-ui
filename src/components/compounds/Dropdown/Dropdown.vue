@@ -16,7 +16,7 @@ const Component = {
         default: true
       },
       ariaRole: String,
-      closeOnClick: { 
+      closeOnClick: {
         type: Boolean,
         default: true
       },
@@ -76,10 +76,10 @@ export default Component
       <slot name="trigger" />
     </div>
     <transition name="fade">
-      <div 
+      <div
         v-show="(!disabled && (state.isActive || hoverable)) || inline"
-        class="dropdown-menu" 
-        role="menu" 
+        class="dropdown-menu"
+        role="menu"
         :aria-hidden="!state.isActive">
         <div class="dropdown-content" :role="ariaRole">
           <slot />

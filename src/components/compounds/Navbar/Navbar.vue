@@ -11,7 +11,7 @@ const Component = {
     fixedTop: Boolean,
     fixedBottom: Boolean,
     wrapperClass: String,
-    closeOnClick: { // TODO 
+    closeOnClick: { // TODO
       type: Boolean,
       default: true
     },

@@ -31,8 +31,8 @@
       });
       const inputClasses = computed(() => {
         return [
-          props.size, 
-          props.color, 
+          props.size,
+          props.color,
           {
           'is-hovered': props.hovered,
           'is-focused': props.focused,

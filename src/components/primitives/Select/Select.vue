@@ -33,7 +33,7 @@ const Select = {
         'is-empty': props.selected === null
       }]
     })
-    watchEffect(() => { 
+    watchEffect(() => {
       emit('update:modelValue', value.value)
     })
     return { value, spanClasses }

@@ -36,7 +36,7 @@ const Progress = {
       return fixed
     }
 
-    watchEffect(() => 
+    watchEffect(() =>
     nextTick(() => {
       if (isIndeterminate.value) {
         progress.value.removeAttribute('value')
@@ -45,7 +45,7 @@ const Progress = {
       }
     })
     )
-    
+
     const isIndeterminate = computed(() => {
       return props.value === undefined || props.value === null
     });

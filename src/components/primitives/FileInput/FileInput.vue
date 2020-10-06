@@ -18,7 +18,7 @@ export default FileInput
 </script>
 
 <template>
-  <div 
+  <div
     class="file"
     :class="[size, color, alignment, {
       'has-name': hasName,

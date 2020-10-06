@@ -78,7 +78,7 @@ const Component = {
       state,
       setRounded() {
         settings.button.rounded = true;
-      }      
+      }
     }
   }
 }

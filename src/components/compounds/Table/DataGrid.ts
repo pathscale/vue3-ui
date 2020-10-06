@@ -109,25 +109,25 @@ class DataGrid {
     return this.columns.filter(column => column.show)
   }
 
-  onDragStartRow(evt: Event, row: Row, idx: number) {
+  onDragStartRow(_evt: Event, row: Row, idx: number) {
     this.draggingRow = row;
     this.draggingRowIdx = idx;
   }
 
-  onDropRow(evt: Event, row: Row, idx: number) {
+  onDropRow(_evt: Event, _row: Row, idx: number) {
     const chunk = this.rows.splice(this.draggingRowIdx, 1)
     this.rows.splice(idx, 0, chunk[0])
     this.resetDraggingRow()
   }
 
-  onDragOverRow(evt: Event, row: Row, idx: number) {
+  onDragOverRow(evt: Event, _row: Row, idx: number) {
     if (this.draggingRowIdx === null) return;
 
     this.rows[idx].selected = true
     evt.preventDefault()
   }
 
-  onDragLeaveRow(evt: Event, row: Row, idx: number) {
+  onDragLeaveRow(_evt: Event, _row: Row, idx: number) {
     this.rows[idx].selected = false
   }
 
@@ -139,27 +139,27 @@ class DataGrid {
     this.draggingRowIdx = null;
   }
 
-  onDragStartColumn(evt: Event, column: Column, idx: number) {
+  onDragStartColumn(_evt: Event, column: Column, idx: number) {
     this.draggingColumn = column;
     this.draggingColumnIdx = idx;
   }
 
   // callback called when user drops a column
-  onDropColumn(evt: Event, column: Column, idx: number) {
+  onDropColumn(_evt: Event, _column: Column, idx: number) {
     const chunk = this.columns.splice(this.draggingColumnIdx, 1)
     this.columns.splice(idx, 0, chunk[0])
     this.resetDraggingColumn()
   }
 
   // the event must be prevented for the onDrop method to get called
-  onDragOverColumn(evt: Event, column: Column, idx: number) {
+  onDragOverColumn(evt: Event, _column: Column, idx: number) {
     if (this.draggingColumnIdx === null) return;
 
     this.columns[idx].selected = true
     evt.preventDefault()
   }
 
-  onDragLeaveColumn(evt: Event, column: Column, idx: number) {
+  onDragLeaveColumn(_evt: Event, _column: Column, idx: number) {
     this.columns[idx].selected = false
   }
 

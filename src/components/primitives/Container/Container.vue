@@ -5,7 +5,7 @@ const Component = {
   props: {
     type: String,
     bg: Object,
-     
+
   }
 }
 export default Component

@@ -1,18 +1,18 @@
 type Column = {
-  id?: number,
-  name: string,
-  caption: string,
-  dataType: string,
-  style: string,
-  show: boolean,
-  ascendant: boolean,
-  sticky: boolean,
-  selected?: boolean
+  id?: number;
+  name: string;
+  caption: string;
+  dataType: string;
+  style: string;
+  show: boolean;
+  ascendant: boolean;
+  sticky: boolean;
+  selected?: boolean;
 }
 
 type Row = {
-  id: number,
-  selected?: boolean
+  id: number;
+  selected?: boolean;
 }
 
 class DataGrid {
@@ -100,7 +100,7 @@ class DataGrid {
     this.rows = this.originalRows.slice(this.currentPage*this.rowsPerPage, this.currentPage*this.rowsPerPage + this.rowsPerPage)
   }
 
-  toggleColumn({ name } : { name: string }) {
+  toggleColumn({ name }: { name: string }) {
     this.columns = this.columns.map(column => column.name === name ? ({ ...column, show: !column.show }) : column)
   }
 

@@ -79,8 +79,7 @@ export default Component
     :class="anchorClasses"
     @click="selectItem"
     :role="ariaRoleItem"  
-    :tabindex="isFocusable ? 0 : null"
-  >
+    :tabindex="isFocusable ? 0 : null">
     <slot />
   </a>
   <div
@@ -88,8 +87,7 @@ export default Component
     :class="itemClasses"
     @click="selectItem"
     :role="ariaRoleItem"
-    :tabindex="isFocusable ? 0 : null"
-  >
+    :tabindex="isFocusable ? 0 : null">
     <slot />
   </div>
 </template>

@@ -85,8 +85,8 @@ export function getWhitelist(input: string): string[] {
       }),
     )
 
-    if (traversed.has(depId) || !isSupported(depId)) return
-    else traversed.add(depId)
+    if (traversed.has(depId) || !isSupported(depId)) return undefined
+    traversed.add(depId)
     return depId
   }
 

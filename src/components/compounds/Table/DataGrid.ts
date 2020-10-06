@@ -23,7 +23,7 @@ class DataGrid {
     this.draggingColumnIdx = null;
   }
 
-  addColumn(name: string, caption: string, dataType: string, style: string, sticky: boolean = false) {
+  addColumn(name: string, caption: string, dataType: string, style: string, sticky = false) {
     this.columns.push({
       name,
       caption,
@@ -75,7 +75,7 @@ class DataGrid {
   toggleCheck(event, row) {
     this.checkedRows = event.target.checked
       ? [...this.checkedRows, row]
-      : this.checkedRows.filter(current_row => current_row.id !== row.id)
+      : this.checkedRows.filter(currentRow => currentRow.id !== row.id)
   }
 
   switchPage() {

@@ -80,6 +80,7 @@
     "eslint-plugin-standard": "^4.0.1",
     "eslint-plugin-unicorn": "^22.0.0",
     "eslint-plugin-vue": "^7.0.1",
+    "fast-glob": "^3.2.4",
     "fs-extra": "^9.0.1",
     "htmlparser2": "^5.0.0",
     "np": "^6.5.0",

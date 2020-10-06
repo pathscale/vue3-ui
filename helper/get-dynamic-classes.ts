@@ -1,7 +1,7 @@
 import { runInNewContext } from 'vm'
 import { textual, falsy, truthy } from './data'
 
-export default function (raw: string): string[] {
+function getDynamicClasses(raw: string): string[] {
   const data = `[${raw}]`
   const classes: string[] = []
 
@@ -27,3 +27,5 @@ export default function (raw: string): string[] {
 
   return classes
 }
+
+export default getDynamicClasses

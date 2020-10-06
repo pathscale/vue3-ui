@@ -1,7 +1,7 @@
 import path from 'path'
 import fs from 'fs-extra'
 import fg from 'fast-glob'
-import * as jsparser from '@babel/parser'
+import { parse as jsparserParse } from '@babel/parser'
 import traverse from '@babel/traverse'
 import { getWhitelist } from './analyzer'
 import { normalizePath } from './utils'
@@ -15,7 +15,7 @@ async function main(): Promise<void> {
   const inputFile = normalizePath(srcDir, 'components', 'index.js')
   const inputCode = fs.readFileSync(inputFile, 'utf-8')
 
-  let ast = jsparser.parse(inputCode, parserOpts)
+  const ast = jsparserParse(inputCode, parserOpts)
   traverse(ast, {
     // eslint-disable-next-line @typescript-eslint/naming-convention
     ExportNamedDeclaration({ node }) {
@@ -43,4 +43,4 @@ async function main(): Promise<void> {
   fs.writeFileSync(path.join(__dirname, 'mappings.json'), JSON.stringify(mappings, null, '  '))
 }
 
-void main()
+main()

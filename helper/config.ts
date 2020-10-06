@@ -1,6 +1,6 @@
-import * as jsparser from '@babel/parser'
+import { ParserOptions } from '@babel/parser'
 
-export const parserOpts: jsparser.ParserOptions = {
+export const parserOpts: ParserOptions = {
   sourceType: 'unambiguous',
   plugins: [
     'asyncGenerators',

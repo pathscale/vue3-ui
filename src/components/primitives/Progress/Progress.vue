@@ -9,10 +9,7 @@ const Progress = {
       default: 'is-darkgrey'
     },
     size: String,
-    value: {
-      type: Number,
-      default: undefined
-    },
+    value: Number,
     max: {
       type: Number,
       default: 100

@@ -31,6 +31,7 @@
     "build": "rollup -c --environment NODE_ENV:production",
     "postbuild": "shx cp helper/mappings.json dist",
     "lint": "eslint --ext .js,.ts,.vue,.md,.html --max-warnings=0 .",
+    "lint-arg": "eslint --ext .js,.ts,.vue,.md,.html --max-warnings=0",
     "lint-fix": "eslint --ext .js,.ts,.vue,.md,.html --fix .",
     "prepublishOnly": "npm run build",
     "release": "npm run build && np",
@@ -42,6 +43,14 @@
     "not dead",
     "not OperaMini all"
   ],
+  "lint-staged": {
+    "**/*.{js,ts,vue,md,html}": "npm run lint-arg --"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "dependencies": {},
   "devDependencies": {
     "@babel/parser": "^7.11.5",
@@ -83,6 +92,8 @@
     "fast-glob": "^3.2.4",
     "fs-extra": "^9.0.1",
     "htmlparser2": "^5.0.0",
+    "husky": "^4.3.0",
+    "lint-staged": "^10.4.0",
     "np": "^6.5.0",
     "open-cli": "^6.0.1",
     "prettier": "^2.1.2",

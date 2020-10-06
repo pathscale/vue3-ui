@@ -40,7 +40,6 @@ const Table = {
   setup(props, { emit }) {
     // datagrid instance reference
     const data = ref(props.data)
-    const pagination = ref(props.pagination)
     const rowsPerPage = ref(props.rowsPerPage)
     const currentPage = ref(0)
     const search = reactive({})

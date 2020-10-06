@@ -1,5 +1,5 @@
 <script>
-import { reactive, computed, inject, provide } from 'vue'
+import { reactive, computed, provide } from 'vue'
 
 export const DropdownSymbol = Symbol('Dropdown')
 
@@ -80,8 +80,7 @@ export default Component
       class="dropdown-trigger"
       @click="toggle"
       aria-haspopup="true"
-      tabindex="-1"
-    >
+      tabindex="-1">
       <slot name="trigger" />
     </div>
     <transition name="fade">
@@ -89,8 +88,7 @@ export default Component
         v-show="(!disabled && (state.isActive || hoverable)) || inline"
         class="dropdown-menu"
         role="menu"
-        :aria-hidden="!state.isActive"
-      >
+        :aria-hidden="!state.isActive">
         <div class="dropdown-content" :role="ariaRole">
           <slot />
         </div>

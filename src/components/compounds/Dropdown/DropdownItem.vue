@@ -1,6 +1,6 @@
 <script>
 import { computed, inject } from 'vue'
-import { DropdownSymbol } from './Dropdown'
+import { DropdownSymbol } from './Dropdown.vue'
 
 const Component = {
   name: 'VDropdownItem',

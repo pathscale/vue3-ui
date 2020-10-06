@@ -49,11 +49,11 @@ const Component = {
       return props.hasLink ? false : props.focusable
     })
 
-    const { selectItem } = inject(DropdownSymbol)
+    const { selectItem: reportParent } = inject(DropdownSymbol)
 
     const selectItem = () => {
       if (!isClickable.value) return
-      selectItem(props.value)
+      reportParent(props.value)
     }
     
     return {

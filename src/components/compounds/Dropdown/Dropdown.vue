@@ -58,7 +58,7 @@ const Component = {
       }
     }
 
-    return { state, toggle, rootClasses, selectItem, closeMenu}
+    return { state, toggle, rootClasses, selectItem, closeMenu }
   }
 }
 

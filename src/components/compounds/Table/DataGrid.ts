@@ -1,13 +1,30 @@
+type Column = {
+  id?: number,
+  name: string,
+  caption: string,
+  dataType: string,
+  style: string,
+  show: boolean,
+  ascendant: boolean,
+  sticky: boolean,
+  selected?: boolean
+}
+
+type Row = {
+  id: number,
+  selected?: boolean
+}
+
 class DataGrid {
-  columns: any[];
-  rows: any[];
-  originalRows: object[];
-  checkedRows: {id: any}[];
+  columns: Column[];
+  rows: Row[];
+  originalRows: Row[];
+  checkedRows: {id: number}[];
   rowsPerPage: number;
   currentPage: number;
-  draggingRow: {id: any};
+  draggingRow: {id: number};
   draggingRowIdx: number;
-  draggingColumn: {id: any};
+  draggingColumn: {id?: number};
   draggingColumnIdx: number;
 
   constructor() {
@@ -35,7 +52,7 @@ class DataGrid {
     })
   }
 
-  addRow(content: object, index: number) {
+  addRow(content: Row, index: number) {
     if(typeof index !== 'undefined') {
       this.rows.splice(index, 0, content)
       this.originalRows.splice(index, 0, content)
@@ -50,7 +67,8 @@ class DataGrid {
     this.originalRows.splice(index, 1)
   }
 
-  editCell(row, column, newValue) {
+  // eslint-disable-next-line class-methods-use-this
+  editCell(row: Row, column: Column, newValue: string | number) {
     row[column.name] = newValue
   }
 
@@ -72,8 +90,8 @@ class DataGrid {
     })
   }
 
-  toggleCheck(event, row) {
-    this.checkedRows = event.target.checked
+  toggleCheck(evt: Event, row: Row) {
+    this.checkedRows = (evt.target as HTMLInputElement).checked
       ? [...this.checkedRows, row]
       : this.checkedRows.filter(currentRow => currentRow.id !== row.id)
   }
@@ -91,60 +109,64 @@ class DataGrid {
     return this.columns.filter(column => column.show)
   }
 
-  onDragStartRow(event, row, idx: number) {
+  onDragStartRow(evt: Event, row: Row, idx: number) {
     this.draggingRow = row;
     this.draggingRowIdx = idx;
   }
 
-  onDropRow(evt: Event, row, idx: number) {
+  onDropRow(evt: Event, row: Row, idx: number) {
     const chunk = this.rows.splice(this.draggingRowIdx, 1)
     this.rows.splice(idx, 0, chunk[0])
     this.resetDraggingRow()
   }
 
-  onDragOverRow(evt: Event, row, idx: number) {
+  onDragOverRow(evt: Event, row: Row, idx: number) {
     if (this.draggingRowIdx === null) return;
 
     this.rows[idx].selected = true
     evt.preventDefault()
   }
 
-  onDragLeaveRow(evt: Event, row, idx) {
+  onDragLeaveRow(evt: Event, row: Row, idx: number) {
     this.rows[idx].selected = false
   }
 
   resetDraggingRow() {
-    this.rows.forEach(row => row.selected = false)
+    this.rows.forEach(row => {
+      row.selected = false
+    })
     this.draggingRow = null;
     this.draggingRowIdx = null;
   }
 
-  onDragStartColumn(evt: Event, column, idx: number) {
+  onDragStartColumn(evt: Event, column: Column, idx: number) {
     this.draggingColumn = column;
     this.draggingColumnIdx = idx;
   }
 
   // callback called when user drops a column
-  onDropColumn(evt: Event, column, idx: number) {
+  onDropColumn(evt: Event, column: Column, idx: number) {
     const chunk = this.columns.splice(this.draggingColumnIdx, 1)
     this.columns.splice(idx, 0, chunk[0])
     this.resetDraggingColumn()
   }
 
   // the event must be prevented for the onDrop method to get called
-  onDragOverColumn(evt: Event, column, idx: number) {
+  onDragOverColumn(evt: Event, column: Column, idx: number) {
     if (this.draggingColumnIdx === null) return;
 
     this.columns[idx].selected = true
     evt.preventDefault()
   }
 
-  onDragLeaveColumn(evt: Event, column, idx: number) {
+  onDragLeaveColumn(evt: Event, column: Column, idx: number) {
     this.columns[idx].selected = false
   }
 
   resetDraggingColumn() {
-    this.columns.forEach(column => column.selected = false)
+    this.columns.forEach(column => {
+      column.selected = false
+    })
     this.draggingColumn = null;
     this.draggingColumnIdx = null;
   }
@@ -157,14 +179,14 @@ class DataGrid {
     } , {})
   }
 
-  groups(column) {
+  groups(column: string) {
     return this.rows.reduce((set, row) => {
       set.add(row[column])
       return set;
     }, new Set())
   }
 
-  filterRows(column, value) {
+  filterRows(column: string, value: string | number) {
     return this.rows.filter(row => row[column] === value)
   }
 }

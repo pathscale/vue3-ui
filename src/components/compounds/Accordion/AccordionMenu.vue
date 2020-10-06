@@ -2,6 +2,7 @@
 const AccordionMenu = {
   name: "VAccordionMenu"
 }
+
 export default AccordionMenu
 </script>
 

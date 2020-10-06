@@ -7,7 +7,6 @@ const Component ={
       type: String,
       default: 'header'
     }
-
   }
 }
 

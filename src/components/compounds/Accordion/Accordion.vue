@@ -66,6 +66,7 @@ const Accordion = {
     return { state, toggle, open, close, rootClasses, headerClasses, triggerClasses, isActive }
   }
 }
+
 export default Accordion
 </script>
 

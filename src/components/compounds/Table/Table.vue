@@ -1,7 +1,7 @@
 <script>
 import { computed, reactive, ref, watch } from 'vue'
 import { VInput, VButton, VCheckbox, VSelect } from '../..'
-import VTag from '../Tag/Tag'
+import VTag from '../Tag/Tag.vue'
 
 const Table = {
   name: 'VTable',
@@ -144,8 +144,7 @@ export default Table
           @click="data.resetFilters()"
           v-if="hasResetBtn"
           type="is-light has-text-black"
-          class="mt-2 ml-2"
-        >
+          class="mt-2 ml-2">
           &#x21bb;
         </v-button>
       </slot>
@@ -164,8 +163,7 @@ export default Table
             @dragstart="data.onDragStartColumn($event, row, idx)"
             @drop="data.onDropColumn($event, column, idx)"
             @dragover="data.onDragOverColumn($event, column, idx)"
-            @dragleave="data.onDragLeaveColumn($event, column, idx)"
-          >
+            @dragleave="data.onDragLeaveColumn($event, column, idx)">
             {{ column.caption }}
             <span v-if="sortable">
               {{ column.ascendant ? '&darr;' : '	&uarr;' }}
@@ -184,8 +182,7 @@ export default Table
               @input="data.searchColumn(column.name, search[column.name])"
               color="is-dark"
               placeholder="Search"
-              class="input has-text-black is-small is-black"
-            />
+              class="input has-text-black is-small is-black" />
           </td>
         </tr>
         <template v-if="!groupBy">
@@ -196,8 +193,7 @@ export default Table
               @drop="data.onDropRow($event, row, idx)"
               @dragover="data.onDragOverRow($event, row, idx)"
               @dragleave="data.onDragLeaveRow($event, row, idx)"
-              :class="{ 'has-background-primary': row.selected, 'has-text-white': row.selected }"
-            >
+              :class="{ 'has-background-primary': row.selected, 'has-text-white': row.selected }">
               <td v-if="checkable">
                 <v-checkbox @change="data.toggleCheck($event, row)" />
               </td>
@@ -211,8 +207,7 @@ export default Table
                 :key="column.name"
                 :class="{... column.style, 'sticky-column': column.sticky }"
                 :contenteditable="props.editable"
-                v-on:blur="data.editCell(row, column, $event.target.textContent)"
-              >
+                @blur="data.editCell(row, column, $event.target.textContent)">
                 <slot :name="column.name" :row="row">
                   {{ row[column.name] }}
                 </slot>
@@ -243,8 +238,7 @@ export default Table
                   :key="column.name"
                   :class="column.style"
                   :contenteditable="props.editable"
-                  v-on:blur="data.editCell(row, column, $event.target.textContent)"
-                >
+                  @blur="data.editCell(row, column, $event.target.textContent)">
                   <slot :name="column.name" :row="row">
                     {{ row[column.name] }}
                   </slot>
@@ -259,8 +253,7 @@ export default Table
     <!-- todo: move the styles to their own scope -->
     <div
       class="pagination-container"
-      v-if="pagination"
-    >
+      v-if="pagination">
       <v-select v-model="rowsPerPage" color="is-dark" class="has-text-dark">
         >
         <option v-for="value in rowsPerPageOptions" :key="value" :value="value">

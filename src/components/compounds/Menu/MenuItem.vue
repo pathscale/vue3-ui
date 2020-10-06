@@ -1,5 +1,5 @@
 <script>
-import { ref, watchEffect, computed } from 'vue'
+import { ref, watchEffect } from 'vue'
 
 const Component = {
   name: 'VMenuItem',
@@ -20,7 +20,7 @@ const Component = {
     const newActive = ref(props.active)
     const newExpanded = ref(props.expanded)
     const content = ref(null)
-    
+
     watchEffect(() => {
       newActive.value = props.active
     })

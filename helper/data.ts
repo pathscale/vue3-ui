@@ -73,7 +73,6 @@ export const truthy = {
 }
 
 export const falsy = {
-  // eslint-disable-next-line unicorn/no-reduce
   ...Object.keys(truthy).reduce((acc, k) => ({ ...acc, [k]: false }), {}),
   tabs: { activeTab: false },
   t: { disabled: false },

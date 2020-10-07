@@ -69,6 +69,7 @@ module.exports = {
     {
       files: [
         '.eslintrc.js',
+        '.ncurc.js',
         'postcss.config.js',
         'webpack.config.js',
         '.3rdparty-eslintrc.js',

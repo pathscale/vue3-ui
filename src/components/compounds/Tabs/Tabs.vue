@@ -89,8 +89,7 @@ export default Tabs;
           <li
             :class="{ 'is-active': tabs.activeTab == t.id }"
             @click="!t.disabled && setActiveTab(t.id);">
-            <a :class="{'has-text-grey-light': t.disabled }" 
-               :style="`pointer-events: ${t.disabled ? 'none' : 'auto'};`">
+            <a :class="{'is-disabled': t.disabled }">
               {{ t.label }}
             </a>
           </li>

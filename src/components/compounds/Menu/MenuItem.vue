@@ -40,7 +40,7 @@ const Component = {
       return {
         'is-flex': props.icon,
         'is-active': newActive.value,
-        'is-disabled': newExpanded.value
+        'is-disabled': props.disabled
       }
     })
 

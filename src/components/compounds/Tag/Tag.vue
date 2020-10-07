@@ -1,4 +1,5 @@
 <script>
+import { computed } from "vue"
 /* eslint no-shadow: ["error", { "allow": ["event"] }] -- prevent warning  'event' is already declared in the upper scope */
 const Tag = {
   name: "VTag",
@@ -26,7 +27,38 @@ const Tag = {
       if (props.disabled) return
       emit('close', event)
     }
-    return { close }
+    const addonClasses = computed(() => {
+      return [
+        props.type,
+        props.size,
+        { 
+          'is-rounded': props.rounded 
+        }
+      ]
+    })
+
+    const ellipsisClasses = computed(() => {
+      return {
+        'has-ellipsis': props.ellipsis
+      }
+    })
+
+    const buttonClasses = computed(() => {
+      return [
+        props.size,
+        props.closeType,
+        {
+          'is-rounded': props.rounded
+        },
+        props.closeIcon ? 'has-delete-icon' : 'is-delete'
+      ]
+    })
+
+    const tabIndex = computed(() => {
+      return props.tabstop ? 0 : false
+    })
+
+    return { close, addonClasses, ellipsisClasses, buttonClasses, tabIndex }
   }
 };
 
@@ -37,8 +69,8 @@ export default Tag;
   <div v-if="attached && closable" class="tags has-addons">
     <span
       class="tag"
-      :class="[type, size, { 'is-rounded': rounded }]">
-      <span :class="{ 'has-ellipsis': ellipsis }">
+      :class="addonClasses">
+      <span :class="ellipsisClasses">
         <slot />
       </span>
     </span>
@@ -46,20 +78,17 @@ export default Tag;
       class="tag"
       role="button"
       :aria-label="ariaCloseLabel"
-      :tabindex="tabstop ? 0 : false"
+      :tabindex="tabIndex"
       :disabled="disabled"
-      :class="[size,
-               closeType,
-               {'is-rounded': rounded},
-               closeIcon ? 'has-delete-icon' : 'is-delete']"
+      :class="buttonClasses"
       @click="close"
       @keyup.delete.prevent="close" />
   </div>
   <span
     v-else
     class="tag"
-    :class="[type, size, { 'is-rounded': rounded }]">
-    <span :class="{ 'has-ellipsis': ellipsis }">
+    :class="addonClasses">
+    <span :class="ellipsisClasses">
       <slot />
     </span>
 
@@ -70,7 +99,7 @@ export default Tag;
       class="delete is-small"
       :class="closeType"
       :disabled="disabled"
-      :tabindex="tabstop ? 0 : false"
+      :tabindex="tabIndex"
       @click="close"
       @keyup.delete.prevent="close" />
   </span>

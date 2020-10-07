@@ -1,8 +1,18 @@
 <script>
+import { computed } from 'vue'
+
 const Component = {
   name: 'NavbarBurger',
   props: {
     isActive: Boolean
+  },
+  setup(props) {
+    const rootClasses = computed(() => {
+      return {
+        'is-active': props.isActive
+      }
+    })
+    return { rootClasses }
   }
 }
 
@@ -13,7 +23,7 @@ export default Component
   <a
     role="button"
     class="navbar-burger burger"
-    :class="{ 'is-active': isActive }"
+    :class="rootClasses"
     aria-label="menu"
     :aria-expanded="isActive">
     <span aria-hidden="true" />

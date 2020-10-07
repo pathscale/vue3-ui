@@ -1,4 +1,6 @@
 <script>
+import { computed } from "vue"
+
 const Component = {
   name: 'VNavbarItem',
   inheritAttrs: false,
@@ -8,6 +10,14 @@ const Component = {
       default: 'a'
     },
     active: Boolean
+  },
+  setup(props) {
+    const rootClasses = computed(() => {
+      return {
+        'is-active': props.active
+      }
+    })
+    return { rootClasses }
   }
 }
 
@@ -18,9 +28,7 @@ export default Component
   <component
     :is="tag"
     class="navbar-item"
-    :class="{
-      'is-active': active
-    }"
+    :class="rootClasses"
     v-bind="$attrs">
     <slot />
   </component>

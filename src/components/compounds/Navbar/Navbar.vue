@@ -34,6 +34,10 @@ const Component = {
       isActive.value = props.modelValue;
     })
 
+    const toggleActive = () => {
+      isActive.value = !isActive.value
+    }
+
     const rootClasses = computed(() => {
       return [
         props.type,
@@ -44,10 +48,14 @@ const Component = {
           'has-shadow': props.shadow,
           'is-transparent': props.transparent
         }
-        ]
+      ]
+    })
+    const menuClasses = computed(() => {
+      return {
+        'is-active': isActive.value,
       }
-    )
-    return { rootClasses, isActive }
+    })
+    return { rootClasses, isActive, menuClasses, toggleActive }
   }
 }
 
@@ -58,9 +66,9 @@ export default Component
   <nav class="navbar" role="navigation" aria-label="main navigation" :class="rootClasses">
     <div class="navbar-brand">
       <slot name="brand" />
-      <navbar-burger :is-active="isActive" @click="isActive = !isActive" />
+      <navbar-burger :is-active="isActive" @click="toggleActive" />
     </div>
-    <div class="navbar-menu" :class="{'is-active': isActive}">
+    <div class="navbar-menu" :class="menuClasses">
       <div class="navbar-start">
         <slot name="start" />
       </div><div class="navbar-end">

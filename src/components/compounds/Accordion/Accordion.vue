@@ -51,9 +51,15 @@ const Accordion = {
 
     const { isActive } = props
 
-    function toggle() {
+    function toggle(isHeaderTrigger) {
       if (props.disabled) return
-      state.isExpanded = !state.isExpanded
+      if (isHeaderTrigger && props.headerIsTrigger) {
+        state.isExpanded = !state.isExpanded
+        return
+      }
+      if(!props.headerIsTrigger) {
+        state.isExpanded = !state.isExpanded
+      }
     }
     function open() {
       // separate function because of buggy css hover
@@ -89,14 +95,14 @@ export default Accordion
       <div
         :class="headerClasses"
         class="accordion-header"
-        @click="state.headerIsTrigger ? toggle() : null">
+        @click="toggle(state.headerIsTrigger)">
         <slot name="header" />
         <div
           role="button"
           ref="trigger"
           class="accordion-trigger-click"
           :class="triggerClasses"
-          @click="state.headerIsTrigger ? null : toggle()">
+          @click="toggle(!state.headerIsTrigger)">
           <slot name="trigger" />
         </div>
       </div>

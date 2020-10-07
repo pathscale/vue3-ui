@@ -63,9 +63,13 @@ const Component = {
       closeMenu()
     }
 
+    const show = computed(() => {
+      return (!props.disabled && (state.isActive || props.hoverable)) || props.inline
+    })
+
     provide(DropdownSymbol, { selectItem, value: props.value })
 
-    return { state, toggle, rootClasses, selectItem, closeMenu }
+    return { state, toggle, rootClasses, selectItem, closeMenu, show }
   },
 }
 
@@ -85,7 +89,7 @@ export default Component
     </div>
     <transition name="fade">
       <div
-        v-show="(!disabled && (state.isActive || hoverable)) || inline"
+        v-show="show"
         class="dropdown-menu"
         role="menu"
         :aria-hidden="!state.isActive">

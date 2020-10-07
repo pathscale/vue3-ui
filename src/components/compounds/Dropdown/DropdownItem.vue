@@ -48,6 +48,9 @@ const Component = {
     const isFocusable = computed(() => {
       return props.hasLink ? false : props.focusable
     })
+    const tabIndex = computed(() => {
+      return isFocusable.value ? 0 : null
+    })
 
     const { selectItem: reportParent } = inject(DropdownSymbol)
 
@@ -64,6 +67,7 @@ const Component = {
       isActive,
       isFocusable,
       selectItem,
+      tabIndex
     }
   },
 }
@@ -79,7 +83,7 @@ export default Component
     :class="anchorClasses"
     @click="selectItem"
     :role="ariaRoleItem"  
-    :tabindex="isFocusable ? 0 : null">
+    :tabindex="tabIndex">
     <slot />
   </a>
   <div
@@ -87,7 +91,7 @@ export default Component
     :class="itemClasses"
     @click="selectItem"
     :role="ariaRoleItem"
-    :tabindex="isFocusable ? 0 : null">
+    :tabindex="tabIndex">
     <slot />
   </div>
 </template>

@@ -27,6 +27,8 @@ export const textual = {
 }
 
 export const truthy = {
+  column: { style: undefined, selected: true },
+  row: { style: undefined, selected: true },
   tabs: { activeTab: true },
   t: { disabled: true },
   state: { isHoverable: true, newActive: true },
@@ -70,10 +72,14 @@ export const truthy = {
   isNarrow: true,
   isHoverablee: true,
   isFullwidth: true,
+  sticky: true,
+  grouped: true,
 }
 
 export const falsy = {
   ...Object.keys(truthy).reduce((acc, k) => ({ ...acc, [k]: false }), {}),
+  column: { style: undefined, selected: false },
+  row: { style: undefined, selected: false },
   tabs: { activeTab: false },
   t: { disabled: false },
   state: { isHoverable: false, newActive: false },

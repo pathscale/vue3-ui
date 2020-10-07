@@ -24,6 +24,9 @@ export const textual = {
   itemClasses: undefined,
   triggerClasses: undefined,
   headerClasses: undefined,
+  menuClasses: undefined,
+  linkClasses: undefined,
+  collapsibleClasses: undefined,
 }
 
 export const truthy = {

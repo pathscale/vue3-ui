@@ -1,4 +1,6 @@
 <script>
+import { computed } from "vue"
+
 const Tooltip = {
   name: 'VTooltip',
   props: {
@@ -32,6 +34,24 @@ const Tooltip = {
       default: 0
     }
   },
+  setup(props) {
+    const rootClasses = computed(() => {
+      return [
+        props.type,
+        props.position,
+        props.size,
+        {
+          'v-tooltip': props.active,
+          'is-square': props.square,
+          'is-animated': props.animated,
+          'is-always': props.always,
+          'is-multiline': props.multilined,
+          'is-dashed': props.dashed
+        }
+      ]
+    })
+    return { rootClasses }
+  }
 };
 
 export default Tooltip;
@@ -40,14 +60,7 @@ export default Tooltip;
 <template>
   <span
     :data-label="label"
-    :class="[type, position, size, {
-      'v-tooltip': active,
-      'is-square': square,
-      'is-animated': animated,
-      'is-always': always,
-      'is-multiline': multilined,
-      'is-dashed': dashed
-    }]"
+    :class="rootClasses"
     :style="{'transition-delay': `${delay}ms`}">
     <slot />
   </span>

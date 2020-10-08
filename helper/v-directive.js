@@ -1,3 +1,7 @@
+/**
+ * @file Report undesired content within `v` directives
+ * @author PathScale (https://vue3.dev/)
+ */
 'use strict'
 
 // Todo: Could make AST-prevention attribute specific
@@ -11,6 +15,7 @@ module.exports = {
       description: 'Report undesired content within `v` directives',
       // categories: ['vue3-essential', 'essential'],
       url: 'https://vue3.dev/rules/v-declarative.html',
+      recommended: false,
     },
     fixable: null,
     schema: [
@@ -29,6 +34,12 @@ module.exports = {
               type: 'string',
             },
           },
+          unsafeNested: {
+            type: 'array',
+            items: {
+              type: 'string',
+            },
+          },
         },
       },
     ],
@@ -37,8 +48,8 @@ module.exports = {
   create(context) {
     const {
       safe = [
-        'Identifier',
         'Literal',
+        'Identifier',
         // This only allows the inner template elements; one can still
         //   block `TemplateLiteral`
         'TemplateElement',
@@ -51,7 +62,7 @@ module.exports = {
         // This can have design features so not blocking by default
         // 'TemplateLiteral',
 
-        // To avoid these, one can use a call expression
+        // Note: in avoiding these, one can use a call expression
         'AssignmentExpression',
         'BinaryExpression',
         'LogicalExpression',

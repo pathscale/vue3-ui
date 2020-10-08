@@ -51,7 +51,9 @@ const Component = {
     const tabIndex = computed(() => {
       return isFocusable.value ? 0 : null
     })
-
+    const dropdownLink = computed(() => {
+      return !props.custom && !props.hasLink
+    })
     const { selectItem: reportParent } = inject(DropdownSymbol)
 
     const selectItem = () => {
@@ -67,7 +69,8 @@ const Component = {
       isActive,
       isFocusable,
       selectItem,
-      tabIndex
+      tabIndex,
+      dropdownLink
     }
   },
 }
@@ -78,7 +81,7 @@ export default Component
 <template>
   <hr v-if="separator" class="dropdown-divider" />
   <a
-    v-else-if="!custom && !hasLink"
+    v-else-if="dropdownLink"
     class="dropdown-item"
     :class="anchorClasses"
     @click="selectItem"

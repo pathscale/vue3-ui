@@ -76,13 +76,15 @@ const Sidebar = {
     const isAbsolute = computed(() => {
       return props.position === 'absolute'
     })
-
+    const overlayAndOpen = computed(() => {
+      return props.overlay && props.open
+    })
     watchEffect(() => {
       const open = props.right ? !props.open : props.open
       state.transitionName = !open ? 'slide-right' : 'slide-left'
     })
 
-    return { state, rootClasses, rootStyles, cancelOptions, emit }
+    return { state, rootClasses, rootStyles, cancelOptions, emit, overlayAndOpen }
   },
 }
 
@@ -93,7 +95,7 @@ export default Sidebar
   <div class="v-sidebar">
     <div
       class="sidebar-background"
-      v-if="overlay && open"
+      v-if="overlayAndOpen"
       @click="emit('close')" />
     <transition
       :name="state.transitionName">

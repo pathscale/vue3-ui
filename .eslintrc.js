@@ -127,9 +127,10 @@ module.exports = {
     {
       files: '*.vue',
       extends: baseConfigs,
+      plugins: ['@pathscale/vue3'],
       rules: {
         ...baseRules,
-        'v-directive': [
+        '@pathscale/vue3/v-directive': [
           'error',
           {
             unsafe: [

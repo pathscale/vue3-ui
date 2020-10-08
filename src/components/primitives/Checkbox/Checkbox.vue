@@ -1,6 +1,6 @@
 <script>
 /* eslint no-shadow: ["error", { "allow": ["focus"] }] -- prevent warning  'focus' is already declared in the upper scope */
-import { ref, watchEffect } from 'vue'
+import { ref, watchEffect, computed } from 'vue'
 import CheckRadioMixin from '../../../mixins/CheckRadio.js'
 
 const Checkbox = {
@@ -32,7 +32,17 @@ const Checkbox = {
     watchEffect(() => {
       emit('update:modelValue', value.value)
     })
-    return { label, input, value, focus }
+
+    const rootClasses = computed(() => {
+      return [
+        props.size,
+        {
+          'is-disabled': props.disabled
+        }
+      ]
+    })
+
+    return { label, input, value, focus, rootClasses }
   }
 }
 
@@ -42,7 +52,7 @@ export default Checkbox;
 <template>
   <label
     class="v-checkbox checkbox"
-    :class="[size, { 'is-disabled': disabled }]"
+    :class="rootClasses"
     ref="label"
     :disabled="disabled"
     @click="focus"

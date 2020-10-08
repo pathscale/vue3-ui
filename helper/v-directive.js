@@ -122,7 +122,7 @@ module.exports = {
             report(nde)
           }
           if (!rootCheck && unsafeNested.includes(typ)) {
-            report(nde, true)
+            report(nde, { nested: true })
           }
           switch (typ) {
             case 'VForExpression':
@@ -132,10 +132,35 @@ module.exports = {
               // Treat as root
               checkBranches(nde.right, rootCheck)
               return
-            case 'MemberExpression':
-              checkBranches(nde.object)
-              checkBranches(nde.propery)
+            case 'VSlotScopeExpression':
+              nde.params.forEach(param => {
+                checkBranches(param, rootCheck)
+              })
               return
+            case 'MemberExpression':
+              checkBranches(nde.object, rootCheck)
+              checkBranches(nde.propery, rootCheck)
+              return
+            case 'SpreadElement':
+            case 'UnaryExpression':
+              checkBranches(nde.argument, rootCheck)
+              return
+            case 'ArrayExpression':
+              nde.elements.forEach(element => {
+                checkBranches(element, rootCheck)
+              })
+              return
+            case 'ObjectExpression':
+              nde.properties.forEach(property => {
+                checkBranches(property, rootCheck)
+              })
+              return
+            case 'Property':
+              checkBranches(nde.key, rootCheck)
+              checkBranches(nde.value, rootCheck)
+              return
+
+            // These add complexity, diving into nested, so don't treat as root
             case 'ConditionalExpression':
               checkBranches(nde.test)
               checkBranches(nde.consequent)
@@ -147,10 +172,6 @@ module.exports = {
               checkBranches(nde.left)
               checkBranches(nde.right)
               return
-            case 'SpreadElement':
-            case 'UnaryExpression':
-              checkBranches(nde.argument)
-              return
             case 'TemplateLiteral':
               nde.expressions.forEach(expr => {
                 checkBranches(expr)
@@ -159,20 +180,6 @@ module.exports = {
                 checkBranches(quasi)
               })
               return
-            case 'ArrayExpression':
-              nde.elements.forEach(element => {
-                checkBranches(element)
-              })
-              return
-            case 'ObjectExpression':
-              nde.properties.forEach(property => {
-                checkBranches(property)
-              })
-              return
-            case 'Property':
-              checkBranches(nde.key)
-              checkBranches(nde.value)
-              return
             case 'CallExpression':
               checkBranches(nde.callee)
               nde.arguments.forEach(arg => {
@@ -180,17 +187,19 @@ module.exports = {
               })
               return
             default:
-              report(nde)
+              report(nde, { unrecognized: true })
           }
         }
 
         // const element = node.parent.parent
 
-        function report(nde, nested) {
+        function report(nde, { nested, unrecognized } = {}) {
           context.report({
             node: nde,
             loc: nde.loc,
-            message: nested
+            message: unrecognized
+              ? `Attribute "${node.key.name.rawName}" has unrecognized type: ${nde.type}`
+              : nested
               ? `Attribute "${node.key.name.rawName}" has bad nested type: ${nde.type}`
               : `Attribute "${node.key.name.rawName}" has bad type: ${nde.type}`,
           })

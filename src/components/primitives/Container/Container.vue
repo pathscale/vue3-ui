@@ -1,10 +1,21 @@
 <script>
+import { computed } from 'vue'
+
 const Component = {
   name: 'VContainer',
   props: {
     type: String,
     bg: Object,
-
+  },
+  setup(props) {
+    const rootClasses = computed(() => {
+      return [ props.bg ? {
+        'background-image': `url(${props.bg})`,
+        'background-size': 'cover',
+        'background-repeat': 'no-repeat',
+      } : {}]
+    })
+    return { rootClasses }
   }
 }
 
@@ -15,11 +26,7 @@ export default Component
   <div
     class="container"
     :class="[type]"
-    :style="[ bg ? {
-      'background-image': `url(${bg})`,
-      'background-size': 'cover',
-      'background-repeat': 'no-repeat',
-    } : {}]">
+    :style="rootClasses">
     <slot />
   </div>
 </template>

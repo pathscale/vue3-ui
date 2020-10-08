@@ -1,4 +1,6 @@
 <script>
+import { computed } from 'vue'
+
 const FileInput = {
   name: "VFile",
   inheritAttrs: false,
@@ -13,6 +15,21 @@ const FileInput = {
     },
     alignment: String
   },
+  setup(props) {
+    const rootClasses = computed(() => {
+      return [
+        props.size,
+        props.color,
+        props.alignment,
+        {
+          'has-name': props.hasName,
+          'is-fullwidth': props.fullwidth,
+          'is-boxed': props.boxed
+        }
+      ]
+    })
+    return { rootClasses }
+  }
 }
 
 export default FileInput
@@ -21,11 +38,7 @@ export default FileInput
 <template>
   <div
     class="file"
-    :class="[size, color, alignment, {
-      'has-name': hasName,
-      'is-fullwidth': fullwidth,
-      'is-boxed': boxed
-    }]">
+    :class="rootClasses">
     <label class="file-label">
       <input class="file-input" type="file" v-bind="$attrs" />
       <span class="file-cta">

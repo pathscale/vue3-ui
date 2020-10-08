@@ -23,6 +23,7 @@ const Select = {
   emits: ['update:modelValue', 'blur', 'focus'],
   setup(props, { emit }) {
     const value = ref(props.modelValue)
+    const valueIsNullish = computed(() => value.value === null)
     const spanClasses = computed(() => {
       return [props.size, props.color, {
         'is-fullwidth': props.expanded,
@@ -35,7 +36,7 @@ const Select = {
     watchEffect(() => {
       emit('update:modelValue', value.value)
     })
-    return { value, spanClasses }
+    return { value, valueIsNullish, spanClasses }
   },
 }
 
@@ -58,7 +59,7 @@ export default Select
         <template v-if="placeholder">
           <option
             class="has-background-dark has-text-light"
-            v-if="value == null"
+            v-if="valueIsNullish"
             :value="null"
             disabled
             hidden>

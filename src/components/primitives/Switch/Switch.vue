@@ -1,5 +1,5 @@
 <script>
-import { ref, watchEffect } from 'vue';
+import { ref, watchEffect, computed } from 'vue';
 
 const Switch = {
   name: 'VSwitch',
@@ -36,11 +36,12 @@ const Switch = {
   emits: ['update:modelValue'],
   setup(props, { emit }) {
     const value = ref(props.modelValue)
+    const passiveClass = computed(() => props.passiveType && `${props.passiveType}-passive`)
 
     watchEffect(() => {
       emit('update:modelValue', value.value)
     })
-    return { value }
+    return { value, passiveClass }
   }
 };
 
@@ -68,7 +69,7 @@ export default Switch;
       :false-value="falseValue" />
     <span
       class="check"
-      :class="[(passiveType &&`${passiveType}-passive`),type]" />
+      :class="[passiveClass,type]" />
     <span class="control-label"><slot /></span>
   </label>
 </template>

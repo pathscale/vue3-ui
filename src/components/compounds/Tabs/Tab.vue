@@ -32,7 +32,11 @@ const Tab = {
     })
 
     addToStore({ ...props, id })
-    return { tabs, id, transitionName, content}
+
+    const isActiveTab = computed(() => {
+      return tabs.activeTab === id
+    })
+    return { tabs, id, transitionName, content, isActiveTab}
   },
 }
 
@@ -41,11 +45,11 @@ export default Tab;
 
 <template>
   <transition v-if="tabs.animated" :name="transitionName">
-    <div v-if="tabs.activeTab == id" ref="content">
+    <div v-if="isActiveTab" ref="content">
       <slot />
     </div>
   </transition>
-  <div v-else-if="tabs.activeTab == id" ref="content">
+  <div v-else-if="isActiveTab" ref="content">
     <slot />
   </div>
 </template>

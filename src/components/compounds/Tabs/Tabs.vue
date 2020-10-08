@@ -40,8 +40,10 @@ const Tabs = {
   setup(props, { emit }) {
     provideStore({ activeTab: 0, activeHeight: null, tabs: [], animated: props.animated })
     const tabs = useStore()
-    function setActiveTab(id) {
-      tabs.value.activeTab = id
+    function setActiveTab(t) {
+      if(!t.disabled) {
+        tabs.value.activeTab = t.id
+      }
     }
 
     const contentHeight = computed(() => {
@@ -68,12 +70,31 @@ const Tabs = {
         }
       ]
     })
-
+    const tabClasses = (t) => {
+      return { 
+        'is-active': tabs.value.activeTab === t.id 
+      }
+    }
+    const labelClasses = (t) => {
+      return {
+        'is-disabled': t.disabled
+      }
+    }
+    const animatedClasses = computed(() => {
+      return [
+        {
+          'is-height-animated': props.vanimated
+        }
+      ]
+    })
     return {
       contentHeight,
       navClasses,
       setActiveTab,
-      tabs
+      tabs,
+      tabClasses,
+      labelClasses,
+      animatedClasses
     }
   },
 }
@@ -87,16 +108,16 @@ export default Tabs;
       <ul>
         <template v-for="t in tabs.tabs" :key="t">
           <li
-            :class="{ 'is-active': tabs.activeTab == t.id }"
-            @click="!t.disabled && setActiveTab(t.id);">
-            <a :class="{'is-disabled': t.disabled }">
+            :class="tabClasses"
+            @click="setActiveTab(t)">
+            <a :class="labelClasses">
               {{ t.label }}
             </a>
           </li>
         </template>
       </ul>
     </nav>
-    <div :class="[{'is-height-animated': vanimated}]" :style="contentHeight">
+    <div :class="animatedClasses" :style="contentHeight">
       <slot />
     </div>
   </section>

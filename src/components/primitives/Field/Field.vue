@@ -27,7 +27,8 @@ const Field = {
         'has-addons': props.addons
       }]
     })
-    return { rootClasses }
+    const hasHorizontalLabel = computed(() => props.horizontal && props.label)
+    return { rootClasses, hasHorizontalLabel }
   }
 }
 
@@ -36,7 +37,7 @@ export default Field;
 
 <template>
   <div class="field" :class="rootClasses">
-    <div v-if="horizontal && label" class="field-label" :class="size">
+    <div v-if="hasHorizontalLabel" class="field-label" :class="size">
       <label class="label" :for="labelFor">{{ label }}</label>
     </div>
     <label v-else-if="label" class="label" :for="labelFor">{{ label }}</label>

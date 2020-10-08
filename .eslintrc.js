@@ -145,6 +145,7 @@ module.exports = {
               'BinaryExpression',
               'LogicalExpression',
               'ConditionalExpression',
+              // This can have design features but preventing to avoid ugliness
               'TemplateLiteral',
             ],
           },

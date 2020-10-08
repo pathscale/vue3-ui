@@ -58,7 +58,11 @@ const Tag = {
       return props.tabstop ? 0 : false
     })
 
-    return { close, addonClasses, ellipsisClasses, buttonClasses, tabIndex }
+    const isClosable = computed(() => {
+      return props.attached && props.closable
+    })
+
+    return { close, addonClasses, ellipsisClasses, buttonClasses, tabIndex, isClosable }
   }
 };
 
@@ -66,7 +70,7 @@ export default Tag;
 </script>
 
 <template>
-  <div v-if="attached && closable" class="tags has-addons">
+  <div v-if="isClosable" class="tags has-addons">
     <span
       class="tag"
       :class="addonClasses">

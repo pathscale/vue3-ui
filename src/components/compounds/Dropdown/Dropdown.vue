@@ -48,7 +48,7 @@ const Component = {
     })
 
     const toggle = () => {
-      if (props.disabled) return
+      if (props.disabled || props.hoverable) return
       state.isActive = !state.isActive
     }
 

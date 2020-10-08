@@ -172,18 +172,18 @@ class DataGrid {
   }
 
   // returns an object that maps column names to column instances
-  getColumnsObject(): Object {
+  getColumnsObject(): Record<string, Column> {
     return this.columns.reduce((obj, column) => {
       obj[column.name] = column
       return obj;
     } , {})
   }
 
-  groups(column: string): Object {
+  groups(column: string): Set<number|boolean> {
     return this.rows.reduce((set, row) => {
       set.add(row[column])
       return set;
-    }, new Set())
+    }, new Set() as Set<number|boolean>)
   }
 
   filterRows(column: string, value: string | number): Row[] {

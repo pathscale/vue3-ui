@@ -74,6 +74,7 @@ module.exports = {
         'webpack.config.js',
         '.3rdparty-eslintrc.js',
         '.np-config.js',
+        'helper/v-directive.js',
       ],
       extends: baseConfigs,
       env: {
@@ -128,6 +129,26 @@ module.exports = {
       extends: baseConfigs,
       rules: {
         ...baseRules,
+        'v-directive': [
+          'error',
+          {
+            unsafe: [
+              // These just add a single operator
+              // 'SpreadElement',
+              // 'UnaryExpression',
+
+              // This seems unavoidable
+              // 'CallExpression',
+
+              // To avoid these, one can use a call expression
+              'AssignmentExpression',
+              'BinaryExpression',
+              'LogicalExpression',
+              'ConditionalExpression',
+              'TemplateLiteral',
+            ],
+          },
+        ],
       },
     },
   ],

@@ -26,9 +26,9 @@
     "prebuild": "ts-node --files --project helper/tsconfig.json helper/index.ts && shx rm -rf dist",
     "build": "rollup -c --environment NODE_ENV:production",
     "postbuild": "shx cp helper/mappings.json dist",
-    "lint": "eslint --ext .js,.ts,.vue,.md,.html --max-warnings=0 .",
-    "lint-arg": "eslint --ext .js,.ts,.vue,.md,.html --max-warnings=0",
-    "lint-fix": "eslint --ext .js,.ts,.vue,.md,.html --fix .",
+    "lint": "eslint --rulesdir helper --ext .js,.ts,.vue,.md,.html --max-warnings=0 .",
+    "lint-arg": "eslint --rulesdir helper --ext .js,.ts,.vue,.md,.html --max-warnings=0",
+    "lint-fix": "eslint --rulesdir helper --ext .js,.ts,.vue,.md,.html --fix .",
     "prepublishOnly": "npm run build",
     "release": "npm run build && np",
     "start": "vue-cli-service serve"

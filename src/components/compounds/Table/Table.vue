@@ -114,6 +114,34 @@ const Table = {
         currentPage.value += 1
     }
 
+    const handleSort = (column) => {
+      if(props.sortable) {
+        sortColumn(column)
+      }
+    }
+
+    const columnClasses = (column) => {
+      return { 
+        ...column.style,
+        'has-text-primary': column.selected,
+        'sticky-row': props.sticky
+      }
+    }
+
+    const selectedClasses = (row) => {
+      return { 
+        'has-background-primary': row.selected,
+        'has-text-white': row.selected
+      }
+    }
+
+    const cellClasses = (column) => {
+      return {
+        ...column.style,
+        'sticky-column': column.sticky
+      }
+    }
+
     return {
       props,
       data,
@@ -129,6 +157,10 @@ const Table = {
       countColumns,
       handleBackPage,
       handleNextPage,
+      handleSort,
+      columnClasses,
+      selectedClasses,
+      cellClasses
     }
   },
 }
@@ -157,8 +189,8 @@ export default Table
           <th
             v-for="(column, idx) in data.getColumns()"
             :key="idx"
-            :class="{ ...column.style, 'has-text-primary': column.selected, 'sticky-row': sticky }"
-            @click="sortable ? sortColumn(column) : null"
+            :class="columnClasses(column)"
+            @click="handleSort(column)"
             :draggable="draggableColumns"
             @dragstart="data.onDragStartColumn($event, row, idx)"
             @drop="data.onDropColumn($event, column, idx)"
@@ -193,7 +225,7 @@ export default Table
               @drop="data.onDropRow($event, row, idx)"
               @dragover="data.onDragOverRow($event, row, idx)"
               @dragleave="data.onDragLeaveRow($event, row, idx)"
-              :class="{ 'has-background-primary': row.selected, 'has-text-white': row.selected }">
+              :class="selectedClasses(row)">
               <td v-if="checkable">
                 <v-checkbox @change="data.toggleCheck($event, row)" />
               </td>
@@ -205,7 +237,7 @@ export default Table
               <td
                 v-for="column in data.getColumns()"
                 :key="column.name"
-                :class="{... column.style, 'sticky-column': column.sticky }"
+                :class="cellClasses(column)"
                 :contenteditable="props.editable"
                 @blur="data.editCell(row, column, $event.target.textContent)">
                 <slot :name="column.name" :row="row">

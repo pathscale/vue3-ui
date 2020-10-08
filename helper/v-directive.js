@@ -1,5 +1,7 @@
 'use strict'
 
+// Todo: Could make AST-prevention attribute specific
+
 const utils = require('eslint-plugin-vue/lib/utils')
 
 module.exports = {
@@ -34,9 +36,28 @@ module.exports = {
   /** @param {RuleContext} context */
   create(context) {
     const {
-      safe = ['Identifier', 'Literal', 'TemplateElement'],
-      // Todo: Tweak after testing
-      unsafe = [],
+      safe = [
+        'Identifier',
+        'Literal',
+        // This only allows the inner template elements; one can still
+        //   block `TemplateLiteral`
+        'TemplateElement',
+      ],
+      unsafe = [
+        // These just add a single operator, so not blocked by default
+        // 'SpreadElement',
+        // 'UnaryExpression',
+
+        // This can have design features so not blocking by default
+        // 'TemplateLiteral',
+
+        // To avoid these, one can use a call expression
+        'AssignmentExpression',
+        'BinaryExpression',
+        'LogicalExpression',
+        'ConditionalExpression',
+      ],
+      unsafeNested = ['CallExpression'],
     } = context.options[0] || {}
 
     return utils.defineTemplateBodyVisitor(context, {
@@ -72,13 +93,13 @@ module.exports = {
           if (safe.includes(bdy.expression.type)) {
             return
           }
-          checkBranches(bdy.expression)
+          checkBranches(bdy.expression, true)
           return
         }
 
-        checkBranches(expression)
+        checkBranches(expression, true)
 
-        function checkBranches(nde) {
+        function checkBranches(nde, rootCheck) {
           if (!nde) {
             return
           }
@@ -89,12 +110,16 @@ module.exports = {
           if (unsafe.includes(typ)) {
             report(nde)
           }
+          if (!rootCheck && unsafeNested.includes(typ)) {
+            report(nde)
+          }
           switch (typ) {
             case 'VForExpression':
               nde.left.forEach(left => {
                 checkBranches(left)
               })
-              checkBranches(nde.right)
+              // Treat as root
+              checkBranches(nde.right, rootCheck)
               return
             case 'MemberExpression':
               checkBranches(nde.object)

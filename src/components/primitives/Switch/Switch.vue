@@ -37,11 +37,20 @@ const Switch = {
   setup(props, { emit }) {
     const value = ref(props.modelValue)
     const passiveClass = computed(() => props.passiveType && `${props.passiveType}-passive`)
-
+    const rootClasses = computed(() => {
+      return [
+        props.size,
+        {
+          'is-disabled': props.disabled,
+          'is-rounded': props.rounded,
+          'is-outlined': props.outlined,
+        }
+      ]
+    })
     watchEffect(() => {
       emit('update:modelValue', value.value)
     })
-    return { value, passiveClass }
+    return { value, passiveClass, rootClasses }
   }
 };
 
@@ -51,11 +60,7 @@ export default Switch;
 <template>
   <label
     class="switch"
-    :class="[size, {
-      'is-disabled': disabled,
-      'is-rounded': rounded,
-      'is-outlined': outlined,
-    }]"
+    :class="rootClasses"
     :disabled="disabled">
     <input
       v-model="value"

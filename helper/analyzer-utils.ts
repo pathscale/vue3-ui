@@ -18,6 +18,6 @@ export function parseSFC(code: string, id: string): ParsedSFC {
   return { template, script }
 }
 
-export function isVueSFC(id: string) {
+export function isVueSFC(id: string): Boolean {
   return /\.vue$/i.test(id)
 }

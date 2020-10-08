@@ -40,7 +40,7 @@ class DataGrid {
     this.draggingColumnIdx = null;
   }
 
-  addColumn(name: string, caption: string, dataType: string, style: string, sticky = false) {
+  addColumn(name: string, caption: string, dataType: string, style: string, sticky = false): void {
     this.columns.push({
       name,
       caption,
@@ -52,7 +52,7 @@ class DataGrid {
     })
   }
 
-  addRow(content: Row, index: number) {
+  addRow(content: Row, index: number): void {
     if(typeof index !== 'undefined') {
       this.rows.splice(index, 0, content)
       this.originalRows.splice(index, 0, content)
@@ -62,17 +62,17 @@ class DataGrid {
     }
   }
 
-  deleteRow(index: number) {
+  deleteRow(index: number): void {
     this.rows.splice(index, 1)
     this.originalRows.splice(index, 1)
   }
 
   // eslint-disable-next-line class-methods-use-this
-  editCell(row: Row, column: Column, newValue: string | number) {
+  editCell(row: Row, column: Column, newValue: string | number): void {
     row[column.name] = newValue
   }
 
-  sortByColumn(column: string, ascendant: boolean) {
+  sortByColumn(column: string, ascendant: boolean): void {
     this.rows.sort((a, b) => {
       if(a[column] < b[column]) { return ascendant ? -1 : 1 }
       if(a[column] > b[column]) { return ascendant ? 1 : -1 }
@@ -80,58 +80,58 @@ class DataGrid {
     })
   }
 
-  resetFilters() {
+  resetFilters(): void {
     this.rows = [...this.originalRows]
   }
 
-  searchColumn(colName: string, query: string) {
+  searchColumn(colName: string, query: string): void {
     this.rows = this.originalRows.filter((row) => {
       return row[colName].toString().toLowerCase().includes(query.toLowerCase())
     })
   }
 
-  toggleCheck(evt: Event, row: Row) {
+  toggleCheck(evt: Event, row: Row): void {
     this.checkedRows = (evt.target as HTMLInputElement).checked
       ? [...this.checkedRows, row]
       : this.checkedRows.filter(currentRow => currentRow.id !== row.id)
   }
 
-  switchPage() {
+  switchPage(): void {
     this.rows = this.originalRows.slice(this.currentPage*this.rowsPerPage, this.currentPage*this.rowsPerPage + this.rowsPerPage)
   }
 
-  toggleColumn({ name }: { name: string }) {
+  toggleColumn({ name }: { name: string }): void {
     this.columns = this.columns.map(column => column.name === name ? ({ ...column, show: !column.show }) : column)
   }
 
   // returns visible columns
-  getColumns() {
+  getColumns(): Column[] {
     return this.columns.filter(column => column.show)
   }
 
-  onDragStartRow(_evt: Event, row: Row, idx: number) {
+  onDragStartRow(_evt: Event, row: Row, idx: number): void {
     this.draggingRow = row;
     this.draggingRowIdx = idx;
   }
 
-  onDropRow(_evt: Event, _row: Row, idx: number) {
+  onDropRow(_evt: Event, _row: Row, idx: number): void {
     const chunk = this.rows.splice(this.draggingRowIdx, 1)
     this.rows.splice(idx, 0, chunk[0])
     this.resetDraggingRow()
   }
 
-  onDragOverRow(evt: Event, _row: Row, idx: number) {
+  onDragOverRow(evt: Event, _row: Row, idx: number): void {
     if (this.draggingRowIdx === null) return;
 
     this.rows[idx].selected = true
     evt.preventDefault()
   }
 
-  onDragLeaveRow(_evt: Event, _row: Row, idx: number) {
+  onDragLeaveRow(_evt: Event, _row: Row, idx: number): void {
     this.rows[idx].selected = false
   }
 
-  resetDraggingRow() {
+  resetDraggingRow(): void {
     this.rows.forEach(row => {
       row.selected = false
     })
@@ -139,31 +139,31 @@ class DataGrid {
     this.draggingRowIdx = null;
   }
 
-  onDragStartColumn(_evt: Event, column: Column, idx: number) {
+  onDragStartColumn(_evt: Event, column: Column, idx: number): void {
     this.draggingColumn = column;
     this.draggingColumnIdx = idx;
   }
 
   // callback called when user drops a column
-  onDropColumn(_evt: Event, _column: Column, idx: number) {
+  onDropColumn(_evt: Event, _column: Column, idx: number): void {
     const chunk = this.columns.splice(this.draggingColumnIdx, 1)
     this.columns.splice(idx, 0, chunk[0])
     this.resetDraggingColumn()
   }
 
   // the event must be prevented for the onDrop method to get called
-  onDragOverColumn(evt: Event, _column: Column, idx: number) {
+  onDragOverColumn(evt: Event, _column: Column, idx: number): void {
     if (this.draggingColumnIdx === null) return;
 
     this.columns[idx].selected = true
     evt.preventDefault()
   }
 
-  onDragLeaveColumn(_evt: Event, _column: Column, idx: number) {
+  onDragLeaveColumn(_evt: Event, _column: Column, idx: number): void {
     this.columns[idx].selected = false
   }
 
-  resetDraggingColumn() {
+  resetDraggingColumn(): void {
     this.columns.forEach(column => {
       column.selected = false
     })
@@ -172,21 +172,21 @@ class DataGrid {
   }
 
   // returns an object that maps column names to column instances
-  getColumnsObject() {
+  getColumnsObject(): Object {
     return this.columns.reduce((obj, column) => {
       obj[column.name] = column
       return obj;
     } , {})
   }
 
-  groups(column: string) {
+  groups(column: string): Object {
     return this.rows.reduce((set, row) => {
       set.add(row[column])
       return set;
     }, new Set())
   }
 
-  filterRows(column: string, value: string | number) {
+  filterRows(column: string, value: string | number): Row[] {
     return this.rows.filter(row => row[column] === value)
   }
 }

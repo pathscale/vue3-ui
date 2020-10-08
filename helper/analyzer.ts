@@ -22,7 +22,7 @@ export function getWhitelist(input: string): string[] {
     '-leave-to',
   ]
 
-  const isSupported = (id: string) => {
+  const isSupported = (id: string): boolean => {
     const lowerId = normalizePath(id.toLowerCase())
     if (lowerId.includes('/node_modules/')) return false
     return extensions.some(ext => lowerId.endsWith(ext))
@@ -35,7 +35,7 @@ export function getWhitelist(input: string): string[] {
 
   const parser = new HtmlparserParser(
     {
-      onopentag(name, attrs) {
+      onopentag(name, attrs): void {
         whitelist.add(name)
 
         if (name === 'transition') {
@@ -47,7 +47,7 @@ export function getWhitelist(input: string): string[] {
         }
       },
 
-      onattribute(name, data) {
+      onattribute(name, data): void {
         if (name === 'class') {
           for (const c of data.split(' ')) whitelist.add(c)
           return
@@ -77,9 +77,7 @@ export function getWhitelist(input: string): string[] {
         basedir: path.dirname(id),
         extensions,
         packageFilter(pkg) {
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access
           if (pkg.module) pkg.main = pkg.module
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-return
           return pkg
         },
       }),
@@ -90,13 +88,12 @@ export function getWhitelist(input: string): string[] {
     return depId
   }
 
-  function traverseSource(id: string, rawCode: string) {
+  function traverseSource(id: string, rawCode: string): void {
     const code = extract(rawCode, id)
     if (!code) return
 
     const ast = jsparserParse(code, parserOpts)
     traverse(ast, {
-      // eslint-disable-next-line @typescript-eslint/naming-convention
       // Identifier({ node, parent }) {
       //   if (!isVueSFC(id)) return
       //   if (!animationList.includes(node.name)) return
@@ -108,20 +105,17 @@ export function getWhitelist(input: string): string[] {
       //   parent
       // },
 
-      // eslint-disable-next-line @typescript-eslint/naming-convention
       StringLiteral({ node }) {
         if (!isVueSFC(id)) return
         for (const cl of node.value.split(' ')) whitelist.add(cl)
       },
 
-      // eslint-disable-next-line @typescript-eslint/naming-convention
       ExportNamedDeclaration({ node }) {
         if (!node.source) return
         const depId = resolveSource(id, node.source.value)
         if (depId) idList.push(depId)
       },
 
-      // eslint-disable-next-line @typescript-eslint/naming-convention
       ImportDeclaration({ node }) {
         const depId = resolveSource(id, node.source.value)
         if (depId) idList.push(depId)

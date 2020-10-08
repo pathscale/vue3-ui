@@ -48,6 +48,9 @@ const Switch = {
       ]
     })
     watchEffect(() => {
+      value.value = props.modelValue
+    })
+    watchEffect(() => {
       emit('update:modelValue', value.value)
     })
     return { value, passiveClass, rootClasses }

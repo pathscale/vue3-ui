@@ -21,6 +21,7 @@ const Textarea = {
     const onFocus = () => { isFocused.value = true };
     const onBlur = () => { isFocused.value = false };
     const valueLength = computed(() => value.value.length);
+    const showCounter = computed(() => props.maxlength && props.hasCounter);
     const rootClasses = computed(() => {
       return [
         props.size,
@@ -40,7 +41,7 @@ const Textarea = {
     });
 
     watchEffect(() => emit('update:modelValue', value.value));
-    return { value, isFocused, onBlur, onFocus, valueLength, rootClasses, inputClasses };
+    return { value, isFocused, onBlur, onFocus, valueLength, rootClasses, inputClasses, showCounter };
   },
 }
 
@@ -61,7 +62,7 @@ export default Textarea;
       @blur="onBlur"
       @focus="onFocus" />
     <small
-      v-if="maxlength && hasCounter"
+      v-if="showCounter"
       :class="{ 'is-invisible': !isFocused }">
       {{ valueLength }} / {{ maxlength }}
     </small>

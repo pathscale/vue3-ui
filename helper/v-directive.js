@@ -111,7 +111,7 @@ module.exports = {
             report(nde)
           }
           if (!rootCheck && unsafeNested.includes(typ)) {
-            report(nde)
+            report(nde, true)
           }
           switch (typ) {
             case 'VForExpression':
@@ -175,11 +175,13 @@ module.exports = {
 
         // const element = node.parent.parent
 
-        function report(nde) {
+        function report(nde, nested) {
           context.report({
             node: nde,
             loc: nde.loc,
-            message: `Attribute "${node.key.name.rawName}" has bad type: ${nde.type}`,
+            message: nested
+              ? `Attribute "${node.key.name.rawName}" has bad nested type: ${nde.type}`
+              : `Attribute "${node.key.name.rawName}" has bad type: ${nde.type}`,
           })
         }
       },

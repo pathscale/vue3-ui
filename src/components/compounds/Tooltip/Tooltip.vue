@@ -50,7 +50,13 @@ const Tooltip = {
         }
       ]
     })
-    return { rootClasses }
+
+    const transition = computed(() => {
+      return {
+        'transition-delay': `${props.delay}ms`
+      }
+    })
+    return { rootClasses, transition }
   }
 };
 
@@ -61,7 +67,7 @@ export default Tooltip;
   <span
     :data-label="label"
     :class="rootClasses"
-    :style="{'transition-delay': `${delay}ms`}">
+    :style="transition">
     <slot />
   </span>
 </template>

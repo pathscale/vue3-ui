@@ -81,7 +81,7 @@ const Sidebar = {
     })
     watchEffect(() => {
       const open = props.right ? !props.open : props.open
-      state.transitionName = !open ? 'slide-right' : 'slide-left'
+      state.transitionName = open ? 'slide-right' : 'slide-left'
     })
 
     return { state, rootClasses, rootStyles, cancelOptions, emit, overlayAndOpen }

@@ -40,9 +40,12 @@ const Tabs = {
   setup(props, { emit }) {
     provideStore({ activeTab: 0, activeHeight: null, tabs: [], animated: props.animated })
     const tabs = useStore()
+    function setActiveTabID(id) {
+      tabs.value.activeTab = id
+    }
     function setActiveTab(t) {
       if(!t.disabled) {
-        tabs.value.activeTab = t.id
+        setActiveTabID(t.id)
       }
     }
 
@@ -51,7 +54,7 @@ const Tabs = {
     })
 
     watchEffect(() => {
-      setActiveTab(props.modelValue)
+      setActiveTabID(props.modelValue)
     })
 
     watchEffect(() => {
@@ -71,8 +74,8 @@ const Tabs = {
       ]
     })
     const tabClasses = (t) => {
-      return { 
-        'is-active': tabs.value.activeTab === t.id 
+      return {
+        'is-active': tabs.value.activeTab === t.id
       }
     }
     const labelClasses = (t) => {
@@ -108,9 +111,9 @@ export default Tabs;
       <ul>
         <template v-for="t in tabs.tabs" :key="t">
           <li
-            :class="tabClasses"
+            :class="tabClasses(t)"
             @click="setActiveTab(t)">
-            <a :class="labelClasses">
+            <a :class="labelClasses(t)">
               {{ t.label }}
             </a>
           </li>

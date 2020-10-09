@@ -34,7 +34,7 @@ const Tab = {
     addToStore({ ...props, id })
 
     const isActiveTab = computed(() => {
-      return tabs.activeTab === id
+      return tabs.value.activeTab === id
     })
     return { tabs, id, transitionName, content, isActiveTab}
   },

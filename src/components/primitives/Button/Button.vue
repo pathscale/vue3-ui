@@ -66,7 +66,6 @@ export default Button
     :is="computedTag"
     class="button"
     :type="nativeType"
-    v-bind="$attrs"
     :class="rootClasses">
     <span v-if="label">{{ label }}</span>
     <slot />

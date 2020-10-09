@@ -3,6 +3,7 @@ import { ref, watchEffect, computed } from 'vue'
 
 const Select = {
   name: 'VSelect',
+  inheritAttrs: false,
   props: {
     modelValue: {
       type: [String, Number, Boolean, Object, Array, Function],

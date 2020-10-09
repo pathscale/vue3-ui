@@ -60,41 +60,42 @@
 
 <script>
 import { reactive } from 'vue'
-import { VTextarea, VInput, VSidebar, VSelect, VField, VSwitch, VButton, useGlobalSettings } from "../components";
+import { VTextarea, VInput, VSidebar, VSelect, VField, VSwitch, VButton, useGlobalSettings } from '../components'
 
 const Component = {
   components: { VTextarea, VInput, VSidebar, VSelect, VField, VSwitch, VButton },
-  setup(){
+  setup() {
     const state = reactive({
       felipetest: 1010,
       open: true,
       expandOnHover: true,
-      mobile:'reduce',
-      reduce:true,
+      mobile: 'reduce',
+      reduce: true,
     })
-    const settings = useGlobalSettings();
+    const settings = useGlobalSettings()
 
     return {
       state,
       setRounded() {
-        settings.button.rounded = true;
+        settings.button.rounded = true
       }
     }
   }
 }
-export default Component;
+
+export default Component
 </script>
 
 <style>
 .p-1 {
-	 padding: 1em;
+  padding: 1em;
 }
- .sidebar-page {
-	 display: flex;
-	 width: 100%;
+.sidebar-page {
+  display: flex;
+  width: 100%;
 }
- .sidebar-page .sidebar-layout {
-	 display: flex;
-	 flex-direction: row;
+.sidebar-page .sidebar-layout {
+  display: flex;
+  flex-direction: row;
 }
 </style>

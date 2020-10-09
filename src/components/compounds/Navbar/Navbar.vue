@@ -24,14 +24,14 @@ const Component = {
     modelValue: Boolean
   },
   setup(props, { emit }) {
-    const isActive = ref(props.modelValue);
+    const isActive = ref(props.modelValue)
 
     watchEffect(() => {
       emit('update:modelValue', isActive.value)
     })
 
     watchEffect(() => {
-      isActive.value = props.modelValue;
+      isActive.value = props.modelValue
     })
 
     const toggleActive = () => {

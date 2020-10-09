@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 
 const FileInput = {
-  name: "VFile",
+  name: 'VFile',
   inheritAttrs: false,
   props: {
     hasName: Boolean,
@@ -11,7 +11,7 @@ const FileInput = {
     size: String,
     color: {
       type: String,
-      default: "is-primary"
+      default: 'is-primary'
     },
     alignment: String
   },

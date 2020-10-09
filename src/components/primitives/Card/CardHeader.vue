@@ -1,5 +1,5 @@
 <script>
-const Component ={
+const Component = {
   name: 'VCardHeader',
   props: {
     title: String,
@@ -10,7 +10,7 @@ const Component ={
   }
 }
 
-export default Component;
+export default Component
 </script>
 
 <template>

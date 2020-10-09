@@ -1,5 +1,5 @@
 <script>
-import { computed } from "vue"
+import { computed } from 'vue'
 
 const Tooltip = {
   name: 'VTooltip',
@@ -58,9 +58,9 @@ const Tooltip = {
     })
     return { rootClasses, transition }
   }
-};
+}
 
-export default Tooltip;
+export default Tooltip
 </script>
 
 <template>

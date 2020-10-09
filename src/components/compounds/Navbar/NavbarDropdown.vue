@@ -1,5 +1,5 @@
 <script>
-import { watchEffect, reactive, computed } from "vue"
+import { watchEffect, reactive, computed } from 'vue'
 
 const Component = {
   name: 'BNavbarDropdown',

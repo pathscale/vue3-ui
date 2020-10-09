@@ -1,5 +1,5 @@
 <script>
-import { computed } from "vue"
+import { computed } from 'vue'
 
 const Field = {
   name: 'VField',
@@ -20,19 +20,19 @@ const Field = {
     const rootClasses = computed(() => {
       return [
         props.position, {
-        'is-expanded': props.expanded,
-        'is-horizontal': props.horizontal,
-        'is-grouped': props.grouped,
-        'is-grouped-multiline': props.groupMultiline,
-        'has-addons': props.addons
-      }]
+          'is-expanded': props.expanded,
+          'is-horizontal': props.horizontal,
+          'is-grouped': props.grouped,
+          'is-grouped-multiline': props.groupMultiline,
+          'has-addons': props.addons
+        }]
     })
     const hasHorizontalLabel = computed(() => props.horizontal && props.label)
     return { rootClasses, hasHorizontalLabel }
   }
 }
 
-export default Field;
+export default Field
 </script>
 
 <template>

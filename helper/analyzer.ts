@@ -39,8 +39,9 @@ export function getWhitelist(input: string): string[] {
         whitelist.add(name)
 
         if (name === 'transition') {
-          for (const transition of transitions)
+          for (const transition of transitions) {
             for (const suffix of animationSuffixes) whitelist.add(transition + suffix)
+          }
 
           if (attrs.name) for (const suffix of animationSuffixes) whitelist.add(attrs.name + suffix)
           // if (attrs[':name']) animationList.push(attrs[':name'])

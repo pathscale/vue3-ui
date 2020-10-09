@@ -28,9 +28,9 @@ const Modal = {
     }
     return { active, close, itemClasses }
   },
-};
+}
 
-export default Modal;
+export default Modal
 </script>
 
 <template>

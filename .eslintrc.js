@@ -15,7 +15,25 @@ const baseTSConfigs = [
 ]
 
 const baseRules = {
+  // Reapply from ash-nazg
+  semi: ['error', 'never'],
+  quotes: ['error', 'single'],
+  indent: ['error', 2],
+  curly: ['error'],
+  'block-spacing': ['error'],
+  'comma-spacing': ['error'],
+  'eol-last': ['error'],
+  'key-spacing': ['error'],
+  'keyword-spacing': ['error'],
   'no-extra-semi': ['error'],
+  'no-trailing-spaces': ['error'],
+  'no-tabs': ['error'],
+  'no-multi-spaces': ['error'],
+  'nonblock-statement-body-position': ['error'],
+  'object-curly-spacing': ['error', 'always'],
+  'space-before-blocks': ['error'],
+  'space-infix-ops': ['error'],
+
   // semi: ['error', 'never'],
   'no-restricted-syntax': [
     'error',
@@ -28,6 +46,7 @@ const baseRules = {
   ],
 
   // Disabling for now
+  'max-len': 'off', // ['warn', { code: 80 }],
   'import/extensions': 'off',
   'jsdoc/require-jsdoc': 'off',
   'require-unicode-regexp': 'off',
@@ -74,7 +93,6 @@ module.exports = {
         'webpack.config.js',
         '.3rdparty-eslintrc.js',
         '.np-config.js',
-        'helper/v-directive.js',
       ],
       extends: baseConfigs,
       env: {
@@ -130,6 +148,11 @@ module.exports = {
       plugins: ['@pathscale/vue3'],
       rules: {
         ...baseRules,
+        // Reapply to better match prettier
+        'arrow-parens': ['error', 'as-needed'],
+        // 'comma-dangle': ['error', 'always'], // Interferes with arrow-parens
+        'space-before-function-paren': ['error', 'never'],
+
         '@pathscale/vue3/v-directive': [
           'error',
           {

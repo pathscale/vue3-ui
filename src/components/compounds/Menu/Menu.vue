@@ -3,7 +3,7 @@ const Component = {
   name: 'VMenu',
   props: {
     accordion: Boolean, // TODO
-    activable: Boolean  // TODO
+    activable: Boolean // TODO
   },
 }
 

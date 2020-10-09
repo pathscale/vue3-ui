@@ -1,8 +1,8 @@
 <script>
-import { reactive, computed } from "vue"
+import { reactive, computed } from 'vue'
 
 const Accordion = {
-  name: "VAccordion",
+  name: 'VAccordion',
   props: {
     isHorizontal: Boolean,
     triggerRight: Boolean,
@@ -33,7 +33,7 @@ const Accordion = {
         'is-vertical': !props.isHorizontal,
         'accordion-active': props.isActive && props.hover,
         'accordion-default': !props.isActive && props.hover,
-				'accordion-type-hover': props.hover,
+        'accordion-type-hover': props.hover,
         'accordion-type-click': !props.hover
       }]
     })
@@ -57,7 +57,7 @@ const Accordion = {
         state.isExpanded = !state.isExpanded
         return
       }
-      if(!props.headerIsTrigger) {
+      if (!props.headerIsTrigger) {
         state.isExpanded = !state.isExpanded
       }
     }

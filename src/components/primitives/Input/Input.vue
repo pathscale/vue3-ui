@@ -27,7 +27,7 @@ const Input = {
           'has-icons-right': props.rightIcon
         }
       ]
-    });
+    })
 
     const inputClasses = computed(() => {
       return [
@@ -45,7 +45,7 @@ const Input = {
   },
 }
 
-export default Input;
+export default Input
 </script>
 
 <template>

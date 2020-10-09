@@ -1,9 +1,9 @@
 <script>
-const Component ={
+const Component = {
   name: 'VCardFooterItem',
 }
 
-export default Component;
+export default Component
 </script>
 
 <template>

@@ -1,6 +1,6 @@
 <script>
 const AccordionMenu = {
-  name: "VAccordionMenu"
+  name: 'VAccordionMenu'
 }
 
 export default AccordionMenu

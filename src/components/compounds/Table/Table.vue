@@ -110,32 +110,31 @@ const Table = {
     }
 
     const handleNextPage = () => {
-      if (currentPage.value + 1 < Math.ceil(data.value.originalRows.length / rowsPerPage.value))
-        currentPage.value += 1
+      if (currentPage.value + 1 < Math.ceil(data.value.originalRows.length / rowsPerPage.value)) currentPage.value += 1
     }
 
-    const handleSort = (column) => {
-      if(props.sortable) {
+    const handleSort = column => {
+      if (props.sortable) {
         sortColumn(column)
       }
     }
 
-    const columnClasses = (column) => {
-      return { 
+    const columnClasses = column => {
+      return {
         ...column.style,
         'has-text-primary': column.selected,
         'sticky-row': props.sticky
       }
     }
 
-    const selectedClasses = (row) => {
-      return { 
+    const selectedClasses = row => {
+      return {
         'has-background-primary': row.selected,
         'has-text-white': row.selected
       }
     }
 
-    const cellClasses = (column) => {
+    const cellClasses = column => {
       return {
         ...column.style,
         'sticky-column': column.sticky
@@ -198,7 +197,7 @@ export default Table
             @dragleave="data.onDragLeaveColumn($event, column, idx)">
             {{ column.caption }}
             <span v-if="sortable">
-              {{ column.ascendant ? '&darr;' : '	&uarr;' }}
+              {{ column.ascendant ? '&darr;' : '\t&uarr;' }}
             </span>
           </th>
         </tr>

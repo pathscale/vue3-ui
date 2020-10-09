@@ -1,8 +1,8 @@
 <script>
-import { computed } from "vue"
+import { computed } from 'vue'
 /* eslint no-shadow: ["error", { "allow": ["event"] }] -- prevent warning  'event' is already declared in the upper scope */
 const Tag = {
-  name: "VTag",
+  name: 'VTag',
   props: {
     attached: Boolean,
     closable: Boolean,
@@ -23,7 +23,7 @@ const Tag = {
     closeIcon: String,
   },
   setup(props, { emit }) {
-    const close = function (event) {
+    const close = function(event) {
       if (props.disabled) return
       emit('close', event)
     }
@@ -31,8 +31,8 @@ const Tag = {
       return [
         props.type,
         props.size,
-        { 
-          'is-rounded': props.rounded 
+        {
+          'is-rounded': props.rounded
         }
       ]
     })
@@ -64,9 +64,9 @@ const Tag = {
 
     return { close, addonClasses, ellipsisClasses, buttonClasses, tabIndex, isClosable }
   }
-};
+}
 
-export default Tag;
+export default Tag
 </script>
 
 <template>

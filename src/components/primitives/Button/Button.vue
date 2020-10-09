@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 // import { useGlobalSettings } from '../../global-settings';
 
-const Button ={
+const Button = {
   name: 'VButton',
   props: {
     type: {
@@ -35,30 +35,30 @@ const Button ={
   const settings = useGlobalSettings()
   const computedRounded = computed(() => props.rounded === null && settings ? settings.button.rounded : props.rounded)
   */
-  const computedTag = computed(() => attrs.disabled ? 'button' : props.tag)
-  const rootClasses = computed(() => {
-    return [
-      props.size, 
-      props.type, 
-      {
-        'is-rounded': props.rounded,
-        'is-loading': props.loading,
-        'is-outlined': props.outlined,
-        'is-fullwidth': props.expanded,
-        'is-inverted': props.inverted,
-        'is-focused': props.focused,
-        'is-active': props.active,
-        'is-hovered': props.hovered,
-        'is-selected': props.selected,
-        'is-light': props.light
-      }
-    ]
-  })
-  return { computedTag, rootClasses }
+    const computedTag = computed(() => attrs.disabled ? 'button' : props.tag)
+    const rootClasses = computed(() => {
+      return [
+        props.size,
+        props.type,
+        {
+          'is-rounded': props.rounded,
+          'is-loading': props.loading,
+          'is-outlined': props.outlined,
+          'is-fullwidth': props.expanded,
+          'is-inverted': props.inverted,
+          'is-focused': props.focused,
+          'is-active': props.active,
+          'is-hovered': props.hovered,
+          'is-selected': props.selected,
+          'is-light': props.light
+        }
+      ]
+    })
+    return { computedTag, rootClasses }
   }
 }
 
-export default Button;
+export default Button
 </script>
 
 <template>

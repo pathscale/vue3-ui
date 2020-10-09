@@ -12,7 +12,7 @@ export default [
   {
     input: 'src/components/index.js',
     external: ['vue'],
-    output: { format: 'es', file: pkg.module, assetFileNames: `[name][extname]` },
+    output: { format: 'es', file: pkg.module, assetFileNames: '[name][extname]' },
     plugins: [
       externals({ deps: true }),
       resolve({ extensions: ['.vue', '.js', '.css'] }),
@@ -23,7 +23,7 @@ export default [
   },
   {
     input: 'src/components/index.js',
-    output: { format: 'es', file: pkg.browser, assetFileNames: `[name][extname]` },
+    output: { format: 'es', file: pkg.browser, assetFileNames: '[name][extname]' },
     plugins: [
       resolve({ extensions: ['.vue', '.js'] }),
       vue({ template: { isProduction: false }, preprocessStyles: false }),

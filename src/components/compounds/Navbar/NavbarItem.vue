@@ -1,5 +1,5 @@
 <script>
-import { computed } from "vue"
+import { computed } from 'vue'
 
 const Component = {
   name: 'VNavbarItem',

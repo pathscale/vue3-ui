@@ -1,6 +1,6 @@
 <script>
 const Media = {
-  name: "VMedia",
+  name: 'VMedia',
   props: {},
 }
 

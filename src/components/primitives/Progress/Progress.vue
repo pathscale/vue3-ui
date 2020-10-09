@@ -37,24 +37,24 @@ const Progress = {
     }
 
     watchEffect(() =>
-    nextTick(() => {
-      if (isIndeterminate.value) {
-        progress.value.removeAttribute('value')
-      } else {
-        progress.value.setAttribute('value', props.value)
-      }
-    })
+      nextTick(() => {
+        if (isIndeterminate.value) {
+          progress.value.removeAttribute('value')
+        } else {
+          progress.value.setAttribute('value', props.value)
+        }
+      })
     )
 
     const isIndeterminate = computed(() => {
       return props.value === undefined || props.value === null
-    });
+    })
     const newType = computed(() => {
       return [
         props.size,
         props.type
       ]
-    });
+    })
     const newValue = computed(() => {
       if (props.value === undefined || props.value === null || Number.isNaN(props.value)) {
         return undefined
@@ -66,13 +66,13 @@ const Progress = {
       }
       const val = toFixed(props.value)
       return val
-    });
+    })
 
     return { isIndeterminate, newType, newValue, progress }
   }
 }
 
-export default Progress;
+export default Progress
 </script>
 
 <template>

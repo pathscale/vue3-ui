@@ -28,16 +28,16 @@ class DataGrid {
   draggingColumnIdx: number;
 
   constructor() {
-    this.columns = [];
-    this.rows = [];
-    this.originalRows = [];
-    this.checkedRows = [];
-    this.rowsPerPage = 0;
-    this.currentPage = 0;
-    this.draggingRow = null;
-    this.draggingRowIdx = null;
-    this.draggingColumn = null;
-    this.draggingColumnIdx = null;
+    this.columns = []
+    this.rows = []
+    this.originalRows = []
+    this.checkedRows = []
+    this.rowsPerPage = 0
+    this.currentPage = 0
+    this.draggingRow = null
+    this.draggingRowIdx = null
+    this.draggingColumn = null
+    this.draggingColumnIdx = null
   }
 
   addColumn(name: string, caption: string, dataType: string, style: string, sticky = false): void {
@@ -53,7 +53,7 @@ class DataGrid {
   }
 
   addRow(content: Row, index: number): void {
-    if(typeof index !== 'undefined') {
+    if (typeof index !== 'undefined') {
       this.rows.splice(index, 0, content)
       this.originalRows.splice(index, 0, content)
     } else {
@@ -74,9 +74,9 @@ class DataGrid {
 
   sortByColumn(column: string, ascendant: boolean): void {
     this.rows.sort((a, b) => {
-      if(a[column] < b[column]) { return ascendant ? -1 : 1 }
-      if(a[column] > b[column]) { return ascendant ? 1 : -1 }
-      return 0;
+      if (a[column] < b[column]) { return ascendant ? -1 : 1 }
+      if (a[column] > b[column]) { return ascendant ? 1 : -1 }
+      return 0
     })
   }
 
@@ -97,7 +97,7 @@ class DataGrid {
   }
 
   switchPage(): void {
-    this.rows = this.originalRows.slice(this.currentPage*this.rowsPerPage, this.currentPage*this.rowsPerPage + this.rowsPerPage)
+    this.rows = this.originalRows.slice(this.currentPage * this.rowsPerPage, this.currentPage * this.rowsPerPage + this.rowsPerPage)
   }
 
   toggleColumn({ name }: { name: string }): void {
@@ -110,8 +110,8 @@ class DataGrid {
   }
 
   onDragStartRow(_evt: Event, row: Row, idx: number): void {
-    this.draggingRow = row;
-    this.draggingRowIdx = idx;
+    this.draggingRow = row
+    this.draggingRowIdx = idx
   }
 
   onDropRow(_evt: Event, _row: Row, idx: number): void {
@@ -121,7 +121,7 @@ class DataGrid {
   }
 
   onDragOverRow(evt: Event, _row: Row, idx: number): void {
-    if (this.draggingRowIdx === null) return;
+    if (this.draggingRowIdx === null) return
 
     this.rows[idx].selected = true
     evt.preventDefault()
@@ -135,13 +135,13 @@ class DataGrid {
     this.rows.forEach(row => {
       row.selected = false
     })
-    this.draggingRow = null;
-    this.draggingRowIdx = null;
+    this.draggingRow = null
+    this.draggingRowIdx = null
   }
 
   onDragStartColumn(_evt: Event, column: Column, idx: number): void {
-    this.draggingColumn = column;
-    this.draggingColumnIdx = idx;
+    this.draggingColumn = column
+    this.draggingColumnIdx = idx
   }
 
   // callback called when user drops a column
@@ -153,7 +153,7 @@ class DataGrid {
 
   // the event must be prevented for the onDrop method to get called
   onDragOverColumn(evt: Event, _column: Column, idx: number): void {
-    if (this.draggingColumnIdx === null) return;
+    if (this.draggingColumnIdx === null) return
 
     this.columns[idx].selected = true
     evt.preventDefault()
@@ -167,22 +167,22 @@ class DataGrid {
     this.columns.forEach(column => {
       column.selected = false
     })
-    this.draggingColumn = null;
-    this.draggingColumnIdx = null;
+    this.draggingColumn = null
+    this.draggingColumnIdx = null
   }
 
   // returns an object that maps column names to column instances
   getColumnsObject(): Record<string, Column> {
     return this.columns.reduce((obj, column) => {
       obj[column.name] = column
-      return obj;
-    } , {})
+      return obj
+    }, {})
   }
 
   groups(column: string): Set<number|boolean> {
     return this.rows.reduce((set, row) => {
       set.add(row[column])
-      return set;
+      return set
     }, new Set() as Set<number|boolean>)
   }
 

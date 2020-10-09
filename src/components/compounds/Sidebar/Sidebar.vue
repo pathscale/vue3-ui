@@ -1,5 +1,5 @@
 <script>
-import { reactive, computed, watchEffect } from "vue"
+import { reactive, computed, watchEffect } from 'vue'
 
 const Sidebar = {
   name: 'VSidebar',

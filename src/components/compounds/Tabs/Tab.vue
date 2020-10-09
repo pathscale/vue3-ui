@@ -17,7 +17,7 @@ const Tab = {
     },
   },
   setup(props, { emit }) {
-    const content = ref(null);
+    const content = ref(null)
 
     const tabs = useStore()
     const id = JSON.parse(JSON.stringify(tabs.value.tabs)).length // TODO Figure how get this value properly
@@ -36,11 +36,11 @@ const Tab = {
     const isActiveTab = computed(() => {
       return tabs.value.activeTab === id
     })
-    return { tabs, id, transitionName, content, isActiveTab}
+    return { tabs, id, transitionName, content, isActiveTab }
   },
 }
 
-export default Tab;
+export default Tab
 </script>
 
 <template>

@@ -1,5 +1,5 @@
 <script>
-import { computed } from 'vue';
+import { computed } from 'vue'
 
 const Columns = {
   name: 'VColumns',
@@ -24,13 +24,13 @@ const Columns = {
         'is-multiline': props.multiline,
         'is-centered': props.hcentered,
       }
-    ]);
+    ])
 
-    return { computedClasses };
+    return { computedClasses }
   }
-};
+}
 
-export default Columns;
+export default Columns
 </script>
 
 <template>

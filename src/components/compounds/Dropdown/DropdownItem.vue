@@ -60,7 +60,7 @@ const Component = {
       if (!isClickable.value) return
       reportParent(props.value)
     }
-    
+
     return {
       anchorClasses,
       itemClasses,
@@ -85,7 +85,7 @@ export default Component
     class="dropdown-item"
     :class="anchorClasses"
     @click="selectItem"
-    :role="ariaRoleItem"  
+    :role="ariaRoleItem"
     :tabindex="tabIndex">
     <slot />
   </a>

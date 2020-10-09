@@ -20,14 +20,14 @@ const Checkbox = {
   emits: ['update:modelValue'],
   setup(props, { emit }) {
     // references
-    const label = ref(null);
-    const input = ref(null);
+    const label = ref(null)
+    const input = ref(null)
     // state
-    const value = ref(props.modelValue);
+    const value = ref(props.modelValue)
     // MacOS FireFox and Safari do not focus when clicked
     const focus = () => {
       input.value.focus()
-    };
+    }
     // watch for changes in value
     watchEffect(() => {
       emit('update:modelValue', value.value)
@@ -46,7 +46,7 @@ const Checkbox = {
   }
 }
 
-export default Checkbox;
+export default Checkbox
 </script>
 
 <template>

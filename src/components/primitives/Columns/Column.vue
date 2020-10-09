@@ -1,12 +1,12 @@
 <script>
-import { computed } from 'vue';
+import { computed } from 'vue'
 
 const Column = {
   name: 'VColumn',
   props: {
-    size:  String ,
-    offset:  String ,
-    narrow:  Boolean,
+    size: String,
+    offset: String,
+    narrow: Boolean,
     narrowBreakpoint: String
   },
   setup(props) {
@@ -17,13 +17,13 @@ const Column = {
       {
         'is-narrow': props.narrow
       }
-    ]);
+    ])
 
-    return { computedClasses };
+    return { computedClasses }
   }
-};
+}
 
-export default Column;
+export default Column
 </script>
 
 <template>

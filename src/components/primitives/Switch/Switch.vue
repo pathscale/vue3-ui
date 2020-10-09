@@ -1,5 +1,5 @@
 <script>
-import { ref, watchEffect, computed } from 'vue';
+import { ref, watchEffect, computed } from 'vue'
 
 const Switch = {
   name: 'VSwitch',
@@ -52,9 +52,9 @@ const Switch = {
     })
     return { value, passiveClass, rootClasses }
   }
-};
+}
 
-export default Switch;
+export default Switch
 </script>
 
 <template>

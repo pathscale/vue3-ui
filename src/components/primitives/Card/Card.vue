@@ -1,5 +1,5 @@
 <script>
-const Component ={
+const Component = {
   name: 'VCard',
   props: {
     tag: {
@@ -9,7 +9,7 @@ const Component ={
   }
 }
 
-export default Component;
+export default Component
 </script>
 
 <template>

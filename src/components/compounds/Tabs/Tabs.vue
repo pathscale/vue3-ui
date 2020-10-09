@@ -44,7 +44,7 @@ const Tabs = {
       tabs.value.activeTab = id
     }
     function setActiveTab(t) {
-      if(!t.disabled) {
+      if (!t.disabled) {
         setActiveTabID(t.id)
       }
     }
@@ -73,12 +73,12 @@ const Tabs = {
         }
       ]
     })
-    const tabClasses = (t) => {
+    const tabClasses = t => {
       return {
         'is-active': tabs.value.activeTab === t.id
       }
     }
-    const labelClasses = (t) => {
+    const labelClasses = t => {
       return {
         'is-disabled': t.disabled
       }
@@ -102,7 +102,7 @@ const Tabs = {
   },
 }
 
-export default Tabs;
+export default Tabs
 </script>
 
 <template>

@@ -172,7 +172,7 @@ module.exports = {
               'LogicalExpression',
               'ConditionalExpression',
               // This can have design features but preventing to avoid ugliness
-              'TemplateLiteral',
+              'TemplateLiteral[expressions.length <= 1]',
             ],
           },
         ],

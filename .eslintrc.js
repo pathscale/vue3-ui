@@ -35,7 +35,7 @@ const baseRules = {
   'space-infix-ops': ['error'],
 
   'padding-line-between-statements': ['error', { blankLine: 'always', prev: '*', next: 'export' }],
-
+  'vue/padding-line-between-blocks': ['error'],
   // semi: ['error', 'never'],
   'no-restricted-syntax': [
     'error',

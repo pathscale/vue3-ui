@@ -24,4 +24,5 @@ export const createGlobalSettings = () => {
 }
 
 export const useGlobalSettings = () => inject(globalSettingsSymbol)
+
 export const provideGlobalSettings = () => provide(globalSettingsSymbol, createSettings())

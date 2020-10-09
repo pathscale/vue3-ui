@@ -34,6 +34,8 @@ const baseRules = {
   'space-before-blocks': ['error'],
   'space-infix-ops': ['error'],
 
+  'padding-line-between-statements': ['error', { blankLine: 'always', prev: '*', next: 'export' }],
+
   // semi: ['error', 'never'],
   'no-restricted-syntax': [
     'error',

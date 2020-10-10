@@ -1,7 +1,7 @@
 <script>
 import { ref, watchEffect, computed } from 'vue'
 
-const Select = {
+export default {
   name: 'VSelect',
   inheritAttrs: false,
   props: {
@@ -40,8 +40,6 @@ const Select = {
     return { value, valueIsNullish, spanClasses }
   },
 }
-
-export default Select
 </script>
 
 <template>

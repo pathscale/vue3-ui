@@ -1,7 +1,7 @@
 <script>
 import { computed } from 'vue'
 
-const Column = {
+export default {
   name: 'VColumn',
   props: {
     size: String,
@@ -22,8 +22,6 @@ const Column = {
     return { computedClasses }
   }
 }
-
-export default Column
 </script>
 
 <template>

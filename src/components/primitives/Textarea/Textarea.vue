@@ -1,10 +1,9 @@
 <script>
 import { ref, watchEffect, computed } from 'vue'
 
-const Textarea = {
+export default {
   name: 'VTextarea',
   inheritAttrs: false,
-  emits: ['update:modelValue'],
   props: {
     color: String,
     hasCounter: Boolean,
@@ -15,6 +14,7 @@ const Textarea = {
     hovered: Boolean,
     focused: Boolean,
   },
+  emits: ['update:modelValue'],
   setup(props, { emit }) {
     const value = ref(props.modelValue)
     const isFocused = ref(false)
@@ -44,8 +44,6 @@ const Textarea = {
     return { value, isFocused, onBlur, onFocus, valueLength, rootClasses, inputClasses, showCounter }
   },
 }
-
-export default Textarea
 </script>
 
 <template>

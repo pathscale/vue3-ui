@@ -1,9 +1,7 @@
 <script>
-const AccordionMenu = {
+export default {
   name: 'VAccordionMenu'
 }
-
-export default AccordionMenu
 </script>
 
 <template>

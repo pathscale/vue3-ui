@@ -1,9 +1,7 @@
 <script>
-const Component = {
+export default {
   name: 'VCardImage',
 }
-
-export default Component
 </script>
 
 <template>

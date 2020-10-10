@@ -1,5 +1,5 @@
 <script>
-const Component = {
+export default {
   name: 'VBreadcrumbItem',
   inheritAttrs: false,
   props: {
@@ -10,8 +10,6 @@ const Component = {
     active: Boolean
   }
 }
-
-export default Component
 </script>
 
 <template>

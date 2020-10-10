@@ -15,6 +15,26 @@ const baseTSConfigs = [
 ]
 
 const vueRules = {
+  // Disabling as Vue linter won't catch (and we are requiring `name` anyways)
+  'import/no-anonymous-default-export': 'off',
+  // https://github.com/vuejs/eslint-plugin-vue/issues/1325
+  'no-multiple-empty-lines': ['error', { max: 2, maxEOF: 0, maxBOF: 0 }],
+
+  // Temporarily disable
+  'vue/require-default-prop': 'off',
+  'vue/no-boolean-default': 'off',
+  'vue/no-mutating-props': 'off',
+  /*
+  'vue/no-unused-properties': [
+    'error',
+    {
+      // 'data', 'methods'
+      groups: ['props', 'computed', 'setup'],
+    },
+  ],
+  */
+
+  // Disable
   'vue/attributes-order': 'off',
   'vue/max-attributes-per-line': 'off',
 
@@ -24,24 +44,18 @@ const vueRules = {
   // 'vue/html-comment-indent': ['error'],
   // 'vue/no-duplicate-attr-inheritance': ['error'],
 
-  'vue/component-name-in-template-casing': ['error'],
+  'vue/component-name-in-template-casing': ['error', 'kebab-case'],
   'vue/html-comment-content-newline': ['error'],
   'vue/html-comment-content-spacing': ['error'],
   'vue/match-component-file-name': ['error', { shouldMatchCase: true }],
-  'vue/no-boolean-default': ['error'],
+  // 'vue/no-boolean-default': ['error'],
   'vue/no-empty-component-block': ['error'],
   'vue/no-multiple-objects-in-class': ['error'],
   'vue/no-potential-component-option-typo': ['error', { presets: ['vue', 'vue-router'] }],
   'vue/no-reserved-component-names': ['error'],
+  'vue/no-restricted-component-options': ['error', 'data', 'computed', 'methods', 'watch'],
   'vue/no-template-target-blank': ['error', { allowReferrer: true }],
   'vue/no-unsupported-features': ['error', { version: '^3.0.0' }],
-  'vue/no-unused-properties': [
-    'error',
-    {
-      // 'data', 'methods'
-      groups: ['props', 'computed', 'setup'],
-    },
-  ],
   'vue/no-useless-mustaches': ['error'],
   'vue/no-useless-v-bind': ['error'],
   'vue/padding-line-between-blocks': ['error'],

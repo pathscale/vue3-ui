@@ -1,7 +1,7 @@
 <script>
 import { computed, watchEffect, nextTick, ref } from 'vue'
 
-const Progress = {
+export default {
   name: 'VProgress',
   props: {
     type: {
@@ -71,8 +71,6 @@ const Progress = {
     return { isIndeterminate, newType, newValue, progress }
   }
 }
-
-export default Progress
 </script>
 
 <template>

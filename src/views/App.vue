@@ -1,10 +1,10 @@
 <template>
   <div>
     <div>
-      <VTextarea v-model="state.felipetest" />
-      <VButton @click="setRounded">
+      <v-textarea v-model="state.felipetest" />
+      <v-button @click="setRounded">
         Almafa
-      </VButton>
+      </v-button>
     </div>
     <div class="sidebar-page">
       <section class="hero is-fullheight sidebar-layout">
@@ -60,10 +60,11 @@
 
 <script>
 import { reactive } from 'vue'
-import { VTextarea, VInput, VSidebar, VSelect, VField, VSwitch, VButton, useGlobalSettings } from '../components'
+import { VTextarea, /* VInput, */ VSidebar, VSelect, VField, VSwitch, VButton, useGlobalSettings } from '../components'
 
-const Component = {
-  components: { VTextarea, VInput, VSidebar, VSelect, VField, VSwitch, VButton },
+export default {
+  name: 'Vue3UIApp',
+  components: { VTextarea, /* VInput, */ VSidebar, VSelect, VField, VSwitch, VButton },
   setup() {
     const state = reactive({
       felipetest: 1010,
@@ -82,8 +83,6 @@ const Component = {
     }
   }
 }
-
-export default Component
 </script>
 
 <style>

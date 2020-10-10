@@ -3,7 +3,7 @@ import { reactive, computed, provide } from 'vue'
 
 export const DropdownSymbol = Symbol('Dropdown')
 
-const Component = {
+export default {
   name: 'VDropdown',
   props: {
     value: {
@@ -24,7 +24,7 @@ const Component = {
     },
     expanded: Boolean,
   },
-
+  emits: ['update:modelValue'],
   setup(props, { emit }) {
     const state = reactive({
       selected: props.value,
@@ -72,8 +72,6 @@ const Component = {
     return { state, toggle, rootClasses, selectItem, closeMenu, show }
   },
 }
-
-export default Component
 </script>
 
 <template>

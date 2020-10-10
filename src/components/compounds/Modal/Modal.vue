@@ -1,7 +1,7 @@
 <script>
 import { ref, onMounted, computed } from 'vue'
 
-const Modal = {
+export default {
   name: 'VModal',
   props: {
     modelValue: {
@@ -29,8 +29,6 @@ const Modal = {
     return { active, close, itemClasses }
   },
 }
-
-export default Modal
 </script>
 
 <template>

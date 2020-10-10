@@ -1,15 +1,15 @@
 <script>
 import { computed, reactive, ref, watch } from 'vue'
-import { VInput, VButton, VCheckbox, VSelect } from '../..'
+import { /* VInput, */ VButton, VCheckbox, VSelect } from '../..'
 import VTag from '../Tag/Tag.vue'
 
-const Table = {
+export default {
   name: 'VTable',
-  components: { VInput, VButton, VCheckbox, VSelect, VTag },
+  components: { /* VInput, */ VButton, VCheckbox, VSelect, VTag },
   props: {
     data: {
       type: Object,
-      default: {},
+      default: () => ({}),
     },
     searchable: Boolean,
     checkable: Boolean,
@@ -20,7 +20,7 @@ const Table = {
     },
     rowsPerPageOptions: {
       type: Array,
-      default: [],
+      default: () => [],
     },
     isBordered: Boolean,
     isStriped: Boolean,
@@ -143,10 +143,8 @@ const Table = {
 
     return {
       props,
-      data,
       search,
       sortColumn,
-      rowsPerPage,
       currentPage,
       rootClasses,
       expandedRows,
@@ -163,8 +161,6 @@ const Table = {
     }
   },
 }
-
-export default Table
 </script>
 
 <template>

@@ -3,7 +3,7 @@
 import { ref, watchEffect, computed } from 'vue'
 import CheckRadioMixin from '../../../mixins/CheckRadio.js'
 
-const Checkbox = {
+export default {
   name: 'VCheckbox',
   props: {
     ...CheckRadioMixin.props,
@@ -45,8 +45,6 @@ const Checkbox = {
     return { label, input, value, focus, rootClasses }
   }
 }
-
-export default Checkbox
 </script>
 
 <template>

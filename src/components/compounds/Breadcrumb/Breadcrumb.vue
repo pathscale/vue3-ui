@@ -1,5 +1,5 @@
 <script>
-const Component = {
+export default {
   name: 'VBreadcrumb',
   props: {
     alignment: String,
@@ -7,8 +7,6 @@ const Component = {
     size: String,
   }
 }
-
-export default Component
 </script>
 
 <template>

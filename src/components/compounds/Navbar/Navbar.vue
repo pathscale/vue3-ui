@@ -2,7 +2,7 @@
 import { computed, ref, watchEffect } from 'vue'
 import NavbarBurger from './NavbarBurger.vue'
 
-const Component = {
+export default {
   name: 'VNavbar',
   components: { NavbarBurger },
   props: {
@@ -23,6 +23,7 @@ const Component = {
     shadow: Boolean,
     modelValue: Boolean
   },
+  emits: ['update:modelValue'],
   setup(props, { emit }) {
     const isActive = ref(props.modelValue)
 
@@ -58,8 +59,6 @@ const Component = {
     return { rootClasses, isActive, menuClasses, toggleActive }
   }
 }
-
-export default Component
 </script>
 
 <template>

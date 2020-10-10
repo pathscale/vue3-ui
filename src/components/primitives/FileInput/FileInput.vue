@@ -1,7 +1,7 @@
 <script>
 import { computed } from 'vue'
 
-const FileInput = {
+export default {
   name: 'VFile',
   inheritAttrs: false,
   props: {
@@ -31,8 +31,6 @@ const FileInput = {
     return { rootClasses }
   }
 }
-
-export default FileInput
 </script>
 
 <template>

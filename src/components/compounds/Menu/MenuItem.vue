@@ -1,7 +1,7 @@
 <script>
 import { ref, computed, watchEffect } from 'vue'
 
-const Component = {
+export default {
   name: 'VMenuItem',
   inheritAttrs: false,
   props: {
@@ -16,6 +16,7 @@ const Component = {
     },
     ariaRole: String
   },
+  emits: ['update:expanded', 'update:active'],
   setup(props, { emit }) {
     const newActive = ref(props.active)
     const newExpanded = ref(props.expanded)
@@ -47,8 +48,6 @@ const Component = {
     return { newActive, newExpanded, onClick, content, itemClasses }
   }
 }
-
-export default Component
 </script>
 
 <template>

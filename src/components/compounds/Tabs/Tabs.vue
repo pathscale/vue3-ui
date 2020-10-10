@@ -21,7 +21,7 @@ export function addToStore(tab) {
   tabs.value.tabs.push(tab)
 }
 
-const Tabs = {
+export default {
   name: 'VTabs',
   props: {
     modelValue: {
@@ -101,8 +101,6 @@ const Tabs = {
     }
   },
 }
-
-export default Tabs
 </script>
 
 <template>

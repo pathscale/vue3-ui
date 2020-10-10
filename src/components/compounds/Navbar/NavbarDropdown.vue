@@ -1,7 +1,7 @@
 <script>
 import { watchEffect, reactive, computed } from 'vue'
 
-const Component = {
+export default {
   name: 'BNavbarDropdown',
   props: {
     label: String,
@@ -75,8 +75,6 @@ const Component = {
     return { state, showMenu, closeMenu, checkHoverable, rootClasses, linkClasses, collapsibleClasses, toggleActive, show }
   }
 }
-
-export default Component
 </script>
 
 <template>

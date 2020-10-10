@@ -1,7 +1,7 @@
 <script>
 import { computed } from 'vue'
 
-const Component = {
+export default {
   name: 'VNavbarItem',
   inheritAttrs: false,
   props: {
@@ -20,8 +20,6 @@ const Component = {
     return { rootClasses }
   }
 }
-
-export default Component
 </script>
 
 <template>

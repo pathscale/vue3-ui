@@ -2,7 +2,7 @@
 import { computed, inject } from 'vue'
 import { DropdownSymbol } from './Dropdown.vue'
 
-const Component = {
+export default {
   name: 'VDropdownItem',
   props: {
     value: {
@@ -74,8 +74,6 @@ const Component = {
     }
   },
 }
-
-export default Component
 </script>
 
 <template>

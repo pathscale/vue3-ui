@@ -2,7 +2,7 @@
 import { computed, ref, watchEffect } from 'vue'
 import { addToStore, useStore } from './Tabs.vue'
 
-const Tab = {
+export default {
   name: 'VTab',
   props: {
     label: {
@@ -39,8 +39,6 @@ const Tab = {
     return { tabs, id, transitionName, content, isActiveTab }
   },
 }
-
-export default Tab
 </script>
 
 <template>

@@ -1,9 +1,8 @@
 <script>
 import { reactive, computed, watchEffect } from 'vue'
 
-const Sidebar = {
+export default {
   name: 'VSidebar',
-  emits: ['close'],
   props: {
     open: Boolean, // TODO Add support to .sync
     type: [String, Object],
@@ -32,6 +31,7 @@ const Sidebar = {
       default: 80
     }
   },
+  emits: ['close'],
   setup(props, { emit }) {
     const state = reactive({
       transitionName: null,
@@ -87,8 +87,6 @@ const Sidebar = {
     return { state, rootClasses, rootStyles, cancelOptions, emit, overlayAndOpen }
   },
 }
-
-export default Sidebar
 </script>
 
 <template>

@@ -1,7 +1,7 @@
 <script>
 import { computed } from 'vue'
 
-const ImageComponent = {
+export default {
   name: 'VImage',
   inheritAttrs: false,
   props: {
@@ -28,8 +28,6 @@ const ImageComponent = {
     return { figureClasses, imgClasses }
   }
 }
-
-export default ImageComponent
 </script>
 
 <template>

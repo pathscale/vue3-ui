@@ -1,7 +1,7 @@
 <script>
 import { ref, watchEffect, computed } from 'vue'
 
-const Switch = {
+export default {
   name: 'VSwitch',
   props: {
     modelValue: {
@@ -56,8 +56,6 @@ const Switch = {
     return { value, passiveClass, rootClasses }
   }
 }
-
-export default Switch
 </script>
 
 <template>

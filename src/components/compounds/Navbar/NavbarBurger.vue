@@ -1,7 +1,7 @@
 <script>
 import { computed } from 'vue'
 
-const Component = {
+export default {
   name: 'NavbarBurger',
   props: {
     isActive: Boolean
@@ -15,8 +15,6 @@ const Component = {
     return { rootClasses }
   }
 }
-
-export default Component
 </script>
 
 <template>

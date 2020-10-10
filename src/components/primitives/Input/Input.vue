@@ -1,10 +1,9 @@
 <script>
 import { ref, watchEffect, computed } from 'vue'
 
-const Input = {
+export default {
   name: 'VInput',
   inheritAttrs: false,
-  emits: ['update:modelValue'],
   props: {
     color: String,
     size: String,
@@ -14,6 +13,7 @@ const Input = {
     rightIcon: String,
     errorMsg: String
   },
+  emits: ['update:modelValue'],
   setup(props, { emit, attrs }) {
     const value = ref(attrs.modelValue)
     watchEffect(() => emit('update:modelValue', value.value))
@@ -44,8 +44,6 @@ const Input = {
     return { value, rootClasses, inputClasses, props }
   },
 }
-
-export default Input
 </script>
 
 <template>

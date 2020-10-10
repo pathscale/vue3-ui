@@ -1,7 +1,7 @@
 <script>
 import { computed } from 'vue'
 
-const Component = {
+export default {
   name: 'VContainer',
   props: {
     type: String,
@@ -18,8 +18,6 @@ const Component = {
     return { rootClasses }
   }
 }
-
-export default Component
 </script>
 
 <template>

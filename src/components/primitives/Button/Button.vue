@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 // import { useGlobalSettings } from '../../global-settings';
 
-const Button = {
+export default {
   name: 'VButton',
   props: {
     type: {
@@ -57,8 +57,6 @@ const Button = {
     return { computedTag, rootClasses }
   }
 }
-
-export default Button
 </script>
 
 <template>

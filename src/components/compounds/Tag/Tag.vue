@@ -1,7 +1,8 @@
 <script>
 import { computed } from 'vue'
 /* eslint no-shadow: ["error", { "allow": ["event"] }] -- prevent warning  'event' is already declared in the upper scope */
-const Tag = {
+
+export default {
   name: 'VTag',
   props: {
     attached: Boolean,
@@ -22,6 +23,7 @@ const Tag = {
     closeType: String,
     closeIcon: String,
   },
+  emits: ['close'],
   setup(props, { emit }) {
     const close = function(event) {
       if (props.disabled) return
@@ -65,8 +67,6 @@ const Tag = {
     return { close, addonClasses, ellipsisClasses, buttonClasses, tabIndex, isClosable }
   }
 }
-
-export default Tag
 </script>
 
 <template>

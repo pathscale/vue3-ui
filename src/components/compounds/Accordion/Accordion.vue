@@ -1,7 +1,7 @@
 <script>
 import { reactive, computed } from 'vue'
 
-const Accordion = {
+export default {
   name: 'VAccordion',
   props: {
     isHorizontal: Boolean,
@@ -49,8 +49,6 @@ const Accordion = {
       }]
     })
 
-    const { isActive } = props
-
     function toggle(isHeaderTrigger) {
       if (props.disabled) return
       if (isHeaderTrigger && props.headerIsTrigger) {
@@ -69,11 +67,10 @@ const Accordion = {
       state.isExpanded = false
     }
 
-    return { state, toggle, open, close, rootClasses, headerClasses, triggerClasses, isActive }
+    return { state, toggle, open, close, rootClasses, headerClasses, triggerClasses }
   }
 }
 
-export default Accordion
 </script>
 
 <template>

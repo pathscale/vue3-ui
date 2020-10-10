@@ -1,10 +1,8 @@
 <script>
-const Media = {
+export default {
   name: 'VMedia',
   props: {},
 }
-
-export default Media
 </script>
 
 <template>

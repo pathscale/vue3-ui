@@ -1,13 +1,11 @@
 <script>
-const Component = {
+export default {
   name: 'VMenu',
   props: {
     accordion: Boolean, // TODO
     activable: Boolean // TODO
   },
 }
-
-export default Component
 </script>
 
 <template>

@@ -1,7 +1,7 @@
 <script>
 import { computed } from 'vue'
 
-const Tooltip = {
+export default {
   name: 'VTooltip',
   props: {
     active: {
@@ -59,8 +59,6 @@ const Tooltip = {
     return { rootClasses, transition }
   }
 }
-
-export default Tooltip
 </script>
 
 <template>

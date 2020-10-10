@@ -1,7 +1,7 @@
 <script>
 import { computed } from 'vue'
 
-const Field = {
+export default {
   name: 'VField',
   props: {
     type: String,
@@ -31,8 +31,6 @@ const Field = {
     return { rootClasses, hasHorizontalLabel }
   }
 }
-
-export default Field
 </script>
 
 <template>

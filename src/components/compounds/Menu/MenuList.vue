@@ -1,13 +1,11 @@
 <script>
-const Component = {
+export default {
   name: 'VMenuList',
   props: {
     label: String,
     ariaRole: String
   }
 }
-
-export default Component
 </script>
 
 <template>

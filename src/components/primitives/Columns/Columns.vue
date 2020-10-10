@@ -1,7 +1,7 @@
 <script>
 import { computed } from 'vue'
 
-const Columns = {
+export default {
   name: 'VColumns',
   props: {
     mobile: Boolean,
@@ -29,8 +29,6 @@ const Columns = {
     return { computedClasses }
   }
 }
-
-export default Columns
 </script>
 
 <template>

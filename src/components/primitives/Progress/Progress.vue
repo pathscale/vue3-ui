@@ -49,12 +49,18 @@ export default {
     const isIndeterminate = computed(() => {
       return props.value === undefined || props.value === null
     })
-    const newType = computed(() => {
+
+    const rootClasses = computed(() => {
       return [
         props.size,
         props.type
       ]
     })
+
+    const valueClasses = computed(() => ({
+      'more-than-half': props.value >= 50
+    }))
+
     const newValue = computed(() => {
       if (props.value === undefined || props.value === null || Number.isNaN(props.value)) {
         return undefined
@@ -68,7 +74,7 @@ export default {
       return val
     })
 
-    return { isIndeterminate, newType, newValue, progress }
+    return { isIndeterminate, rootClasses, valueClasses, newValue, progress }
   }
 }
 </script>
@@ -78,14 +84,14 @@ export default {
     <progress
       ref="progress"
       class="progress"
-      :class="newType"
+      :class="rootClasses"
       :max="max"
       :value="value">
       {{ newValue }}
     </progress>
     <p
       v-if="showValue"
-      class="progress-value">
+      :class="valueClasses">
       <slot>{{ newValue }}</slot>
     </p>
   </div>

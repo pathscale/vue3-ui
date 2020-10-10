@@ -1,4 +1,4 @@
-const checkRadioMixin = {
+const CheckRadioMixin = {
   props: {
     modelValue: {
       type: [String, Number, Boolean, Function, Object, Array],
@@ -31,4 +31,4 @@ const checkRadioMixin = {
   }
 }
 
-export default checkRadioMixin
+export default CheckRadioMixin

@@ -17,8 +17,8 @@ const baseTSConfigs = [
 const vueRules = {
   // Disabling as Vue linter won't catch (and we are requiring `name` anyways)
   'import/no-anonymous-default-export': 'off',
+  // For prohibiting new lines, filed:
   // https://github.com/vuejs/eslint-plugin-vue/issues/1325
-  'no-multiple-empty-lines': ['error', { max: 2, maxEOF: 0, maxBOF: 0 }],
 
   // Temporarily disable
   'vue/require-default-prop': 'off',

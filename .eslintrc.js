@@ -33,16 +33,15 @@ const vueRules = {
     },
   ],
   */
-
-  // Disable
-  'vue/attributes-order': 'off',
-  'vue/max-attributes-per-line': 'off',
-
   // 'vue/no-bare-strings-in-template': ['error'], // Use later i18nizing
   // 'vue/no-static-inline-styles': ['error'], // Revisit later
   // 'vue/no-unregistered-components': ['error'],
   // 'vue/html-comment-indent': ['error'],
   // 'vue/no-duplicate-attr-inheritance': ['error'],
+
+  // Disable
+  'vue/attributes-order': 'off',
+  'vue/max-attributes-per-line': 'off',
 
   'vue/component-name-in-template-casing': ['error', 'kebab-case'],
   'vue/html-comment-content-newline': ['error'],

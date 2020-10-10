@@ -21,9 +21,9 @@ const vueRules = {
   // https://github.com/vuejs/eslint-plugin-vue/issues/1325
 
   // Temporarily disable
-  'vue/require-default-prop': 'off',
   'vue/no-boolean-default': 'off',
   'vue/no-mutating-props': 'off',
+  'vue/require-default-prop': 'off',
   /*
   'vue/no-unused-properties': [
     'error',

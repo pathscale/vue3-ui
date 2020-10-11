@@ -91,6 +91,7 @@ export default {
     </progress>
     <p
       v-if="showValue"
+      class="progress-value"
       :class="valueClasses">
       <slot>{{ newValue }}</slot>
     </p>

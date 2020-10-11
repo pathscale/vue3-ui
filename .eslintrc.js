@@ -133,6 +133,9 @@ module.exports = {
     SharedArrayBuffer: 'readonly',
   },
   plugins: ['vue'],
+  parserOptions: {
+    ecmaVersion: 2020,
+  },
   overrides: [
     {
       files: [

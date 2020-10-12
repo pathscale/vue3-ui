@@ -5,12 +5,20 @@ function getDynamicClasses(raw: string): string[] {
   const data = `[${raw}]`
   const classes: string[] = []
 
-  // console.log(data)
+  const res: (string | Record<string, string> | (string | Record<string, string>)[])[] = []
 
-  const res = [
-    ...(runInNewContext(data, { ...textual, ...truthy }) as []),
-    ...(runInNewContext(data, { ...textual, ...falsy }) as []),
-  ] as (string | Record<string, string> | (string | Record<string, string>)[])[]
+  try {
+    res.push(...(runInNewContext(data, { ...textual, ...truthy }) as []))
+    res.push(...(runInNewContext(data, { ...textual, ...falsy }) as []))
+  } catch (err) {
+    // eslint-disable-next-line no-console -- Needed for dev
+    console.error(
+      `\u001B[31m${err.message}\u001B[0m\n`,
+      'Do not forget to add it to the helper\'s data.ts file,\n',
+      'otherwise generated CSS might be incorrect.\n',
+      `context: \u001B[33m${data}\u001B[0m\n`,
+    )
+  }
 
   for (const item of res) {
     const i = Array.isArray(item) ? item : [item]

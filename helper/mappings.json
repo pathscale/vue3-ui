@@ -304,6 +304,9 @@
     "accordion-type-click",
     "accordion-type-hover",
     "article",
+    "background-image",
+    "background-repeat",
+    "background-size",
     "blur",
     "boolean",
     "breadcrumb",
@@ -326,6 +329,7 @@
     "container",
     "control",
     "control-label",
+    "cover",
     "data-grid",
     "delete",
     "div",
@@ -471,6 +475,7 @@
     "modal-card-title",
     "modal-close",
     "modal-content",
+    "more-than-half",
     "mr-4",
     "mt-2",
     "mx-4",
@@ -484,6 +489,7 @@
     "navbar-link",
     "navbar-menu",
     "navbar-start",
+    "no-repeat",
     "option",
     "outside",
     "p",
@@ -541,6 +547,7 @@
     "thead",
     "tr",
     "transition",
+    "transition-delay",
     "trigger-left",
     "trigger-right",
     "ul",
@@ -638,6 +645,7 @@
     "is-square",
     "is-top",
     "span",
+    "transition-delay",
     "v-tooltip"
   ],
   "VButton": [
@@ -711,8 +719,13 @@
     "is-vcentered"
   ],
   "VContainer": [
+    "background-image",
+    "background-repeat",
+    "background-size",
     "container",
-    "div"
+    "cover",
+    "div",
+    "no-repeat"
   ],
   "VField": [
     "div",
@@ -770,6 +783,7 @@
   "VProgress": [
     "div",
     "is-darkgrey",
+    "more-than-half",
     "p",
     "percent",
     "progress",

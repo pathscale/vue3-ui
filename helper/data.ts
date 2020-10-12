@@ -15,6 +15,7 @@ export const textual = {
   closeType: undefined,
   passiveType: undefined,
   customClass: undefined,
+  passiveClass: undefined,
   navClasses: undefined,
   spanClasses: undefined,
   rootClasses: undefined,
@@ -27,6 +28,19 @@ export const textual = {
   menuClasses: undefined,
   linkClasses: undefined,
   collapsibleClasses: undefined,
+  addonClasses: undefined,
+  ellipsisClasses: undefined,
+  buttonClasses: undefined,
+  animatedClasses: undefined,
+  valueClasses: undefined,
+  figureClasses: undefined,
+  imgClasses: undefined,
+  // Functions
+  columnClasses: () => undefined,
+  selectedClasses: () => undefined,
+  cellClasses: () => undefined,
+  tabClasses: () => undefined,
+  labelClasses: () => undefined,
 }
 
 export const truthy = {

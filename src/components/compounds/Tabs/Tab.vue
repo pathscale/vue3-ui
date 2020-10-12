@@ -26,7 +26,7 @@ export default {
     })
 
     watchEffect(() => {
-      if (content.value) {
+      if (tabs.value.vanimated && content.value) {
         tabs.value.activeHeight = content.value.offsetHeight
       }
     })

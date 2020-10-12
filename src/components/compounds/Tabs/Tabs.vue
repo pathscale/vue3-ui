@@ -38,7 +38,13 @@ export default {
   },
   emits: ['update:modelValue', 'change'],
   setup(props, { emit }) {
-    provideStore({ activeTab: 0, activeHeight: null, tabs: [], animated: props.animated })
+    provideStore({
+      activeTab: 0,
+      activeHeight: null,
+      tabs: [],
+      animated: props.animated,
+      vanimated: props.vanimated
+    })
     const tabs = useStore()
     function setActiveTabID(id) {
       tabs.value.activeTab = id

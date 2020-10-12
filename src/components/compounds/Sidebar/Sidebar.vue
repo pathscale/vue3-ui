@@ -98,7 +98,7 @@ export default {
     <transition
       :name="state.transitionName">
       <div
-        v-show="open"
+        v-if="open"
         ref="sidebarContent"
         class="sidebar-content is-width-animated"
         :class="rootClasses"

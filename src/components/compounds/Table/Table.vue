@@ -1,7 +1,7 @@
 <script>
 import { computed, reactive, ref, watch } from 'vue'
 import { /* VInput, */ VButton, VCheckbox, VSelect } from '../..'
-import VTag from '../Tag/Tag.vue'
+import VTag from '../../primitives/Tag/Tag.vue'
 
 export default {
   name: 'VTable',

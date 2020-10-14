@@ -31,6 +31,51 @@
     "is-active",
     "li"
   ],
+  "VCard": [
+    "card",
+    "component",
+    "div"
+  ],
+  "VCardContent": [
+    "card-content",
+    "div"
+  ],
+  "VCardFooter": [
+    "card-footer",
+    "component",
+    "footer"
+  ],
+  "VCardFooterItem": [
+    "card-footer-item",
+    "div"
+  ],
+  "VCardHeader": [
+    "card-header",
+    "card-header-title",
+    "component",
+    "header",
+    "p"
+  ],
+  "VCardImage": [
+    "card-image",
+    "div"
+  ],
+  "VColumn": [
+    "column",
+    "div",
+    "is-narrow"
+  ],
+  "VColumns": [
+    "columns",
+    "div",
+    "is-centered",
+    "is-desktop",
+    "is-gapless",
+    "is-mobile",
+    "is-multiline",
+    "is-variable",
+    "is-vcentered"
+  ],
   "VDropdown": [
     "div",
     "dropdown",
@@ -115,14 +160,6 @@
     "slide-right-leave-to",
     "transition"
   ],
-  "VMedia": [
-    "article",
-    "div",
-    "media",
-    "media-content",
-    "media-left",
-    "media-right"
-  ],
   "VMenu": [
     "div",
     "menu"
@@ -144,25 +181,6 @@
     "menu-list",
     "p",
     "ul"
-  ],
-  "VModal": [
-    "button",
-    "delete",
-    "div",
-    "footer",
-    "header",
-    "is-active",
-    "modal",
-    "modal-background",
-    "modal-card",
-    "modal-card-body",
-    "modal-card-foot",
-    "modal-card-head",
-    "modal-card-title",
-    "modal-close",
-    "modal-content",
-    "p",
-    "template"
   ],
   "VNavbar": [
     "a",
@@ -209,62 +227,6 @@
     "component",
     "is-active",
     "navbar-item"
-  ],
-  "VSidebar": [
-    "absolute",
-    "boolean",
-    "close",
-    "div",
-    "escape",
-    "fade-enter",
-    "fade-enter-active",
-    "fade-enter-to",
-    "fade-leave",
-    "fade-leave-active",
-    "fade-leave-to",
-    "fixed",
-    "fullwidth",
-    "hide",
-    "is-absolute",
-    "is-fixed",
-    "is-fullheight",
-    "is-fullwidth",
-    "is-fullwidth-mobile",
-    "is-hidden-mobile",
-    "is-mini",
-    "is-mini-expand",
-    "is-mini-expand-fixed",
-    "is-mini-mobile",
-    "is-right",
-    "is-static",
-    "is-width-animated",
-    "outside",
-    "reduce",
-    "sidebar-background",
-    "sidebar-content",
-    "slide-enter",
-    "slide-enter-active",
-    "slide-enter-to",
-    "slide-leave",
-    "slide-leave-active",
-    "slide-leave-to",
-    "slide-left",
-    "slide-left-enter",
-    "slide-left-enter-active",
-    "slide-left-enter-to",
-    "slide-left-leave",
-    "slide-left-leave-active",
-    "slide-left-leave-to",
-    "slide-right",
-    "slide-right-enter",
-    "slide-right-enter-active",
-    "slide-right-enter-to",
-    "slide-right-leave",
-    "slide-right-leave-active",
-    "slide-right-leave-to",
-    "static",
-    "transition",
-    "v-sidebar"
   ],
   "VTable": [
     "a",
@@ -595,34 +557,6 @@
     "template",
     "ul"
   ],
-  "VTag": [
-    "a",
-    "close",
-    "delete",
-    "div",
-    "has-addons",
-    "has-delete-icon",
-    "has-ellipsis",
-    "is-delete",
-    "is-rounded",
-    "is-small",
-    "span",
-    "tag",
-    "tags"
-  ],
-  "VTooltip": [
-    "is-always",
-    "is-animated",
-    "is-dashed",
-    "is-medium",
-    "is-multiline",
-    "is-primary",
-    "is-square",
-    "is-top",
-    "span",
-    "transition-delay",
-    "v-tooltip"
-  ],
   "VButton": [
     "button",
     "component",
@@ -638,35 +572,6 @@
     "is-selected",
     "span"
   ],
-  "VCard": [
-    "card",
-    "component",
-    "div"
-  ],
-  "VCardContent": [
-    "card-content",
-    "div"
-  ],
-  "VCardFooter": [
-    "card-footer",
-    "component",
-    "footer"
-  ],
-  "VCardFooterItem": [
-    "card-footer-item",
-    "div"
-  ],
-  "VCardHeader": [
-    "card-header",
-    "card-header-title",
-    "component",
-    "header",
-    "p"
-  ],
-  "VCardImage": [
-    "card-image",
-    "div"
-  ],
   "VCheckbox": [
     "check",
     "checkbox",
@@ -676,22 +581,6 @@
     "label",
     "span",
     "v-checkbox"
-  ],
-  "VColumn": [
-    "column",
-    "div",
-    "is-narrow"
-  ],
-  "VColumns": [
-    "columns",
-    "div",
-    "is-centered",
-    "is-desktop",
-    "is-gapless",
-    "is-mobile",
-    "is-multiline",
-    "is-variable",
-    "is-vcentered"
   ],
   "VContainer": [
     "background-image",
@@ -755,6 +644,33 @@
     "p",
     "span"
   ],
+  "VMedia": [
+    "article",
+    "div",
+    "media",
+    "media-content",
+    "media-left",
+    "media-right"
+  ],
+  "VModal": [
+    "button",
+    "delete",
+    "div",
+    "footer",
+    "header",
+    "is-active",
+    "modal",
+    "modal-background",
+    "modal-card",
+    "modal-card-body",
+    "modal-card-foot",
+    "modal-card-head",
+    "modal-card-title",
+    "modal-close",
+    "modal-content",
+    "p",
+    "template"
+  ],
   "VProgress": [
     "div",
     "is-darkgrey",
@@ -785,6 +701,62 @@
     "span",
     "template"
   ],
+  "VSidebar": [
+    "absolute",
+    "boolean",
+    "close",
+    "div",
+    "escape",
+    "fade-enter",
+    "fade-enter-active",
+    "fade-enter-to",
+    "fade-leave",
+    "fade-leave-active",
+    "fade-leave-to",
+    "fixed",
+    "fullwidth",
+    "hide",
+    "is-absolute",
+    "is-fixed",
+    "is-fullheight",
+    "is-fullwidth",
+    "is-fullwidth-mobile",
+    "is-hidden-mobile",
+    "is-mini",
+    "is-mini-expand",
+    "is-mini-expand-fixed",
+    "is-mini-mobile",
+    "is-right",
+    "is-static",
+    "is-width-animated",
+    "outside",
+    "reduce",
+    "sidebar-background",
+    "sidebar-content",
+    "slide-enter",
+    "slide-enter-active",
+    "slide-enter-to",
+    "slide-leave",
+    "slide-leave-active",
+    "slide-leave-to",
+    "slide-left",
+    "slide-left-enter",
+    "slide-left-enter-active",
+    "slide-left-enter-to",
+    "slide-left-leave",
+    "slide-left-leave-active",
+    "slide-left-leave-to",
+    "slide-right",
+    "slide-right-enter",
+    "slide-right-enter-active",
+    "slide-right-enter-to",
+    "slide-right-leave",
+    "slide-right-leave-active",
+    "slide-right-leave-to",
+    "static",
+    "transition",
+    "v-sidebar"
+  ],
   "VSwitch": [
     "check",
     "control-label",
@@ -796,6 +768,21 @@
     "span",
     "switch"
   ],
+  "VTag": [
+    "a",
+    "close",
+    "delete",
+    "div",
+    "has-addons",
+    "has-delete-icon",
+    "has-ellipsis",
+    "is-delete",
+    "is-rounded",
+    "is-small",
+    "span",
+    "tag",
+    "tags"
+  ],
   "VTextarea": [
     "control",
     "div",
@@ -805,5 +792,18 @@
     "is-loading",
     "small",
     "textarea"
+  ],
+  "VTooltip": [
+    "is-always",
+    "is-animated",
+    "is-dashed",
+    "is-medium",
+    "is-multiline",
+    "is-primary",
+    "is-square",
+    "is-top",
+    "span",
+    "transition-delay",
+    "v-tooltip"
   ]
 }

@@ -1,24 +1,10 @@
 import '../index.css'
 
+/* Primitives */
+
 export { default as VButton } from './primitives/Button/Button.vue'
 
-export { default as VCard } from './primitives/Card/Card.vue'
-
-export { default as VCardContent } from './primitives/Card/CardContent.vue'
-
-export { default as VCardFooter } from './primitives/Card/CardFooter.vue'
-
-export { default as VCardFooterItem } from './primitives/Card/CardFooterItem.vue'
-
-export { default as VCardHeader } from './primitives/Card/CardHeader.vue'
-
-export { default as VCardImage } from './primitives/Card/CardImage.vue'
-
 export { default as VCheckbox } from './primitives/Checkbox/Checkbox.vue'
-
-export { default as VColumn } from './primitives/Columns/Column.vue'
-
-export { default as VColumns } from './primitives/Columns/Columns.vue'
 
 export { default as VContainer } from './primitives/Container/Container.vue'
 
@@ -32,13 +18,23 @@ export { default as VInput } from './primitives/Input/Input.vue'
 
 export { default as VMedia } from './primitives/Media/Media.vue'
 
+export { default as VModal } from './primitives/Modal/Modal.vue'
+
 export { default as VProgress } from './primitives/Progress/Progress.vue'
 
 export { default as VSelect } from './primitives/Select/Select.vue'
 
+export { default as VSidebar } from './primitives/Sidebar/Sidebar.vue'
+
 export { default as VSwitch } from './primitives/Switch/Switch.vue'
 
+export { default as VTag } from './primitives/Tag/Tag.vue'
+
 export { default as VTextarea } from './primitives/Textarea/Textarea.vue'
+
+export { default as VTooltip } from './primitives/Tooltip/Tooltip.vue'
+
+/* Compounds */
 
 export { default as VAccordion } from './compounds/Accordion/Accordion.vue'
 
@@ -47,6 +43,22 @@ export { default as VAccordionMenu } from './compounds/Accordion/AccordionMenu.v
 export { default as VBreadcrumb } from './compounds/Breadcrumb/Breadcrumb.vue'
 
 export { default as VBreadcrumbItem } from './compounds/Breadcrumb/BreadcrumbItem.vue'
+
+export { default as VCard } from './compounds/Card/Card.vue'
+
+export { default as VCardContent } from './compounds/Card/CardContent.vue'
+
+export { default as VCardFooter } from './compounds/Card/CardFooter.vue'
+
+export { default as VCardFooterItem } from './compounds/Card/CardFooterItem.vue'
+
+export { default as VCardHeader } from './compounds/Card/CardHeader.vue'
+
+export { default as VCardImage } from './compounds/Card/CardImage.vue'
+
+export { default as VColumn } from './compounds/Columns/Column.vue'
+
+export { default as VColumns } from './compounds/Columns/Columns.vue'
 
 export { default as VDropdown } from './compounds/Dropdown/Dropdown.vue'
 
@@ -58,8 +70,6 @@ export { default as VMenuItem } from './compounds/Menu/MenuItem.vue'
 
 export { default as VMenuList } from './compounds/Menu/MenuList.vue'
 
-export { default as VModal } from './compounds/Modal/Modal.vue'
-
 export { default as VNavbar } from './compounds/Navbar/Navbar.vue'
 
 export { default as VNavbarBurger } from './compounds/Navbar/NavbarBurger.vue'
@@ -68,18 +78,13 @@ export { default as VNavbarDropdown } from './compounds/Navbar/NavbarDropdown.vu
 
 export { default as VNavbarItem } from './compounds/Navbar/NavbarItem.vue'
 
-export { default as VSidebar } from './compounds/Sidebar/Sidebar.vue'
+export { default as VTab } from './compounds/Tabs/Tab.vue'
 
 export { default as VTable } from './compounds/Table/Table.vue'
 
 export { default as DataGrid } from './compounds/Table/DataGrid.ts'
 
-export { default as VTab } from './compounds/Tabs/Tab.vue'
 
 export { default as VTabs } from './compounds/Tabs/Tabs.vue'
-
-export { default as VTag } from './compounds/Tag/Tag.vue'
-
-export { default as VTooltip } from './compounds/Tooltip/Tooltip.vue'
 
 export * from './global-settings'

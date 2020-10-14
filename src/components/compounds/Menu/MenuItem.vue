@@ -67,11 +67,11 @@ export default {
         :active="newActive" />
     </component>
     <template v-if="$slots.default">
-      <transition name="slide">
-        <ul v-show="newExpanded">
-          <slot />
-        </ul>
-      </transition>
+      <!-- <transition name="slide"> -->
+      <ul v-show="newExpanded">
+        <slot />
+      </ul>
+      <!-- </transition> -->
     </template>
   </li>
 </template>

@@ -30,6 +30,8 @@ export { default as VImage } from './primitives/Image/Image.vue'
 
 export { default as VInput } from './primitives/Input/Input.vue'
 
+export { default as VMedia } from './primitives/Media/Media.vue'
+
 export { default as VProgress } from './primitives/Progress/Progress.vue'
 
 export { default as VSelect } from './primitives/Select/Select.vue'
@@ -49,8 +51,6 @@ export { default as VBreadcrumbItem } from './compounds/Breadcrumb/BreadcrumbIte
 export { default as VDropdown } from './compounds/Dropdown/Dropdown.vue'
 
 export { default as VDropdownItem } from './compounds/Dropdown/DropdownItem.vue'
-
-export { default as VMedia } from './compounds/Media/Media.vue'
 
 export { default as VMenu } from './compounds/Menu/Menu.vue'
 

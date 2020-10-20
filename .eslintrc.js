@@ -17,8 +17,6 @@ const baseTSConfigs = [
 const vueRules = {
   // Disabling as Vue linter won't catch (and we are requiring `name` anyways)
   'import/no-anonymous-default-export': 'off',
-  // For prohibiting new lines, filed:
-  // https://github.com/vuejs/eslint-plugin-vue/issues/1325
 
   // Temporarily disable
   'vue/no-boolean-default': 'off',
@@ -43,6 +41,7 @@ const vueRules = {
   'vue/attributes-order': 'off',
   'vue/max-attributes-per-line': 'off',
 
+  'vue/block-tag-newline': ['error'],
   'vue/component-name-in-template-casing': ['error', 'kebab-case'],
   'vue/html-comment-content-newline': ['error'],
   'vue/html-comment-content-spacing': ['error'],

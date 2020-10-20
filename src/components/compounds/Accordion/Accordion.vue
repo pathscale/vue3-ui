@@ -70,7 +70,6 @@ export default {
     return { state, toggle, open, close, rootClasses, headerClasses, triggerClasses }
   }
 }
-
 </script>
 
 <template>

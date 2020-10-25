@@ -622,6 +622,10 @@
     "label",
     "span"
   ],
+  "VIcon": [
+    "svg",
+    "use"
+  ],
   "VImage": [
     "container",
     "figure",
@@ -758,10 +762,6 @@
     "static",
     "transition",
     "v-sidebar"
-  ],
-  "VSvg": [
-    "svg",
-    "use"
   ],
   "VSwitch": [
     "check",

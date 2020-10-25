@@ -470,6 +470,7 @@
     "sticky-column",
     "sticky-row",
     "sticky-table",
+    "svg",
     "switch",
     "table",
     "table-container",
@@ -488,6 +489,7 @@
     "trigger-left",
     "trigger-right",
     "ul",
+    "use",
     "v-button",
     "v-checkbox",
     "v-select",
@@ -756,6 +758,10 @@
     "static",
     "transition",
     "v-sidebar"
+  ],
+  "VSvg": [
+    "svg",
+    "use"
   ],
   "VSwitch": [
     "check",

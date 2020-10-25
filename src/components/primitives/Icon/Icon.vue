@@ -1,6 +1,6 @@
 <script>
 export default {
-  name: 'VSvg',
+  name: 'VIcon',
   inheritAttrs: false,
   props: {
     bundle: String,

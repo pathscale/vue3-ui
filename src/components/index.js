@@ -34,6 +34,8 @@ export { default as VTextarea } from './primitives/Textarea/Textarea.vue'
 
 export { default as VTooltip } from './primitives/Tooltip/Tooltip.vue'
 
+export { default as VSvg } from './primitives/Svg/Svg.vue'
+
 /* Compounds */
 
 export { default as VAccordion } from './compounds/Accordion/Accordion.vue'

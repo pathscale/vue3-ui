@@ -15,7 +15,7 @@ export default {
       type: Boolean,
       default: true
     },
-    mobileBurger: { // TODO
+    mobileBurger: {
       type: Boolean,
       default: true
     },
@@ -65,12 +65,18 @@ export default {
   <nav class="navbar" role="navigation" aria-label="main navigation" :class="rootClasses">
     <div class="navbar-brand">
       <slot name="brand" />
-      <navbar-burger :is-active="isActive" @click="toggleActive" />
+      <navbar-burger v-if="mobileBurger" :is-active="isActive" @click="toggleActive" />
     </div>
     <div class="navbar-menu" :class="menuClasses">
       <div class="navbar-start">
         <slot name="start" />
-      </div><div class="navbar-end">
+        <slot name="end" />
+      </div>
+      <div class="navbar-start">
+        <slot name="start" />
+        <slot name="end" />
+      </div>
+      <div class="navbar-end">
         <slot name="end" />
       </div>
     </div>

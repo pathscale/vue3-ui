@@ -72,10 +72,6 @@ export default {
         <slot name="start" />
         <slot name="end" />
       </div>
-      <div class="navbar-start">
-        <slot name="start" />
-        <slot name="end" />
-      </div>
       <div class="navbar-end">
         <slot name="end" />
       </div>

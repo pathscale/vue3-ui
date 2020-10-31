@@ -1,9 +1,15 @@
 # Vue3-ui
 
-![npm](https://img.shields.io/npm/v/@pathscale/vue3-ui?style=for-the-badge) ![npm](https://img.shields.io/npm/dt/@pathscale/vue3-ui?style=for-the-badge) ![npm bundle size](https://img.shields.io/bundlephobia/min/@pathscale/vue3-ui?style=for-the-badge) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/@pathscale/vue3-ui?style=for-the-badge) ![NPM](https://img.shields.io/npm/l/@pathscale/vue3-ui?style=for-the-badge)
-
 <p align="center">
-  <img src="https://vue3--dev.b-cdn.net/vue3-ui-logo.png" />
+  <a href="hhttps://vue3--dev.b-cdn.net">
+        <img src="https://vue3--dev.b-cdn.net/vue3-ui-logo.png" />
+  </a>
+  <br/>
+  <a href="https://www.npmjs.com/package/@pathscale/vue3-ui"><img src="https://img.shields.io/npm/v/@pathscale/vue3-ui?style=for-the-badge" /></a>
+  <a href="https://www.npmjs.com/package/@pathscale/vue3-ui"><img src="https://img.shields.io/npm/dt/@pathscale/vue3-ui?style=for-the-badge" /></a>
+  <a href="https://bundlephobia.com/result?p=@pathscale/vue3-ui"><img src="https://img.shields.io/bundlephobia/min/@pathscale/vue3-ui?style=for-the-badge" /></a>
+  <a href="https://bundlephobia.com/result?p=@pathscale/vue3-ui"><img src="https://img.shields.io/bundlephobia/minzip/@pathscale/vue3-ui?style=for-the-badge" /></a>
+  <a href="https://github.com/pathscale/vue3-ui/blob/master/LICENSE-MIT.txt"><img src="https://img.shields.io/npm/l/@pathscale/vue3-ui?style=for-the-badge" /></a>
   <br/>
   Vue3 ready components library built with love and care designed to integrate beautifully with Bulma CSS
 </p>

@@ -89,10 +89,12 @@ export default {
 .p-1 {
     padding: 1em;
 }
+
 .sidebar-page {
     display: flex;
     width: 100%;
 }
+
 .sidebar-page .sidebar-layout {
     display: flex;
     flex-direction: row;

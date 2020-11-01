@@ -105,6 +105,7 @@
     "serve": "^11.3.2",
     "shx": "^0.3.2",
     "stylelint": "^13.7.2",
+    "stylelint-config-standard": "^20.0.0",
     "stylelint-value-no-unknown-custom-properties": "^3.0.0",
     "ts-node": "^9.0.0",
     "tslib": "^2.0.3",

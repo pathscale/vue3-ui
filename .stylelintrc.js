@@ -2,7 +2,8 @@
 
 module.exports = {
   // No apparent way to whitelist by extension, so disable others
-  ignoreFiles: ['**/*.{js,ts,woff2,json,jpeg,png}'],
+  ignoreFiles: ['**/*.{js,ts,woff2,json,svg,jpeg,png}'],
+  extends: 'stylelint-config-standard',
   plugins: ['stylelint-value-no-unknown-custom-properties'],
   rules: {
     indentation: [

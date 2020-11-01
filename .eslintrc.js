@@ -142,6 +142,7 @@ module.exports = {
     {
       files: [
         '.eslintrc.js',
+        '.stylelintrc.js',
         '.ncurc.js',
         'postcss.config.js',
         'webpack.config.js',

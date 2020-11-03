@@ -7,7 +7,7 @@ module.exports = {
   plugins: ['stylelint-value-no-unknown-custom-properties'],
   rules: {
     indentation: [
-      4,
+      2,
       {
         baseIndentLevel: 0,
       },

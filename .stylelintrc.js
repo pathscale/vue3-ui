@@ -18,6 +18,11 @@ module.exports = {
         ignore: ['empty-lines'],
       },
     ],
-    'csstools/value-no-unknown-custom-properties': true,
+    'csstools/value-no-unknown-custom-properties': [
+      true,
+      {
+        reportEarlyUses: true,
+      },
+    ],
   },
 }

@@ -1,0 +1,17 @@
+{
+    "VButton": {
+        "always": ["button"],
+        "optional": ["is-rounded", "is-loading", "is-outlined", "is-fullwidth", "is-inverted", "is-focused", "is-active", "is-hovered", "is-selected", "is-light"],
+        "passthrough": ["size", "type"]
+    },
+    "VTooltip": {
+        "always": ["v-tooltip", "is-primary", "is-top", "is-medium"],
+        "optional": ["is-square", "is-animated", "is-always", "is-multiline", "is-dashed"],
+        "passthrough": ["type", "position", "size"]
+    },
+    "VInput": {
+        "always": ["control", "error", "input", "icon", "is-left", "is-right"],
+        "optional": ["is-loading", "has-icons-left", "has-icons-right"],
+        "passthrough": ["size", "color", "statusType"]
+    }
+}

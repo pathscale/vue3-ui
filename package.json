@@ -25,7 +25,7 @@
   "scripts": {
     "prebuild": "ts-node --files --project helper/tsconfig.json helper/index.ts && shx rm -rf dist",
     "build": "rollup -c --environment NODE_ENV:production",
-    "postbuild": "shx cp helper/mappings.json dist",
+    "postbuild": "shx cp helper/mappings.json helper/classes.json dist",
     "css-lint": "stylelint src",
     "lint": "eslint --ext .js,.ts,.vue,.md,.html --max-warnings=0 .",
     "lint-arg": "eslint --ext .js,.ts,.vue,.md,.html --max-warnings=0",

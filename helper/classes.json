@@ -16,7 +16,7 @@
     },
     "VTable": {
         "always": ["data-grid", "tableHeader", "mt-2", "ml-2", "table", "input", "has-text-black", "is-small", "is-black", "is-primary", "expansion", "mr-4", "mx-4", "pagination-container", "pagination-previous", "pagination-next", "tableFooter"],
-        "optional": ["is-bordered", "is-striped", "is-narrow", "is-hoverable", "is-fullwidth", "has-text-primary", "sticky-row", "has-background-primary", "has-text-white", "sticky-column", "table-container", "sticky-table", ""],
+        "optional": ["is-bordered", "is-striped", "is-narrow", "is-hoverable", "is-fullwidth", "has-text-primary", "sticky-row", "has-background-primary", "has-text-white", "sticky-column", "table-container", "sticky-table"]
     },
     "VTag": {
         "always": ["tags", "has-addons", "tag", "delete", "is-small"],

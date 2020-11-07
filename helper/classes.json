@@ -39,11 +39,11 @@
         "passthrough": ["size", "color"]
     },
     "VSelect": {
-        "always": ["control", "has-background-dark", "has-text-light"],
+        "always": ["control", "select", "has-background-dark", "has-text-light"],
         "optional": ["is-expanded", "is-fullwidth", "is-loading", "is-multiple", "is-rounded", "is-empty"],
         "passthrough": ["size", "color"]
     },
-    "VFileInput": {
+    "VFile": {
         "always": ["file", "file-label", "file-input", "file-cta", "file-name"],
         "optional": ["has-name", "is-fullwidth", "is-boxed"],
         "passthrough": ["size", "color", "alignment"]

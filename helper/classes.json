@@ -4,6 +4,25 @@
         "optional": ["is-rounded", "is-loading", "is-outlined", "is-fullwidth", "is-inverted", "is-focused", "is-active", "is-hovered", "is-selected", "is-light"],
         "passthrough": ["size", "type"]
     },
+    "VImage": {
+        "always": ["image"],
+        "optional": ["container", "is-rounded"],
+        "passthrough": ["size", "radio"]
+    },
+    "VProgress": {
+        "always": ["progress-wrapper", "progress", "progress-value"],
+        "optional": ["more-than-half"],
+        "passthrough": ["size", "type"]
+    },
+    "VTable": {
+        "always": ["data-grid", "tableHeader", "mt-2", "ml-2", "table", "input", "has-text-black", "is-small", "is-black", "is-primary", "expansion", "mr-4", "mx-4", "pagination-container", "pagination-previous", "pagination-next", "tableFooter"],
+        "optional": ["is-bordered", "is-striped", "is-narrow", "is-hoverable", "is-fullwidth", "has-text-primary", "sticky-row", "has-background-primary", "has-text-white", "sticky-column", "table-container", "sticky-table", ""],
+    },
+    "VTag": {
+        "always": ["tags", "has-addons", "tag", "delete", "is-small"],
+        "optional": ["is-rounded", "has-ellipsis", "is-rounded", "has-delete-icon", "is-delete"],
+        "passthrough": ["type", "size", "closeType"]
+    },
     "VTooltip": {
         "always": ["v-tooltip", "is-primary", "is-top", "is-medium"],
         "optional": ["is-square", "is-animated", "is-always", "is-multiline", "is-dashed"],
@@ -13,5 +32,35 @@
         "always": ["control", "error", "input", "icon", "is-left", "is-right"],
         "optional": ["is-loading", "has-icons-left", "has-icons-right"],
         "passthrough": ["size", "color", "statusType"]
+    },
+    "VTextarea": {
+        "always": ["control", "textarea", "is-invisible"],
+        "optional": ["is-hovered", "is-focused", "is-loading"],
+        "passthrough": ["size", "color"]
+    },
+    "VSelect": {
+        "always": ["control", "has-background-dark", "has-text-light"],
+        "optional": ["is-expanded", "is-fullwidth", "is-loading", "is-multiple", "is-rounded", "is-empty"],
+        "passthrough": ["size", "color"]
+    },
+    "VFileInput": {
+        "always": ["file", "file-label", "file-input", "file-cta", "file-name"],
+        "optional": ["has-name", "is-fullwidth", "is-boxed"],
+        "passthrough": ["size", "color", "alignment"]
+    },
+    "VSwitch": {
+        "always": ["switch", "check", "control-label"],
+        "optional": ["is-disabled", "is-rounded", "is-outlined"],
+        "passthrough": ["size"]
+    },
+    "VField": {
+        "always": ["field", "field-label", "label", "field-body", "help"],
+        "optional": ["is-grouped", "is-expanded", "is-horizontal", "is-grouped", "is-grouped-multiline", "has-addons"],
+        "passthrough": ["position"]
+    },
+    "VCheckbox": {
+        "always": ["v-checkbox", "checkbox", "check", "control-label"],
+        "optional": ["is-disabled"],
+        "passthrough": ["size"]
     }
 }

@@ -38,7 +38,7 @@
     },
     "VModal": {
         "always": ["modal", "modal-background", "modal-content", "modal-close", "modal-card", "modal-card-head", "modal-card-title", "delete", "modal-card-body", "modal-card-foot"],
-        "optional": ["is-active"],
+        "optional": ["is-active"]
     },
     "VProgress": {
         "always": ["progress-wrapper", "progress", "progress-value"],

@@ -1,6 +1,6 @@
 {
     "VButton": {
-        "always": ["button"],
+        "always": ["button", "disabled"],
         "optional": ["is-rounded", "is-loading", "is-outlined", "is-fullwidth", "is-inverted", "is-focused", "is-active", "is-hovered", "is-selected", "is-light"],
         "passthrough": ["size", "type"]
     },
@@ -61,8 +61,8 @@
         "passthrough": ["size"]
     },
     "VTag": {
-        "always": ["tags", "has-addons", "tag", "delete", "is-small"],
-        "optional": ["is-rounded", "has-ellipsis", "is-rounded", "has-delete-icon", "is-delete"],
+        "always": ["tags", "has-addons", "tag", "delete", "is-small", "has-delete-icon", "is-delete"],
+        "optional": ["is-rounded", "has-ellipsis", "is-rounded"],
         "passthrough": ["type", "size", "closeType"]
     },
     "VTextarea": {
@@ -79,8 +79,8 @@
 
     },
     "VAccordion": {
-        "always": ["accordion-trigger", "accordion-content", "accordion-header", "accordion-trigger-click"],
-        "optional": ["is-horizontal", "is-vertical", "accordion-active", "accordion-default", "accordoin-type-hover", "accordion-type-click", "header-is-trigger", "trigger-right", "trigger-left"]
+        "always": ["accordion-trigger", "accordion-content", "accordion-header", "accordion-trigger-click", "accordion-active", "accordion-default", "accordoin-type-hover", "accordion-type-click", "header-is-trigger", "trigger-right", "trigger-left"],
+        "optional": ["is-horizontal", "is-vertical"]
     },
     "VAccordionMenu": {
         "always": "accordion-menu"
@@ -165,7 +165,7 @@
 
     },
     "VTable": {
-        "always": ["data-grid", "tableHeader", "mt-2", "ml-2", "table", "input", "has-text-black", "is-small", "is-black", "is-primary", "expansion", "mr-4", "mx-4", "pagination-container", "pagination-previous", "pagination-next", "tableFooter"],
-        "optional": ["is-bordered", "is-striped", "is-narrow", "is-hoverable", "is-fullwidth", "has-text-primary", "sticky-row", "has-background-primary", "has-text-white", "sticky-column", "table-container", "sticky-table"]
+        "always": ["data-grid", "tableHeader", "mt-2", "ml-2", "table", "input", "has-text-black", "is-small", "is-black", "is-primary", "expansion", "mr-4", "mx-4", "pagination-container", "pagination-previous", "pagination-next", "tableFooter", "sticky-column", "sticky-row", "has-text-primary", "has-background-primary", "has-text-white", "table-container", "sticky-table"],
+        "optional": ["is-bordered", "is-striped", "is-narrow", "is-hoverable", "is-fullwidth"]
     }
 }

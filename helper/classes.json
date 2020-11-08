@@ -125,7 +125,7 @@
         "optional": ["is-disabled", "is-hoverable", "is-inline", "is-active", "is-mobile-modal", "is-expanded"],
         "passthrough": ["position"]
     },
-    "VDropdopwnItem": {
+    "VDropdownItem": {
         "always": ["dropdown-divider", "dropdown-item"],
         "optional": ["dropdown-item", "is-disabled", "is-paddingless", "is-active", "has-link"]
     },
@@ -133,7 +133,7 @@
         "always": ["menu"]
     },
     "VMenuItem": {
-        "always": ["pr-2"],
+        "always": ["pr-2", "ul"],
         "optional": ["is-flex", "is-active", "is-disabled"]
     },
     "VMenuList": {

@@ -19,13 +19,13 @@
         "passthrough": ["position"]
     },
     "VFile": {
-        "always": ["file", "file-label", "file-input", "file-cta", "file-name"],
-        "optional": ["has-name", "is-fullwidth", "is-boxed"],
+        "always": ["file", "file-label", "file-input", "file-cta", "file-name", "has-name"],
+        "optional": ["is-fullwidth", "is-boxed"],
         "passthrough": ["size", "color", "alignment"]
     },
     "VImage": {
-        "always": ["image"],
-        "optional": ["container", "is-rounded"],
+        "always": ["image", "container"],
+        "optional": ["is-rounded"],
         "passthrough": ["size", "radio"]
     },
     "VInput": {
@@ -41,8 +41,7 @@
         "optional": ["is-active"]
     },
     "VProgress": {
-        "always": ["progress-wrapper", "progress", "progress-value"],
-        "optional": ["more-than-half"],
+        "always": ["progress-wrapper", "progress", "progress-value", "more-than-half"],
         "passthrough": ["size", "type"]
     },
     "VSelect": {
@@ -51,8 +50,8 @@
         "passthrough": ["size", "color"]
     },
     "VSidebar": {
-        "always": ["v-sidebar", "sidebar-background", "sidebar-content", "is-width-animated"],
-        "optional": ["is-fixed", "is-static", "is-absolute", "is-fullheight", "is-full-width", "is-right", "is-mini", "is-mini-expand", "is-mini-expand-fixed", "is-mini-mobile", "is-hidden-mobile", "is-fullwidth-mobile"],
+        "always": ["v-sidebar", "sidebar-background", "sidebar-content", "is-width-animated", "is-fixed", "is-static", "is-absolute", "is-fullheight", "is-full-width", "is-right", "is-mini", "is-mini-expand", "is-mini-expand-fixed", "is-mini-mobile", "is-hidden-mobile", "is-fullwidth-mobile"],
+        "optional": [],
         "passthrough": ["type"]
     },
     "VSwitch": {
@@ -79,7 +78,7 @@
 
     },
     "VAccordion": {
-        "always": ["accordion-trigger", "accordion-content", "accordion-header", "accordion-trigger-click", "accordion-active", "accordion-default", "accordoin-type-hover", "accordion-type-click", "header-is-trigger", "trigger-right", "trigger-left"],
+        "always": ["accordion-trigger", "accordion-content", "accordion-header", "accordion-trigger-click", "accordion-active", "accordion-default", "accordion-type-hover", "accordion-type-click", "header-is-trigger", "trigger-right", "trigger-left"],
         "optional": ["is-horizontal", "is-vertical"]
     },
     "VAccordionMenu": {

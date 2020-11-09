@@ -139,7 +139,7 @@
         "always": ["menu-label", "menu-list"]
     },
     "VNavbar": {
-        "always": ["navbar", "navbar-brand", "navbar-menu", "navbar-start", "navbar-end"],
+        "always": ["navbar", "navbar-brand", "navbar-menu", "navbar-start", "navbar-end", "navbar-burger", "burger"],
         "optional": ["is-fixed-top", "is-fixed-bottom", "is-spaced", "has-shadow", "is-transparent", "is-active"],
         "passthrough": ["type"]
     },

@@ -1,5 +1,6 @@
 <script>
-import { computed } from 'vue'
+/* eslint-disable no-undef -- Access to Benchie variable/function */
+import { computed, onBeforeMount, ref } from 'vue'
 
 export default {
   name: 'VImage',
@@ -8,9 +9,21 @@ export default {
     size: String,
     radio: String,
     rounded: Boolean,
-    centered: Boolean
+    centered: Boolean,
+    src: {
+      type: String,
+      required: true
+    }
   },
   setup(props) {
+    const source = ref(props.src)
+    onBeforeMount(async() => {
+      const hasBenchieSupport = t && typeof t === 'function' && $__CDN && typeof $__CDN === 'string'
+      if (hasBenchieSupport) {
+        source.value = await t(props.src, $__CDN)
+      }
+    })
+
     const figureClasses = computed(() => {
       return [
         props.size,
@@ -25,13 +38,13 @@ export default {
         'is-rounded': props.rounded
       }
     })
-    return { figureClasses, imgClasses }
+    return { figureClasses, imgClasses, source }
   }
 }
 </script>
 
 <template>
   <figure class="image" :class="figureClasses">
-    <img v-bind="$attrs" :class="imgClasses" />
+    <img v-bind="$attrs" :src="source" :class="imgClasses" />
   </figure>
 </template>

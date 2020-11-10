@@ -101,9 +101,9 @@ export default {
         :class="[
           props.type,
           {
-            'is-fixed': isFixed.value,
-            'is-static': isStatic.value,
-            'is-absolute': isAbsolute.value,
+            'is-fixed': isFixed,
+            'is-static': isStatic,
+            'is-absolute': isAbsolute,
             'is-fullheight': props.fullheight,
             'is-fullwidth': props.fullwidth,
             'is-right': props.right,

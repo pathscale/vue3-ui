@@ -4,13 +4,13 @@ import { sync as resolveSync } from 'resolve'
 import { parse as jsparserParse } from '@babel/parser'
 import traverse from '@babel/traverse'
 import { Parser as HtmlparserParser } from 'htmlparser2'
-import getDynamicClasses from './get-dynamic-classes'
+// import getDynamicClasses from './get-dynamic-classes'
 import { normalizePath } from './utils'
 import { parseSFC, isVueSFC } from './analyzer-utils'
 import { transitions } from './data'
 import { parserOpts } from './config'
 
-export function getWhitelist(input: string): string[] {
+export function getWhitelist(input: string): { always?: string[], optional?: string[] } {
   const extensions = ['.ts', '.tsx', '.mjs', '.js', '.jsx', '.vue', '.json']
 
   const animationSuffixes = [
@@ -28,7 +28,9 @@ export function getWhitelist(input: string): string[] {
     return extensions.some(ext => lowerId.endsWith(ext))
   }
 
-  const whitelist = new Set<string>()
+  const always = new Set<string>()
+  const optional = new Set<string>()
+
   const traversed = new Set<string>()
   const idList = [normalizePath(path.resolve(input))]
   // const animationList: string[] = []
@@ -36,29 +38,29 @@ export function getWhitelist(input: string): string[] {
   const parser = new HtmlparserParser(
     {
       onopentag(name, attrs): void {
-        whitelist.add(name)
+        // always.add(name)
 
         if (name === 'transition') {
           for (const transition of transitions) {
-            for (const suffix of animationSuffixes) whitelist.add(transition + suffix)
+            for (const suffix of animationSuffixes) always.add(transition + suffix)
           }
 
-          if (attrs.name) for (const suffix of animationSuffixes) whitelist.add(attrs.name + suffix)
+          if (attrs.name) for (const suffix of animationSuffixes) always.add(attrs.name + suffix)
           // if (attrs[':name']) animationList.push(attrs[':name'])
         }
       },
 
       onattribute(name, data): void {
         if (name === 'class') {
-          for (const c of data.split(' ')) whitelist.add(c)
-          return
-        }
-
-        if (name === ':class') {
-          const classes = getDynamicClasses(data)
-          for (const c of classes) whitelist.add(c)
+          for (const c of data.split(' ')) always.add(c)
           // return
         }
+
+        // if (name === ':class') {
+        //   const classes = getDynamicClasses(data)
+        //   for (const c of classes) always.add(c)
+        //   // return
+        // }
       },
     },
     { decodeEntities: true, lowerCaseTags: false, lowerCaseAttributeNames: true },
@@ -108,8 +110,16 @@ export function getWhitelist(input: string): string[] {
 
       StringLiteral({ node }) {
         if (!isVueSFC(id)) return
-        for (const cl of node.value.split(' ')) whitelist.add(cl)
+        for (const cl of node.value.split(' ')) {
+          // always.add(cl)
+          if (cl.startsWith('is-')) optional.add(cl)
+          else always.add(cl)
+        }
       },
+
+      // ObjectExpression(properties) {
+      //   console.log('got object expression,', properties)
+      // },
 
       ExportNamedDeclaration({ node }) {
         if (!node.source) return
@@ -131,9 +141,9 @@ export function getWhitelist(input: string): string[] {
     traverseSource(id, code)
   }
 
-  const wl = [...whitelist]
+  const clean = (list: string[]): string[] =>
     // Delete some garbage
-    .filter(_v => {
+    list.filter(_v => {
       const v = _v.trim()
       const garbage = ['vue', 'slot']
       if (!v) return false
@@ -142,7 +152,8 @@ export function getWhitelist(input: string): string[] {
       if (garbage.includes(v)) return false
       return true
     })
-    .sort()
+      .sort()
 
-  return wl
+
+  return { always: clean([...always]), optional: clean([...optional]) }
 }

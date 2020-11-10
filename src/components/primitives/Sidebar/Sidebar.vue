@@ -99,16 +99,16 @@ export default {
         ref="sidebarContent"
         class="sidebar-content is-width-animated"
         :class="[
-          props.type,
+          type,
           {
             'is-fixed': isFixed,
             'is-static': isStatic,
             'is-absolute': isAbsolute,
-            'is-fullheight': props.fullheight,
-            'is-fullwidth': props.fullwidth,
-            'is-right': props.right,
-            'is-mini': props.reduce,
-            'is-mini-expand': props.expandOnHover,
+            'is-fullheight': fullheight,
+            'is-fullwidth': fullwidth,
+            'is-right': right,
+            'is-mini': reduce,
+            'is-mini-expand': expandOnHover,
             'is-mini-expand-fixed': isMiniExpandFixed,
             'is-mini-mobile': isMiniMobile,
             'is-hidden-mobile': isHiddenMobile,

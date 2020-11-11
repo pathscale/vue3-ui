@@ -20,22 +20,6 @@ export default {
     ariaRole: String,
   },
   setup(props, context) {
-    const anchorClasses = computed(() => {
-      return {
-        'is-disabled': props.disabled,
-        'is-paddingless': props.paddingless,
-        'is-active': isActive.value,
-      }
-    })
-    const itemClasses = computed(() => {
-      return {
-        'dropdown-item': !props.hasLink,
-        'is-disabled': props.disabled,
-        'is-paddingless': props.paddingless,
-        'is-active': isActive.value,
-        'has-link': props.hasLink,
-      }
-    })
     const ariaRoleItem = computed(() => {
       return props.ariaRole === 'menuitem' || props.ariaRole === 'listitem' ? props.ariaRole : null
     })
@@ -61,16 +45,17 @@ export default {
       reportParent(props.value)
     }
 
+    const itemIsBlock = computed(() => !props.hasLink)
+
     return {
-      anchorClasses,
-      itemClasses,
       ariaRoleItem,
       isClickable,
       isActive,
       isFocusable,
       selectItem,
       tabIndex,
-      dropdownLink
+      dropdownLink,
+      itemIsBlock
     }
   },
 }
@@ -81,7 +66,11 @@ export default {
   <a
     v-else-if="dropdownLink"
     class="dropdown-item"
-    :class="anchorClasses"
+    :class="{
+      'is-disabled': disabled,
+      'is-paddingless': paddingless,
+      'is-active': isActive,
+    }"
     @click="selectItem"
     :role="ariaRoleItem"
     :tabindex="tabIndex">
@@ -89,7 +78,13 @@ export default {
   </a>
   <div
     v-else
-    :class="itemClasses"
+    :class="{
+      'dropdown-item': itemIsBlock,
+      'is-disabled': disabled,
+      'is-paddingless': paddingless,
+      'is-active': isActive,
+      'has-link': hasLink,
+    }"
     @click="selectItem"
     :role="ariaRoleItem"
     :tabindex="tabIndex">

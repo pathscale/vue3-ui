@@ -33,20 +33,6 @@ export default {
       isHoverable: props.hoverable,
     })
 
-    const rootClasses = computed(() => {
-      return [
-        props.position,
-        {
-          'is-disabled': props.disabled,
-          'is-hoverable': props.hoverable,
-          'is-inline': props.inline,
-          'is-active': state.isActive || props.inline,
-          'is-mobile-modal': props.mobileModal,
-          'is-expanded': props.expanded,
-        },
-      ]
-    })
-
     const toggle = () => {
       if (props.disabled || props.hoverable) return
       state.isActive = !state.isActive
@@ -67,15 +53,27 @@ export default {
       return (!props.disabled && (state.isActive || props.hoverable)) || props.inline
     })
 
+    const displayActive = computed(() => state.isActive || props.inline)
+
     provide(DropdownSymbol, { selectItem, value: props.value })
 
-    return { state, toggle, rootClasses, selectItem, closeMenu, show }
+    return { state, toggle, selectItem, closeMenu, show, displayActive }
   },
 }
 </script>
 
 <template>
-  <div class="dropdown" :class="rootClasses">
+  <div class="dropdown" :class="[
+    position,
+    {
+      'is-disabled': disabled,
+      'is-hoverable': hoverable,
+      'is-inline': inline,
+      'is-active': displayActive,
+      'is-mobile-modal': mobileModal,
+      'is-expanded': expanded,
+    },
+  ]">
     <div
       role="button"
       ref="trigger"

@@ -17,24 +17,21 @@ export default {
     size: String,
   },
   setup(props) {
-    const rootClasses = computed(() => {
-      return [
-        props.position, {
-          'is-expanded': props.expanded,
-          'is-horizontal': props.horizontal,
-          'is-grouped': props.grouped,
-          'is-grouped-multiline': props.groupMultiline,
-          'has-addons': props.addons
-        }]
-    })
     const hasHorizontalLabel = computed(() => props.horizontal && props.label)
-    return { rootClasses, hasHorizontalLabel }
+    return { hasHorizontalLabel }
   }
 }
 </script>
 
 <template>
-  <div class="field" :class="rootClasses">
+  <div class="field" :class="[
+    position, {
+      'is-expanded': expanded,
+      'is-horizontal': horizontal,
+      'is-grouped': grouped,
+      'is-grouped-multiline': groupMultiline,
+      'has-addons': addons
+    }]">
     <div v-if="hasHorizontalLabel" class="field-label" :class="size">
       <label class="label" :for="labelFor">{{ label }}</label>
     </div>

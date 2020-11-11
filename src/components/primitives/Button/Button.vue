@@ -1,6 +1,5 @@
 <script>
 import { computed } from 'vue'
-// import { useGlobalSettings } from '../../global-settings';
 
 export default {
   name: 'VButton',
@@ -31,10 +30,9 @@ export default {
     light: Boolean
   },
   setup(props, { attrs }) {
-  /*
-  const settings = useGlobalSettings()
-  const computedRounded = computed(() => props.rounded === null && settings ? settings.button.rounded : props.rounded)
-  */
+    // eslint-disable-next-line no-unused-vars -- string disabled must appear somewhere in the script for the analyzer to catch it
+    const _ = 'disabled'
+
     const computedTag = computed(() => attrs.disabled ? 'button' : props.tag)
     const rootClasses = computed(() => {
       return [

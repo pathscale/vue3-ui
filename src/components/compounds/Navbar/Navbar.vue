@@ -1,5 +1,5 @@
 <script>
-import { computed, ref, watchEffect } from 'vue'
+import { ref, watchEffect } from 'vue'
 import NavbarBurger from './NavbarBurger.vue'
 
 export default {
@@ -39,35 +39,29 @@ export default {
       isActive.value = !isActive.value
     }
 
-    const rootClasses = computed(() => {
-      return [
-        props.type,
-        {
-          'is-fixed-top': props.fixedTop,
-          'is-fixed-bottom': props.fixedBottom,
-          'is-spaced': props.spaced,
-          'has-shadow': props.shadow,
-          'is-transparent': props.transparent
-        }
-      ]
-    })
-    const menuClasses = computed(() => {
-      return {
-        'is-active': isActive.value,
-      }
-    })
-    return { rootClasses, isActive, menuClasses, toggleActive }
+    return { isActive, toggleActive }
   }
 }
 </script>
 
 <template>
-  <nav class="navbar" role="navigation" aria-label="main navigation" :class="rootClasses">
+  <nav class="navbar" role="navigation" aria-label="main navigation" :class="[
+    props.type,
+    {
+      'is-fixed-top': fixedTop,
+      'is-fixed-bottom': fixedBottom,
+      'is-spaced': spaced,
+      'has-shadow': shadow,
+      'is-transparent': transparent
+    }
+  ]">
     <div class="navbar-brand">
       <slot name="brand" />
       <navbar-burger v-if="mobileBurger" :is-active="isActive" @click="toggleActive" />
     </div>
-    <div class="navbar-menu" :class="menuClasses">
+    <div class="navbar-menu" :class="{
+      'is-active': isActive,
+    }">
       <div class="navbar-start">
         <slot name="start" />
       </div><div class="navbar-end">

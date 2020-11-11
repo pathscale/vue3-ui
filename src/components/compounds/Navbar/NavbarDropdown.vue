@@ -28,42 +28,22 @@ export default {
       state.newActive = props.active
     })
 
-    function showMenu() {
+    const showMenu = () => {
       state.newActive = true
     }
 
-    function closeMenu() {
+    const closeMenu = () => {
       state.newActive = !props.closeOnClick
       if (props.hoverable && props.closeOnClick) {
         state.isHoverable = false
       }
     }
-    function checkHoverable() {
+
+    const checkHoverable = () => {
       if (props.hoverable) {
         state.isHoverable = true
       }
     }
-
-    const rootClasses = computed(() => {
-      return {
-        'is-hoverable': state.isHoverable,
-        'is-active': state.newActive
-      }
-    })
-
-    const linkClasses = computed(() => {
-      return {
-        'is-arrowless': props.arrowless,
-        'is-active': state.newActive && props.collapsible
-      }
-    })
-
-    const collapsibleClasses = computed(() => {
-      return {
-        'is-right': props.right,
-        'is-boxed': props.boxed,
-      }
-    })
 
     const toggleActive = () => {
       state.newActive = !state.newActive
@@ -72,7 +52,10 @@ export default {
     const show = computed(() => {
       return !props.collapsible || (props.collapsible && state.newActive)
     })
-    return { state, showMenu, closeMenu, checkHoverable, rootClasses, linkClasses, collapsibleClasses, toggleActive, show }
+
+    const isActive = computed(() => state.newActive && props.collapsible)
+
+    return { state, showMenu, closeMenu, checkHoverable, toggleActive, show, isActive }
   }
 }
 </script>
@@ -80,13 +63,19 @@ export default {
 <template>
   <div
     class="navbar-item has-dropdown"
-    :class="rootClasses"
+    :class="{
+      'is-hoverable': state.isHoverable,
+      'is-active': state.newActive
+    }"
     @mouseenter="checkHoverable"
     @focusout="closeMenu"
     tabindex="-1">
     <a
       class="navbar-link"
-      :class="linkClasses"
+      :class="{
+        'is-arrowless': arrowless,
+        'is-active': isActive
+      }"
       role="menuitem"
       aria-haspopup="true"
       href="#"
@@ -99,7 +88,10 @@ export default {
     <div
       v-show="show"
       class="navbar-dropdown"
-      :class="collapsibleClasses">
+      :class="{
+        'is-right': right,
+        'is-boxed': boxed,
+      }">
       <slot />
     </div>
   </div>

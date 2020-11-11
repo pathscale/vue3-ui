@@ -1,19 +1,9 @@
 <script>
-import { computed } from 'vue'
-
 export default {
   name: 'NavbarBurger',
   props: {
     isActive: Boolean
   },
-  setup(props) {
-    const rootClasses = computed(() => {
-      return {
-        'is-active': props.isActive
-      }
-    })
-    return { rootClasses }
-  }
 }
 </script>
 
@@ -21,7 +11,9 @@ export default {
   <a
     role="button"
     class="navbar-burger burger"
-    :class="rootClasses"
+    :class="{
+      'is-active': isActive
+    }"
     aria-label="menu"
     :aria-expanded="isActive">
     <span aria-hidden="true" />

@@ -22,26 +22,8 @@ export default {
     const onBlur = () => { isFocused.value = false }
     const valueLength = computed(() => value.value.length)
     const showCounter = computed(() => props.maxlength && props.hasCounter)
-    const rootClasses = computed(() => {
-      return [
-        props.size,
-        {
-          'is-loading': props.loading
-        }
-      ]
-    })
-    const inputClasses = computed(() => {
-      return [
-        props.size,
-        props.color,
-        {
-          'is-hovered': props.hovered,
-          'is-focused': props.focused,
-        }]
-    })
-
     watchEffect(() => emit('update:modelValue', value.value))
-    return { value, isFocused, onBlur, onFocus, valueLength, rootClasses, inputClasses, showCounter }
+    return { value, isFocused, onBlur, onFocus, valueLength, showCounter }
   },
 }
 </script>
@@ -49,12 +31,18 @@ export default {
 <template>
   <div
     class="control"
-    :class="rootClasses">
+    :class="[ size, { 'is-loading': loading } ]">
     <textarea
       ref="textarea"
       class="textarea"
       v-model="value"
-      :class="inputClasses"
+      :class="[
+        size,
+        color,
+        {
+          'is-hovered': hovered,
+          'is-focused': focused,
+        }]"
       :maxlength="maxlength"
       v-bind="$attrs"
       @blur="onBlur"

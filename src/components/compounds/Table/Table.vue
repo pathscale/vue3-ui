@@ -7,7 +7,7 @@ import VSelect from '../../primitives/Select/Select.vue'
 
 export default {
   name: 'VTable',
-  components: { /* VInput, */ VButton, VCheckbox, VSelect, VTag },
+  components: { VButton, VCheckbox, VSelect, VTag },
   props: {
     data: {
       type: Object,
@@ -91,18 +91,6 @@ export default {
       expandedGroups.value.add(group)
     }
 
-    const rootClasses = computed(() => {
-      return [
-        {
-          'is-bordered': props.isBordered,
-          'is-striped': props.isStriped,
-          'is-narrow': props.isNarrow,
-          'is-hoverable': props.isHoverable,
-          'is-fullwidth': props.isFullwidth,
-        },
-      ]
-    })
-
     const countColumns = computed(() => {
       return data.value.getColumns().length + (props.checkable ? 1 : 0) + (props.expandable ? 1 : 0)
     })
@@ -148,7 +136,6 @@ export default {
       search,
       sortColumn,
       currentPage,
-      rootClasses,
       expandedRows,
       toggleExpanded,
       expandedGroups,
@@ -178,7 +165,15 @@ export default {
         </v-button>
       </slot>
     </div>
-    <table class="table" :class="rootClasses" style="position: relative;">
+    <table class="table" :class="[
+      {
+        'is-bordered': isBordered,
+        'is-striped': isStriped,
+        'is-narrow': isNarrow,
+        'is-hoverable': isHoverable,
+        'is-fullwidth': isFullwidth,
+      },
+    ]" style="position: relative;">
       <thead>
         <tr>
           <td v-if="checkable" />

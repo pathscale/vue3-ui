@@ -1,5 +1,5 @@
 <script>
-import { ref, computed, watchEffect } from 'vue'
+import { ref, watchEffect } from 'vue'
 
 export default {
   name: 'VMenuItem',
@@ -25,27 +25,22 @@ export default {
     watchEffect(() => {
       newActive.value = props.active
     })
+
     watchEffect(() => {
       newExpanded.value = props.expanded
     })
 
-    function onClick() {
+    const onClick = () => {
       // TODO Disable previous active item
       if (props.disabled) return
+
       newExpanded.value = !newExpanded.value
       emit('update:expanded', newActive.value)
-      // newActive.value = true
       emit('update:active', newActive.value )
+      // newActive.value = true
     }
-    const itemClasses = computed(() => {
-      return {
-        'is-flex': props.icon,
-        'is-active': newActive.value,
-        'is-disabled': props.disabled
-      }
-    })
 
-    return { newActive, newExpanded, onClick, content, itemClasses }
+    return { newActive, newExpanded, onClick, content }
   }
 }
 </script>
@@ -55,7 +50,11 @@ export default {
     <component
       :is="tag"
       v-bind="$attrs"
-      :class="itemClasses"
+      :class="{
+        'is-flex': icon,
+        'is-active': newActive,
+        'is-disabled': disabled
+      }"
       @click="onClick($event)">
       <span v-if="icon" class="pr-2">{{ icon }} </span>
       <span v-if="label">

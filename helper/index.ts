@@ -29,7 +29,7 @@ async function main(): Promise<void> {
     },
   })
 
-  const mappings: Record<string, string[]> = {}
+  const mappings: Record<string, { always?: string[], optional?: string[] }> = {}
   const pattern = normalizePath(srcDir, '**', '*.vue')
   const files = ((await fg(pattern)) as string[]).sort()
 
@@ -39,7 +39,7 @@ async function main(): Promise<void> {
     mappings[name] = getWhitelist(file)
   }
 
-  fs.writeFileSync(path.join(__dirname, 'mappings.json'), JSON.stringify(mappings, null, '  '))
+  fs.writeFileSync(path.join(__dirname, 'classes2.json'), JSON.stringify(mappings, null, '  '))
 }
 
 main()

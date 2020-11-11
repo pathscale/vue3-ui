@@ -18,7 +18,6 @@ export default {
   },
   setup(props, { emit }) {
     const content = ref(null)
-
     const tabs = useStore()
     const id = JSON.parse(JSON.stringify(tabs.value.tabs)).length // TODO Figure how get this value properly
     const transitionName = computed(() => {
@@ -33,9 +32,8 @@ export default {
 
     addToStore({ ...props, id })
 
-    const isActiveTab = computed(() => {
-      return tabs.value.activeTab === id
-    })
+    const isActiveTab = computed(() => tabs.value.activeTab === id)
+
     return { tabs, id, transitionName, content, isActiveTab }
   },
 }

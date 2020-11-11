@@ -46,10 +46,12 @@ export default {
       vanimated: props.vanimated
     })
     const tabs = useStore()
-    function setActiveTabID(id) {
+
+    const setActiveTabID = id => {
       tabs.value.activeTab = id
     }
-    function setActiveTab(t) {
+
+    const setActiveTab = t => {
       if (!t.disabled) {
         setActiveTabID(t.id)
       }
@@ -68,42 +70,26 @@ export default {
       emit('change', tabs.value.activeTab)
     })
 
-    const navClasses = computed(() => {
-      return [
-        props.type,
-        props.size,
-        {
-          [props.position]: props.position && !props.vertical,
-          'is-fullwidth': props.expanded,
-          'is-toggle-rounded is-toggle': props.type === 'is-toggle-rounded'
-        }
-      ]
-    })
     const tabClasses = t => {
       return {
         'is-active': tabs.value.activeTab === t.id
       }
     }
-    const labelClasses = t => {
-      return {
-        'is-disabled': t.disabled
-      }
-    }
-    const animatedClasses = computed(() => {
-      return [
-        {
-          'is-height-animated': props.vanimated
-        }
-      ]
-    })
+
+    const isHorizontal = computed(() => props.position && !props.vertical)
+
+    const rounded = computed(() => props.type === 'is-toggle-rounded')
+
+    const isTabActive = t => tabs.value.activeTab === t.id
+
     return {
       contentHeight,
-      navClasses,
       setActiveTab,
       tabs,
       tabClasses,
-      labelClasses,
-      animatedClasses
+      isHorizontal,
+      rounded,
+      isTabActive
     }
   },
 }
@@ -111,20 +97,32 @@ export default {
 
 <template>
   <section>
-    <nav class="tabs" :class="navClasses">
+    <nav class="tabs" :class="[
+      type,
+      size,
+      {
+        [position]: isHorizontal,
+        'is-fullwidth': expanded,
+        'is-toggle-rounded is-toggle': rounded
+      }
+    ]">
       <ul>
         <template v-for="t in tabs.tabs" :key="t">
           <li
-            :class="tabClasses(t)"
+            :class="{
+              'is-active': isTabActive(t)
+            }"
             @click="setActiveTab(t)">
-            <a :class="labelClasses(t)">
+            <a :class="{
+              'is-disabled': t.disabled
+            }">
               {{ t.label }}
             </a>
           </li>
         </template>
       </ul>
     </nav>
-    <div :class="animatedClasses" :style="contentHeight">
+    <div :class="{ 'is-height-animated': vanimated }" :style="contentHeight">
       <slot />
     </div>
   </section>

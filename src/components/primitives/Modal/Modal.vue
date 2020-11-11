@@ -1,5 +1,5 @@
 <script>
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted } from 'vue'
 
 export default {
   name: 'VModal',
@@ -13,26 +13,21 @@ export default {
   emits: ['update:modelValue'],
   setup(props, { emit }) {
     const active = ref(props.modelValue)
+
     onMounted(() => {
       emit('update:modelValue', active)
     })
 
-    const itemClasses = computed(() => {
-      return {
-        'is-active': active.value
-      }
-    })
-
-    function close() {
+    const close = () => {
       emit('update:modelValue', false)
     }
-    return { active, close, itemClasses }
+    return { active, close }
   },
 }
 </script>
 
 <template>
-  <div class="modal" :class="itemClasses">
+  <div class="modal" :class="{ 'is-active': active }">
     <div class="modal-background" @click="close" />
     <template v-if="!card">
       <div class="modal-content">

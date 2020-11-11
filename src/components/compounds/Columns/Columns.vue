@@ -1,6 +1,4 @@
 <script>
-import { computed } from 'vue'
-
 export default {
   name: 'VColumns',
   props: {
@@ -12,27 +10,22 @@ export default {
     hcentered: Boolean,
     vcentered: Boolean,
   },
-  setup(props) {
-    const computedClasses = computed(() => [
-      props.gap,
-      {
-        'is-mobile': props.mobile,
-        'is-desktop': props.desktop,
-        'is-gapless': props.gapless,
-        'is-variable': props.gap,
-        'is-vcentered': props.vcentered,
-        'is-multiline': props.multiline,
-        'is-centered': props.hcentered,
-      }
-    ])
-
-    return { computedClasses }
-  }
 }
 </script>
 
 <template>
-  <div class="columns" :class="computedClasses">
+  <div class="columns" :class="[
+    props.gap,
+    {
+      'is-mobile': props.mobile,
+      'is-desktop': props.desktop,
+      'is-gapless': props.gapless,
+      'is-variable': props.gap,
+      'is-vcentered': props.vcentered,
+      'is-multiline': props.multiline,
+      'is-centered': props.hcentered,
+    }
+  ]">
     <slot />
   </div>
 </template>

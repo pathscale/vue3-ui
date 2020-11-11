@@ -1,6 +1,6 @@
 <script>
 /* eslint no-shadow: ["error", { "allow": ["focus"] }] -- prevent warning  'focus' is already declared in the upper scope */
-import { ref, watchEffect, computed } from 'vue'
+import { ref, watchEffect } from 'vue'
 import CheckRadioMixin from '../../../mixins/CheckRadio.js'
 
 export default {
@@ -22,27 +22,21 @@ export default {
     // references
     const label = ref(null)
     const input = ref(null)
+
     // state
     const value = ref(props.modelValue)
+
     // MacOS FireFox and Safari do not focus when clicked
     const focus = () => {
       input.value.focus()
     }
+
     // watch for changes in value
     watchEffect(() => {
       emit('update:modelValue', value.value)
     })
 
-    const rootClasses = computed(() => {
-      return [
-        props.size,
-        {
-          'is-disabled': props.disabled
-        }
-      ]
-    })
-
-    return { label, input, value, focus, rootClasses }
+    return { label, input, value, focus }
   }
 }
 </script>
@@ -50,7 +44,7 @@ export default {
 <template>
   <label
     class="v-checkbox checkbox"
-    :class="rootClasses"
+    :class="[ size, { 'is-disabled': disabled }]"
     ref="label"
     :disabled="disabled"
     @click="focus"

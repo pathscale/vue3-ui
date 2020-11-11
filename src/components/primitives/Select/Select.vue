@@ -25,19 +25,11 @@ export default {
   setup(props, { emit }) {
     const value = ref(props.modelValue)
     const valueIsNullish = computed(() => value.value === null)
-    const spanClasses = computed(() => {
-      return [props.size, props.color, {
-        'is-fullwidth': props.expanded,
-        'is-loading': props.loading,
-        'is-multiple': props.multiple,
-        'is-rounded': props.rounded,
-        'is-empty': props.selected === null
-      }]
-    })
+    const empty = computed(() => props.selected === null)
     watchEffect(() => {
       emit('update:modelValue', value.value)
     })
-    return { value, valueIsNullish, spanClasses }
+    return { value, valueIsNullish, empty }
   },
 }
 </script>
@@ -46,7 +38,13 @@ export default {
   <div
     class="control"
     :class="{ 'is-expanded': expanded }">
-    <span class="select" :class="spanClasses">
+    <span class="select" :class="[size, color, {
+      'is-fullwidth': expanded,
+      'is-loading': loading,
+      'is-multiple': multiple,
+      'is-rounded': rounded,
+      'is-empty': empty
+    }]">
       <select
         v-model="value"
         ref="select"

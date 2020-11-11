@@ -1,6 +1,6 @@
 <script>
 /* eslint-disable no-undef -- Access to Benchie variable/function */
-import { computed, onBeforeMount, ref } from 'vue'
+import { onBeforeMount, ref } from 'vue'
 
 export default {
   name: 'VImage',
@@ -24,27 +24,21 @@ export default {
       }
     })
 
-    const figureClasses = computed(() => {
-      return [
-        props.size,
-        props.radio,
-        {
-          'container': props.centered
-        }
-      ]
-    })
-    const imgClasses = computed(() => {
-      return {
-        'is-rounded': props.rounded
-      }
-    })
     return { figureClasses, imgClasses, source }
   }
 }
 </script>
 
 <template>
-  <figure class="image" :class="figureClasses">
-    <img v-bind="$attrs" :src="source" :class="imgClasses" />
+  <figure class="image" :class="[
+    size,
+    radio,
+    {
+      'container': centered
+    }
+  ]">
+    <img v-bind="$attrs" :src="source" :class="{
+      'is-rounded': rounded
+    }" />
   </figure>
 </template>

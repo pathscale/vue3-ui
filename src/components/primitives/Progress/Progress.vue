@@ -28,7 +28,7 @@ export default {
   setup(props, { slot }) {
     const progress = ref(null)
 
-    function toFixed(num) {
+    const toFixed = num => {
       let fixed = (Number(`${Math.round(Number(`${num}e${props.precision}`))}e${-props.precision}`)).toFixed(props.precision)
       if (!props.keepTrailingZeroes) {
         fixed = fixed.replace(/\.?0+$/, '')
@@ -50,16 +50,7 @@ export default {
       return props.value === undefined || props.value === null
     })
 
-    const rootClasses = computed(() => {
-      return [
-        props.size,
-        props.type
-      ]
-    })
-
-    const valueClasses = computed(() => ({
-      'more-than-half': props.value >= 50
-    }))
+    const beyondHalf = computed(() => props.value >= 50 )
 
     const newValue = computed(() => {
       if (props.value === undefined || props.value === null || Number.isNaN(props.value)) {
@@ -74,7 +65,7 @@ export default {
       return val
     })
 
-    return { isIndeterminate, rootClasses, valueClasses, newValue, progress }
+    return { isIndeterminate, beyondHalf, newValue, progress }
   }
 }
 </script>
@@ -84,7 +75,7 @@ export default {
     <progress
       ref="progress"
       class="progress"
-      :class="rootClasses"
+      :class="[size, type]"
       :max="max"
       :value="value">
       {{ newValue }}
@@ -92,7 +83,7 @@ export default {
     <p
       v-if="showValue"
       class="progress-value"
-      :class="valueClasses">
+      :class="{ 'more-than-half': beyondHalf }">
       <slot>{{ newValue }}</slot>
     </p>
   </div>

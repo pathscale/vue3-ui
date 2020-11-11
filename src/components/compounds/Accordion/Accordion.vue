@@ -27,53 +27,42 @@ export default {
       isLink: props.isLink,
       headerIsTrigger: props.headerIsTrigger
     })
-    const rootClasses = computed(() => {
-      return [{
-        'is-horizontal': props.isHorizontal,
-        'is-vertical': !props.isHorizontal,
-        'accordion-active': props.isActive && props.hover,
-        'accordion-default': !props.isActive && props.hover,
-        'accordion-type-hover': props.hover,
-        'accordion-type-click': !props.hover
-      }]
-    })
-    const headerClasses = computed(() => {
-      return [{
-        'header-is-trigger': props.headerIsTrigger
-      }]
-    })
-    const triggerClasses = computed(() => {
-      return [{
-        'trigger-right': props.triggerRight,
-        'trigger-left': props.triggerLeft
-      }]
-    })
 
-    function toggle(isHeaderTrigger) {
+    const toggle = isHeaderTrigger => {
       if (props.disabled) return
-      if (isHeaderTrigger && props.headerIsTrigger) {
-        state.isExpanded = !state.isExpanded
-        return
-      }
-      if (!props.headerIsTrigger) {
+
+      if ((isHeaderTrigger && props.headerIsTrigger) || !props.headerIsTrigger) {
         state.isExpanded = !state.isExpanded
       }
     }
-    function open() {
-      // separate function because of buggy css hover
+
+    // separate function because of buggy css hover
+    const open = () => {
       state.isExpanded = true
     }
-    function close() {
+
+    const close = () => {
       state.isExpanded = false
     }
 
-    return { state, toggle, open, close, rootClasses, headerClasses, triggerClasses }
+    const displayActive = computed(() => props.isActive && props.hover)
+
+    const displayDefault = computed(() => !props.isActive && props.hover)
+
+    return { state, toggle, open, close, displayActive, displayDefault }
   }
 }
 </script>
 
 <template>
-  <div :class="rootClasses" :style="state.style">
+  <div :class="[{
+    'is-horizontal': isHorizontal,
+    'is-vertical': !isHorizontal,
+    'accordion-active': displayActive,
+    'accordion-default': displayDefault,
+    'accordion-type-hover': hover,
+    'accordion-type-click': !hover
+  }]" :style="state.style">
     <div
       role="button"
       ref="trigger"
@@ -89,7 +78,9 @@ export default {
     </div>
     <div v-else>
       <div
-        :class="headerClasses"
+        :class="{
+          'header-is-trigger': headerIsTrigger
+        }"
         class="accordion-header"
         @click="toggle(state.headerIsTrigger)">
         <slot name="header" />
@@ -97,7 +88,10 @@ export default {
           role="button"
           ref="trigger"
           class="accordion-trigger-click"
-          :class="triggerClasses"
+          :class="{
+            'trigger-right': triggerRight,
+            'trigger-left': triggerLeft
+          }"
           @click="toggle(!state.headerIsTrigger)">
           <slot name="trigger" />
         </div>

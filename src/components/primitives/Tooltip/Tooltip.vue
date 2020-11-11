@@ -35,28 +35,12 @@ export default {
     }
   },
   setup(props) {
-    const rootClasses = computed(() => {
-      return [
-        props.type,
-        props.position,
-        props.size,
-        {
-          'v-tooltip': props.active,
-          'is-square': props.square,
-          'is-animated': props.animated,
-          'is-always': props.always,
-          'is-multiline': props.multilined,
-          'is-dashed': props.dashed
-        }
-      ]
-    })
-
     const transition = computed(() => {
       return {
         'transition-delay': `${props.delay}ms`
       }
     })
-    return { rootClasses, transition }
+    return { transition }
   }
 }
 </script>
@@ -64,7 +48,19 @@ export default {
 <template>
   <span
     :data-label="label"
-    :class="rootClasses"
+    :class="[
+      type,
+      position,
+      size,
+      {
+        'v-tooltip': active,
+        'is-square': square,
+        'is-animated': animated,
+        'is-always': always,
+        'is-multiline': multilined,
+        'is-dashed': dashed
+      }
+    ]"
     :style="transition">
     <slot />
   </span>

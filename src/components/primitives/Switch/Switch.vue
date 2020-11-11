@@ -37,23 +37,13 @@ export default {
   setup(props, { emit }) {
     const value = ref(props.modelValue)
     const passiveClass = computed(() => props.passiveType && `${props.passiveType}-passive`)
-    const rootClasses = computed(() => {
-      return [
-        props.size,
-        {
-          'is-disabled': props.disabled,
-          'is-rounded': props.rounded,
-          'is-outlined': props.outlined,
-        }
-      ]
-    })
     watchEffect(() => {
       value.value = props.modelValue
     })
     watchEffect(() => {
       emit('update:modelValue', value.value)
     })
-    return { value, passiveClass, rootClasses }
+    return { value, passiveClass }
   }
 }
 </script>
@@ -61,7 +51,14 @@ export default {
 <template>
   <label
     class="switch"
-    :class="rootClasses"
+    :class="[
+      size,
+      {
+        'is-disabled': disabled,
+        'is-rounded': rounded,
+        'is-outlined': outlined,
+      }
+    ]"
     :disabled="disabled">
     <input
       v-model="value"
@@ -75,7 +72,7 @@ export default {
       :false-value="falseValue" />
     <span
       class="check"
-      :class="[passiveClass,type]" />
+      :class="[passiveClass, type]" />
     <span class="control-label"><slot /></span>
   </label>
 </template>

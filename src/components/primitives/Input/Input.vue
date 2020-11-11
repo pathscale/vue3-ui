@@ -1,5 +1,5 @@
 <script>
-import { ref, watchEffect, computed } from 'vue'
+import { ref, watchEffect } from 'vue'
 
 export default {
   name: 'VInput',
@@ -17,31 +17,7 @@ export default {
   setup(props, { emit, attrs }) {
     const value = ref(attrs.modelValue)
     watchEffect(() => emit('update:modelValue', value.value))
-
-    const rootClasses = computed(() => {
-      return [
-        props.size,
-        {
-          'is-loading': props.loading,
-          'has-icons-left': props.leftIcon,
-          'has-icons-right': props.rightIcon
-        }
-      ]
-    })
-
-    const inputClasses = computed(() => {
-      return [
-        props.color,
-        props.statusType,
-        props.size,
-        {
-          'is-rounded': props.rounded,
-          'is-expanded': props.expanded
-        }
-      ]
-    })
-
-    return { value, rootClasses, inputClasses, props }
+    return { value, props }
   },
 }
 </script>
@@ -49,11 +25,26 @@ export default {
 <template>
   <div
     class="control"
-    :class="rootClasses">
+    :class="[
+      size,
+      {
+        'is-loading': loading,
+        'has-icons-left': leftIcon,
+        'has-icons-right': rightIcon
+      }
+    ]">
     <p v-if="errorMsg" class="error">
-      {{ props.errorMsg }}
+      {{ errorMsg }}
     </p>
-    <input class="input" v-bind="$attrs" v-model="value" :class="inputClasses" />
+    <input class="input" v-bind="$attrs" v-model="value" :class="[
+      color,
+      statusType,
+      size,
+      {
+        'is-rounded': rounded,
+        'is-expanded': expanded
+      }
+    ]" />
     <span v-if="leftIcon" class="icon is-left">
       <i>{{ leftIcon }}</i>
     </span>

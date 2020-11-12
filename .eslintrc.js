@@ -67,7 +67,13 @@ const vueRules = {
   'vue/no-reserved-component-names': ['error'],
   'vue/no-restricted-component-options': ['error', 'data', 'computed', 'methods', 'watch'],
   'vue/no-template-target-blank': ['error', { allowReferrer: true }],
-  'vue/no-unregistered-components': ['error'],
+  'vue/no-unregistered-components': [
+    'error',
+    {
+      // Component used in main.ts
+      ignorePatterns: ['router-view'],
+    },
+  ],
   'vue/no-unsupported-features': ['error', { version: '^3.0.0' }],
   'vue/no-useless-mustaches': ['error'],
   'vue/no-useless-v-bind': ['error'],

@@ -17,6 +17,7 @@ async function main(): Promise<void> {
 
   const ast = jsparserParse(inputCode, parserOpts)
   traverse(ast, {
+    // eslint-disable-next-line @typescript-eslint/naming-convention -- AST
     ExportNamedDeclaration({ node }) {
       if (!node.source) return
       const { value } = node.source

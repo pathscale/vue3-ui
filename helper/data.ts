@@ -36,11 +36,11 @@ export const textual = {
   figureClasses: undefined,
   imgClasses: undefined,
   // Functions
-  columnClasses: () => undefined,
-  selectedClasses: () => undefined,
-  cellClasses: () => undefined,
-  tabClasses: () => undefined,
-  labelClasses: () => undefined,
+  columnClasses: () : void => undefined,
+  selectedClasses: () : void => undefined,
+  cellClasses: () : void => undefined,
+  tabClasses: () : void => undefined,
+  labelClasses: () : void => undefined,
 }
 
 export const truthy = {

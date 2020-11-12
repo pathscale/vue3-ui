@@ -67,7 +67,7 @@ class DataGrid {
     this.originalRows.splice(index, 1)
   }
 
-  // eslint-disable-next-line class-methods-use-this
+  // eslint-disable-next-line class-methods-use-this -- Convenient on instance
   editCell(row: Row, column: Column, newValue: string | number): void {
     row[column.name] = newValue
   }

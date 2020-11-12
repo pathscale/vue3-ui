@@ -108,6 +108,7 @@ export function getWhitelist(input: string): { always?: string[], optional?: str
       //   parent
       // },
 
+      /* eslint-disable @typescript-eslint/naming-convention -- AST */
       StringLiteral({ node }) {
         if (!isVueSFC(id)) return
         for (const cl of node.value.split(' ')) {
@@ -131,6 +132,8 @@ export function getWhitelist(input: string): { always?: string[], optional?: str
         const depId = resolveSource(id, node.source.value)
         if (depId) idList.push(depId)
       },
+
+      /* eslint-enable @typescript-eslint/naming-convention -- AST */
     })
   }
 

@@ -134,7 +134,6 @@ module.exports = {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
   },
-  plugins: ['vue'],
   parserOptions: {
     ecmaVersion: 2020,
   },

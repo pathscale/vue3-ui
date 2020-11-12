@@ -46,7 +46,7 @@ export default {
     <span
       class="tag"
       :class="[type, size, { 'is-rounded': rounded }]">
-      <span :class="{'has-ellipsis': props.ellipsis}">
+      <span :class="{'has-ellipsis': ellipsis}">
         <slot />
       </span>
       <a

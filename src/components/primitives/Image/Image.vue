@@ -24,7 +24,7 @@ export default {
       }
     })
 
-    return { figureClasses, imgClasses, source }
+    return { source }
   }
 }
 </script>

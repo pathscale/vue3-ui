@@ -19,6 +19,7 @@ const baseTSConfigs = [
 // Todo: Remove this in favor of `baseTSConfigs` when TS working in Vue files
 const baseConfigsNoTS = baseTSConfigs.filter(c => !c.includes('@typescript-eslint'))
 
+// Node-specific base configs
 const baseNodeConfigs = [
   'ash-nazg/sauron-node',
   'plugin:import/errors',

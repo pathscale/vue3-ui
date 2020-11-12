@@ -46,7 +46,7 @@ export default {
 
 <template>
   <nav class="navbar" role="navigation" aria-label="main navigation" :class="[
-    props.type,
+    type,
     {
       'is-fixed-top': fixedTop,
       'is-fixed-bottom': fixedBottom,

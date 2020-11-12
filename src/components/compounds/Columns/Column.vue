@@ -12,11 +12,11 @@ export default {
 
 <template>
   <div class="column" :class="[
-    props.size,
-    props.offset,
-    props.narrowBreakpoint,
+    size,
+    offset,
+    narrowBreakpoint,
     {
-      'is-narrow': props.narrow
+      'is-narrow': narrow
     }
   ]">
     <slot />

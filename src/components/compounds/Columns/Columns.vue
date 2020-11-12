@@ -15,15 +15,15 @@ export default {
 
 <template>
   <div class="columns" :class="[
-    props.gap,
+    gap,
     {
-      'is-mobile': props.mobile,
-      'is-desktop': props.desktop,
-      'is-gapless': props.gapless,
-      'is-variable': props.gap,
-      'is-vcentered': props.vcentered,
-      'is-multiline': props.multiline,
-      'is-centered': props.hcentered,
+      'is-mobile': mobile,
+      'is-desktop': desktop,
+      'is-gapless': gapless,
+      'is-variable': gap,
+      'is-vcentered': vcentered,
+      'is-multiline': multiline,
+      'is-centered': hcentered,
     }
   ]">
     <slot />

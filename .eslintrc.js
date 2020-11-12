@@ -169,6 +169,9 @@ module.exports = {
       env: {
         node: true,
       },
+      globals: {
+        __dirname: true, // Switch to `import.meta.url` when using bona fide ESM
+      },
       extends: baseNodeConfigs,
       rules: {
         ...baseRules,

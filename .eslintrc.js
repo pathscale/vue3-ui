@@ -39,6 +39,7 @@ const vueRules = {
     },
   ],
   */
+
   // 'vue/no-bare-strings-in-template': ['error'], // Use later if i18nizing
   // 'vue/html-comment-indent': ['error'], // Possibly too oppressive
 
@@ -180,8 +181,9 @@ module.exports = {
         '@typescript-eslint/naming-convention': ['error'],
       },
     },
+    // TS declaration files
     {
-      files: 'src/shims-vue.d.ts',
+      files: '**/*.d.ts',
       extends: baseTSConfigs,
       rules: {
         ...baseRules,

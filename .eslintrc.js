@@ -39,7 +39,7 @@ const vueRules = {
     },
   ],
   */
-  // 'vue/no-bare-strings-in-template': ['error'], // Use later i18nizing
+  // 'vue/no-bare-strings-in-template': ['error'], // Use later if i18nizing
   // 'vue/html-comment-indent': ['error'], // Possibly too oppressive
 
   // Disable

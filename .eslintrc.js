@@ -162,6 +162,7 @@ module.exports = {
         'import/no-commonjs': 'off',
       },
     },
+    // Rollup (ESM)
     {
       files: 'rollup.config.js',
       env: {

@@ -29,82 +29,46 @@ export default {
       if (props.disabled) return
       emit('close', event)
     }
-    const addonClasses = computed(() => {
-      return [
-        props.type,
-        props.size,
-        {
-          'is-rounded': props.rounded
-        }
-      ]
-    })
 
-    const ellipsisClasses = computed(() => {
-      return {
-        'has-ellipsis': props.ellipsis
-      }
-    })
+    const tabIndex = computed(() => props.tabstop ? 0 : false )
 
-    const buttonClasses = computed(() => {
-      return [
-        props.size,
-        props.closeType,
-        {
-          'is-rounded': props.rounded
-        },
-        props.closeIcon ? 'has-delete-icon' : 'is-delete'
-      ]
-    })
+    const isClosable = computed(() => props.attached && props.closable )
 
-    const tabIndex = computed(() => {
-      return props.tabstop ? 0 : false
-    })
+    const closeButtonInside = computed(() => props.closable && !(props.attached && props.closable))
 
-    const isClosable = computed(() => {
-      return props.attached && props.closable
-    })
-
-    return { close, addonClasses, ellipsisClasses, buttonClasses, tabIndex, isClosable }
+    return { close, tabIndex, isClosable, closeButtonInside }
   }
 }
 </script>
 
 <template>
-  <div v-if="isClosable" class="tags has-addons">
+  <div :class="{'tags has-addons': isClosable}">
     <span
       class="tag"
-      :class="addonClasses">
-      <span :class="ellipsisClasses">
+      :class="[type, size, { 'is-rounded': rounded }]">
+      <span :class="{'has-ellipsis': props.ellipsis}">
         <slot />
       </span>
+      <a
+        v-if="closeButtonInside"
+        role="button"
+        :aria-label="ariaCloseLabel"
+        class="delete is-small"
+        :class="closeType"
+        :disabled="disabled"
+        :tabindex="tabIndex"
+        @click="close"
+        @keyup.delete.prevent="close" />
     </span>
     <a
+      v-if="isClosable"
       class="tag"
       role="button"
       :aria-label="ariaCloseLabel"
       :tabindex="tabIndex"
       :disabled="disabled"
-      :class="buttonClasses"
+      :class="[size, closeType, {'is-rounded': rounded, 'has-delete-icon': closeIcon, 'is-delete': !closeIcon}]"
       @click="close"
       @keyup.delete.prevent="close" />
   </div>
-  <span
-    v-else
-    class="tag"
-    :class="addonClasses">
-    <span :class="ellipsisClasses">
-      <slot />
-    </span>
-
-    <a
-      v-if="closable"
-      role="button"
-      :aria-label="ariaCloseLabel"
-      class="delete is-small"
-      :class="closeType"
-      :disabled="disabled"
-      :tabindex="tabIndex"
-      @click="close"
-      @keyup.delete.prevent="close" />
-  </span>
 </template>

@@ -31,6 +31,7 @@ export default [
       // Vue plugin won't handle CSS currently
       styles(),
       // Not defined in browser
+      // eslint-disable-next-line node/no-process-env -- Used for build
       replace({ 'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV) }),
     ],
   },

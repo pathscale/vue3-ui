@@ -19,6 +19,13 @@ const baseTSConfigs = [
 // Todo: Remove this in favor of `baseTSConfigs` when TS working in Vue files
 const baseConfigsNoTS = baseTSConfigs.filter(c => !c.includes('@typescript-eslint'))
 
+const baseNodeConfigs = [
+  'ash-nazg/sauron-node',
+  'plugin:import/errors',
+  'plugin:import/warnings',
+  'plugin:prettier/recommended',
+]
+
 // `eslint-plugin-vue` rules
 const vueRules = {
   // Disabling as Vue linter won't catch (and we are requiring `name` anyways)
@@ -132,20 +139,8 @@ module.exports = {
   overrides: [
     // Node.js config files (non-Vue, non-TS)
     {
-      files: [
-        '.eslintrc.js',
-        '.stylelintrc.js',
-        '.ncurc.js',
-        'postcss.config.js',
-        '.3rdparty-eslintrc.js',
-        '.np-config.js',
-      ],
-      extends: [
-        'ash-nazg/sauron-node',
-        'plugin:import/errors',
-        'plugin:import/warnings',
-        'plugin:prettier/recommended',
-      ],
+      files: ['.*.js', '*.config.js'],
+      extends: baseNodeConfigs,
       env: {
         node: true,
       },
@@ -165,6 +160,16 @@ module.exports = {
         // CommonJS:
         strict: ['error', 'global'],
         'import/no-commonjs': 'off',
+      },
+    },
+    {
+      files: 'rollup.config.js',
+      env: {
+        node: true,
+      },
+      extends: baseNodeConfigs,
+      rules: {
+        ...baseRules,
       },
     },
     // TS files

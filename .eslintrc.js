@@ -183,10 +183,12 @@ module.exports = {
     },
     // TS declaration files
     {
-      files: '**/*.d.ts',
+      files: '*.d.ts',
       extends: baseTSConfigs,
       rules: {
         ...baseRules,
+        // Let API be as needed
+        '@typescript-eslint/naming-convention': 'off',
         // No imports/exports in plain declaration file
         'import/unambiguous': 'off',
       },

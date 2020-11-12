@@ -18,10 +18,8 @@ export default {
     reduce: Boolean,
     expandOnHover: Boolean,
     expandOnHoverFixed: Boolean, // TODO
-    canCancel: Boolean, // TODO
-    onCancel: {
-      type: Function, // TODO
-    },
+    // canCancel: Boolean, // TODO
+    // onCancel: { type: Function }, 
     width: {
       type: [Number, String],
       default: 260,
@@ -47,6 +45,7 @@ export default {
       return `width: ${props.reduce ? props.miniWidth : props.width}px`
     })
 
+    /* TODO 
     const cancelOptions = computed(() => {
       return typeof props.canCancel === 'boolean'
         ? props.canCancel
@@ -54,6 +53,7 @@ export default {
           : []
         : props.canCancel
     })
+    */
     const isStatic = computed(() => {
       return props.position === 'static'
     })
@@ -75,7 +75,6 @@ export default {
     return {
       state,
       rootStyles,
-      cancelOptions,
       emit,
       overlayAndOpen,
       isMiniExpandFixed,

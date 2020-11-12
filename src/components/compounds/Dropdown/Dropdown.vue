@@ -57,7 +57,7 @@ export default {
 
     provide(DropdownSymbol, { selectItem, value: props.value })
 
-    return { state, toggle, selectItem, closeMenu, show, displayActive }
+    return { state, toggle, show, displayActive }
   },
 }
 </script>

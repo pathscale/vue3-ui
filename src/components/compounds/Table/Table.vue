@@ -34,6 +34,7 @@ export default {
     expandable: Boolean,
     draggableRows: Boolean,
     draggableColumns: Boolean,
+    // eslint-disable-next-line vue/no-unused-properties -- editable prop being used in template
     editable: Boolean,
     groupBy: String,
     sticky: Boolean,
@@ -134,8 +135,6 @@ export default {
     return {
       props,
       search,
-      sortColumn,
-      currentPage,
       expandedRows,
       toggleExpanded,
       expandedGroups,

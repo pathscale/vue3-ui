@@ -5,12 +5,15 @@ import { addToStore, useStore } from './Tabs.vue'
 export default {
   name: 'VTab',
   props: {
+    // eslint-disable-next-line vue/no-unused-properties -- used
     label: {
       type: String,
       default: '',
       required: true,
     },
+    // eslint-disable-next-line vue/no-unused-properties -- used
     disabled: Boolean,
+    // eslint-disable-next-line vue/no-unused-properties -- used
     visible: {
       type: Boolean,
       default: true
@@ -34,7 +37,7 @@ export default {
 
     const isActiveTab = computed(() => tabs.value.activeTab === id)
 
-    return { tabs, id, transitionName, content, isActiveTab }
+    return { tabs, transitionName, content, isActiveTab }
   },
 }
 </script>

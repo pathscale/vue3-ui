@@ -276,7 +276,6 @@
       "tabs"
     ],
     "optional": [
-      "is-active",
       "is-toggle-rounded"
     ]
   },
@@ -286,7 +285,6 @@
       "tabs"
     ],
     "optional": [
-      "is-active",
       "is-toggle-rounded"
     ]
   },
@@ -413,9 +411,7 @@
   "VSidebar": {
     "always": [
       "absolute",
-      "boolean",
       "close",
-      "escape",
       "fade-enter",
       "fade-enter-active",
       "fade-enter-to",
@@ -426,7 +422,6 @@
       "fullwidth",
       "hide",
       "is-width-animated",
-      "outside",
       "reduce",
       "sidebar-background",
       "sidebar-content",

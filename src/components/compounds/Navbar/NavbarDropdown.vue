@@ -28,10 +28,6 @@ export default {
       state.newActive = props.active
     })
 
-    const showMenu = () => {
-      state.newActive = true
-    }
-
     const closeMenu = () => {
       state.newActive = !props.closeOnClick
       if (props.hoverable && props.closeOnClick) {
@@ -55,7 +51,7 @@ export default {
 
     const isActive = computed(() => state.newActive && props.collapsible)
 
-    return { state, showMenu, closeMenu, checkHoverable, toggleActive, show, isActive }
+    return { state, closeMenu, checkHoverable, toggleActive, show, isActive }
   }
 }
 </script>

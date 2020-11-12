@@ -17,7 +17,7 @@ export default {
   setup(props, { emit, attrs }) {
     const value = ref(attrs.modelValue)
     watchEffect(() => emit('update:modelValue', value.value))
-    return { value, props }
+    return { value }
   },
 }
 </script>

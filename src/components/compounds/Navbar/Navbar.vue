@@ -11,10 +11,7 @@ export default {
     fixedTop: Boolean,
     fixedBottom: Boolean,
     wrapperClass: String,
-    closeOnClick: { // TODO
-      type: Boolean,
-      default: true
-    },
+    // closeOnClick: { type: Boolean, default: true }, // TODO
     mobileBurger: {
       type: Boolean,
       default: true
@@ -53,7 +50,8 @@ export default {
       'is-spaced': spaced,
       'has-shadow': shadow,
       'is-transparent': transparent
-    }
+    },
+    wrapperClass
   ]">
     <div class="navbar-brand">
       <slot name="brand" />

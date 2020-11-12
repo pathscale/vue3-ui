@@ -65,7 +65,7 @@ export default {
       return val
     })
 
-    return { isIndeterminate, beyondHalf, newValue, progress }
+    return { beyondHalf, newValue, progress }
   }
 }
 </script>

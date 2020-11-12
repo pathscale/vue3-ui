@@ -2,8 +2,8 @@
 export default {
   name: 'VMenu',
   props: {
-    accordion: Boolean, // TODO
-    activable: Boolean // TODO
+    // accordion: Boolean, // TODO
+    // activable: Boolean // TODO
   },
 }
 </script>

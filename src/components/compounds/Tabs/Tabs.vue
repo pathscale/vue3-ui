@@ -70,12 +70,6 @@ export default {
       emit('change', tabs.value.activeTab)
     })
 
-    const tabClasses = t => {
-      return {
-        'is-active': tabs.value.activeTab === t.id
-      }
-    }
-
     const isHorizontal = computed(() => props.position && !props.vertical)
 
     const rounded = computed(() => props.type === 'is-toggle-rounded')
@@ -86,7 +80,6 @@ export default {
       contentHeight,
       setActiveTab,
       tabs,
-      tabClasses,
       isHorizontal,
       rounded,
       isTabActive

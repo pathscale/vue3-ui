@@ -49,9 +49,7 @@ export default {
 
     return {
       ariaRoleItem,
-      isClickable,
       isActive,
-      isFocusable,
       selectItem,
       tabIndex,
       dropdownLink,

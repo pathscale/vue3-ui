@@ -5,12 +5,13 @@ export default {
   props: {
     bundle: String,
     name: String,
+    customClass: String
   },
 }
 </script>
 
 <template>
-  <svg :class="`svg-${name}`">
+  <svg :class="[customClass, `svg-${name}`]">
     <use :href="`/${bundle}.svg#${name}`" />
   </svg>
 </template>

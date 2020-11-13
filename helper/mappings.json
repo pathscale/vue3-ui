@@ -505,6 +505,7 @@
     "always": [
       "function",
       "image",
+      "production",
       "string"
     ],
     "optional": [

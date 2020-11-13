@@ -1,5 +1,5 @@
 <script>
-import { ref, watchEffect } from 'vue'
+import { ref, watchEffect, computed } from 'vue'
 
 export default {
   name: 'VInput',
@@ -9,15 +9,15 @@ export default {
     size: String,
     rounded: Boolean,
     loading: Boolean,
-    leftIcon: String,
-    rightIcon: String,
-    errorMsg: String
+    expanded: Boolean
   },
   emits: ['update:modelValue'],
-  setup(props, { emit, attrs }) {
+  setup(props, { emit, attrs, slots }) {
+    const hasLeftIcon = computed(() => Boolean(slots.leftIcon));
+    const hasRightIcon = computed(() => Boolean(slots.rightIcon));
     const value = ref(attrs.modelValue)
     watchEffect(() => emit('update:modelValue', value.value))
-    return { value }
+    return { value, hasLeftIcon, hasRightIcon }
   },
 }
 </script>
@@ -29,27 +29,23 @@ export default {
       size,
       {
         'is-loading': loading,
-        'has-icons-left': leftIcon,
-        'has-icons-right': rightIcon
+        'has-icons-left': hasLeftIcon,
+        'has-icons-right': hasRightIcon
       }
     ]">
-    <p v-if="errorMsg" class="error">
-      {{ errorMsg }}
-    </p>
     <input class="input" v-bind="$attrs" v-model="value" :class="[
       color,
-      statusType,
       size,
       {
         'is-rounded': rounded,
         'is-expanded': expanded
       }
     ]" />
-    <span v-if="leftIcon" class="icon is-left">
-      <i>{{ leftIcon }}</i>
+    <span class="icon is-left" v-if="hasLeftIcon">
+      <slot name="leftIcon" />
     </span>
-    <span v-if="rightIcon" class="icon is-right">
-      <i>{{ rightIcon }}</i>
+    <span class="icon is-right" v-if="hasRightIcon">
+      <slot name="rightIcon" />
     </span>
   </div>
 </template>

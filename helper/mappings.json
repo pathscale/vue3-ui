@@ -518,7 +518,6 @@
   "VInput": {
     "always": [
       "control",
-      "error",
       "icon",
       "input",
       "is-left",

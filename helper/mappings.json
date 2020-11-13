@@ -34,7 +34,9 @@
     "unstable": []
   },
   "VBreadcrumbItem": {
-    "always": [],
+    "always": [
+      "a"
+    ],
     "optional": [
       "is-active"
     ],
@@ -42,7 +44,8 @@
   },
   "VCard": {
     "always": [
-      "card"
+      "card",
+      "div"
     ],
     "optional": [],
     "unstable": []
@@ -56,7 +59,8 @@
   },
   "VCardFooter": {
     "always": [
-      "card-footer"
+      "card-footer",
+      "footer"
     ],
     "optional": [],
     "unstable": []
@@ -71,7 +75,8 @@
   "VCardHeader": {
     "always": [
       "card-header",
-      "card-header-title"
+      "card-header-title",
+      "header"
     ],
     "optional": [],
     "unstable": []
@@ -164,6 +169,8 @@
       "fade-leave",
       "fade-leave-active",
       "fade-leave-to",
+      "listitem",
+      "menuitem",
       "slide-enter",
       "slide-enter-active",
       "slide-enter-to",
@@ -206,6 +213,7 @@
   },
   "VMenuItem": {
     "always": [
+      "a",
       "pr-2"
     ],
     "optional": [
@@ -274,6 +282,7 @@
   },
   "VNavbarItem": {
     "always": [
+      "a",
       "navbar-item"
     ],
     "optional": [
@@ -283,18 +292,25 @@
   },
   "VTable": {
     "always": [
+      "blur",
       "button",
       "check",
       "checkbox",
+      "close",
       "control",
       "control-label",
       "data-grid",
       "delete",
+      "disabled",
       "expansion",
+      "focus",
       "has-background-dark",
+      "has-background-primary",
       "has-text-black",
       "has-text-dark",
       "has-text-light",
+      "has-text-primary",
+      "has-text-white",
       "input",
       "is-black",
       "is-primary",
@@ -307,6 +323,8 @@
       "pagination-next",
       "pagination-previous",
       "select",
+      "sticky-column",
+      "sticky-row",
       "table",
       "tag",
       "v-checkbox"
@@ -343,24 +361,28 @@
   },
   "VTab": {
     "always": [
+      "change",
       "fade-enter",
       "fade-enter-active",
       "fade-enter-to",
       "fade-leave",
       "fade-leave-active",
       "fade-leave-to",
+      "is-toggle-rounded",
       "slide-enter",
       "slide-enter-active",
       "slide-enter-to",
       "slide-leave",
       "slide-leave-active",
       "slide-leave-to",
+      "slide-left",
       "slide-left-enter",
       "slide-left-enter-active",
       "slide-left-enter-to",
       "slide-left-leave",
       "slide-left-leave-active",
       "slide-left-leave-to",
+      "slide-right",
       "slide-right-enter",
       "slide-right-enter-active",
       "slide-right-enter-to",
@@ -381,6 +403,8 @@
   },
   "VTabs": {
     "always": [
+      "change",
+      "is-toggle-rounded",
       "tabs"
     ],
     "optional": [],
@@ -395,7 +419,8 @@
   },
   "VButton": {
     "always": [
-      "button"
+      "button",
+      "disabled"
     ],
     "optional": [
       "is-active",
@@ -426,7 +451,12 @@
   },
   "VContainer": {
     "always": [
-      "container"
+      "background-image",
+      "background-repeat",
+      "background-size",
+      "container",
+      "cover",
+      "no-repeat"
     ],
     "optional": [],
     "unstable": []
@@ -455,7 +485,8 @@
       "file-cta",
       "file-input",
       "file-label",
-      "file-name"
+      "file-name",
+      "is-primary"
     ],
     "optional": [
       "is-boxed",
@@ -472,7 +503,9 @@
   },
   "VImage": {
     "always": [
-      "image"
+      "function",
+      "image",
+      "string"
     ],
     "optional": [
       "is-rounded"
@@ -530,9 +563,13 @@
   },
   "VProgress": {
     "always": [
+      "is-darkgrey",
+      "percent",
       "progress",
       "progress-value",
-      "progress-wrapper"
+      "progress-wrapper",
+      "raw",
+      "value"
     ],
     "optional": [],
     "unstable": [
@@ -541,7 +578,9 @@
   },
   "VSelect": {
     "always": [
+      "blur",
       "control",
+      "focus",
       "has-background-dark",
       "has-text-light",
       "select"
@@ -559,13 +598,19 @@
   },
   "VSidebar": {
     "always": [
+      "absolute",
+      "close",
       "fade-enter",
       "fade-enter-active",
       "fade-enter-to",
       "fade-leave",
       "fade-leave-active",
       "fade-leave-to",
+      "fixed",
+      "fullwidth",
+      "hide",
       "is-width-animated",
+      "reduce",
       "sidebar-background",
       "sidebar-content",
       "slide-enter",
@@ -574,18 +619,21 @@
       "slide-leave",
       "slide-leave-active",
       "slide-leave-to",
+      "slide-left",
       "slide-left-enter",
       "slide-left-enter-active",
       "slide-left-enter-to",
       "slide-left-leave",
       "slide-left-leave-active",
       "slide-left-leave-to",
+      "slide-right",
       "slide-right-enter",
       "slide-right-enter-active",
       "slide-right-enter-to",
       "slide-right-leave",
       "slide-right-leave-active",
       "slide-right-leave-to",
+      "static",
       "v-sidebar"
     ],
     "optional": [
@@ -620,6 +668,7 @@
   },
   "VTag": {
     "always": [
+      "close",
       "delete",
       "is-small",
       "tag"
@@ -650,7 +699,12 @@
     ]
   },
   "VTooltip": {
-    "always": [],
+    "always": [
+      "is-medium",
+      "is-primary",
+      "is-top",
+      "transition-delay"
+    ],
     "optional": [
       "is-always",
       "is-animated",

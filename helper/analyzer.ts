@@ -107,6 +107,13 @@ export function getWhitelist(input: string, name: string): { always: string[], o
     const ast = jsparserParse(code, parserOpts)
     traverse(ast, {
       /* eslint-disable @typescript-eslint/naming-convention -- AST */
+      StringLiteral({ node }) {
+        if (!isVueSFC(id)) return
+        for (const cl of node.value.split(' ')) {
+          always.add(cl)
+        }
+      },
+
       ExportNamedDeclaration({ node }) {
         if (!node.source) return
         const depId = resolveSource(id, node.source.value)

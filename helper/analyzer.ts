@@ -1,16 +1,17 @@
 import path from 'path'
+import assert from 'assert'
 import fs from 'fs-extra'
 import { sync as resolveSync } from 'resolve'
 import { parse as jsparserParse } from '@babel/parser'
 import traverse from '@babel/traverse'
 import { Parser as HtmlparserParser } from 'htmlparser2'
-// import getDynamicClasses from './get-dynamic-classes'
+import getDynamicClasses from './get-dynamic-classes'
 import { normalizePath } from './utils'
 import { parseSFC, isVueSFC } from './analyzer-utils'
 import { transitions } from './data'
 import { parserOpts } from './config'
 
-export function getWhitelist(input: string): { always?: string[], optional?: string[] } {
+export function getWhitelist(input: string, name: string): { always: string[], optional: string[], unstable: string[] } {
   const extensions = ['.ts', '.tsx', '.mjs', '.js', '.jsx', '.vue', '.json']
 
   const animationSuffixes = [
@@ -22,6 +23,8 @@ export function getWhitelist(input: string): { always?: string[], optional?: str
     '-leave-to',
   ]
 
+  let currentFile: string
+
   const isSupported = (id: string): boolean => {
     const lowerId = normalizePath(id.toLowerCase())
     if (lowerId.includes('/node_modules/')) return false
@@ -30,6 +33,7 @@ export function getWhitelist(input: string): { always?: string[], optional?: str
 
   const always = new Set<string>()
   const optional = new Set<string>()
+  const unstable = new Set<string>()
 
   const traversed = new Set<string>()
   const idList = [normalizePath(path.resolve(input))]
@@ -52,15 +56,21 @@ export function getWhitelist(input: string): { always?: string[], optional?: str
 
       onattribute(name, data): void {
         if (name === 'class') {
-          for (const c of data.split(' ')) always.add(c)
-          // return
+          for (const c of data.split(' '))always.add(c)
+          return
         }
 
-        // if (name === ':class') {
-        //   const classes = getDynamicClasses(data)
-        //   for (const c of classes) always.add(c)
-        //   // return
-        // }
+        if (name === ':class') {
+          const classes = getDynamicClasses(data, currentFile)
+          for (const c of classes.optional) {
+            if (c.startsWith('is-')) optional.add(c)
+            else always.add(c)
+          }
+
+          for (const c of classes.unstable) {
+            unstable.add(c)
+          }
+        }
       },
     },
     { decodeEntities: true, lowerCaseTags: false, lowerCaseAttributeNames: true },
@@ -97,31 +107,7 @@ export function getWhitelist(input: string): { always?: string[], optional?: str
 
     const ast = jsparserParse(code, parserOpts)
     traverse(ast, {
-      // Identifier({ node, parent }) {
-      //   if (!isVueSFC(id)) return
-      //   if (!animationList.includes(node.name)) return
-      //   if (parent.type === 'MemberExpression' || parent.type === 'ObjectProperty') {
-      //     console.log(parent)
-      //   }
-      //   // console.log(id, node.name, parent.type)
-      //   node
-      //   parent
-      // },
-
       /* eslint-disable @typescript-eslint/naming-convention -- AST */
-      StringLiteral({ node }) {
-        if (!isVueSFC(id)) return
-        for (const cl of node.value.split(' ')) {
-          // always.add(cl)
-          if (cl.startsWith('is-')) optional.add(cl)
-          else always.add(cl)
-        }
-      },
-
-      // ObjectExpression(properties) {
-      //   console.log('got object expression,', properties)
-      // },
-
       ExportNamedDeclaration({ node }) {
         if (!node.source) return
         const depId = resolveSource(id, node.source.value)
@@ -132,7 +118,6 @@ export function getWhitelist(input: string): { always?: string[], optional?: str
         const depId = resolveSource(id, node.source.value)
         if (depId) idList.push(depId)
       },
-
       /* eslint-enable @typescript-eslint/naming-convention -- AST */
     })
   }
@@ -140,6 +125,7 @@ export function getWhitelist(input: string): { always?: string[], optional?: str
   while (idList.length > 0) {
     const id = idList.pop()
     if (!id) continue
+    currentFile = id
     const code = fs.readFileSync(id, 'utf8')
     traverseSource(id, code)
   }
@@ -157,6 +143,9 @@ export function getWhitelist(input: string): { always?: string[], optional?: str
     })
       .sort()
 
+  // make sure the unstable variables have their dependencies documented
+  const documentedClasses: Record<string, string[]> = JSON.parse(fs.readFileSync('helper/classes.json', 'utf-8'))[name] ?? {}
+  unstable.forEach((cl: string) => assert(cl in documentedClasses, `${cl} not documented`))
 
-  return { always: clean([...always]), optional: clean([...optional]) }
+  return { always: clean([...always]), optional: clean([...optional]), unstable: clean([...unstable]) }
 }

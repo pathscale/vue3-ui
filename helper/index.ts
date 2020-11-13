@@ -37,10 +37,10 @@ async function main(): Promise<void> {
   for await (const file of files) {
     const name = namesMap[path.parse(file).name]
     if (!name) continue
-    mappings[name] = getWhitelist(file)
+    mappings[name] = getWhitelist(file, name)
   }
 
-  fs.writeFileSync(path.join(__dirname, 'classes2.json'), JSON.stringify(mappings, null, '  '))
+  fs.writeFileSync(path.join(__dirname, 'mappings.json'), JSON.stringify(mappings, null, '  '))
 }
 
 main()

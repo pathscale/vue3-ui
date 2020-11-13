@@ -1,39 +1,24 @@
-import { runInNewContext } from 'vm'
-import { textual, falsy, truthy } from './data'
+function getDynamicClasses(raw: string): { optional: string[], unstable: string[] } {
 
-function getDynamicClasses(raw: string): string[] {
-  const data = `[${raw}]`
+  // finds everything between simple quotes in value, where value is <tag :class={value} />
   const classes: string[] = []
 
-  const res: (string | Record<string, string> | (string | Record<string, string>)[])[] = []
+  const tokens = raw.match(/(?<=').+?(?=')/g) ?? []
+  const goodClasses = tokens.filter(cl => !cl.startsWith(':'))
+  goodClasses.forEach(cl => cl.split(' ').forEach(cll => classes.push(cll)))
 
-  try {
-    res.push(...(runInNewContext(data, { ...textual, ...truthy }) as []))
-    res.push(...(runInNewContext(data, { ...textual, ...falsy }) as []))
-  } catch (err) {
-    // eslint-disable-next-line no-console -- Needed for dev
-    console.error(
-      `\u001B[31m${err.message}\u001B[0m\n`,
-      'Do not forget to add it to the helper\'s data.ts file,\n',
-      'otherwise generated CSS might be incorrect.\n',
-      `context: \u001B[33m${data}\u001B[0m\n`,
-    )
-  }
+  // expected and most common pattern is: classes like is-X will depend on a prop named X
+  // nevertheless, sometimes a class will depend on a computed prop or on a specifically named prop
 
-  for (const item of res) {
-    const i = Array.isArray(item) ? item : [item]
-    for (const v of i) {
-      if (typeof v === 'string') classes.push(...v.split(' '))
-      else if (typeof v === 'object') {
-        for (const [v1, v2] of Object.entries(v)) {
-          if (typeof v1 === 'string') classes.push(...v1.split(' '))
-          if (typeof v2 === 'string') classes.push(...v2.split(' '))
-        }
-      }
-    }
-  }
+  // list of classes not named is-x or that are named is-x but depend on something other than x
+  const unusualClasses = classes.filter(cl => !cl.startsWith('is-') || !raw.includes(`'${cl}': ${cl.slice(3)}`))
 
-  return classes
+  // list of classes that are not unusual
+  const optional = classes.filter(cl => !unusualClasses.includes(cl))
+
+  // require(currentFile);
+  // console.log("PEPE", require(currentFile))
+  return { optional, unstable: unusualClasses }
 }
 
 export default getDynamicClasses

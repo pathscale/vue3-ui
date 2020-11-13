@@ -56,7 +56,7 @@ export default {
         'is-active': active,
         'is-hovered': hovered,
         'is-selected': selected,
-        'is-light': light
+        'is-light': light,
       }
     ]">
     <span v-if="label">{{ label }}</span>

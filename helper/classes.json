@@ -1,170 +1,121 @@
 {
-    "VButton": {
-        "always": ["button", "disabled"],
-        "optional": ["is-rounded", "is-loading", "is-outlined", "is-fullwidth", "is-inverted", "is-focused", "is-active", "is-hovered", "is-selected", "is-light"],
-        "passthrough": ["size", "type"]
-    },
-    "VCheckbox": {
-        "always": ["v-checkbox", "checkbox", "check", "control-label"],
-        "optional": ["is-disabled"],
-        "passthrough": ["size"]
-    },
-    "VContainer": {
-        "always": ["container"],
-        "passthrough": ["type"]
-    },
-    "VField": {
-        "always": ["field", "field-label", "label", "field-body", "help"],
-        "optional": ["is-grouped", "is-expanded", "is-horizontal", "is-grouped", "is-grouped-multiline", "has-addons"],
-        "passthrough": ["position"]
-    },
-    "VFile": {
-        "always": ["file", "file-label", "file-input", "file-cta", "file-name", "has-name"],
-        "optional": ["is-fullwidth", "is-boxed"],
-        "passthrough": ["size", "color", "alignment"]
-    },
-    "VImage": {
-        "always": ["image", "container"],
-        "optional": ["is-rounded"],
-        "passthrough": ["size", "radio"]
-    },
-    "VInput": {
-        "always": ["control", "error", "input", "icon", "is-left", "is-right"],
-        "optional": ["is-loading", "has-icons-left", "has-icons-right"],
-        "passthrough": ["size", "color", "statusType"]
-    },
-    "VMedia": {
-        "always": ["media", "media-left", "media-content", "media-right"]
-    },
-    "VModal": {
-        "always": ["modal", "modal-background", "modal-content", "modal-close", "modal-card", "modal-card-head", "modal-card-title", "delete", "modal-card-body", "modal-card-foot"],
-        "optional": ["is-active"]
-    },
-    "VProgress": {
-        "always": ["progress-wrapper", "progress", "progress-value", "more-than-half"],
-        "passthrough": ["size", "type"]
-    },
-    "VSelect": {
-        "always": ["control", "select", "has-background-dark", "has-text-light"],
-        "optional": ["is-expanded", "is-fullwidth", "is-loading", "is-multiple", "is-rounded", "is-empty"],
-        "passthrough": ["size", "color"]
-    },
-    "VSidebar": {
-        "always": ["v-sidebar", "sidebar-background", "sidebar-content", "is-width-animated", "is-fixed", "is-static", "is-absolute", "is-fullheight", "is-full-width", "is-right", "is-mini", "is-mini-expand", "is-mini-expand-fixed", "is-mini-mobile", "is-hidden-mobile", "is-fullwidth-mobile"],
-        "optional": [],
-        "passthrough": ["type"]
-    },
-    "VSwitch": {
-        "always": ["switch", "check", "control-label"],
-        "optional": ["is-disabled", "is-rounded", "is-outlined"],
-        "passthrough": ["size"]
-    },
-    "VTag": {
-        "always": ["tags", "has-addons", "tag", "delete", "is-small", "has-delete-icon", "is-delete"],
-        "optional": ["is-rounded", "has-ellipsis", "is-rounded"],
-        "passthrough": ["type", "size", "closeType"]
-    },
-    "VTextarea": {
-        "always": ["control", "textarea", "is-invisible"],
-        "optional": ["is-hovered", "is-focused", "is-loading"],
-        "passthrough": ["size", "color"]
-    },
-    "VTooltip": {
-        "always": ["v-tooltip", "is-primary", "is-top", "is-medium"],
-        "optional": ["is-square", "is-animated", "is-always", "is-multiline", "is-dashed"],
-        "passthrough": ["type", "position", "size"]
-    },
-    "VIcon": {
-
-    },
-    "VAccordion": {
-        "always": ["accordion-trigger", "accordion-content", "accordion-header", "accordion-trigger-click", "accordion-active", "accordion-default", "accordion-type-hover", "accordion-type-click", "header-is-trigger", "trigger-right", "trigger-left"],
-        "optional": ["is-horizontal", "is-vertical"]
-    },
-    "VAccordionMenu": {
-        "always": "accordion-menu"
-    },
-    "VBreadcrumb": {
-        "always": ["breadcrumb"],
-        "passthrough": ["alignment", "separator", "size"]
-    },
-    "VBreadcrumbItem": {
-        "optional": ["is-active"]
-    },
-    "VCard": {
-        "always": ["card"]
-    },
-    "VCardContent": {
-        "always": ["card-content"]
-    },
-    "VCardFooter": {
-        "always": ["card-footer"]
-    },
-    "VCardFooterIcon": {
-        "always": ["card-footer-icon"]
-    },
-    "VCardHeader": {
-        "always": ["card-header", "card-header-title"]
-    },
-    "VCardImage": {
-        "always": ["card-image"]
-    },
-    "VColumn": {
-        "always": ["column"],
-        "optional": ["is-narrow"],
-        "passthrough": ["size", "offset", "narrowBreakpoint"]
-    },
-    "VColumns": {
-        "always": ["columns"],
-        "optional": ["is-mobile", "is-desktop", "is-gapeless", "is-variable", "is-vcentered", "is-multiline", "is-centered"],
-        "passthrough": ["gap"]
-    },
-    "VDropdown": {
-        "always": ["dropdown", "dropdown-trigger", "dropdown-menu", "dropdown-content"],
-        "optional": ["is-disabled", "is-hoverable", "is-inline", "is-active", "is-mobile-modal", "is-expanded"],
-        "passthrough": ["position"]
-    },
-    "VDropdownItem": {
-        "always": ["dropdown-divider", "dropdown-item"],
-        "optional": ["dropdown-item", "is-disabled", "is-paddingless", "is-active", "has-link"]
-    },
-    "VMenu": {
-        "always": ["menu"]
-    },
-    "VMenuItem": {
-        "always": ["pr-2", "ul"],
-        "optional": ["is-flex", "is-active", "is-disabled"]
-    },
-    "VMenuList": {
-        "always": ["menu-label", "menu-list"]
-    },
-    "VNavbar": {
-        "always": ["navbar", "navbar-brand", "navbar-menu", "navbar-start", "navbar-end", "navbar-burger", "burger"],
-        "optional": ["is-fixed-top", "is-fixed-bottom", "is-spaced", "has-shadow", "is-transparent", "is-active"],
-        "passthrough": ["type"]
-    },
-    "VNavbarBurger": {
-        "always": ["navbar-burger", "burger"],
-        "optional": ["is-active"]
-    },
-    "VNavbarDropdown": {
-        "always": ["navbar-item", "has-dropdown", "navbar-link", "navbar-dropdown"],
-        "optional": ["is-hoverable", "is-active", "is-arrowless", "is-right", "is-boxed"]
-    },
-    "VNavbarItem": {
-        "always": ["navbar-item"],
-        "optional": ["is-active"]
-    },
-    "VTabs": {
-        "always": ["tabs"],
-        "optional": ["is-fullwidth", "is-toggle-rounded", "is-toggle", "is-disabled", "is-animated"],
-        "passthrough": ["type", "size"]
-    },
-    "VTab": {
-
-    },
-    "VTable": {
-        "always": ["data-grid", "tableHeader", "mt-2", "ml-2", "table", "input", "has-text-black", "is-small", "is-black", "is-primary", "expansion", "mr-4", "mx-4", "pagination-container", "pagination-previous", "pagination-next", "tableFooter", "sticky-column", "sticky-row", "has-text-primary", "has-background-primary", "has-text-white", "table-container", "sticky-table"],
-        "optional": ["is-bordered", "is-striped", "is-narrow", "is-hoverable", "is-fullwidth"]
-    }
+  "VAccordion": {
+    "is-horizontal": ["isHorizontal"],
+    "is-vertical": ["isHorizontal"],
+    "accordion-active": ["isActive", "hover"],
+    "accordion-default": ["isActive", "hover"],
+    "accordion-type-hover": ["hover"],
+    "accordion-type-click": ["hover"],
+    "header-is-trigger": ["headerIsTrigger"],
+    "trigger-right": ["triggerRight"],
+    "trigger-left": ["triggerLeft"]
+  },
+  "VColumns": {
+    "is-variable": ["gap"],
+    "is-centered": ["vcentered"]
+  },
+  "VDropdown": {
+    "is-active": ["inline"],
+    "is-mobile-modal": ["mobileModal"]
+  },
+  "VDropdownItem": {
+    "is-active": ["isActive"],
+    "dropdown-item": ["hasLink"],
+    "has-link": ["hasLink"],
+    "is-mobile-modal": []
+  },
+  "VMenuItem": {
+    "is-flex": ["icon"],
+    "is-active": ["active"]
+  },
+  "VNavbar": {
+    "is-fixed-top": ["fixedTop"],
+    "is-fixed-bottom": ["fixedBottom"],
+    "has-shadow": ["shadow"],
+    "is-active": []
+  },
+  "VNavbarBurger": {
+    "is-active": ["isActive"]
+  },
+  "VNavbarDropdown": {
+    "is-hoverable": ["hoverable"],
+    "is-active": ["active"]
+  },
+  "VTable": {
+    "table-container": ["sticky"],
+    "sticky-table": ["sticky"],
+    "is-bordered": ["isBordered"],
+    "is-striped": ["isStriped"],
+    "is-narrow": ["isNarrow"],
+    "is-hoverable": ["isHoverable"],
+    "is-fullwidth": ["isFullwidth"],
+    "tags": [],
+    "has-addons": [],
+    "has-ellipsis": [],
+    "has-delete-icon": [],
+    "is-delete": []
+  },
+  "VSelect": {
+    "is-fullwidth": ["expanded"]
+  },
+  "VButton": {
+    "is-fullwidth": ["expanded"]
+  },
+  "VTag": {
+    "tags": ["isClosable"],
+    "has-addons": ["isClosable"],
+    "has-ellipsis": ["ellipsis"],
+    "has-delete-icon": ["closeIcon"],
+    "is-delete": ["closeIcon"]
+  },
+  "VTabs": {
+    "is-fullwidth": ["expanded"],
+     "is-toggle-rounded": ["rounded"],
+     "is-toggle": ["rounded"],
+     "is-active": [],
+     "is-disabled": [],
+     "is-height-animated": ["vanimated"]
+  },
+  "VTab": {
+    "is-fullwidth": [],
+    "is-toggle-rounded": [],
+    "is-toggle": [],
+    "is-active": [],
+    "is-disabled": [],
+    "is-height-animated": []
+  },
+  "VField": {
+    "is-grouped-multiline": ["groupMultiline"],
+    "has-addons": ["addons"]
+  },
+  "VFile": {
+    "has-name": ["hasName"]
+  },
+  "VImage": {
+    "container": ["centered"]
+  },
+  "VInput": {
+    "has-icons-left": ["leftIcon"],
+    "has-icons-right": ["rightIcon"]
+  },
+  "VProgress": {
+    "more-than-half": []
+  },
+  "VSidebar": {
+    "is-fixed": ["position"],
+    "is-static": ["position"],
+    "is-absolute": ["position"],
+    "is-mini": ["reduce"],
+    "is-mini-expand": ["expandOnHover"],
+    "is-mini-expand-fixed": ["isMiniExpandFixed"],
+    "is-mini-mobile": ["isMiniMobile"],
+    "is-hidden-mobile": ["isHiddenMobile"],
+    "is-fullwidth-mobile": ["isFullwidthMobile"]
+  },
+  "VTextarea": {
+    "is-invisible": []
+  },
+  "VTooltip": {
+    "v-tooltip": ["active"]
+  }
 }

@@ -1,622 +1,665 @@
 {
-  "VAccordion": [
-    "accordion-active",
-    "accordion-content",
-    "accordion-default",
-    "accordion-header",
-    "accordion-trigger",
-    "accordion-trigger-click",
-    "accordion-type-click",
-    "accordion-type-hover",
-    "div",
-    "header-is-trigger",
-    "is-horizontal",
-    "is-vertical",
-    "span",
-    "trigger-left",
-    "trigger-right"
-  ],
-  "VAccordionMenu": [
-    "accordion-menu",
-    "div"
-  ],
-  "VBreadcrumb": [
-    "breadcrumb",
-    "nav",
-    "ul"
-  ],
-  "VBreadcrumbItem": [
-    "a",
-    "component",
-    "is-active",
-    "li"
-  ],
-  "VCard": [
-    "card",
-    "component",
-    "div"
-  ],
-  "VCardContent": [
-    "card-content",
-    "div"
-  ],
-  "VCardFooter": [
-    "card-footer",
-    "component",
-    "footer"
-  ],
-  "VCardFooterItem": [
-    "card-footer-item",
-    "div"
-  ],
-  "VCardHeader": [
-    "card-header",
-    "card-header-title",
-    "component",
-    "header",
-    "p"
-  ],
-  "VCardImage": [
-    "card-image",
-    "div"
-  ],
-  "VColumn": [
-    "column",
-    "div",
-    "is-narrow"
-  ],
-  "VColumns": [
-    "columns",
-    "div",
-    "is-centered",
-    "is-desktop",
-    "is-gapless",
-    "is-mobile",
-    "is-multiline",
-    "is-variable",
-    "is-vcentered"
-  ],
-  "VDropdown": [
-    "div",
-    "dropdown",
-    "dropdown-content",
-    "dropdown-menu",
-    "dropdown-trigger",
-    "fade-enter",
-    "fade-enter-active",
-    "fade-enter-to",
-    "fade-leave",
-    "fade-leave-active",
-    "fade-leave-to",
-    "is-active",
-    "is-disabled",
-    "is-expanded",
-    "is-hoverable",
-    "is-inline",
-    "is-mobile-modal",
-    "slide-enter",
-    "slide-enter-active",
-    "slide-enter-to",
-    "slide-leave",
-    "slide-leave-active",
-    "slide-leave-to",
-    "slide-left-enter",
-    "slide-left-enter-active",
-    "slide-left-enter-to",
-    "slide-left-leave",
-    "slide-left-leave-active",
-    "slide-left-leave-to",
-    "slide-right-enter",
-    "slide-right-enter-active",
-    "slide-right-enter-to",
-    "slide-right-leave",
-    "slide-right-leave-active",
-    "slide-right-leave-to",
-    "transition"
-  ],
-  "VDropdownItem": [
-    "a",
-    "div",
-    "dropdown",
-    "dropdown-content",
-    "dropdown-divider",
-    "dropdown-item",
-    "dropdown-menu",
-    "dropdown-trigger",
-    "fade-enter",
-    "fade-enter-active",
-    "fade-enter-to",
-    "fade-leave",
-    "fade-leave-active",
-    "fade-leave-to",
-    "has-link",
-    "hr",
-    "is-active",
-    "is-disabled",
-    "is-expanded",
-    "is-hoverable",
-    "is-inline",
-    "is-mobile-modal",
-    "is-paddingless",
-    "listitem",
-    "menuitem",
-    "slide-enter",
-    "slide-enter-active",
-    "slide-enter-to",
-    "slide-leave",
-    "slide-leave-active",
-    "slide-leave-to",
-    "slide-left-enter",
-    "slide-left-enter-active",
-    "slide-left-enter-to",
-    "slide-left-leave",
-    "slide-left-leave-active",
-    "slide-left-leave-to",
-    "slide-right-enter",
-    "slide-right-enter-active",
-    "slide-right-enter-to",
-    "slide-right-leave",
-    "slide-right-leave-active",
-    "slide-right-leave-to",
-    "transition"
-  ],
-  "VMenu": [
-    "div",
-    "menu"
-  ],
-  "VMenuItem": [
-    "a",
-    "component",
-    "is-active",
-    "is-disabled",
-    "is-flex",
-    "li",
-    "pr-2",
-    "span",
-    "template",
-    "ul"
-  ],
-  "VMenuList": [
-    "menu-label",
-    "menu-list",
-    "p",
-    "ul"
-  ],
-  "VNavbar": [
-    "a",
-    "burger",
-    "div",
-    "has-shadow",
-    "is-active",
-    "is-fixed-bottom",
-    "is-fixed-top",
-    "is-spaced",
-    "is-transparent",
-    "nav",
-    "navbar",
-    "navbar-brand",
-    "navbar-burger",
-    "navbar-end",
-    "navbar-menu",
-    "navbar-start",
-    "span"
-  ],
-  "VNavbarBurger": [
-    "a",
-    "burger",
-    "is-active",
-    "navbar-burger",
-    "span"
-  ],
-  "VNavbarDropdown": [
-    "a",
-    "div",
-    "has-dropdown",
-    "is-active",
-    "is-arrowless",
-    "is-boxed",
-    "is-hoverable",
-    "is-right",
-    "navbar-dropdown",
-    "navbar-item",
-    "navbar-link",
-    "template"
-  ],
-  "VNavbarItem": [
-    "a",
-    "component",
-    "is-active",
-    "navbar-item"
-  ],
-  "VTable": [
-    "a",
-    "blur",
-    "button",
-    "check",
-    "checkbox",
-    "close",
-    "component",
-    "control",
-    "control-label",
-    "data-grid",
-    "delete",
-    "div",
-    "expansion",
-    "focus",
-    "has-addons",
-    "has-background-dark",
-    "has-background-primary",
-    "has-delete-icon",
-    "has-ellipsis",
-    "has-text-black",
-    "has-text-dark",
-    "has-text-light",
-    "has-text-primary",
-    "has-text-white",
-    "input",
-    "is-active",
-    "is-black",
-    "is-bordered",
-    "is-delete",
-    "is-disabled",
-    "is-empty",
-    "is-expanded",
-    "is-focused",
-    "is-fullwidth",
-    "is-hoverable",
-    "is-hovered",
-    "is-inverted",
-    "is-light",
-    "is-loading",
-    "is-multiple",
-    "is-narrow",
-    "is-outlined",
-    "is-primary",
-    "is-rounded",
-    "is-selected",
-    "is-small",
-    "is-striped",
-    "label",
-    "ml-2",
-    "mr-4",
-    "mt-2",
-    "mx-4",
-    "option",
-    "pagination-container",
-    "pagination-next",
-    "pagination-previous",
-    "select",
-    "span",
-    "sticky-column",
-    "sticky-row",
-    "sticky-table",
-    "table",
-    "table-container",
-    "tag",
-    "tags",
-    "tbody",
-    "td",
-    "template",
-    "th",
-    "thead",
-    "tr",
-    "v-button",
-    "v-checkbox",
-    "v-select",
-    "v-tag"
-  ],
-  "VTab": [
-    "a",
-    "change",
-    "div",
-    "fade-enter",
-    "fade-enter-active",
-    "fade-enter-to",
-    "fade-leave",
-    "fade-leave-active",
-    "fade-leave-to",
-    "is-active",
-    "is-disabled",
-    "is-fullwidth",
-    "is-height-animated",
-    "is-toggle",
-    "is-toggle-rounded",
-    "li",
-    "nav",
-    "section",
-    "slide-enter",
-    "slide-enter-active",
-    "slide-enter-to",
-    "slide-leave",
-    "slide-leave-active",
-    "slide-leave-to",
-    "slide-left",
-    "slide-left-enter",
-    "slide-left-enter-active",
-    "slide-left-enter-to",
-    "slide-left-leave",
-    "slide-left-leave-active",
-    "slide-left-leave-to",
-    "slide-right",
-    "slide-right-enter",
-    "slide-right-enter-active",
-    "slide-right-enter-to",
-    "slide-right-leave",
-    "slide-right-leave-active",
-    "slide-right-leave-to",
-    "tabs",
-    "template",
-    "transition",
-    "ul"
-  ],
-  "VTabs": [
-    "a",
-    "change",
-    "div",
-    "is-active",
-    "is-disabled",
-    "is-fullwidth",
-    "is-height-animated",
-    "is-toggle",
-    "is-toggle-rounded",
-    "li",
-    "nav",
-    "section",
-    "tabs",
-    "template",
-    "ul"
-  ],
-  "VButton": [
-    "button",
-    "component",
-    "is-active",
-    "is-focused",
-    "is-fullwidth",
-    "is-hovered",
-    "is-inverted",
-    "is-light",
-    "is-loading",
-    "is-outlined",
-    "is-rounded",
-    "is-selected",
-    "span"
-  ],
-  "VCheckbox": [
-    "check",
-    "checkbox",
-    "control-label",
-    "input",
-    "is-disabled",
-    "label",
-    "span",
-    "v-checkbox"
-  ],
-  "VContainer": [
-    "background-image",
-    "background-repeat",
-    "background-size",
-    "container",
-    "cover",
-    "div",
-    "no-repeat"
-  ],
-  "VField": [
-    "div",
-    "field",
-    "field-body",
-    "field-label",
-    "has-addons",
-    "help",
-    "is-expanded",
-    "is-grouped",
-    "is-grouped-multiline",
-    "is-horizontal",
-    "label",
-    "p"
-  ],
-  "VFile": [
-    "div",
-    "file",
-    "file-cta",
-    "file-input",
-    "file-label",
-    "file-name",
-    "has-name",
-    "input",
-    "is-boxed",
-    "is-fullwidth",
-    "is-primary",
-    "label",
-    "span"
-  ],
-  "VIcon": [
-    "svg",
-    "use"
-  ],
-  "VImage": [
-    "container",
-    "figure",
-    "image",
-    "img",
-    "is-rounded"
-  ],
-  "VInput": [
-    "control",
-    "div",
-    "error",
-    "has-icons-left",
-    "has-icons-right",
-    "i",
-    "icon",
-    "input",
-    "is-expanded",
-    "is-left",
-    "is-loading",
-    "is-right",
-    "is-rounded",
-    "p",
-    "span"
-  ],
-  "VMedia": [
-    "article",
-    "div",
-    "media",
-    "media-content",
-    "media-left",
-    "media-right"
-  ],
-  "VModal": [
-    "button",
-    "delete",
-    "div",
-    "footer",
-    "header",
-    "is-active",
-    "modal",
-    "modal-background",
-    "modal-card",
-    "modal-card-body",
-    "modal-card-foot",
-    "modal-card-head",
-    "modal-card-title",
-    "modal-close",
-    "modal-content",
-    "p",
-    "template"
-  ],
-  "VProgress": [
-    "div",
-    "is-darkgrey",
-    "more-than-half",
-    "p",
-    "percent",
-    "progress",
-    "progress-value",
-    "progress-wrapper",
-    "raw",
-    "value"
-  ],
-  "VSelect": [
-    "blur",
-    "control",
-    "div",
-    "focus",
-    "has-background-dark",
-    "has-text-light",
-    "is-empty",
-    "is-expanded",
-    "is-fullwidth",
-    "is-loading",
-    "is-multiple",
-    "is-rounded",
-    "option",
-    "select",
-    "span",
-    "template"
-  ],
-  "VSidebar": [
-    "absolute",
-    "boolean",
-    "close",
-    "div",
-    "escape",
-    "fade-enter",
-    "fade-enter-active",
-    "fade-enter-to",
-    "fade-leave",
-    "fade-leave-active",
-    "fade-leave-to",
-    "fixed",
-    "fullwidth",
-    "hide",
-    "is-absolute",
-    "is-fixed",
-    "is-fullheight",
-    "is-fullwidth",
-    "is-fullwidth-mobile",
-    "is-hidden-mobile",
-    "is-mini",
-    "is-mini-expand",
-    "is-mini-expand-fixed",
-    "is-mini-mobile",
-    "is-right",
-    "is-static",
-    "is-width-animated",
-    "outside",
-    "reduce",
-    "sidebar-background",
-    "sidebar-content",
-    "slide-enter",
-    "slide-enter-active",
-    "slide-enter-to",
-    "slide-leave",
-    "slide-leave-active",
-    "slide-leave-to",
-    "slide-left",
-    "slide-left-enter",
-    "slide-left-enter-active",
-    "slide-left-enter-to",
-    "slide-left-leave",
-    "slide-left-leave-active",
-    "slide-left-leave-to",
-    "slide-right",
-    "slide-right-enter",
-    "slide-right-enter-active",
-    "slide-right-enter-to",
-    "slide-right-leave",
-    "slide-right-leave-active",
-    "slide-right-leave-to",
-    "static",
-    "transition",
-    "v-sidebar"
-  ],
-  "VSwitch": [
-    "check",
-    "control-label",
-    "input",
-    "is-disabled",
-    "is-outlined",
-    "is-rounded",
-    "label",
-    "span",
-    "switch"
-  ],
-  "VTag": [
-    "a",
-    "close",
-    "delete",
-    "div",
-    "has-addons",
-    "has-delete-icon",
-    "has-ellipsis",
-    "is-delete",
-    "is-rounded",
-    "is-small",
-    "span",
-    "tag",
-    "tags"
-  ],
-  "VTextarea": [
-    "control",
-    "div",
-    "is-focused",
-    "is-hovered",
-    "is-invisible",
-    "is-loading",
-    "small",
-    "textarea"
-  ],
-  "VTooltip": [
-    "is-always",
-    "is-animated",
-    "is-dashed",
-    "is-medium",
-    "is-multiline",
-    "is-primary",
-    "is-square",
-    "is-top",
-    "span",
-    "transition-delay",
-    "v-tooltip"
-  ]
+  "VAccordion": {
+    "always": [
+      "accordion-content",
+      "accordion-header",
+      "accordion-trigger",
+      "accordion-trigger-click"
+    ],
+    "optional": [],
+    "unstable": [
+      "accordion-active",
+      "accordion-default",
+      "accordion-type-click",
+      "accordion-type-hover",
+      "header-is-trigger",
+      "is-horizontal",
+      "is-vertical",
+      "trigger-left",
+      "trigger-right"
+    ]
+  },
+  "VAccordionMenu": {
+    "always": [
+      "accordion-menu"
+    ],
+    "optional": [],
+    "unstable": []
+  },
+  "VBreadcrumb": {
+    "always": [
+      "breadcrumb"
+    ],
+    "optional": [],
+    "unstable": []
+  },
+  "VBreadcrumbItem": {
+    "always": [],
+    "optional": [
+      "is-active"
+    ],
+    "unstable": []
+  },
+  "VCard": {
+    "always": [
+      "card"
+    ],
+    "optional": [],
+    "unstable": []
+  },
+  "VCardContent": {
+    "always": [
+      "card-content"
+    ],
+    "optional": [],
+    "unstable": []
+  },
+  "VCardFooter": {
+    "always": [
+      "card-footer"
+    ],
+    "optional": [],
+    "unstable": []
+  },
+  "VCardFooterItem": {
+    "always": [
+      "card-footer-item"
+    ],
+    "optional": [],
+    "unstable": []
+  },
+  "VCardHeader": {
+    "always": [
+      "card-header",
+      "card-header-title"
+    ],
+    "optional": [],
+    "unstable": []
+  },
+  "VCardImage": {
+    "always": [
+      "card-image"
+    ],
+    "optional": [],
+    "unstable": []
+  },
+  "VColumn": {
+    "always": [
+      "column"
+    ],
+    "optional": [
+      "is-narrow"
+    ],
+    "unstable": []
+  },
+  "VColumns": {
+    "always": [
+      "columns"
+    ],
+    "optional": [
+      "is-desktop",
+      "is-gapless",
+      "is-mobile",
+      "is-multiline",
+      "is-vcentered"
+    ],
+    "unstable": [
+      "is-centered",
+      "is-variable"
+    ]
+  },
+  "VDropdown": {
+    "always": [
+      "dropdown",
+      "dropdown-content",
+      "dropdown-menu",
+      "dropdown-trigger",
+      "fade-enter",
+      "fade-enter-active",
+      "fade-enter-to",
+      "fade-leave",
+      "fade-leave-active",
+      "fade-leave-to",
+      "slide-enter",
+      "slide-enter-active",
+      "slide-enter-to",
+      "slide-leave",
+      "slide-leave-active",
+      "slide-leave-to",
+      "slide-left-enter",
+      "slide-left-enter-active",
+      "slide-left-enter-to",
+      "slide-left-leave",
+      "slide-left-leave-active",
+      "slide-left-leave-to",
+      "slide-right-enter",
+      "slide-right-enter-active",
+      "slide-right-enter-to",
+      "slide-right-leave",
+      "slide-right-leave-active",
+      "slide-right-leave-to"
+    ],
+    "optional": [
+      "is-disabled",
+      "is-expanded",
+      "is-hoverable",
+      "is-inline"
+    ],
+    "unstable": [
+      "is-active",
+      "is-mobile-modal"
+    ]
+  },
+  "VDropdownItem": {
+    "always": [
+      "dropdown",
+      "dropdown-content",
+      "dropdown-divider",
+      "dropdown-item",
+      "dropdown-menu",
+      "dropdown-trigger",
+      "fade-enter",
+      "fade-enter-active",
+      "fade-enter-to",
+      "fade-leave",
+      "fade-leave-active",
+      "fade-leave-to",
+      "slide-enter",
+      "slide-enter-active",
+      "slide-enter-to",
+      "slide-leave",
+      "slide-leave-active",
+      "slide-leave-to",
+      "slide-left-enter",
+      "slide-left-enter-active",
+      "slide-left-enter-to",
+      "slide-left-leave",
+      "slide-left-leave-active",
+      "slide-left-leave-to",
+      "slide-right-enter",
+      "slide-right-enter-active",
+      "slide-right-enter-to",
+      "slide-right-leave",
+      "slide-right-leave-active",
+      "slide-right-leave-to"
+    ],
+    "optional": [
+      "is-disabled",
+      "is-expanded",
+      "is-hoverable",
+      "is-inline",
+      "is-paddingless"
+    ],
+    "unstable": [
+      "dropdown-item",
+      "has-link",
+      "is-active",
+      "is-mobile-modal"
+    ]
+  },
+  "VMenu": {
+    "always": [
+      "menu"
+    ],
+    "optional": [],
+    "unstable": []
+  },
+  "VMenuItem": {
+    "always": [
+      "pr-2"
+    ],
+    "optional": [
+      "is-disabled"
+    ],
+    "unstable": [
+      "is-active",
+      "is-flex"
+    ]
+  },
+  "VMenuList": {
+    "always": [
+      "menu-label",
+      "menu-list"
+    ],
+    "optional": [],
+    "unstable": []
+  },
+  "VNavbar": {
+    "always": [
+      "burger",
+      "navbar",
+      "navbar-brand",
+      "navbar-burger",
+      "navbar-end",
+      "navbar-menu",
+      "navbar-start"
+    ],
+    "optional": [
+      "is-spaced",
+      "is-transparent"
+    ],
+    "unstable": [
+      "has-shadow",
+      "is-active",
+      "is-fixed-bottom",
+      "is-fixed-top"
+    ]
+  },
+  "VNavbarBurger": {
+    "always": [
+      "burger",
+      "navbar-burger"
+    ],
+    "optional": [],
+    "unstable": [
+      "is-active"
+    ]
+  },
+  "VNavbarDropdown": {
+    "always": [
+      "has-dropdown",
+      "navbar-dropdown",
+      "navbar-item",
+      "navbar-link"
+    ],
+    "optional": [
+      "is-arrowless",
+      "is-boxed",
+      "is-right"
+    ],
+    "unstable": [
+      "is-active",
+      "is-hoverable"
+    ]
+  },
+  "VNavbarItem": {
+    "always": [
+      "navbar-item"
+    ],
+    "optional": [
+      "is-active"
+    ],
+    "unstable": []
+  },
+  "VTable": {
+    "always": [
+      "button",
+      "check",
+      "checkbox",
+      "control",
+      "control-label",
+      "data-grid",
+      "delete",
+      "expansion",
+      "has-background-dark",
+      "has-text-black",
+      "has-text-dark",
+      "has-text-light",
+      "input",
+      "is-black",
+      "is-primary",
+      "is-small",
+      "ml-2",
+      "mr-4",
+      "mt-2",
+      "mx-4",
+      "pagination-container",
+      "pagination-next",
+      "pagination-previous",
+      "select",
+      "table",
+      "tag",
+      "v-checkbox"
+    ],
+    "optional": [
+      "is-active",
+      "is-disabled",
+      "is-empty",
+      "is-expanded",
+      "is-focused",
+      "is-hovered",
+      "is-inverted",
+      "is-light",
+      "is-loading",
+      "is-multiple",
+      "is-outlined",
+      "is-rounded",
+      "is-selected"
+    ],
+    "unstable": [
+      "has-addons",
+      "has-delete-icon",
+      "has-ellipsis",
+      "is-bordered",
+      "is-delete",
+      "is-fullwidth",
+      "is-hoverable",
+      "is-narrow",
+      "is-striped",
+      "sticky-table",
+      "table-container",
+      "tags"
+    ]
+  },
+  "VTab": {
+    "always": [
+      "fade-enter",
+      "fade-enter-active",
+      "fade-enter-to",
+      "fade-leave",
+      "fade-leave-active",
+      "fade-leave-to",
+      "slide-enter",
+      "slide-enter-active",
+      "slide-enter-to",
+      "slide-leave",
+      "slide-leave-active",
+      "slide-leave-to",
+      "slide-left-enter",
+      "slide-left-enter-active",
+      "slide-left-enter-to",
+      "slide-left-leave",
+      "slide-left-leave-active",
+      "slide-left-leave-to",
+      "slide-right-enter",
+      "slide-right-enter-active",
+      "slide-right-enter-to",
+      "slide-right-leave",
+      "slide-right-leave-active",
+      "slide-right-leave-to",
+      "tabs"
+    ],
+    "optional": [],
+    "unstable": [
+      "is-active",
+      "is-disabled",
+      "is-fullwidth",
+      "is-height-animated",
+      "is-toggle",
+      "is-toggle-rounded"
+    ]
+  },
+  "VTabs": {
+    "always": [
+      "tabs"
+    ],
+    "optional": [],
+    "unstable": [
+      "is-active",
+      "is-disabled",
+      "is-fullwidth",
+      "is-height-animated",
+      "is-toggle",
+      "is-toggle-rounded"
+    ]
+  },
+  "VButton": {
+    "always": [
+      "button"
+    ],
+    "optional": [
+      "is-active",
+      "is-focused",
+      "is-hovered",
+      "is-inverted",
+      "is-light",
+      "is-loading",
+      "is-outlined",
+      "is-rounded",
+      "is-selected"
+    ],
+    "unstable": [
+      "is-fullwidth"
+    ]
+  },
+  "VCheckbox": {
+    "always": [
+      "check",
+      "checkbox",
+      "control-label",
+      "v-checkbox"
+    ],
+    "optional": [
+      "is-disabled"
+    ],
+    "unstable": []
+  },
+  "VContainer": {
+    "always": [
+      "container"
+    ],
+    "optional": [],
+    "unstable": []
+  },
+  "VField": {
+    "always": [
+      "field",
+      "field-body",
+      "field-label",
+      "help",
+      "label"
+    ],
+    "optional": [
+      "is-expanded",
+      "is-grouped",
+      "is-horizontal"
+    ],
+    "unstable": [
+      "has-addons",
+      "is-grouped-multiline"
+    ]
+  },
+  "VFile": {
+    "always": [
+      "file",
+      "file-cta",
+      "file-input",
+      "file-label",
+      "file-name"
+    ],
+    "optional": [
+      "is-boxed",
+      "is-fullwidth"
+    ],
+    "unstable": [
+      "has-name"
+    ]
+  },
+  "VIcon": {
+    "always": [],
+    "optional": [],
+    "unstable": []
+  },
+  "VImage": {
+    "always": [
+      "image"
+    ],
+    "optional": [
+      "is-rounded"
+    ],
+    "unstable": [
+      "container"
+    ]
+  },
+  "VInput": {
+    "always": [
+      "control",
+      "error",
+      "icon",
+      "input",
+      "is-left",
+      "is-right"
+    ],
+    "optional": [
+      "is-expanded",
+      "is-loading",
+      "is-rounded"
+    ],
+    "unstable": [
+      "has-icons-left",
+      "has-icons-right"
+    ]
+  },
+  "VMedia": {
+    "always": [
+      "media",
+      "media-content",
+      "media-left",
+      "media-right"
+    ],
+    "optional": [],
+    "unstable": []
+  },
+  "VModal": {
+    "always": [
+      "delete",
+      "modal",
+      "modal-background",
+      "modal-card",
+      "modal-card-body",
+      "modal-card-foot",
+      "modal-card-head",
+      "modal-card-title",
+      "modal-close",
+      "modal-content"
+    ],
+    "optional": [
+      "is-active"
+    ],
+    "unstable": []
+  },
+  "VProgress": {
+    "always": [
+      "progress",
+      "progress-value",
+      "progress-wrapper"
+    ],
+    "optional": [],
+    "unstable": [
+      "more-than-half"
+    ]
+  },
+  "VSelect": {
+    "always": [
+      "control",
+      "has-background-dark",
+      "has-text-light",
+      "select"
+    ],
+    "optional": [
+      "is-empty",
+      "is-expanded",
+      "is-loading",
+      "is-multiple",
+      "is-rounded"
+    ],
+    "unstable": [
+      "is-fullwidth"
+    ]
+  },
+  "VSidebar": {
+    "always": [
+      "fade-enter",
+      "fade-enter-active",
+      "fade-enter-to",
+      "fade-leave",
+      "fade-leave-active",
+      "fade-leave-to",
+      "is-width-animated",
+      "sidebar-background",
+      "sidebar-content",
+      "slide-enter",
+      "slide-enter-active",
+      "slide-enter-to",
+      "slide-leave",
+      "slide-leave-active",
+      "slide-leave-to",
+      "slide-left-enter",
+      "slide-left-enter-active",
+      "slide-left-enter-to",
+      "slide-left-leave",
+      "slide-left-leave-active",
+      "slide-left-leave-to",
+      "slide-right-enter",
+      "slide-right-enter-active",
+      "slide-right-enter-to",
+      "slide-right-leave",
+      "slide-right-leave-active",
+      "slide-right-leave-to",
+      "v-sidebar"
+    ],
+    "optional": [
+      "is-fullheight",
+      "is-fullwidth",
+      "is-right"
+    ],
+    "unstable": [
+      "is-absolute",
+      "is-fixed",
+      "is-fullwidth-mobile",
+      "is-hidden-mobile",
+      "is-mini",
+      "is-mini-expand",
+      "is-mini-expand-fixed",
+      "is-mini-mobile",
+      "is-static"
+    ]
+  },
+  "VSwitch": {
+    "always": [
+      "check",
+      "control-label",
+      "switch"
+    ],
+    "optional": [
+      "is-disabled",
+      "is-outlined",
+      "is-rounded"
+    ],
+    "unstable": []
+  },
+  "VTag": {
+    "always": [
+      "delete",
+      "is-small",
+      "tag"
+    ],
+    "optional": [
+      "is-rounded"
+    ],
+    "unstable": [
+      "has-addons",
+      "has-delete-icon",
+      "has-ellipsis",
+      "is-delete",
+      "tags"
+    ]
+  },
+  "VTextarea": {
+    "always": [
+      "control",
+      "textarea"
+    ],
+    "optional": [
+      "is-focused",
+      "is-hovered",
+      "is-loading"
+    ],
+    "unstable": [
+      "is-invisible"
+    ]
+  },
+  "VTooltip": {
+    "always": [],
+    "optional": [
+      "is-always",
+      "is-animated",
+      "is-dashed",
+      "is-multiline",
+      "is-square"
+    ],
+    "unstable": [
+      "v-tooltip"
+    ]
+  }
 }

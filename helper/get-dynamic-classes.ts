@@ -16,8 +16,6 @@ function getDynamicClasses(raw: string): { optional: string[], unstable: string[
   // list of classes that are not unusual
   const optional = classes.filter(cl => !unusualClasses.includes(cl))
 
-  // require(currentFile);
-  // console.log("PEPE", require(currentFile))
   return { optional, unstable: unusualClasses }
 }
 

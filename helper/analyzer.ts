@@ -23,7 +23,6 @@ export function getWhitelist(input: string, name: string): { always: string[], o
     '-leave-to',
   ]
 
-  let currentFile: string
 
   const isSupported = (id: string): boolean => {
     const lowerId = normalizePath(id.toLowerCase())
@@ -61,7 +60,7 @@ export function getWhitelist(input: string, name: string): { always: string[], o
         }
 
         if (name === ':class') {
-          const classes = getDynamicClasses(data, currentFile)
+          const classes = getDynamicClasses(data)
           for (const c of classes.optional) {
             if (c.startsWith('is-')) optional.add(c)
             else always.add(c)
@@ -125,7 +124,6 @@ export function getWhitelist(input: string, name: string): { always: string[], o
   while (idList.length > 0) {
     const id = idList.pop()
     if (!id) continue
-    currentFile = id
     const code = fs.readFileSync(id, 'utf8')
     traverseSource(id, code)
   }

@@ -17,8 +17,6 @@
 
 ## Documentation
 
-The documentation is in a standalone [repository](https://github.com/pathscale/vue3.dev).
-
 Browse [online documentation here](https://vue3.dev/).
 
 ## Contributing

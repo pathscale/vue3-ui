@@ -16,9 +16,9 @@ export default {
   },
   setup(props) {
     const shouldIconClass = computed(() => !props.customSize && !props.customClass)
-    const computedHeight = computed(() => props.customSize ? props.customSize : "100%")
-    const computedWidth = computed(() => props.customSize ? props.customSize : "100%")
-
+    // Only apply 100% size when bulma icon class is used
+    const computedHeight = computed(() => !shouldIconClass.value ? props.customSize : "100%")
+    const computedWidth = computed(() => !shouldIconClass.value ? props.customSize : "100%")
     return { computedHeight, computedWidth, shouldIconClass }
   },
 }

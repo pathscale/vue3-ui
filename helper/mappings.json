@@ -301,7 +301,6 @@
       "control-label",
       "data-grid",
       "delete",
-      "disabled",
       "expansion",
       "focus",
       "has-background-dark",
@@ -419,8 +418,7 @@
   },
   "VButton": {
     "always": [
-      "button",
-      "disabled"
+      "button"
     ],
     "optional": [
       "is-active",

@@ -30,8 +30,6 @@ export default {
     light: Boolean
   },
   setup(props, { attrs }) {
-    // eslint-disable-next-line no-unused-vars -- string disabled must appear somewhere in the script for the analyzer to catch it
-    const _ = 'disabled'
     const computedTag = computed(() => attrs.disabled ? 'button' : props.tag)
     return { computedTag }
   }

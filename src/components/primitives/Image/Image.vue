@@ -15,7 +15,8 @@ export default {
     },
     dataSrc: {
       type: String,
-    }
+    },
+    customClass: String
   },
   setup(props) {
     const source = ref(props.src || props.dataSrc)
@@ -42,8 +43,6 @@ export default {
       'container': centered
     }
   ]">
-    <img v-bind="$attrs" :src="source" :class="{
-      'is-rounded': rounded
-    }" />
+    <img v-bind="$attrs" :src="source" :class="[customClass,{'is-rounded': rounded }]" />
   </figure>
 </template>

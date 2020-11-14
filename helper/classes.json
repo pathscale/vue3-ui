@@ -117,5 +117,8 @@
   },
   "VTooltip": {
     "v-tooltip": ["active"]
+  },
+  "VIcon": {
+    "icon": ["shouldIconClass"]
   }
 }

@@ -17,7 +17,8 @@
 
 ## Documentation
 
-Browse [online documentation here](https://vue3.dev/).
+The full documentation for Vue3-ui can be found on [Vue3.dev](https://vue3.dev/)
+The source for the documentation and website is hosted on a separate [repo](https://github.com/pathscale/vue3.dev)
 
 ## Contributing
 

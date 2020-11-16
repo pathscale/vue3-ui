@@ -23,8 +23,6 @@ The source for the documentation and website is hosted on a separate [repo](http
 
 ## Contributing
 
-When adding dynamic variables for classes, do not forget to add them to `helper/data.ts`. Add them to `textual` if values are strings, or to `truthy` if values are boolean.
-
 When adding transition, add its name to the `transitions` inside `helper/data.ts`.
 
 ## License

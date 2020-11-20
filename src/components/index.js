@@ -36,6 +36,8 @@ export { default as VTooltip } from './primitives/Tooltip/Tooltip.vue'
 
 export { default as VIcon } from './primitives/Icon/Icon.vue'
 
+export { default as VAvatar } from './primitives/Avatar/Avatar.vue'
+
 /* Compounds */
 
 export { default as VAccordion } from './compounds/Accordion/Accordion.vue'

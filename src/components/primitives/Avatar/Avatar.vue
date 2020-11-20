@@ -5,15 +5,39 @@ import { onBeforeMount, ref } from 'vue'
 export default {
     name: 'VAvatar',
     props: {
+     alt: String ,
+     size: {
+       type: String,
+       default: "is-64x64"
+     },
+     rounded: {
+       type: Boolean,
+       default: true
+     },
+     background: {
+       type: String,
+       default: 'link'
+     },
+     text: {
+       type: String,
+       default: 'white'
+     },
      src: {
-      type: String,
+       type: String,
+       default: null
      },
      dataSrc: {
-      type: String,
+       type: String,
+       default: null
      },
+     customClass: String
     },
     setup(props){
         const source = ref(props.src || props.dataSrc)
+        const background = ref(props.background)
+        const text = ref(props.text)
+        const alt = ref(props.alt)
+
         onBeforeMount(async() => {
             const isProduction = process.env.NODE_ENV === 'production'
             if (isProduction) {
@@ -24,13 +48,22 @@ export default {
             }
         })
 
-        return { source }
+        const backgroundColor = source.value ? `has-background-${background.value}` : ''
+
+        const textColor = source.value ? `has-text-${text.value}` : ''
+
+        const caption = alt.value.split(" ")[0][0] + alt.value.split(" ")[1][0]
+
+        return { source, backgroundColor, textColor, caption }
     }
 }
 </script>
 
 <template>
-  <div class="avatar">
-    {{ source }}
-  </div>
+  <figure class="image is-flex is-justify-content-center is-align-items-center mx-1" :class="[size, backgroundColor, textColor]">
+    <img :src="source" :alt="alt" v-if="source" :class="[customClass, {'is-rounded': rounded }]" />
+    <span class="is-size-4" v-if="!source" :class="[{'is-rounded': rounded }]">
+      {{ caption }}
+    </span>
+  </figure>
 </template>

@@ -416,6 +416,26 @@
       "is-toggle-rounded"
     ]
   },
+  "VAvatar": {
+    "always": [
+      "function",
+      "image",
+      "is-64x64",
+      "is-align-items-center",
+      "is-flex",
+      "is-justify-content-center",
+      "is-size-4",
+      "link",
+      "mx-1",
+      "production",
+      "string",
+      "white"
+    ],
+    "optional": [
+      "is-rounded"
+    ],
+    "unstable": []
+  },
   "VButton": {
     "always": [
       "button"

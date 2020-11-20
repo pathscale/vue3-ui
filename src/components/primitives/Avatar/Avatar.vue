@@ -34,6 +34,8 @@ export default {
     },
     setup(props){
         const source = ref(props.src || props.dataSrc)
+        const background = ref(props.background)
+        const text = ref(props.text)
         const alt = ref(props.alt)
 
         onBeforeMount(async() => {
@@ -46,9 +48,10 @@ export default {
             }
         })
 
-        const backgroundColor = source.value ? `has-background-${props.background}` : ''
 
-        const textColor = source.value ? `has-text-${props.text}` : ''
+        const backgroundColor = source.value ? '' : `has-background-${background.value}`
+
+        const textColor = source.value ? '' : `has-text-${text.value}` 
 
         const caption = alt.value.split(" ")[0][0] + alt.value.split(" ")[1][0]
 

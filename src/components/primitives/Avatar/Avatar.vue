@@ -16,11 +16,11 @@ export default {
      },
      background: {
        type: String,
-       default: 'link'
+       default: 'has-background-link'
      },
      text: {
        type: String,
-       default: 'white'
+       default: 'has-text-white'
      },
      src: {
        type: String,
@@ -49,9 +49,9 @@ export default {
         })
 
 
-        const backgroundColor = source.value ? '' : `has-background-${background.value}`
+        const backgroundColor = source.value ? '' : background.value
 
-        const textColor = source.value ? '' : `has-text-${text.value}` 
+        const textColor = source.value ? '' : text.value
 
         const caption = alt.value.split(" ")[0][0] + alt.value.split(" ")[1][0]
 

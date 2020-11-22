@@ -48,7 +48,6 @@ export default {
             }
         })
 
-
         const backgroundColor = source.value ? '' : background.value
 
         const textColor = source.value ? '' : text.value

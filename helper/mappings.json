@@ -419,17 +419,17 @@
   "VAvatar": {
     "always": [
       "function",
+      "has-background-link",
+      "has-text-white",
       "image",
       "is-64x64",
       "is-align-items-center",
       "is-flex",
       "is-justify-content-center",
       "is-size-4",
-      "link",
       "mx-1",
       "production",
-      "string",
-      "white"
+      "string"
     ],
     "optional": [
       "is-rounded"

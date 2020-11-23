@@ -522,7 +522,8 @@
   },
   "VImage": {
     "always": [
-      "image"
+      "image",
+      "img"
     ],
     "optional": [
       "is-rounded"

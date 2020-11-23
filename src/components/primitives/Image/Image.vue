@@ -41,6 +41,6 @@ export default {
       'container': centered
     }
   ]">
-    <img v-bind="$attrs" :src="source" :data-src="dataSrc" :class="[customClass,{'is-rounded': rounded }]" />
+    <img class="img" v-bind="$attrs" :src="source" :data-src="dataSrc" :class="[customClass,{'is-rounded': rounded }]" />
   </figure>
 </template>

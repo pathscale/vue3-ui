@@ -1,6 +1,9 @@
 <script>
 /* eslint-disable no-undef -- Access to Benchie variable/function */
 import { onBeforeMount, ref } from 'vue'
+import { checkBenchieSupport } from "../../../utils/functions"
+
+const hasBenchieSupport = checkBenchieSupport()
 
 export default {
   name: 'VImage',
@@ -21,15 +24,10 @@ export default {
   setup(props) {
     const source = ref(props.src || props.dataSrc)
     onBeforeMount(async() => {
-      const isProduction = process.env.NODE_ENV === 'production'
-      if (isProduction) {
-        const hasBenchieSupport = t && typeof t === 'function' && $__CDN && typeof $__CDN === 'string'
-        if (hasBenchieSupport && props.dataSrc) {
-          source.value = await t(props.dataSrc, $__CDN)
-        }
-      }
+      if (props.dataSrc && hasBenchieSupport) {
+        source.value = await t(props.dataSrc, $__CDN)
+      }  
     })
-
     return { source }
   }
 }
@@ -43,6 +41,6 @@ export default {
       'container': centered
     }
   ]">
-    <img v-bind="$attrs" :src="source" :class="[customClass,{'is-rounded': rounded }]" />
+    <img v-bind="$attrs" :src="source" :data-src="dataSrc" :class="[customClass,{'is-rounded': rounded }]" />
   </figure>
 </template>

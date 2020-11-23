@@ -39,13 +39,9 @@ export default {
         const alt = ref(props.alt)
 
         onBeforeMount(async() => {
-            const isProduction = process.env.NODE_ENV === 'production'
-            if (isProduction) {
-                const hasBenchieSupport = t && typeof t === 'function' && $__CDN && typeof $__CDN === 'string'
-                if (hasBenchieSupport && props.dataSrc) {
-                source.value = await t(props.dataSrc, $__CDN)
-                }
-            }
+          if (props.dataSrc && hasBenchieSupport) {
+            source.value = await t(props.dataSrc, $__CDN)
+          }  
         })
 
         const backgroundColor = source.value ? '' : background.value
@@ -61,7 +57,7 @@ export default {
 
 <template>
   <figure class="image is-flex is-justify-content-center is-align-items-center mx-1" :class="[size, backgroundColor, textColor]">
-    <img :src="source" :alt="alt" v-if="source" :class="[customClass, {'is-rounded': rounded }]" />
+    <img :src="source" :data-src="dataSrc" :alt="alt" v-if="source" :class="[customClass, {'is-rounded': rounded }]" />
     <span class="is-size-4" v-if="!source" :class="[{'is-rounded': rounded }]">
       {{ caption }}
     </span>

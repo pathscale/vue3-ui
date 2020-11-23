@@ -418,7 +418,6 @@
   },
   "VAvatar": {
     "always": [
-      "function",
       "has-background-link",
       "has-text-white",
       "image",
@@ -427,9 +426,7 @@
       "is-flex",
       "is-justify-content-center",
       "is-size-4",
-      "mx-1",
-      "production",
-      "string"
+      "mx-1"
     ],
     "optional": [
       "is-rounded"
@@ -525,10 +522,7 @@
   },
   "VImage": {
     "always": [
-      "function",
-      "image",
-      "production",
-      "string"
+      "image"
     ],
     "optional": [
       "is-rounded"

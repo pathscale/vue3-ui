@@ -38,6 +38,10 @@ This repo only contains the package source code. For develop and component testi
 
 When adding transition, add its name to the `transitions` inside `helper/data.ts`.
 
+When a class is dynamically used (depending on function result, property, computed...), add it to `helper/classes.json`.
+
+[mappings.json](https://github.com/pathscale/vue3-ui/blob/master/helper/mappings.json) and [classes.json](https://github.com/pathscale/vue3-ui/blob/master/helper/classes.json) (automatically generated) files will be used by [vue3-ui-css-purge](https://github.com/pathscale/rollup-plugin-vue3-ui-css-purge) to remove unused css. 
+
 ## License
 
 The MIT License (MIT). Please see [License File](https://github.com/pathscale/vue3-ui/blob/master/LICENSE-MIT.txt) for more information.

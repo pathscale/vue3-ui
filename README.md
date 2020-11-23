@@ -23,6 +23,19 @@ The source for the documentation and website is hosted on a separate [repo](http
 
 ## Contributing
 
+This repo only contains the package source code. For develop and component testing:
+
+1) Clone the Vue3.dev [repo](https://github.com/pathscale/vue3.dev) in the same vue3-ui root level.
+
+```
+.
+├── vue3.dev
+└── vue3-ui
+
+```
+2) Use the ```npm run fetch-bundle``` to move your changes and update the @pathscale/vue3-ui bundle locally.
+3) Use the Playground [page](http://localhost:5000/documentation/playground) or any other showcase.
+
 When adding transition, add its name to the `transitions` inside `helper/data.ts`.
 
 ## License

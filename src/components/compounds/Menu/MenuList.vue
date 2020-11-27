@@ -12,7 +12,7 @@ export default {
   <p v-if="label" class="menu-label">
     {{ label }}
   </p>
-  <ul class="menu-list" :role="ariaRole">
+  <ul class="ul menu-list" :role="ariaRole">
     <slot />
   </ul>
 </template>

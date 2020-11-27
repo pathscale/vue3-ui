@@ -28,14 +28,16 @@
   },
   "VBreadcrumb": {
     "always": [
-      "breadcrumb"
+      "breadcrumb",
+      "ul"
     ],
     "optional": [],
     "unstable": []
   },
   "VBreadcrumbItem": {
     "always": [
-      "a"
+      "a",
+      "li"
     ],
     "optional": [
       "is-active"
@@ -214,7 +216,9 @@
   "VMenuItem": {
     "always": [
       "a",
-      "pr-2"
+      "li",
+      "pr-2",
+      "ul"
     ],
     "optional": [
       "is-disabled"
@@ -227,7 +231,8 @@
   "VMenuList": {
     "always": [
       "menu-label",
-      "menu-list"
+      "menu-list",
+      "ul"
     ],
     "optional": [],
     "unstable": []
@@ -368,6 +373,7 @@
       "fade-leave-active",
       "fade-leave-to",
       "is-toggle-rounded",
+      "li",
       "slide-enter",
       "slide-enter-active",
       "slide-enter-to",
@@ -388,7 +394,8 @@
       "slide-right-leave",
       "slide-right-leave-active",
       "slide-right-leave-to",
-      "tabs"
+      "tabs",
+      "ul"
     ],
     "optional": [],
     "unstable": [
@@ -404,7 +411,9 @@
     "always": [
       "change",
       "is-toggle-rounded",
-      "tabs"
+      "li",
+      "tabs",
+      "ul"
     ],
     "optional": [],
     "unstable": [

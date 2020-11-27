@@ -46,7 +46,7 @@ export default {
 </script>
 
 <template>
-  <li :role="ariaRole" ref="content">
+  <li class="li" :role="ariaRole" ref="content">
     <component
       :is="tag"
       v-bind="$attrs"
@@ -67,7 +67,7 @@ export default {
     </component>
     <template v-if="$slots.default">
       <!-- <transition name="slide"> -->
-      <ul v-show="newExpanded">
+      <ul class="ul" v-show="newExpanded">
         <slot />
       </ul>
       <!-- </transition> -->

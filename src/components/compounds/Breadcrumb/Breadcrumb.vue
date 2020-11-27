@@ -11,7 +11,7 @@ export default {
 
 <template>
   <nav class="breadcrumb" :class="[alignment, separator, size]" aria-label="breadcrumbs">
-    <ul>
+    <ul class="ul">
       <slot />
     </ul>
   </nav>

@@ -99,13 +99,13 @@ export default {
         'is-toggle-rounded is-toggle': rounded
       }
     ]">
-      <ul>
+      <ul class="ul">
         <template v-for="t in tabs.tabs" :key="t">
-          <li
-            :class="{
-              'is-active': isTabActive(t)
-            }"
-            @click="setActiveTab(t)">
+          <li class="li"
+              :class="{
+                'is-active': isTabActive(t)
+              }"
+              @click="setActiveTab(t)">
             <a :class="{
               'is-disabled': t.disabled
             }">

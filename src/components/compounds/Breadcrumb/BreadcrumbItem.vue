@@ -13,7 +13,7 @@ export default {
 </script>
 
 <template>
-  <li :class="{
+  <li class="li" :class="{
     'is-active': active
   }">
     <component

@@ -31,11 +31,12 @@ export default {
     })
 
     const onClick = () => {
+
       // TODO Disable previous active item
       if (props.disabled) return
 
       newExpanded.value = !newExpanded.value
-      emit('update:expanded', newActive.value)
+      emit('update:expanded', newExpanded.value)
       emit('update:active', newActive.value )
       // newActive.value = true
     }

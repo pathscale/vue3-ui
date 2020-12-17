@@ -1,5 +1,5 @@
 <script>
-import { computed, ref, watchEffect } from 'vue'
+import { computed, onUpdated, ref } from 'vue'
 import { addToStore, useStore } from './Tabs.vue'
 
 export default {
@@ -27,7 +27,7 @@ export default {
       return tabs.value.activeTab < id ? 'slide-right' : 'slide-left'
     })
 
-    watchEffect(() => {
+    onUpdated(() => {
       if (tabs.value.vanimated && content.value) {
         tabs.value.activeHeight = content.value.offsetHeight
       }

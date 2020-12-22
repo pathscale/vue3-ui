@@ -1,4 +1,4 @@
-/src
 /public
 /dist
-/helper
+/helper/mappings.json
+*.vue

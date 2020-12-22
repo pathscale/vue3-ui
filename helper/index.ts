@@ -25,12 +25,12 @@ async function main(): Promise<void> {
       for (const spec of node.specifiers) {
         if (spec.type !== 'ExportSpecifier') continue
         if (spec.local.name !== 'default') continue
-        namesMap[path.parse(value).name] = spec.exported.name
+        if ('name' in spec.exported) namesMap[path.parse(value).name] = spec.exported.name
       }
     },
   })
 
-  const mappings: Record<string, { always?: string[], optional?: string[] }> = {}
+  const mappings: Record<string, { always?: string[]; optional?: string[] }> = {}
   const pattern = normalizePath(srcDir, '**', '*.vue')
   const files = ((await fg(pattern)) as string[]).sort()
 

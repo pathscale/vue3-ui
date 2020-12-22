@@ -70,11 +70,11 @@
   },
   "VTabs": {
     "is-fullwidth": ["expanded"],
-     "is-toggle-rounded": ["rounded"],
-     "is-toggle": ["rounded"],
-     "is-active": [],
-     "is-disabled": [],
-     "is-height-animated": ["vanimated"]
+    "is-toggle-rounded": ["rounded"],
+    "is-toggle": ["rounded"],
+    "is-active": [],
+    "is-disabled": [],
+    "is-height-animated": ["vanimated"]
   },
   "VTab": {
     "is-fullwidth": [],

@@ -4,11 +4,11 @@ const globalSettingsSymbol = Symbol('global-settings')
 
 const createSettings = () => {
   const button = reactive({
-    rounded: false
+    rounded: false,
   })
 
   return {
-    button
+    button,
   }
 }
 
@@ -19,7 +19,7 @@ export const createGlobalSettings = () => {
     ...settings,
     install(app) {
       app.provide(globalSettingsSymbol, settings)
-    }
+    },
   }
 }
 

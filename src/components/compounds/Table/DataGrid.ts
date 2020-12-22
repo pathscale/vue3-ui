@@ -1,31 +1,31 @@
 type Column = {
-  id?: number;
-  name: string;
-  caption: string;
-  dataType: string;
-  style: string;
-  show: boolean;
-  ascendant: boolean;
-  sticky: boolean;
-  selected?: boolean;
+  id?: number
+  name: string
+  caption: string
+  dataType: string
+  style: string
+  show: boolean
+  ascendant: boolean
+  sticky: boolean
+  selected?: boolean
 }
 
 type Row = {
-  id: number;
-  selected?: boolean;
+  id: number
+  selected?: boolean
 }
 
 class DataGrid {
-  columns: Column[];
-  rows: Row[];
-  originalRows: Row[];
-  checkedRows: {id: number}[];
-  rowsPerPage: number;
-  currentPage: number;
-  draggingRow: {id: number};
-  draggingRowIdx: number;
-  draggingColumn: {id?: number};
-  draggingColumnIdx: number;
+  columns: Column[]
+  rows: Row[]
+  originalRows: Row[]
+  checkedRows: { id: number }[]
+  rowsPerPage: number
+  currentPage: number
+  draggingRow: { id: number }
+  draggingRowIdx: number
+  draggingColumn: { id?: number }
+  draggingColumnIdx: number
 
   constructor() {
     this.columns = []
@@ -48,7 +48,7 @@ class DataGrid {
       style,
       show: true,
       ascendant: true,
-      sticky
+      sticky,
     })
   }
 
@@ -74,8 +74,12 @@ class DataGrid {
 
   sortByColumn(column: string, ascendant: boolean): void {
     this.rows.sort((a, b) => {
-      if (a[column] < b[column]) { return ascendant ? -1 : 1 }
-      if (a[column] > b[column]) { return ascendant ? 1 : -1 }
+      if (a[column] < b[column]) {
+        return ascendant ? -1 : 1
+      }
+      if (a[column] > b[column]) {
+        return ascendant ? 1 : -1
+      }
       return 0
     })
   }
@@ -85,7 +89,7 @@ class DataGrid {
   }
 
   searchColumn(colName: string, query: string): void {
-    this.rows = this.originalRows.filter((row) => {
+    this.rows = this.originalRows.filter(row => {
       return row[colName].toString().toLowerCase().includes(query.toLowerCase())
     })
   }
@@ -97,11 +101,16 @@ class DataGrid {
   }
 
   switchPage(): void {
-    this.rows = this.originalRows.slice(this.currentPage * this.rowsPerPage, this.currentPage * this.rowsPerPage + this.rowsPerPage)
+    this.rows = this.originalRows.slice(
+      this.currentPage * this.rowsPerPage,
+      this.currentPage * this.rowsPerPage + this.rowsPerPage,
+    )
   }
 
   toggleColumn({ name }: { name: string }): void {
-    this.columns = this.columns.map(column => column.name === name ? ({ ...column, show: !column.show }) : column)
+    this.columns = this.columns.map(column =>
+      column.name === name ? { ...column, show: !column.show } : column,
+    )
   }
 
   // returns visible columns
@@ -179,11 +188,11 @@ class DataGrid {
     }, {})
   }
 
-  groups(column: string): Set<number|boolean> {
+  groups(column: string): Set<number | boolean> {
     return this.rows.reduce((set, row) => {
       set.add(row[column])
       return set
-    }, new Set() as Set<number|boolean>)
+    }, new Set() as Set<number | boolean>)
   }
 
   filterRows(column: string, value: string | number): Row[] {

@@ -28,7 +28,7 @@ const CheckRadioMixin = {
       type: String,
       default: null,
     },
-  }
+  },
 }
 
 export default CheckRadioMixin

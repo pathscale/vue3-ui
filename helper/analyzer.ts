@@ -11,7 +11,10 @@ import { parseSFC, isVueSFC } from './analyzer-utils'
 import { transitions } from './data'
 import { parserOpts } from './config'
 
-export function getWhitelist(input: string, name: string): { always: string[], optional: string[], unstable: string[] } {
+export function getWhitelist(
+  input: string,
+  name: string,
+): { always: string[]; optional: string[]; unstable: string[] } {
   const extensions = ['.ts', '.tsx', '.mjs', '.js', '.jsx', '.vue', '.json']
 
   const animationSuffixes = [
@@ -22,7 +25,6 @@ export function getWhitelist(input: string, name: string): { always: string[], o
     '-leave-active',
     '-leave-to',
   ]
-
 
   const isSupported = (id: string): boolean => {
     const lowerId = normalizePath(id.toLowerCase())
@@ -55,7 +57,7 @@ export function getWhitelist(input: string, name: string): { always: string[], o
 
       onattribute(name, data): void {
         if (name === 'class') {
-          for (const c of data.split(' '))always.add(c)
+          for (const c of data.split(' ')) always.add(c)
           return
         }
 
@@ -137,20 +139,26 @@ export function getWhitelist(input: string, name: string): { always: string[], o
 
   const clean = (list: string[]): string[] =>
     // Delete some garbage
-    list.filter(_v => {
-      const v = _v.trim()
-      const garbage = ['vue', 'slot']
-      if (!v) return false
-      if (/[A-Z]/.test(v)) return false
-      if (/[./:\\]/.test(v)) return false
-      if (garbage.includes(v)) return false
-      return true
-    })
+    list
+      .filter(_v => {
+        const v = _v.trim()
+        const garbage = ['vue', 'slot']
+        if (!v) return false
+        if (/[A-Z]/.test(v)) return false
+        if (/[./:\\]/.test(v)) return false
+        if (garbage.includes(v)) return false
+        return true
+      })
       .sort()
 
   // make sure the unstable variables have their dependencies documented
-  const documentedClasses: Record<string, string[]> = JSON.parse(fs.readFileSync('helper/classes.json', 'utf-8'))[name] ?? {}
+  const documentedClasses: Record<string, string[]> =
+    JSON.parse(fs.readFileSync('helper/classes.json', 'utf-8'))[name] ?? {}
   unstable.forEach((cl: string) => assert(cl in documentedClasses, `${cl} not documented`))
 
-  return { always: clean([...always]), optional: clean([...optional]), unstable: clean([...unstable]) }
+  return {
+    always: clean([...always]),
+    optional: clean([...optional]),
+    unstable: clean([...unstable]),
+  }
 }

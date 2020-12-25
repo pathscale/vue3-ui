@@ -6,6 +6,7 @@ const TabsSymbol = Symbol('Tabs')
 export function provideStore(store) {
   const storeRef = ref(store)
   provide(TabsSymbol, storeRef)
+  return storeRef
 }
 
 export function useStore() {
@@ -38,14 +39,13 @@ export default {
   },
   emits: ['update:modelValue', 'change'],
   setup(props, { emit }) {
-    provideStore({
+    const tabs = provideStore({
       activeTab: 0,
       activeHeight: null,
       tabs: [],
       animated: props.animated,
       vanimated: props.vanimated
     })
-    const tabs = useStore()
 
     const setActiveTabID = id => {
       tabs.value.activeTab = id

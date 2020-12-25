@@ -106,11 +106,11 @@
     "ts-node": "^9.1.1",
     "tslib": "^2.0.3",
     "typescript": "^4.1.3",
-    "vue": "^3.0.2",
+    "vue": "^3.0.4",
     "vue-eslint-parser": "^7.3.0"
   },
   "peerDependencies": {
-    "vue": "^3.0.2"
+    "vue": "^3.0.4"
   },
   "engines": {
     "node": ">=10.0.0"

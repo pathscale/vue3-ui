@@ -1,5 +1,5 @@
 <script>
-import { computed, onUpdated, ref } from 'vue'
+import { computed, onMounted, onUpdated, ref } from 'vue'
 import { addToStore, useStore } from './Tabs.vue'
 
 export default {
@@ -27,11 +27,14 @@ export default {
       return tabs.value.activeTab < id ? 'slide-right' : 'slide-left'
     })
 
-    onUpdated(() => {
+    const updateActiveHeight = () => {
       if (tabs.value.vanimated && content.value) {
-        tabs.value.activeHeight = content.value.offsetHeight
+        tabs.value.activeHeight = content.value.offsetHeight;
       }
-    })
+    }
+
+    onMounted(updateActiveHeight);
+    onUpdated(updateActiveHeight);
 
     addToStore({ ...props, id })
 

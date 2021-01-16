@@ -9,14 +9,21 @@ export default {
     size: String,
     rounded: Boolean,
     loading: Boolean,
-    expanded: Boolean
+    expanded: Boolean,
+    modelValue: String | Number
   },
   emits: ['update:modelValue'],
-  setup(props, { emit, attrs, slots }) {
+  setup(props, { emit, slots }) {
     const hasLeftIcon = computed(() => Boolean(slots.leftIcon));
     const hasRightIcon = computed(() => Boolean(slots.rightIcon));
-    const value = ref(attrs.modelValue)
+    const value = ref(props.modelValue)
+
+    watchEffect(() => {
+      value.value = props.modelValue
+    })
+
     watchEffect(() => emit('update:modelValue', value.value))
+
     return { value, hasLeftIcon, hasRightIcon }
   },
 }

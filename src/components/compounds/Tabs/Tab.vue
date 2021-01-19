@@ -22,7 +22,7 @@ export default {
   setup(props, { emit }) {
     const content = ref(null)
     const tabs = useStore()
-    const id = JSON.parse(JSON.stringify(tabs.value.tabs)).length // TODO Figure how get this value properly
+    const id = JSON.parse(JSON.stringify(tabs.value.tabs)).length
     const transitionName = computed(() => {
       return tabs.value.activeTab < id ? 'slide-right' : 'slide-left'
     })

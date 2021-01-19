@@ -11,7 +11,6 @@ export default {
     fixedTop: Boolean,
     fixedBottom: Boolean,
     wrapperClass: String,
-    // closeOnClick: { type: Boolean, default: true }, // TODO
     mobileBurger: {
       type: Boolean,
       default: true

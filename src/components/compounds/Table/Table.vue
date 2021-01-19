@@ -275,7 +275,7 @@ export default {
       </tbody>
     </table>
 
-    <!-- todo: move the styles to their own scope -->
+    <!-- TODO: move the styles to their own scope -->
     <div
       class="pagination-container"
       v-if="pagination">

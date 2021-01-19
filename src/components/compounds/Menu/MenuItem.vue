@@ -31,7 +31,6 @@ export default {
     })
 
     const onClick = () => {
-
       // TODO Disable previous active item
       if (props.disabled) return
 

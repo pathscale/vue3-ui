@@ -4,7 +4,10 @@ import { reactive, computed, watchEffect } from 'vue'
 export default {
   name: 'VSidebar',
   props: {
-    open: Boolean, // TODO Add support to .sync
+    open: {
+      type: Boolean,
+      required: true,
+    },
     type: [String, Object],
     overlay: Boolean,
     position: {
@@ -17,9 +20,7 @@ export default {
     mobile: String,
     reduce: Boolean,
     expandOnHover: Boolean,
-    expandOnHoverFixed: Boolean, // TODO
-    // canCancel: Boolean, // TODO
-    // onCancel: { type: Function }, 
+    expandOnHoverFixed: Boolean,
     width: {
       type: [Number, String],
       default: 260,
@@ -29,7 +30,7 @@ export default {
       default: 80,
     },
   },
-  emits: ['close'],
+  emits: ['close', 'update:open'],
   setup(props, { emit }) {
     const state = reactive({
       transitionName: null,
@@ -45,15 +46,6 @@ export default {
       return `width: ${props.reduce ? props.miniWidth : props.width}px`
     })
 
-    /* TODO 
-    const cancelOptions = computed(() => {
-      return typeof props.canCancel === 'boolean'
-        ? props.canCancel
-          ? ['escape', 'outside']
-          : []
-        : props.canCancel
-    })
-    */
     const isStatic = computed(() => {
       return props.position === 'static'
     })
@@ -67,15 +59,20 @@ export default {
     const overlayAndOpen = computed(() => {
       return props.overlay && props.open
     })
+
     watchEffect(() => {
       const open = props.right ? !props.open : props.open
       state.transitionName = open ? 'slide-right' : 'slide-left'
     })
 
+    const onClose = () => {
+      emit('update:open', false)
+      emit('close')
+    }
+
     return {
       state,
       rootStyles,
-      emit,
       overlayAndOpen,
       isMiniExpandFixed,
       isMiniMobile,
@@ -84,6 +81,7 @@ export default {
       isStatic,
       isFixed,
       isAbsolute,
+      onClose
     }
   },
 }
@@ -91,11 +89,10 @@ export default {
 
 <template>
   <div class="v-sidebar">
-    <div class="sidebar-background" v-if="overlayAndOpen" @click="emit('close')" />
+    <div class="sidebar-background" v-if="overlayAndOpen" @click="onClose" />
     <transition :name="state.transitionName">
       <div
         v-if="open"
-        ref="sidebarContent"
         class="sidebar-content is-width-animated"
         :class="[
           type,

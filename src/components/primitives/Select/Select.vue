@@ -29,6 +29,9 @@ export default {
     watchEffect(() => {
       emit('update:modelValue', value.value)
     })
+    watchEffect(() => {
+      value.value = props.modelValue
+    })
     return { value, valueIsNullish, empty }
   },
 }

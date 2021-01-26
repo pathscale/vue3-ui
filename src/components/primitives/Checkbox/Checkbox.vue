@@ -19,21 +19,20 @@ export default {
   },
   emits: ['update:modelValue'],
   setup(props, { emit }) {
-    // references
     const label = ref(null)
     const input = ref(null)
-
-    // state
     const value = ref(props.modelValue)
 
-    // MacOS FireFox and Safari do not focus when clicked
     const focus = () => {
       input.value.focus()
     }
 
-    // watch for changes in value
     watchEffect(() => {
       emit('update:modelValue', value.value)
+    })
+
+    watchEffect(() => {
+      value.value = props.modelValue
     })
 
     return { label, input, value, focus }

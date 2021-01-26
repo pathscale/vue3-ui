@@ -1,5 +1,5 @@
 <script>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watchEffect } from 'vue'
 
 export default {
   name: 'VModal',
@@ -16,6 +16,10 @@ export default {
 
     onMounted(() => {
       emit('update:modelValue', active)
+    })
+
+    watchEffect(() => {
+      active.value = props.modelValue
     })
 
     const close = () => {

@@ -23,6 +23,9 @@ export default {
     const valueLength = computed(() => value.value.length)
     const showCounter = computed(() => props.maxlength && props.hasCounter)
     watchEffect(() => emit('update:modelValue', value.value))
+    watchEffect(() => {
+      value.value = props.modelValue
+    })
     return { value, isFocused, onBlur, onFocus, valueLength, showCounter }
   },
 }

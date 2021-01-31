@@ -40,7 +40,7 @@ export default {
     sticky: Boolean,
   },
 
-  setup(props, { emit }) {
+  setup(props, { slots }) {
     // datagrid instance reference
     const data = ref(props.data)
     const rowsPerPage = ref(props.rowsPerPage)
@@ -101,7 +101,8 @@ export default {
     }
 
     const handleNextPage = () => {
-      if (currentPage.value + 1 < Math.ceil(data.value.originalRows.length / rowsPerPage.value)) currentPage.value += 1
+      if (currentPage.value + 1 < Math.ceil(data.value.originalRows.length / rowsPerPage.value))
+        currentPage.value += 1
     }
 
     const handleSort = column => {
@@ -114,21 +115,21 @@ export default {
       return {
         ...column.style,
         'has-text-primary': column.selected,
-        'sticky-row': props.sticky
+        'sticky-row': props.sticky,
       }
     }
 
     const selectedClasses = row => {
       return {
         'has-background-primary': row.selected,
-        'has-text-white': row.selected
+        'has-text-white': row.selected,
       }
     }
 
     const cellClasses = column => {
       return {
         ...column.style,
-        'sticky-column': column.sticky
+        'sticky-column': column.sticky,
       }
     }
 
@@ -145,34 +146,38 @@ export default {
       handleSort,
       columnClasses,
       selectedClasses,
-      cellClasses
+      cellClasses,
+      slots,
     }
   },
 }
 </script>
 
 <template>
-  <div class="data-grid" :class="{'table-container': sticky, 'sticky-table': sticky }">
-    <div class="tableHeader">
+  <div class="table-container" :class="{ 'sticky-table': sticky }">
+    <div class="tableHeader" v-if="slots.header">
       <slot name="header">
         <v-button
           @click="data.resetFilters()"
           v-if="hasResetBtn"
           type="is-light has-text-black"
-          class="mt-2 ml-2">
+          class="my-2">
           &#x21bb;
         </v-button>
       </slot>
     </div>
-    <table class="table" :class="[
-      {
-        'is-bordered': isBordered,
-        'is-striped': isStriped,
-        'is-narrow': isNarrow,
-        'is-hoverable': isHoverable,
-        'is-fullwidth': isFullwidth,
-      },
-    ]" style="position: relative;">
+    <table
+      class="table"
+      :class="[
+        {
+          'is-bordered': isBordered,
+          'is-striped': isStriped,
+          'is-narrow': isNarrow,
+          'is-hoverable': isHoverable,
+          'is-fullwidth': isFullwidth,
+        },
+      ]"
+      style="position: relative">
       <thead>
         <tr>
           <td v-if="checkable" />
@@ -247,11 +252,12 @@ export default {
         <template v-if="groupBy">
           <template v-for="(group, idx) in data.groups(groupBy)" :key="idx">
             <tr>
-              <td :colspan="countColumns">
+              <td :colspan="countColumns" class="is-aligned-center">
                 <a @click="toggleExpandedGroup(group)" class="mr-4">{{
                   expandedGroups.has(group) ? '&darr;' : '&rarr;'
                 }}</a>
-                {{ groupBy }}: <v-tag type="is-primary" class="mx-4">
+                {{ groupBy }}:
+                <v-tag type="is-primary" class="mx-4">
                   {{ group }}
                 </v-tag>
               </td>
@@ -276,9 +282,7 @@ export default {
     </table>
 
     <!-- TODO: move the styles to their own scope -->
-    <div
-      class="pagination-container"
-      v-if="pagination">
+    <div class="pagination-container" v-if="pagination">
       <v-select v-model="rowsPerPage" color="is-dark" class="has-text-dark">
         >
         <option v-for="value in rowsPerPageOptions" :key="value" :value="value">
@@ -290,7 +294,7 @@ export default {
       <a class="pagination-next" @click="handleNextPage">Next page</a>
     </div>
 
-    <div class="tableFooter">
+    <div class="tableFooter" v-if="slots.footer">
       <slot name="footer" />
     </div>
   </div>

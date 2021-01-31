@@ -133,6 +133,10 @@ export default {
       }
     }
 
+    const hasHeader = computed(() => {
+      return slots.header || props.hasResetBtn
+    })
+
     return {
       props,
       search,
@@ -148,6 +152,7 @@ export default {
       selectedClasses,
       cellClasses,
       slots,
+      hasHeader,
     }
   },
 }
@@ -155,7 +160,7 @@ export default {
 
 <template>
   <div class="table-container" :class="{ 'sticky-table': sticky }">
-    <div class="tableHeader" v-if="slots.header">
+    <div class="tableHeader" v-if="hasHeader">
       <slot name="header">
         <v-button
           @click="data.resetFilters()"

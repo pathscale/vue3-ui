@@ -10,7 +10,7 @@ export default {
     rounded: Boolean,
     loading: Boolean,
     expanded: Boolean,
-    modelValue: String | Number
+    modelValue: [String, Number] 
   },
   emits: ['update:modelValue'],
   setup(props, { emit, slots }) {

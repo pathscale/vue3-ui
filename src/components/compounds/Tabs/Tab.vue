@@ -1,5 +1,5 @@
 <script>
-import { computed, onMounted, onUpdated, ref } from 'vue'
+import { computed, onMounted, onUpdated, ref, watchEffect } from 'vue'
 import { addToStore, useStore } from './Tabs.vue'
 
 export default {
@@ -37,6 +37,11 @@ export default {
     onUpdated(updateActiveHeight);
 
     addToStore({ ...props, id })
+
+    watchEffect(() => {
+      const index = tabs.value.tabs.findIndex(tab => tab.id === id)
+      tabs.value.tabs.splice(index, 1, { id, ...props })
+    })
 
     const isActiveTab = computed(() => tabs.value.activeTab === id)
 

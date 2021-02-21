@@ -38,6 +38,8 @@ export { default as VIcon } from './primitives/Icon/Icon.vue'
 
 export { default as VAvatar } from './primitives/Avatar/Avatar.vue'
 
+export { default as VTimeline } from './primitives/Timeline/Timeline.vue'
+
 /* Compounds */
 
 export { default as VAccordion } from './compounds/Accordion/Accordion.vue'

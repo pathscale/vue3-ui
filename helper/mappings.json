@@ -723,6 +723,20 @@
       "is-invisible"
     ]
   },
+  "VTimeline": {
+    "always": [
+      "px-5",
+      "py-3",
+      "timeline"
+    ],
+    "optional": [],
+    "unstable": [
+      "has-text-danger",
+      "has-text-grey",
+      "has-text-success",
+      "is-active"
+    ]
+  },
   "VTooltip": {
     "always": [
       "is-medium",

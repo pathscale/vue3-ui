@@ -120,5 +120,11 @@
   },
   "VIcon": {
     "icon": ["shouldIconClass"]
+  },
+  "VTimeline": {
+    "has-text-success": ["stages"],
+    "is-active": ["stages"],
+    "has-text-grey": ["stages"],
+    "has-text-danger": ["stages"]
   }
 }

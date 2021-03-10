@@ -4,10 +4,11 @@ import VTag from '../../primitives/Tag/Tag.vue'
 import VButton from '../../primitives/Button/Button.vue'
 import VCheckbox from '../../primitives/Checkbox/Checkbox.vue'
 import VSelect from '../../primitives/Select/Select.vue'
+import VInput from '../../primitives/Input/Input.vue'
 
 export default {
   name: 'VTable',
-  components: { VButton, VCheckbox, VSelect, VTag },
+  components: { VButton, VCheckbox, VSelect, VTag, VInput },
   props: {
     data: {
       type: Object,
@@ -207,15 +208,14 @@ export default {
       <tbody>
         <tr v-if="searchable">
           <td v-if="checkable" />
+          <td v-if="expandable" />
           <td v-for="column in data.getColumns()" :key="column.name" :class="column.style">
-            <input
+            <v-input
               name="search"
               type="text"
               v-model="search[column.name]"
               @input="data.searchColumn(column.name, search[column.name])"
-              color="is-dark"
-              placeholder="Search"
-              class="input has-text-black is-small is-black" />
+              placeholder="Search" />
           </td>
         </tr>
         <template v-if="!groupBy">

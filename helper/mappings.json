@@ -753,5 +753,16 @@
     "unstable": [
       "v-tooltip"
     ]
+  },
+  "VSlider": {
+    "always": [
+      "slider",
+      "is-fullwidth"
+    ],
+    "optional": [
+      "is-circle",
+      "has-output-tooltip"
+    ],
+    "unstable": []
   }
 }

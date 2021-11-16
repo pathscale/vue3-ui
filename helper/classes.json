@@ -68,6 +68,10 @@
     "has-delete-icon": ["closeIcon"],
     "is-delete": ["closeIcon"]
   },
+  "VSlider": {
+    "is-circle": ["rounded"],
+    "has-output-tooltip": ["tooltip"]
+  },
   "VTabs": {
     "is-fullwidth": ["expanded"],
     "is-toggle-rounded": ["rounded"],

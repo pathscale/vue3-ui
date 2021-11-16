@@ -40,6 +40,8 @@ export { default as VAvatar } from './primitives/Avatar/Avatar.vue'
 
 export { default as VTimeline } from './primitives/Timeline/Timeline.vue'
 
+export { default as VSlider } from './primitives/Slider/Slider.vue'
+
 /* Compounds */
 
 export { default as VAccordion } from './compounds/Accordion/Accordion.vue'

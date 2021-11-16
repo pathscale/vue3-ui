@@ -95,8 +95,8 @@
     "container": ["centered"]
   },
   "VInput": {
-    "has-icons-left": ["leftIcon"],
-    "has-icons-right": ["rightIcon"]
+    "has-icons-left": ["hasLeftIcon"],
+    "has-icons-right": ["hasRightIcon"]
   },
   "VProgress": {
     "more-than-half": []

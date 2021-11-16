@@ -546,17 +546,16 @@
       "icon",
       "input",
       "is-left",
-      "is-right"
+      "is-right",
+      "has-icons-left",
+      "has-icons-right"
     ],
     "optional": [
       "is-expanded",
       "is-loading",
       "is-rounded"
     ],
-    "unstable": [
-      "has-icons-left",
-      "has-icons-right"
-    ]
+    "unstable": []
   },
   "VMedia": {
     "always": [

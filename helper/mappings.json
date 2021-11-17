@@ -764,5 +764,24 @@
       "has-output-tooltip"
     ],
     "unstable": []
+  },
+  "VUpload": {
+    "always": [
+      "file",
+      "is-fullwidth",
+      "file-label",
+      "file-input",
+      "file-cta",
+      "file-icon",
+      "file-name"
+    ],
+    "optional": [
+      "is-centered",
+      "is-right",
+      "is-fullwidth",
+      "is-boxed"
+
+    ],
+    "unstable": ["has-name"]
   }
 }

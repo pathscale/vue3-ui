@@ -130,5 +130,8 @@
     "is-active": ["stages"],
     "has-text-grey": ["stages"],
     "has-text-danger": ["stages"]
+  },
+  "VUpload": {
+    "is-fullwidth": ["expanded"]
   }
 }

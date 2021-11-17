@@ -133,5 +133,6 @@
   },
   "VUpload": {
     "is-fullwidth": ["expanded"]
-  }
+  },
+  "VPagination": {}
 }

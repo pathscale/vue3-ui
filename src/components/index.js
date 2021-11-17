@@ -96,4 +96,8 @@ export { default as VTable } from './compounds/Table/Table.vue'
 
 export { default as DataGrid } from './compounds/Table/DataGrid.ts'
 
+export { default as VPagination } from './compounds/Pagination/Pagination.vue'
+
+export { default as VPaginationItem } from './compounds/Pagination/PaginationItem.vue'
+
 export * from './global-settings'

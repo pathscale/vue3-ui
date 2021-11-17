@@ -768,7 +768,6 @@
   "VUpload": {
     "always": [
       "file",
-      "is-fullwidth",
       "file-label",
       "file-input",
       "file-cta",
@@ -781,6 +780,22 @@
       "is-fullwidth",
       "is-boxed"
 
+    ],
+    "unstable": ["has-name"]
+  },
+  "VPagination": {
+    "always": [
+      "pagination",
+      "pagination-previous",
+      "pagination-next",
+      "pagination-list",
+      "pagination-ellipsis",
+      "pagination-link",
+      "is-current"
+    ],
+    "optional": [
+      "is-simple",
+      "is-rounded"
     ],
     "unstable": ["has-name"]
   }

@@ -14,7 +14,7 @@ export default {
     size: String,
     centered: Boolean,
     right: Boolean,
-    fullWidth: Boolean,
+    expanded: Boolean,
     boxed: Boolean,
   },
   emits: ['update:modelValue'],
@@ -67,7 +67,7 @@ export default {
         'is-centered': centered,
         'has-name': hasName,
         'is-right': right,
-        'is-fullwidth': fullWidth,
+        'is-fullwidth': expanded,
         'is-boxed': boxed,
       },
     ]">

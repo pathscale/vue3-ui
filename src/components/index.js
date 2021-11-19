@@ -100,4 +100,6 @@ export { default as VPagination } from './compounds/Pagination/Pagination.vue'
 
 export { default as VPaginationItem } from './compounds/Pagination/PaginationItem.vue'
 
+export { default as Toaster, ToasterPositions, createToaster } from './compounds/Toast/Toaster.js'
+
 export * from './global-settings'

@@ -9,8 +9,10 @@
       @mouseover="toggleTimer(true)"
       @mouseleave="toggleTimer(false)"
       @click="click"
-      role="alert"
-      v-html="message" />
+      role="alert">
+      <button v-if="dismissible" class="delete" />
+      <div v-html="message" />
+    </div>
   </transition>
 </template>
 
@@ -41,15 +43,16 @@ export default {
       },
     },
     maxToasts: {
-      type: [Number, Boolean],
+      type: [Number, Boolean, String],
       default: false,
     },
     duration: {
-      type: [Number, Boolean],
+      type: [Number, Boolean, String],
       default: 4000,
     },
     dismissible: {
       type: Boolean,
+      default: true,
     },
     queue: {
       type: Boolean,
@@ -59,9 +62,13 @@ export default {
     },
     onClose: {
       type: Function,
+      // eslint-disable-next-line no-empty-function -- ignore
+      default() {},
     },
     onClick: {
       type: Function,
+      // eslint-disable-next-line no-empty-function -- ignore
+      default() {},
     },
   },
   setup(props) {

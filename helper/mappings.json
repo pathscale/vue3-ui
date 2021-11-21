@@ -779,24 +779,23 @@
       "is-right",
       "is-fullwidth",
       "is-boxed"
-
     ],
-    "unstable": ["has-name"]
+    "unstable": [
+      "has-name"
+    ]
   },
-  "VPagination": {
+  "VCalendar": {
     "always": [
-      "pagination",
-      "pagination-previous",
-      "pagination-next",
-      "pagination-list",
-      "pagination-ellipsis",
-      "pagination-link",
-      "is-current"
+      "datepicker-range",
+      "datepicker-range-end",
+      "datepicker-range-start",
+      "is-active",
+      "is-datetimepicker-default",
+      "is-decrement-hide",
+      "is-hidden",
+      "is-increment-hide"
     ],
-    "optional": [
-      "is-simple",
-      "is-rounded"
-    ],
-    "unstable": ["has-name"]
+    "optional": [],
+    "unstable": []
   }
 }

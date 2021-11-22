@@ -47,6 +47,8 @@ We have developed [rollup-plugin-vue3-ui-css-purge](https://github.com/pathscale
 
 2. Components usually depend on classes that are named after a prop, for example in v-button, `is-rounded` class depends on the prop `rounded`, as this is very common, the purger will recognize this automatically, on the other hand, when a component class depends on a prop that is not named accordingly (a class x that depend on a prop not named is-x), it must be registered in `helpers/classes.json`
 
+3. Build generates automatically mappings.json file which will be used by @rollup-plugin-vue3-ui-css-purge later
+
 ## License
 
 The MIT License (MIT). Please see [License File](https://github.com/pathscale/vue3-ui/blob/master/LICENSE-MIT.txt) for more information.

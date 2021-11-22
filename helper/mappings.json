@@ -797,5 +797,21 @@
     ],
     "optional": [],
     "unstable": []
+  },
+  "VSteps": {
+    "always": [
+      "steps",
+      "step-item",
+      "is-active",
+      "is-completed",
+      "step-marker",
+      "is-disabled",
+      "is-clickable",
+      "step-details",
+      "step-title",
+      "step-content"
+    ],
+    "optional": ["is-animated"],
+    "unstable": []
   }
 }

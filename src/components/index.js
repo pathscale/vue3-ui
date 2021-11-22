@@ -55,5 +55,7 @@ export { default as VPaginationItem } from './compounds/Pagination/PaginationIte
 export { default as VTab } from './compounds/Tabs/Tab.vue'
 export { default as VTable } from './compounds/Table/Table.vue'
 export { default as VTabs } from './compounds/Tabs/Tabs.vue'
+export { default as VSteps } from './compounds/Steps/Steps.vue'
+export { default as VStepItem } from './compounds/Steps/StepItem.vue'
 
 export * from './global-settings'

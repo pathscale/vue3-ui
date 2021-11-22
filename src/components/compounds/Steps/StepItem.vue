@@ -6,19 +6,11 @@ export default {
   name: 'VStep',
   props: {
     // eslint-disable-next-line vue/no-unused-properties -- used
-    title: {
-      type: String,
-      default: '',
-      required: true,
-    },
+    title: String,
     // eslint-disable-next-line vue/no-unused-properties -- used
     subtitle: String,
     // eslint-disable-next-line vue/no-unused-properties -- used
-    marker: {
-      type: String,
-      default: '',
-      required: true,
-    },
+    marker: String,
     // eslint-disable-next-line vue/no-unused-properties -- used
     disabled: Boolean,
     // eslint-disable-next-line vue/no-unused-properties -- used

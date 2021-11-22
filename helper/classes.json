@@ -12,7 +12,7 @@
   },
   "VColumns": {
     "is-variable": ["gap"],
-    "is-centered": ["vcentered"]
+    "is-centered": ["hcentered"]
   },
   "VDropdown": {
     "is-active": ["inline"],
@@ -44,16 +44,14 @@
   "VTable": {
     "table-container": ["sticky"],
     "sticky-table": ["sticky"],
-    "is-bordered": ["isBordered"],
-    "is-striped": ["isStriped"],
-    "is-narrow": ["isNarrow"],
-    "is-hoverable": ["isHoverable"],
-    "is-fullwidth": ["isFullwidth"],
     "tags": [],
     "has-addons": [],
     "has-ellipsis": [],
     "has-delete-icon": [],
-    "is-delete": []
+    "is-delete": [],
+    "is-fullwidth": [],
+    "has-icons-left": [],
+    "has-icons-right": []
   },
   "VSelect": {
     "is-fullwidth": ["expanded"]
@@ -99,8 +97,8 @@
     "container": ["centered"]
   },
   "VInput": {
-    "has-icons-left": ["hasLeftIcon"],
-    "has-icons-right": ["hasRightIcon"]
+    "has-icons-left": [],
+    "has-icons-right": []
   },
   "VProgress": {
     "more-than-half": []
@@ -132,7 +130,25 @@
     "has-text-danger": ["stages"]
   },
   "VUpload": {
-    "is-fullwidth": ["expanded"]
+    "is-fullwidth": ["expanded"],
+    "has-name": []
   },
-  "VPagination": {}
+  "VPaginationItem": {
+    "is-current": []
+  },
+  "VPagination": {
+    "is-current": []
+  },
+  "VSteps": {
+    "is-active": [],
+    "is-completed": [],
+    "is-disabled": [],
+    "is-clickable": []
+  },
+  "VStepItem": {
+    "is-active": [],
+    "is-completed": [],
+    "is-disabled": [],
+    "is-clickable": []
+  }
 }

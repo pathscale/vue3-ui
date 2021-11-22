@@ -2,7 +2,7 @@
 export default {
   name: 'NavbarBurger',
   props: {
-    isActive: Boolean
+    active: Boolean
   },
 }
 </script>
@@ -12,10 +12,10 @@ export default {
     role="button"
     class="navbar-burger burger"
     :class="{
-      'is-active': isActive
+      'is-active': active
     }"
     aria-label="menu"
-    :aria-expanded="isActive">
+    :aria-expanded="active">
     <span aria-hidden="true" />
     <span aria-hidden="true" />
     <span aria-hidden="true" />

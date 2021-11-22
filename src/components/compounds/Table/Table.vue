@@ -25,11 +25,11 @@ export default {
       type: Array,
       default: () => [],
     },
-    isBordered: Boolean,
-    isStriped: Boolean,
-    isNarrow: Boolean,
-    isHoverable: Boolean,
-    isFullwidth: Boolean,
+    bordered: Boolean,
+    striped: Boolean,
+    narrow: Boolean,
+    hoverable: Boolean,
+    fullwidth: Boolean,
     hasResetBtn: Boolean,
     sortable: Boolean,
     expandable: Boolean,
@@ -176,11 +176,11 @@ export default {
       class="table"
       :class="[
         {
-          'is-bordered': isBordered,
-          'is-striped': isStriped,
-          'is-narrow': isNarrow,
-          'is-hoverable': isHoverable,
-          'is-fullwidth': isFullwidth,
+          'is-bordered': bordered,
+          'is-striped': striped,
+          'is-narrow': narrow,
+          'is-hoverable': hoverable,
+          'is-fullwidth': fullwidth,
         },
       ]"
       style="position: relative">

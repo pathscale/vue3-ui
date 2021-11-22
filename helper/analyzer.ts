@@ -154,7 +154,10 @@ export function getWhitelist(
   // make sure the unstable variables have their dependencies documented
   const documentedClasses: Record<string, string[]> =
     JSON.parse(fs.readFileSync('helper/classes.json', 'utf-8'))[name] ?? {}
-  unstable.forEach((cl: string) => assert(cl in documentedClasses, `${cl} not documented`))
+
+  unstable.forEach((cl: string) =>
+    assert(cl in documentedClasses, `${cl} not documented in helper/classes.json for ${name}`),
+  )
 
   return {
     always: clean([...always]),

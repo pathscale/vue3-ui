@@ -248,6 +248,7 @@
       "navbar-start"
     ],
     "optional": [
+      "is-active",
       "is-spaced",
       "is-transparent"
     ],
@@ -263,10 +264,10 @@
       "burger",
       "navbar-burger"
     ],
-    "optional": [],
-    "unstable": [
+    "optional": [
       "is-active"
-    ]
+    ],
+    "unstable": []
   },
   "VNavbarDropdown": {
     "always": [
@@ -295,6 +296,80 @@
     ],
     "unstable": []
   },
+  "VPagination": {
+    "always": [
+      "#",
+      ",",
+      "a",
+      "aria-label",
+      "change",
+      "info",
+      "pagination",
+      "pagination-ellipsis",
+      "pagination-link",
+      "pagination-list",
+      "pagination-next",
+      "pagination-previous"
+    ],
+    "optional": [
+      "is-rounded",
+      "is-simple"
+    ],
+    "unstable": [
+      "is-current"
+    ]
+  },
+  "VPaginationItem": {
+    "always": [
+      "#",
+      "a",
+      "pagination-link"
+    ],
+    "optional": [],
+    "unstable": [
+      "is-current"
+    ]
+  },
+  "VStepItem": {
+    "always": [
+      "change",
+      "step-content",
+      "step-details",
+      "step-item",
+      "step-marker",
+      "step-title",
+      "steps"
+    ],
+    "optional": [
+      "is-animated"
+    ],
+    "unstable": [
+      "is-active",
+      "is-clickable",
+      "is-completed",
+      "is-disabled"
+    ]
+  },
+  "VSteps": {
+    "always": [
+      "change",
+      "step-content",
+      "step-details",
+      "step-item",
+      "step-marker",
+      "step-title",
+      "steps"
+    ],
+    "optional": [
+      "is-animated"
+    ],
+    "unstable": [
+      "is-active",
+      "is-clickable",
+      "is-completed",
+      "is-disabled"
+    ]
+  },
   "VTable": {
     "always": [
       "blur",
@@ -309,15 +384,16 @@
       "focus",
       "has-background-dark",
       "has-background-primary",
-      "has-text-black",
       "has-text-dark",
       "has-text-light",
       "has-text-primary",
       "has-text-white",
+      "icon",
       "input",
       "is-aligned-center",
-      "is-black",
+      "is-left",
       "is-primary",
+      "is-right",
       "is-small",
       "mr-4",
       "mx-4",
@@ -335,29 +411,32 @@
     ],
     "optional": [
       "is-active",
+      "is-bordered",
       "is-disabled",
       "is-empty",
       "is-expanded",
       "is-focused",
+      "is-fullwidth",
+      "is-hoverable",
       "is-hovered",
       "is-inverted",
       "is-light",
       "is-loading",
       "is-multiple",
+      "is-narrow",
       "is-outlined",
       "is-rounded",
-      "is-selected"
+      "is-selected",
+      "is-striped"
     ],
     "unstable": [
       "has-addons",
       "has-delete-icon",
       "has-ellipsis",
-      "is-bordered",
+      "has-icons-left",
+      "has-icons-right",
       "is-delete",
       "is-fullwidth",
-      "is-hoverable",
-      "is-narrow",
-      "is-striped",
       "sticky-table",
       "tags"
     ]
@@ -460,6 +539,25 @@
       "is-fullwidth"
     ]
   },
+  "VCalendar": {
+    "always": [
+      "be",
+      "component",
+      "datetime",
+      "default",
+      "dialog",
+      "inline",
+      "provided",
+      "requires",
+      "save",
+      "select",
+      "service",
+      "the",
+      "to"
+    ],
+    "optional": [],
+    "unstable": []
+  },
   "VCheckbox": {
     "always": [
       "check",
@@ -546,16 +644,17 @@
       "icon",
       "input",
       "is-left",
-      "is-right",
-      "has-icons-left",
-      "has-icons-right"
+      "is-right"
     ],
     "optional": [
       "is-expanded",
       "is-loading",
       "is-rounded"
     ],
-    "unstable": []
+    "unstable": [
+      "has-icons-left",
+      "has-icons-right"
+    ]
   },
   "VMedia": {
     "always": [
@@ -677,6 +776,19 @@
       "is-static"
     ]
   },
+  "VSlider": {
+    "always": [
+      "horizontal",
+      "is-fullwidth",
+      "slider",
+      "vertical"
+    ],
+    "optional": [],
+    "unstable": [
+      "has-output-tooltip",
+      "is-circle"
+    ]
+  },
   "VSwitch": {
     "always": [
       "check",
@@ -754,64 +866,23 @@
       "v-tooltip"
     ]
   },
-  "VSlider": {
-    "always": [
-      "slider",
-      "is-fullwidth"
-    ],
-    "optional": [
-      "is-circle",
-      "has-output-tooltip"
-    ],
-    "unstable": []
-  },
   "VUpload": {
     "always": [
       "file",
-      "file-label",
-      "file-input",
       "file-cta",
       "file-icon",
+      "file-input",
+      "file-label",
       "file-name"
     ],
     "optional": [
+      "is-boxed",
       "is-centered",
-      "is-right",
-      "is-fullwidth",
-      "is-boxed"
+      "is-right"
     ],
     "unstable": [
-      "has-name"
+      "has-name",
+      "is-fullwidth"
     ]
-  },
-  "VCalendar": {
-    "always": [
-      "datepicker-range",
-      "datepicker-range-end",
-      "datepicker-range-start",
-      "is-active",
-      "is-datetimepicker-default",
-      "is-decrement-hide",
-      "is-hidden",
-      "is-increment-hide"
-    ],
-    "optional": [],
-    "unstable": []
-  },
-  "VSteps": {
-    "always": [
-      "steps",
-      "step-item",
-      "is-active",
-      "is-completed",
-      "step-marker",
-      "is-disabled",
-      "is-clickable",
-      "step-details",
-      "step-title",
-      "step-content"
-    ],
-    "optional": ["is-animated"],
-    "unstable": []
   }
 }

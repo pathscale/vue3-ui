@@ -31,7 +31,8 @@
     "lint-arg": "eslint --ext .js,.ts,.vue,.md,.html --max-warnings=0",
     "lint-fix": "eslint --ext .js,.ts,.vue,.md,.html --fix .",
     "prepublishOnly": "npm run build",
-    "release": "npm run build && np"
+    "release": "npm run build && np",
+    "test:unit": "vue-cli-service test:unit"
   },
   "husky": {
     "hooks": {
@@ -56,15 +57,21 @@
     "@pathscale/eslint-plugin-vue3": "0.0.1",
     "@rollup/plugin-node-resolve": "^11.0.1",
     "@rollup/plugin-replace": "^2.3.4",
+    "@testing-library/vue": "^6.4.2",
     "@types/babel__traverse": "^7.11.0",
     "@types/fs-extra": "^9.0.5",
     "@types/node": "*",
     "@types/resolve": "^1.17.1",
     "@typescript-eslint/eslint-plugin": "^4.11.0",
     "@typescript-eslint/parser": "^4.11.0",
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-plugin-unit-jest": "^4.5.15",
+    "@vue/cli-service": "~4.5.0",
     "@vue/compiler-sfc": "^3.0.4",
     "@wessberg/rollup-plugin-ts": "^1.3.8",
     "autoprefixer": "^10.1.0",
+    "babel-eslint": "^10.1.0",
     "eslint": "^7.16.0",
     "eslint-config-ash-nazg": "^22.10.0",
     "eslint-config-prettier": "^7.1.0",
@@ -107,7 +114,8 @@
     "tslib": "^2.0.3",
     "typescript": "^4.1.3",
     "vue": "^3.0.4",
-    "vue-eslint-parser": "^7.3.0"
+    "vue-eslint-parser": "^7.3.0",
+    "vue-jest": "^5.0.0-0"
   },
   "peerDependencies": {
     "vue": "^3.0.4"

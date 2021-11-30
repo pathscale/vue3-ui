@@ -57,7 +57,8 @@
     "is-fullwidth": ["expanded"]
   },
   "VButton": {
-    "is-fullwidth": ["expanded"]
+    "is-fullwidth": ["expanded"],
+    "disabled": ["disabled"]
   },
   "VTag": {
     "tags": ["isClosable"],

@@ -6,4 +6,5 @@ module.exports = {
     '^.+\\.vue$': 'vue-jest',
   },
   testMatch: ['**/*.spec.js'],
+  snapshotSerializers: ['<rootDir>/node_modules/jest-serializer-vue'],
 }

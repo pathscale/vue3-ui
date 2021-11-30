@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button.vue render correctly 1`] = `
+<button class="button is-primary" type="button">
+  <!--v-if-->
+</button>
+`;

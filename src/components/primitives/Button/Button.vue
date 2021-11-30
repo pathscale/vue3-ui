@@ -6,7 +6,7 @@ export default {
   props: {
     type: {
       type: String,
-      default: 'button'
+      default: 'is-primary'
     },
     size: String,
     label: String,

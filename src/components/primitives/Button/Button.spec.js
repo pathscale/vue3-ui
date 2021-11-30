@@ -1,14 +1,18 @@
 import { render } from '@testing-library/vue'
 import Button from './Button.vue'
 
-describe('Button.vue', () => {
-  it('renders props.label and type when passed', () => {
-    const type = 'primary'
-    const { getByText, container } = render(Button, {
-      props: { label: type, type: `is-${type}` },
-    })
+let wrapper
 
-    getByText(type)
-    expect(container.firstChild.classList.contains(`is-${type}`)).toBe(true)
+describe('Button.vue', () => {
+  beforeEach(() => {
+    wrapper = render(Button)
+  })
+
+  it('is called', () => {
+    wrapper.getByRole('button')
+  })
+
+  it('render correctly', () => {
+    expect(wrapper.html()).toMatchSnapshot()
   })
 })

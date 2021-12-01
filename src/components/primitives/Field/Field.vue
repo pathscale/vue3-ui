@@ -38,10 +38,10 @@ export default {
     <label v-else-if="label" class="label" :for="labelFor">{{ label }}</label>
     <div v-if="horizontal" class="field-body">
       <div class="field" :class="{'is-grouped': grouped}">
-        <slot />
+        <slot :rounded="type" />
       </div>
     </div>
-    <slot v-else />
+    <slot :color="type" v-else />
     <p v-if="message" class="help" :class="type">
       {{ message }}
     </p>

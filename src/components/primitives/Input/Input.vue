@@ -10,13 +10,14 @@ export default {
     rounded: Boolean,
     loading: Boolean,
     expanded: Boolean,
-    modelValue: [String, Number] 
+    modelValue: [String, Number],
   },
   emits: ['update:modelValue'],
-  setup(props, { emit, slots }) {
-    const hasLeftIcon = computed(() => Boolean(slots.leftIcon));
-    const hasRightIcon = computed(() => Boolean(slots.rightIcon));
+  setup(props, { emit, slots, attrs }) {
+    const hasLeftIcon = computed(() => Boolean(slots.leftIcon))
+    const hasRightIcon = computed(() => Boolean(slots.rightIcon))
     const value = ref(props.modelValue)
+
 
     watchEffect(() => {
       value.value = props.modelValue
@@ -37,17 +38,21 @@ export default {
       {
         'is-loading': loading,
         'has-icons-left': hasLeftIcon,
-        'has-icons-right': hasRightIcon
-      }
+        'has-icons-right': hasRightIcon,
+      },
     ]">
-    <input class="input" v-bind="$attrs" v-model="value" :class="[
-      color,
-      size,
-      {
-        'is-rounded': rounded,
-        'is-expanded': expanded
-      }
-    ]" />
+    <input
+      class="input"
+      v-bind="$attrs"
+      v-model="value"
+      :class="[
+        color,
+        size,
+        {
+          'is-rounded': rounded,
+          'is-expanded': expanded,
+        },
+      ]" />
     <span class="icon is-left" v-if="hasLeftIcon">
       <slot name="leftIcon" />
     </span>

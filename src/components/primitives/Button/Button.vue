@@ -6,7 +6,7 @@ export default {
   props: {
     type: {
       type: String,
-      default: 'is-primary'
+      default: 'is-primary',
     },
     size: String,
     label: String,
@@ -21,18 +21,18 @@ export default {
     selected: Boolean,
     nativeType: {
       type: String,
-      default: 'button'
+      default: 'button',
     },
     tag: {
       type: String,
-      default: 'button'
+      default: 'button',
     },
-    light: Boolean
+    light: Boolean,
   },
   setup(props, { attrs }) {
-    const computedTag = computed(() => attrs.disabled ? 'button' : props.tag)
+    const computedTag = computed(() => (attrs.disabled ? 'button' : props.tag))
     return { computedTag }
-  }
+  },
 }
 </script>
 
@@ -55,7 +55,7 @@ export default {
         'is-hovered': hovered,
         'is-selected': selected,
         'is-light': light,
-      }
+      },
     ]">
     <span v-if="label">{{ label }}</span>
     <slot />

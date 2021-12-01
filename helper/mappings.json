@@ -522,7 +522,8 @@
   },
   "VButton": {
     "always": [
-      "button"
+      "button",
+      "is-primary"
     ],
     "optional": [
       "is-active",

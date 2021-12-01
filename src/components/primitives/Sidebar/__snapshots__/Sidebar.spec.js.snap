@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Sidebar render correctly 1`] = `
+<div class="v-sidebar">
+  <!--v-if-->
+  <transition-stub>
+    <!--v-if-->
+  </transition-stub>
+</div>
+`;

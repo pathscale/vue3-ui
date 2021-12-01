@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Progress render correctly 1`] = `
+<div class="progress-wrapper"><progress class="progress is-darkgrey" max="100"></progress>
+  <!--v-if-->
+</div>
+`;

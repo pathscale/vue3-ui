@@ -391,6 +391,7 @@
       "icon",
       "input",
       "is-aligned-center",
+      "is-clickable",
       "is-left",
       "is-primary",
       "is-right",
@@ -407,6 +408,7 @@
       "table",
       "table-container",
       "tag",
+      "text",
       "v-checkbox"
     ],
     "optional": [
@@ -644,8 +646,10 @@
       "control",
       "icon",
       "input",
+      "is-clickable",
       "is-left",
-      "is-right"
+      "is-right",
+      "text"
     ],
     "optional": [
       "is-expanded",

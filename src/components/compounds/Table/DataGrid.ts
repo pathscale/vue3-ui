@@ -73,7 +73,7 @@ class DataGrid {
   }
 
   sortByColumn(column: string, ascendant: boolean): void {
-    this.rows.sort((a, b) => {
+    this.originalRows.sort((a, b) => {
       if (a[column] < b[column]) {
         return ascendant ? -1 : 1
       }
@@ -82,6 +82,7 @@ class DataGrid {
       }
       return 0
     })
+    this.rows = this.originalRows.slice(0, this.rows.length)
   }
 
   resetFilters(): void {

@@ -51,7 +51,8 @@
     "is-delete": [],
     "is-fullwidth": [],
     "has-icons-left": [],
-    "has-icons-right": []
+    "has-icons-right": [],
+    "is-current": []
   },
   "VSelect": {
     "is-fullwidth": ["expanded"]

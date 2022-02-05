@@ -1,14 +1,15 @@
 <script>
-import { computed, reactive, ref, watch } from 'vue'
+import { computed, reactive, ref, watch, watchEffect } from 'vue'
 import VTag from '../../primitives/Tag/Tag.vue'
 import VButton from '../../primitives/Button/Button.vue'
 import VCheckbox from '../../primitives/Checkbox/Checkbox.vue'
 import VSelect from '../../primitives/Select/Select.vue'
 import VInput from '../../primitives/Input/Input.vue'
+import VPagination from '../Pagination/Pagination.vue'
 
 export default {
   name: 'VTable',
-  components: { VButton, VCheckbox, VSelect, VTag, VInput },
+  components: { VButton, VCheckbox, VSelect, VTag, VInput, VPagination },
   props: {
     data: {
       type: Object,
@@ -44,7 +45,7 @@ export default {
   setup(props, { slots }) {
     // datagrid instance reference
     const data = ref(props.data)
-    const rowsPerPage = ref(props.rowsPerPage)
+    const computedRowsPerPage = ref(props.rowsPerPage)
     const currentPage = ref(0)
     const search = reactive({})
     const expandedRows = ref(new Set())
@@ -54,8 +55,8 @@ export default {
     // thsi way pagination settings are directly passed to props and indirectly passed to class
 
     // page goes back to first when rowperpage changes
-    watch(rowsPerPage, () => {
-      props.data.rowsPerPage = rowsPerPage.value
+    watch(computedRowsPerPage, () => {
+      props.data.rowsPerPage = computedRowsPerPage.value
       currentPage.value = 0
       props.data.switchPage()
     })
@@ -68,7 +69,7 @@ export default {
 
     // compute rows window on first render as no change cb triggers
     if (props.pagination) {
-      props.data.rowsPerPage = rowsPerPage.value
+      props.data.rowsPerPage = computedRowsPerPage.value
       props.data.switchPage()
     }
 
@@ -97,13 +98,8 @@ export default {
       return data.value.getColumns().length + (props.checkable ? 1 : 0) + (props.expandable ? 1 : 0)
     })
 
-    const handleBackPage = () => {
-      if (currentPage.value > 0) currentPage.value -= 1
-    }
-
-    const handleNextPage = () => {
-      if (currentPage.value + 1 < Math.ceil(data.value.originalRows.length / rowsPerPage.value))
-        currentPage.value += 1
+    const handlePageChange = value => {
+      currentPage.value = value - 1 // pagination handle indexes from 1, table from 0
     }
 
     const handleSort = column => {
@@ -146,20 +142,23 @@ export default {
       expandedGroups,
       toggleExpandedGroup,
       countColumns,
-      handleBackPage,
-      handleNextPage,
+      handlePageChange,
       handleSort,
       columnClasses,
       selectedClasses,
       cellClasses,
       slots,
       hasHeader,
+      currentPage,
+      total: data.value.originalRows.length,
+      computedRowsPerPage,
     }
   },
 }
 </script>
 
 <template>
+  <!-- eslint-disable @pathscale/vue3/v-directive  -->
   <div class="table-container" :class="{ 'sticky-table': sticky }">
     <div class="tableHeader" v-if="hasHeader">
       <slot name="header">
@@ -183,7 +182,7 @@ export default {
           'is-fullwidth': fullwidth,
         },
       ]"
-      style="position: relative">
+      style="position: relative;">
       <thead>
         <tr>
           <td v-if="checkable" />
@@ -286,17 +285,27 @@ export default {
       </tbody>
     </table>
 
-    <!-- TODO: move the styles to their own scope -->
-    <div class="pagination-container" v-if="pagination">
-      <v-select v-model="rowsPerPage" color="is-dark" class="has-text-dark">
+    <div v-if="pagination" class="pagination-container px-1">
+      <v-select v-model="computedRowsPerPage">
         >
         <option v-for="value in rowsPerPageOptions" :key="value" :value="value">
           {{ value }}
         </option>
       </v-select>
-      <!-- using :disabled wont work, so instead the click action is conditioned and the buttons are always clickable -->
-      <a class="pagination-previous" @click="handleBackPage">Previous</a>
-      <a class="pagination-next" @click="handleNextPage">Next page</a>
+
+      <v-pagination
+        class="px-1"
+        :total="total"
+        :current="currentPage + 1"
+        @update:current="handlePageChange"
+        :range-before="1"
+        :range-after="1"
+        order="is-centered"
+        :per-page="computedRowsPerPage"
+        aria-next-label="Next page"
+        aria-previous-label="Previous page"
+        aria-page-label="Page"
+        aria-current-label="Current page" />
     </div>
 
     <div class="tableFooter" v-if="slots.footer">

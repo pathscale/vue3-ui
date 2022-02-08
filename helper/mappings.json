@@ -418,7 +418,12 @@
       "table",
       "table-container",
       "tag",
+      "tbody",
+      "td",
       "text",
+      "th",
+      "thead",
+      "tr",
       "v-checkbox"
     ],
     "optional": [
@@ -643,6 +648,7 @@
   },
   "VImage": {
     "always": [
+      "figure",
       "image",
       "img"
     ],

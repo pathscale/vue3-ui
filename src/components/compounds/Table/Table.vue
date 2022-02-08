@@ -182,12 +182,13 @@ export default {
           'is-fullwidth': fullwidth,
         },
       ]"
-      style="position: relative;">
-      <thead>
-        <tr>
-          <td v-if="checkable" />
+      style="position: relative">
+      <thead class="thead">
+        <tr class="tr">
+          <td class="td" v-if="checkable" />
           <td v-if="expandable" />
           <th
+            class="th"
             v-for="(column, idx) in data.getColumns()"
             :key="idx"
             :class="columnClasses(column)"
@@ -204,7 +205,7 @@ export default {
           </th>
         </tr>
       </thead>
-      <tbody>
+      <tbody class="tbody">
         <tr v-if="searchable">
           <td v-if="checkable" />
           <td v-if="expandable" />

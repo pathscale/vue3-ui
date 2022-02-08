@@ -1,7 +1,7 @@
 <script>
 /* eslint-disable no-undef -- Access to Benchie variable/function */
 import { onBeforeMount, ref } from 'vue'
-import { checkBenchieSupport } from "../../../utils/functions"
+import { checkBenchieSupport } from '../../../utils/functions'
 
 const hasBenchieSupport = checkBenchieSupport()
 
@@ -19,28 +19,35 @@ export default {
     dataSrc: {
       type: String,
     },
-    customClass: String
+    customClass: String,
   },
   setup(props) {
     const source = ref(props.src || props.dataSrc)
-    onBeforeMount(async() => {
+    onBeforeMount(async () => {
       if (props.dataSrc && hasBenchieSupport) {
         source.value = await t(props.dataSrc, $__CDN)
-      }  
+      }
     })
     return { source }
-  }
+  },
 }
 </script>
 
 <template>
-  <figure class="image" :class="[
-    size,
-    radio,
-    {
-      'container': centered
-    }
-  ]">
-    <img class="img" v-bind="$attrs" :src="source" :data-src="dataSrc" :class="[customClass,{'is-rounded': rounded }]" />
+  <figure
+    class="image figure"
+    :class="[
+      size,
+      radio,
+      {
+        'container': centered,
+      },
+    ]">
+    <img
+      class="img"
+      v-bind="$attrs"
+      :src="source"
+      :data-src="dataSrc"
+      :class="[customClass, { 'is-rounded': rounded }]" />
   </figure>
 </template>

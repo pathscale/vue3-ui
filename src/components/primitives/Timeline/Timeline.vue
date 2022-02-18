@@ -1,14 +1,14 @@
 <script>
 export default {
   name: 'Timeline',
-  props: { 
-      stages: { type: Object, required: true }
-    }
+  props: {
+    stages: { type: Object, required: true },
+  },
 }
 </script>
 
 <template>
-  <ol class="px-5 timeline">
+  <ol class="timeline">
     <li
       v-for="(stage, index) in stages"
       :key="index"

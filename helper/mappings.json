@@ -859,7 +859,6 @@
   },
   "VTimeline": {
     "always": [
-      "px-5",
       "py-3",
       "timeline"
     ],

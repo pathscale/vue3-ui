@@ -17,7 +17,7 @@ export default {
         'has-text-grey': !stage.active,
         'has-text-danger': stage.error,
       }">
-      <div class="py-3">
+      <div>
         <slot :stage="stage" />
       </div>
     </li>

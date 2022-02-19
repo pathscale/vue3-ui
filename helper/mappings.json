@@ -859,7 +859,6 @@
   },
   "VTimeline": {
     "always": [
-      "py-3",
       "timeline"
     ],
     "optional": [],

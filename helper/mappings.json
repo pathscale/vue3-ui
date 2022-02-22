@@ -417,6 +417,7 @@
       "sticky-row",
       "table",
       "table-container",
+      "table-wrapper",
       "tag",
       "tbody",
       "td",
@@ -424,7 +425,8 @@
       "th",
       "thead",
       "tr",
-      "v-checkbox"
+      "v-checkbox",
+      "v-table"
     ],
     "optional": [
       "is-active",
@@ -453,6 +455,7 @@
       "has-ellipsis",
       "has-icons-left",
       "has-icons-right",
+      "has-mobile-cards",
       "is-current",
       "is-delete",
       "is-fullwidth",

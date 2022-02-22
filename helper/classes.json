@@ -52,7 +52,8 @@
     "is-fullwidth": [],
     "has-icons-left": [],
     "has-icons-right": [],
-    "is-current": []
+    "is-current": [],
+    "has-mobile-cards": ["mobileCards"]
   },
   "VSelect": {
     "is-fullwidth": ["expanded"]

@@ -1,5 +1,5 @@
 <script>
-import { computed, reactive, ref, watch, watchEffect } from 'vue'
+import { computed, reactive, ref, watch } from 'vue'
 import VTag from '../../primitives/Tag/Tag.vue'
 import VButton from '../../primitives/Button/Button.vue'
 import VCheckbox from '../../primitives/Checkbox/Checkbox.vue'
@@ -40,6 +40,7 @@ export default {
     editable: Boolean,
     groupBy: String,
     sticky: Boolean,
+    mobileCards: Boolean,
   },
 
   setup(props, { slots }) {
@@ -159,120 +160,94 @@ export default {
 
 <template>
   <!-- eslint-disable @pathscale/vue3/v-directive  -->
-  <div class="table-container" :class="{ 'sticky-table': sticky }">
-    <div class="tableHeader" v-if="hasHeader">
-      <slot name="header">
-        <v-button
-          @click="data.resetFilters()"
-          v-if="hasResetBtn"
-          type="is-light has-text-black"
-          class="my-2">
-          &#x21bb;
-        </v-button>
-      </slot>
-    </div>
-    <table
-      class="table"
-      :class="[
-        {
-          'is-bordered': bordered,
-          'is-striped': striped,
-          'is-narrow': narrow,
-          'is-hoverable': hoverable,
-          'is-fullwidth': fullwidth,
-        },
-      ]"
-      style="position: relative">
-      <thead class="thead">
-        <tr class="tr">
-          <td class="td" v-if="checkable" />
-          <td v-if="expandable" />
-          <th
-            class="th"
-            v-for="(column, idx) in data.getColumns()"
-            :key="idx"
-            :class="columnClasses(column)"
-            @click="handleSort(column)"
-            :draggable="draggableColumns"
-            @dragstart="data.onDragStartColumn($event, row, idx)"
-            @drop="data.onDropColumn($event, column, idx)"
-            @dragover="data.onDragOverColumn($event, column, idx)"
-            @dragleave="data.onDragLeaveColumn($event, column, idx)">
-            {{ column.caption }}
-            <span v-if="sortable">
-              {{ column.ascendant ? '&darr;' : '\t&uarr;' }}
-            </span>
-          </th>
-        </tr>
-      </thead>
-      <tbody class="tbody">
-        <tr v-if="searchable">
-          <td v-if="checkable" />
-          <td v-if="expandable" />
-          <td v-for="column in data.getColumns()" :key="column.name" :class="column.style">
-            <v-input
-              name="search"
-              type="text"
-              v-model="search[column.name]"
-              @input="data.searchColumn(column.name, search[column.name])"
-              placeholder="Search" />
-          </td>
-        </tr>
-        <template v-if="!groupBy">
-          <template v-for="(row, idx) in data.rows" :key="idx">
-            <tr
-              :draggable="draggableRows"
-              @dragstart="data.onDragStartRow($event, row, idx)"
-              @drop="data.onDropRow($event, row, idx)"
-              @dragover="data.onDragOverRow($event, row, idx)"
-              @dragleave="data.onDragLeaveRow($event, row, idx)"
-              :class="selectedClasses(row)">
-              <td v-if="checkable">
-                <v-checkbox @change="data.toggleCheck($event, row)" />
-              </td>
-              <td v-if="expandable">
-                <a @click="toggleExpanded(row.id)" class="is-primary">{{
-                  expandedRows.has(row.id) ? '&uarr;' : '&darr;'
-                }}</a>
-              </td>
-              <td
-                v-for="column in data.getColumns()"
-                :key="column.name"
-                :class="cellClasses(column)"
-                :contenteditable="props.editable"
-                @blur="data.editCell(row, column, $event.target.textContent)">
-                <slot :name="column.name" :row="row">
-                  {{ row[column.name] }}
-                </slot>
-              </td>
-            </tr>
-            <tr class="expansion" v-if="expandedRows.has(row.id)">
-              <td :colspan="countColumns">
-                <slot name="expanded" :row="row" />
-              </td>
-            </tr>
-          </template>
-        </template>
-
-        <template v-if="groupBy">
-          <template v-for="(group, idx) in data.groups(groupBy)" :key="idx">
-            <tr>
-              <td :colspan="countColumns" class="is-aligned-center">
-                <a @click="toggleExpandedGroup(group)" class="mr-4">{{
-                  expandedGroups.has(group) ? '&darr;' : '&rarr;'
-                }}</a>
-                {{ groupBy }}:
-                <v-tag type="is-primary" class="mx-4">
-                  {{ group }}
-                </v-tag>
-              </td>
-            </tr>
-            <template v-if="expandedGroups.has(group)">
-              <tr v-for="(row, rowIdx) in data.filterRows(groupBy, group)" :key="rowIdx">
+  <div class="v-table">
+    <div
+      class="table-wrapper table-container"
+      :class="{ 'sticky-table': sticky, 'has-mobile-cards': mobileCards }">
+      <div class="tableHeader" v-if="hasHeader">
+        <slot name="header">
+          <v-button
+            @click="data.resetFilters()"
+            v-if="hasResetBtn"
+            type="is-light has-text-black"
+            class="my-2">
+            &#x21bb;
+          </v-button>
+        </slot>
+      </div>
+      <table
+        class="table"
+        :class="[
+          {
+            'is-bordered': bordered,
+            'is-striped': striped,
+            'is-narrow': narrow,
+            'is-hoverable': hoverable,
+            'is-fullwidth': fullwidth,
+          },
+        ]"
+        style="position: relative;">
+        <thead class="thead">
+          <tr class="tr">
+            <td class="td" v-if="checkable" />
+            <td v-if="expandable" />
+            <th
+              class="th"
+              v-for="(column, idx) in data.getColumns()"
+              :key="idx"
+              :class="columnClasses(column)"
+              @click="handleSort(column)"
+              :draggable="draggableColumns"
+              @dragstart="data.onDragStartColumn($event, row, idx)"
+              @drop="data.onDropColumn($event, column, idx)"
+              @dragover="data.onDragOverColumn($event, column, idx)"
+              @dragleave="data.onDragLeaveColumn($event, column, idx)">
+              {{ column.caption }}
+              <span v-if="sortable">
+                {{ column.ascendant ? '&darr;' : '\t&uarr;' }}
+              </span>
+            </th>
+          </tr>
+        </thead>
+        <tbody class="tbody">
+          <tr v-if="searchable">
+            <td v-if="checkable" />
+            <td v-if="expandable" />
+            <td
+              v-for="column in data.getColumns()"
+              :data-label="column.caption"
+              :key="column.name"
+              :class="column.style">
+              <v-input
+                name="search"
+                type="text"
+                v-model="search[column.name]"
+                @input="data.searchColumn(column.name, search[column.name])"
+                placeholder="Search" />
+            </td>
+          </tr>
+          <template v-if="!groupBy">
+            <template v-for="(row, idx) in data.rows" :key="idx">
+              <tr
+                :draggable="draggableRows"
+                @dragstart="data.onDragStartRow($event, row, idx)"
+                @drop="data.onDropRow($event, row, idx)"
+                @dragover="data.onDragOverRow($event, row, idx)"
+                @dragleave="data.onDragLeaveRow($event, row, idx)"
+                :class="selectedClasses(row)">
+                <td v-if="checkable">
+                  <v-checkbox @change="data.toggleCheck($event, row)" />
+                </td>
+                <td v-if="expandable">
+                  <a @click="toggleExpanded(row.id)" class="is-primary">{{
+                    expandedRows.has(row.id) ? '&uarr;' : '&darr;'
+                  }}</a>
+                </td>
                 <td
                   v-for="column in data.getColumns()"
+                  :data-label="column.caption"
                   :key="column.name"
-                  :class="column.style"
+                  :class="cellClasses(column)"
                   :contenteditable="props.editable"
                   @blur="data.editCell(row, column, $event.target.textContent)">
                   <slot :name="column.name" :row="row">
@@ -280,37 +255,73 @@ export default {
                   </slot>
                 </td>
               </tr>
+              <tr class="expansion" v-if="expandedRows.has(row.id)">
+                <td :colspan="countColumns">
+                  <slot name="expanded" :row="row" />
+                </td>
+              </tr>
             </template>
           </template>
-        </template>
-      </tbody>
-    </table>
 
-    <div v-if="pagination" class="pagination-container px-1">
-      <v-select v-model="computedRowsPerPage">
-        >
-        <option v-for="value in rowsPerPageOptions" :key="value" :value="value">
-          {{ value }}
-        </option>
-      </v-select>
+          <template v-if="groupBy">
+            <template v-for="(group, idx) in data.groups(groupBy)" :key="idx">
+              <tr>
+                <td :colspan="countColumns" class="is-aligned-center">
+                  <a @click="toggleExpandedGroup(group)" class="mr-4">{{
+                    expandedGroups.has(group) ? '&darr;' : '&rarr;'
+                  }}</a>
+                  {{ groupBy }}:
+                  <v-tag type="is-primary" class="mx-4">
+                    {{ group }}
+                  </v-tag>
+                </td>
+              </tr>
+              <template v-if="expandedGroups.has(group)">
+                <tr v-for="(row, rowIdx) in data.filterRows(groupBy, group)" :key="rowIdx">
+                  <td
+                    v-for="column in data.getColumns()"
+                    :data-label="column.caption"
+                    :key="column.name"
+                    :class="column.style"
+                    :contenteditable="props.editable"
+                    @blur="data.editCell(row, column, $event.target.textContent)">
+                    <slot :name="column.name" :row="row">
+                      {{ row[column.name] }}
+                    </slot>
+                  </td>
+                </tr>
+              </template>
+            </template>
+          </template>
+        </tbody>
+      </table>
 
-      <v-pagination
-        class="px-1"
-        :total="total"
-        :current="currentPage + 1"
-        @update:current="handlePageChange"
-        :range-before="1"
-        :range-after="1"
-        order="is-centered"
-        :per-page="computedRowsPerPage"
-        aria-next-label="Next page"
-        aria-previous-label="Previous page"
-        aria-page-label="Page"
-        aria-current-label="Current page" />
-    </div>
+      <div v-if="pagination" class="pagination-container px-1">
+        <v-select v-model="computedRowsPerPage">
+          >
+          <option v-for="value in rowsPerPageOptions" :key="value" :value="value">
+            {{ value }}
+          </option>
+        </v-select>
 
-    <div class="tableFooter" v-if="slots.footer">
-      <slot name="footer" />
+        <v-pagination
+          class="px-1"
+          :total="total"
+          :current="currentPage + 1"
+          @update:current="handlePageChange"
+          :range-before="1"
+          :range-after="1"
+          order="is-centered"
+          :per-page="computedRowsPerPage"
+          aria-next-label="Next page"
+          aria-previous-label="Previous page"
+          aria-page-label="Page"
+          aria-current-label="Current page" />
+      </div>
+
+      <div class="tableFooter" v-if="slots.footer">
+        <slot name="footer" />
+      </div>
     </div>
   </div>
 </template>

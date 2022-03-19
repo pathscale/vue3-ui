@@ -7,6 +7,8 @@ import VSelect from '../../primitives/Select/Select.vue'
 import VInput from '../../primitives/Input/Input.vue'
 import VPagination from '../Pagination/Pagination.vue'
 
+const UNKNOW = 'unknow'
+
 export default {
   name: 'VTable',
   components: { VButton, VCheckbox, VSelect, VTag, VInput, VPagination },
@@ -108,7 +110,7 @@ export default {
     }
 
     const handleSort = column => {
-      if (props.sortable && column.dataType !== 'unsortable') {
+      if (props.sortable && column.dataType !== UNKNOW) {
         sortColumn(column)
       }
     }
@@ -118,7 +120,7 @@ export default {
         ...column.style,
         'has-text-primary': column.selected,
         'sticky-row': props.sticky,
-        'is-clickable': props.sortable && column.dataType !== 'unsortable',
+        'is-clickable': props.sortable && column.dataType !== UNKNOW,
       }
     }
 
@@ -172,6 +174,7 @@ export default {
       computedRowsPerPage,
       checked,
       isChecked,
+      UNKNOW,
     }
   },
 }
@@ -224,7 +227,7 @@ export default {
               @dragover="data.onDragOverColumn($event, column, idx)"
               @dragleave="data.onDragLeaveColumn($event, column, idx)">
               {{ column.caption }}
-              <span v-if="sortable && column.dataType !== 'unsortable'">
+              <span v-if="sortable && column.dataType !== UNKNOW">
                 {{ column.ascendant ? '&darr;' : '\t&uarr;' }}
               </span>
             </th>
@@ -240,6 +243,7 @@ export default {
               :key="column.name"
               :class="column.style">
               <v-input
+                v-if="column.dataType !== UNKNOW"
                 name="search"
                 type="text"
                 v-model="search[column.name]"

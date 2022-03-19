@@ -51,7 +51,7 @@ export default {
     const search = reactive({})
     const expandedRows = ref(new Set())
     const expandedGroups = ref(new Set())
-    // handle checked all state per page 
+    // handle checked all state per page
     const checked = reactive({
       0: false,
     })
@@ -108,7 +108,7 @@ export default {
     }
 
     const handleSort = column => {
-      if (props.sortable) {
+      if (props.sortable && column.dataType !== 'unsortable') {
         sortColumn(column)
       }
     }
@@ -118,6 +118,7 @@ export default {
         ...column.style,
         'has-text-primary': column.selected,
         'sticky-row': props.sticky,
+        'is-clickable': props.sortable && column.dataType !== 'unsortable',
       }
     }
 
@@ -223,7 +224,7 @@ export default {
               @dragover="data.onDragOverColumn($event, column, idx)"
               @dragleave="data.onDragLeaveColumn($event, column, idx)">
               {{ column.caption }}
-              <span v-if="sortable">
+              <span v-if="sortable && column.dataType !== 'unsortable'">
                 {{ column.ascendant ? '&darr;' : '\t&uarr;' }}
               </span>
             </th>

@@ -425,6 +425,7 @@
       "th",
       "thead",
       "tr",
+      "unsortable",
       "v-checkbox",
       "v-table"
     ],

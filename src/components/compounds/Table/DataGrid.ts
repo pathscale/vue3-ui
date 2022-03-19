@@ -19,7 +19,7 @@ class DataGrid {
   columns: Column[]
   rows: Row[]
   originalRows: Row[]
-  checkedRows: { id: number }[]
+  checkedRows: Set<Row>
   rowsPerPage: number
   currentPage: number
   draggingRow: { id: number }
@@ -31,7 +31,7 @@ class DataGrid {
     this.columns = []
     this.rows = []
     this.originalRows = []
-    this.checkedRows = []
+    this.checkedRows = new Set()
     this.rowsPerPage = 0
     this.currentPage = 0
     this.draggingRow = null
@@ -96,9 +96,23 @@ class DataGrid {
   }
 
   toggleCheck(evt: Event, row: Row): void {
-    this.checkedRows = (evt.target as HTMLInputElement).checked
-      ? [...this.checkedRows, row]
-      : this.checkedRows.filter(currentRow => currentRow.id !== row.id)
+    if ((evt.target as HTMLInputElement).checked) {
+      this.checkedRows.add(row)
+    } else {
+      this.checkedRows.delete(row)
+    }
+  }
+
+  toggleCheckAll(value: boolean): void {
+    if (value) {
+      this.rows.forEach(row => {
+        this.checkedRows.add(row)
+      })
+    } else {
+      this.rows.forEach(row => {
+        this.checkedRows.delete(row)
+      })
+    }
   }
 
   switchPage(): void {

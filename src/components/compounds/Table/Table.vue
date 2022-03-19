@@ -1,5 +1,5 @@
 <script>
-import { computed, reactive, ref, watch } from 'vue'
+import { computed, reactive, ref, watch, toRaw } from 'vue'
 import VTag from '../../primitives/Tag/Tag.vue'
 import VButton from '../../primitives/Button/Button.vue'
 import VCheckbox from '../../primitives/Checkbox/Checkbox.vue'
@@ -51,6 +51,10 @@ export default {
     const search = reactive({})
     const expandedRows = ref(new Set())
     const expandedGroups = ref(new Set())
+    // handle checked all state per page 
+    const checked = reactive({
+      0: false,
+    })
 
     // whenever pagination props changes, update the class state accordingly
     // thsi way pagination settings are directly passed to props and indirectly passed to class
@@ -131,6 +135,18 @@ export default {
       }
     }
 
+    watch(
+      [checked],
+      () => {
+        data.value.toggleCheckAll(toRaw(checked)[currentPage.value])
+      },
+      { deep: true },
+    )
+
+    const isChecked = row => {
+      return data.value.checkedRows.has(row)
+    }
+
     const hasHeader = computed(() => {
       return slots.header || props.hasResetBtn
     })
@@ -153,6 +169,8 @@ export default {
       currentPage,
       total: data.value.originalRows.length,
       computedRowsPerPage,
+      checked,
+      isChecked,
     }
   },
 }
@@ -186,10 +204,12 @@ export default {
             'is-fullwidth': fullwidth,
           },
         ]"
-        style="position: relative;">
+        style="position: relative">
         <thead class="thead">
           <tr class="tr">
-            <td class="td" v-if="checkable" />
+            <td class="td" v-if="checkable">
+              <v-checkbox v-model="checked[currentPage]" />
+            </td>
             <td v-if="expandable" />
             <th
               class="th"
@@ -236,7 +256,9 @@ export default {
                 @dragleave="data.onDragLeaveRow($event, row, idx)"
                 :class="selectedClasses(row)">
                 <td v-if="checkable">
-                  <v-checkbox @change="data.toggleCheck($event, row)" />
+                  <v-checkbox
+                    @change="data.toggleCheck($event, row)"
+                    :model-value="isChecked(row)" />
                 </td>
                 <td v-if="expandable">
                   <a @click="toggleExpanded(row.id)" class="is-primary">{{

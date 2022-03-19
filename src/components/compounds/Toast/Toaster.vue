@@ -5,7 +5,7 @@
     <div
       ref="root"
       v-show="state.isActive"
-      :class="['notification', type, `v-toast--${position}`]"
+      :class="['notification mb-5', type, `v-toast--${position}`]"
       @mouseover="toggleTimer(true)"
       @mouseleave="toggleTimer(false)"
       @click="click"

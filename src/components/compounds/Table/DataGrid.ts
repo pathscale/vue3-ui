@@ -1,18 +1,29 @@
+import { toRaw, unref } from 'vue'
+
 type Column = {
   id?: number
   name: string
   caption: string
   dataType: string
-  style: string
   show: boolean
   ascendant: boolean
-  sticky: boolean
   selected?: boolean
+  sortFunction?: (a, b, ascendent, column) => number
 }
 
 type Row = {
   id: number
   selected?: boolean
+}
+
+const defaultSort = (a, b, order, column) => {
+  if (a[column] < b[column]) {
+    return order ? -1 : 1
+  }
+  if (a[column] > b[column]) {
+    return order ? 1 : -1
+  }
+  return 0
 }
 
 class DataGrid {
@@ -40,15 +51,14 @@ class DataGrid {
     this.draggingColumnIdx = null
   }
 
-  addColumn(name: string, caption: string, dataType: string, style: string, sticky = false): void {
+  addColumn(name: string, caption: string, dataType: string, sort = defaultSort): void {
     this.columns.push({
       name,
       caption,
       dataType,
-      style,
       show: true,
       ascendant: true,
-      sticky,
+      sortFunction: sort,
     })
   }
 
@@ -73,15 +83,8 @@ class DataGrid {
   }
 
   sortByColumn(column: string, ascendant: boolean): void {
-    this.originalRows.sort((a, b) => {
-      if (a[column] < b[column]) {
-        return ascendant ? -1 : 1
-      }
-      if (a[column] > b[column]) {
-        return ascendant ? 1 : -1
-      }
-      return 0
-    })
+    const { sortFunction = defaultSort } = toRaw(this.columns).find(e => e.name === column)
+    this.originalRows.sort((a, b) => sortFunction(a, b, ascendant, column))
     this.rows = this.originalRows.slice(0, this.rows.length)
   }
 

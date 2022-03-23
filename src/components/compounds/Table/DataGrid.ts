@@ -1,4 +1,4 @@
-import { toRaw, unref } from 'vue'
+import { toRaw } from 'vue'
 
 type Column = {
   id?: number
@@ -8,7 +8,12 @@ type Column = {
   show: boolean
   ascendant: boolean
   selected?: boolean
-  sortFunction?: (a, b, ascendent, column) => number
+  sortFunction(
+    a: Record<string, unknown>,
+    b: Record<string, unknown>,
+    order: boolean,
+    column: keyof Record<string, unknown>,
+  ): number
 }
 
 type Row = {
@@ -16,7 +21,12 @@ type Row = {
   selected?: boolean
 }
 
-const defaultSort = (a, b, order, column) => {
+const defaultSort = (
+  a: Record<string, unknown>,
+  b: Record<string, unknown>,
+  order: boolean,
+  column: keyof Record<string, unknown>,
+): number => {
   if (a[column] < b[column]) {
     return order ? -1 : 1
   }

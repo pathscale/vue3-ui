@@ -279,11 +279,11 @@
     "optional": [
       "is-arrowless",
       "is-boxed",
+      "is-hoverable",
       "is-right"
     ],
     "unstable": [
-      "is-active",
-      "is-hoverable"
+      "is-active"
     ]
   },
   "VNavbarItem": {

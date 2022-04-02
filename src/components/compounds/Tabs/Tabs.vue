@@ -44,7 +44,7 @@ export default {
       activeHeight: null,
       tabs: [],
       animated: props.animated,
-      vanimated: props.vanimated
+      vanimated: props.vanimated,
     })
 
     const setActiveTabID = id => {
@@ -82,33 +82,37 @@ export default {
       tabs,
       isHorizontal,
       rounded,
-      isTabActive
+      isTabActive,
     }
   },
 }
 </script>
 
 <template>
-  <section>
-    <nav class="tabs" :class="[
-      type,
-      size,
-      {
-        [position]: isHorizontal,
-        'is-fullwidth': expanded,
-        'is-toggle-rounded is-toggle': rounded
-      }
-    ]">
+  <div>
+    <nav
+      class="tabs"
+      :class="[
+        type,
+        size,
+        {
+          [position]: isHorizontal,
+          'is-fullwidth': expanded,
+          'is-toggle-rounded is-toggle': rounded,
+        },
+      ]">
       <ul class="ul">
         <template v-for="t in tabs.tabs" :key="t">
-          <li class="li"
+          <li
+            class="li"
+            :class="{
+              'is-active': isTabActive(t),
+            }"
+            @click="setActiveTab(t)">
+            <a
               :class="{
-                'is-active': isTabActive(t)
-              }"
-              @click="setActiveTab(t)">
-            <a :class="{
-              'is-disabled': t.disabled
-            }">
+                'is-disabled': t.disabled,
+              }">
               {{ t.label }}
             </a>
           </li>
@@ -118,5 +122,5 @@ export default {
     <div :class="{ 'is-height-animated': vanimated }" :style="contentHeight">
       <slot />
     </div>
-  </section>
+  </div>
 </template>

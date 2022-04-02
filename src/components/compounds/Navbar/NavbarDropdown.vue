@@ -2,7 +2,7 @@
 import { watchEffect, reactive, computed } from 'vue'
 
 export default {
-  name: 'BNavbarDropdown',
+  name: 'VNavbarDropdown',
   props: {
     label: String,
     hoverable: Boolean,
@@ -12,33 +12,21 @@ export default {
     boxed: Boolean,
     closeOnClick: {
       type: Boolean,
-      default: true
+      default: true,
     },
-    collapsible: Boolean
-
+    collapsible: Boolean,
   },
   setup(props) {
-    const state = reactive(
-      {
-        newActive: props.active,
-        isHoverable: props.hoverable,
-      }
-    )
+    const state = reactive({
+      newActive: props.active,
+    })
+
     watchEffect(() => {
       state.newActive = props.active
     })
 
     const closeMenu = () => {
       state.newActive = !props.closeOnClick
-      if (props.hoverable && props.closeOnClick) {
-        state.isHoverable = false
-      }
-    }
-
-    const checkHoverable = () => {
-      if (props.hoverable) {
-        state.isHoverable = true
-      }
     }
 
     const toggleActive = () => {
@@ -49,10 +37,10 @@ export default {
       return !props.collapsible || (props.collapsible && state.newActive)
     })
 
-    const isActive = computed(() => state.newActive && props.collapsible)
+    const isActive = computed(() => state.newActive)
 
-    return { state, closeMenu, checkHoverable, toggleActive, show, isActive }
-  }
+    return { closeMenu, toggleActive, show, isActive }
+  },
 }
 </script>
 
@@ -60,17 +48,16 @@ export default {
   <div
     class="navbar-item has-dropdown"
     :class="{
-      'is-hoverable': state.isHoverable,
-      'is-active': state.newActive
+      'is-hoverable': hoverable,
+      'is-active': isActive,
     }"
-    @mouseenter="checkHoverable"
     @focusout="closeMenu"
     tabindex="-1">
     <a
       class="navbar-link"
       :class="{
         'is-arrowless': arrowless,
-        'is-active': isActive
+        'is-active': isActive,
       }"
       role="menuitem"
       aria-haspopup="true"

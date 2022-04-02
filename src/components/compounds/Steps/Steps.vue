@@ -74,7 +74,7 @@ export default {
 </script>
 
 <template>
-  <section>
+  <div>
     <div
       class="steps"
       :class="[
@@ -114,5 +114,5 @@ export default {
     <div class="step-content">
       <slot />
     </div>
-  </section>
+  </div>
 </template>

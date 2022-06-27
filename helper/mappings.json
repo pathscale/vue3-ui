@@ -582,6 +582,11 @@
     "optional": [],
     "unstable": []
   },
+  "VChart": {
+    "always": [],
+    "optional": [],
+    "unstable": []
+  },
   "VCheckbox": {
     "always": [
       "check",

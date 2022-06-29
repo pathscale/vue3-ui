@@ -582,6 +582,13 @@
     "optional": [],
     "unstable": []
   },
+  "VChart": {
+    "always": [
+      "frappe-charts"
+    ],
+    "optional": [],
+    "unstable": []
+  },
   "VCheckbox": {
     "always": [
       "check",

@@ -1,17 +1,17 @@
 <template>
   <div>
-    <div class="content-wrap">
-      <!-- <img style="opacity: 1;" :src="logo" ref="watermaskImage2" alt /> -->
+    <div style="position: relative">
       <!-- Text watermark or image watermark -->
-      <canvas ref="watermask" :width="options.width" :height="options.height" />
+      <canvas style="position: absolute; left: 0; top: 0;" ref="watermask" :width="options.width" :height="options.height" />
       <!-- grid -->
-      <canvas ref="grid" :width="options.width" :height="options.height" />
+      <canvas style="position: absolute; left: 0; top: 0;" ref="grid" :width="options.width" :height="options.height" />
       <!-- Main depth map -->
-      <canvas ref="depth" :width="options.width" :height="options.height" />
+      <canvas style="position: absolute; left: 0; top: 0;" ref="depth" :width="options.width" :height="options.height" />
       <!-- axis -->
-      <canvas ref="axis" :width="options.width" :height="options.height" />
+      <canvas style="position: absolute; left: 0; top: 0;" ref="axis" :width="options.width" :height="options.height" />
       <!-- prompt box -->
       <canvas
+        style="position: absolute; left: 0; top: 0;"
         ref="tip"
         :width="options.width"
         :height="options.height"
@@ -22,11 +22,9 @@
 </template>
 
 <script>
-// import logo from "./../assets/logo.png";
+import {onMounted, onUnmounted, ref} from "vue";
 
 // Default configuration items for depth map
-import {onMounted, onUnmounted, watchEffect} from "vue";
-
 const defaultDayOptions = {
   // basic configuration
   width: 780, // depth map visible width
@@ -36,7 +34,7 @@ const defaultDayOptions = {
 
   // watermark configuration
   watermaskType: "image", // watermark configuration type "text" (text) "image" (picture)
-  watermaskContent: "vue-depth-chart", // text watermark directly assign text image watermark import object
+  watermaskContent: "v-depth-chart", // text watermark directly assign text image watermark import object
 
   // line configuration
   gridLineColor: "#ddd", // grid line color
@@ -103,7 +101,7 @@ const defaultNightOptions = {
 
   // watermark configuration
   watermaskType: "image", // watermark configuration type "text" (text) "image" (picture)
-  watermaskContent: "vue-depth-chart", // text watermark directly assign text image watermark import object
+  watermaskContent: "v-depth-chart", // text watermark directly assign text image watermark import object
 
   // line configuration
   gridLineColor: "#333", // grid line color
@@ -183,38 +181,45 @@ export default {
     },
   },
   setup(props) {
+    let options = Object.assign(defaultDayOptions, props.customizeOptions)
+    const pointMap = new Map()
+    let watermask = ref(null)
+    let watermaskContext = null
+    let grid = ref(null)
+    let gridContext = null
+    let depth = ref(null)
+    let depthContext = null
+    let axis = ref(null)
+    let axisContext = null
+    let tip = ref(null)
+    let tipContext = null
     // initialize canvas
     const init = () => {
-      this.watermask = this.$refs.watermask;
-      this.watermaskContext = this.getContext2D(this.watermask);
-      this.grid = this.$refs.grid;
-      this.gridContext = this.getContext2D(this.grid);
-      this.depth = this.$refs.depth;
-      this.depthContext = this.getContext2D(this.depth);
-      this.axis = this.$refs.axis;
-      this.axisContext = this.getContext2D(this.axis);
-      this.tip = this.$refs.tip;
-      this.tipContext = this.getContext2D(this.tip);
-      this.tipContext.translate(
-        this.options.initOffset,
-        this.options.initOffset
+      watermaskContext = getContext2D(watermask.value);
+      gridContext = getContext2D(grid.value);
+      depthContext = getContext2D(depth.value);
+      axisContext = getContext2D(axis.value);
+      tipContext = getContext2D(tip.value);
+      tipContext.translate(
+        options.initOffset,
+        options.initOffset
       );
 
       // draw watermark
-      this.drawWatermask(this.watermaskContext, this.options);
+      drawWatermask(watermaskContext);
       // draw grid lines
-      this.drawGrid(this.gridContext, this.options);
+      drawGrid(gridContext);
       // draw the depth area
-      this.drawDepth(this.data, this.depthContext, this.options);
+      drawDepth(props.data, depthContext);
       // draw axis scale ticks
-      this.drawAxis(this.data, this.axisContext, this.options);
+      drawAxis(props.data, axisContext);
     }
     const reset = () => {
-      this.watermask = this.tip = this.grid = this.depth = this.axis = null;
-      this.watermaskContext = this.tipContext = this.gridContext = this.depthContext = this.axisContext = null;
+      watermask = tip = grid = depth = axis = ref(null);
+      watermaskContext = tipContext = gridContext = depthContext = axisContext = null;
     }
     // draw watermark
-    const drawWatermask = (context, options) => {
+    const drawWatermask = (context) => {
       const { width, height, watermaskType, watermaskContent } = options;
 
       if (watermaskType === "text") {
@@ -238,7 +243,7 @@ export default {
             watermaskImage.height
           );
         });
-        if (this.theme === "night") {
+        if (props.theme === "night") {
           context.globalAlpha = 1;
         } else {
           context.globalAlpha = 0.2;
@@ -247,7 +252,7 @@ export default {
       }
     }
     // draw grid
-    const drawGrid = (context, options) => {
+    const drawGrid = (context) => {
       const {
         width,
         height,
@@ -289,7 +294,7 @@ export default {
       context.closePath();
     }
     // draw the axes
-    const drawAxis = (data, context, options) => {
+    const drawAxis = (data, context) => {
       // Determine if there is a corresponding depth array
       if (
         !Object.prototype.hasOwnProperty.call(data, "buy") ||
@@ -316,7 +321,7 @@ export default {
       } = options;
       const yLen = height - yAxisGridSpace;
       const originData = [0, yLen];
-      const allData = this.deepClone(data)
+      const allData = deepClone(data)
       const buyOriginData = allData.buy;
       const buyData = buyOriginData.reverse();
       const sellData = data. sell;
@@ -403,7 +408,7 @@ export default {
       context.restore();
     }
     // draw the main depth map
-    const drawDepth = (data, context, options) => {
+    const drawDepth = (data, context) => {
       // Determine if there is a corresponding depth array
       if (
         !Object.prototype.hasOwnProperty.call(data, "buy") ||
@@ -430,7 +435,7 @@ export default {
       const staticHeight = allheight - bottomSpace;
       const buyPoint = [],
         sellPoint = [];
-      const allData = this.deepClone(data)
+      const allData = deepClone(data)
       const buyOriginData = allData.buy;
       const buyData = buyOriginData.reverse();
       const sellData = data. sell;
@@ -492,7 +497,7 @@ export default {
         return a.x - b.x;
       });
       pointList.forEach((item) => {
-        this.pointMap.set([item.x, item.y, item.side], item.value);
+        pointMap.set([item.x, item.y, item.side], item.value);
       });
 
       buyPoint.push(buyEndOrigin);
@@ -520,7 +525,7 @@ export default {
       buyLinearGradient.addColorStop(0.5, buyLinearGradientArray[2]);
       buyLinearGradient.addColorStop(0.8, buyLinearGradientArray[3]);
       buyLinearGradient.addColorStop(1, buyLinearGradientArray[4]);
-      context.strokeStyle = this.options.buyStrokeColor;
+      context.strokeStyle = options.buyStrokeColor;
       context.fillStyle = buyLinearGradient;
       // connect the corresponding points
       buyPoint.forEach((item, index) => {
@@ -542,7 +547,7 @@ export default {
       sellLinearGradient.addColorStop(0.8, sellLinearGradientArray[3]);
       sellLinearGradient.addColorStop(1, sellLinearGradientArray[4]);
       context.fillStyle = sellLinearGradient;
-      context.strokeStyle = this.options.sellStrokeColor;
+      context.strokeStyle = options.sellStrokeColor;
       // connect the corresponding points
       sellPoint.forEach((item, index) => {
         context.lineTo(item.x, item.y);
@@ -556,8 +561,6 @@ export default {
       context.restore();
     }
     const onMouseMove = ({ offsetX }) => {
-      const {pointMap} = this;
-      const {tipContext} = this;
       const {
         tipType,
         tipHeight,
@@ -573,10 +576,10 @@ export default {
         tipSellTextColor,
         yAxisGridSpace,
         initOffset,
-      } = this.options;
-      let { tipWidth } = this.options;
-      const {width} = this.options;
-      const height = this.options.height - yAxisGridSpace;
+      } = options;
+      let { tipWidth } = options;
+      const {width} = options;
+      const height = options.height - yAxisGridSpace;
       for (const key of pointMap.keys()) {
         const x = key[0];
         const y = key[1];
@@ -584,7 +587,7 @@ export default {
         const obj = pointMap.get(key);
         if (offsetX < x) {
           // clear first
-          tipContext.clearRect(-10, -10, width + 20, this.options.height + 20);
+          tipContext.clearRect(-10, -10, width + 20, options.height + 20);
           // draw the positioning dotted line
           tipContext.strokeStyle = tipLocationLineColor;
           tipContext.lineWidth = 1;
@@ -623,8 +626,8 @@ export default {
             tipContext.font = "12px bold";
             let left = x - tipWidth / 2;
             let top = y - tipHeight - 10;
-            const tipsPriceText = `Order price ${this.toThousand(obj.price)}`;
-            const tipsAmountText = `Amount of delegated ${this.toThousand(obj.amount)}`;
+            const tipsPriceText = `Order price ${toThousand(obj.price)}`;
+            const tipsAmountText = `Amount of delegated ${toThousand(obj.amount)}`;
             const maxTextWidth = Math.max(
               tipContext.measureText(tipsPriceText).width,
               tipContext.measureText(tipsAmountText).width
@@ -646,7 +649,7 @@ export default {
             tipContext.lineJoin = "round";
             tipContext.strokeStyle =
               side === "buy" ? tipBuyBorderColor : tipSellBorderColor;
-            this.drawRoundedRect(
+            drawRoundedRect(
               tipContext,
               left,
               top,
@@ -680,7 +683,7 @@ export default {
             );
             tipContext.closePath();
           } else {
-            const tipsPriceText = `${this.toThousand(obj.price)}`;
+            const tipsPriceText = `${toThousand(obj.price)}`;
             const tipsAmountText = `${obj.amount}`;
             const tipsPriceWidth =
               tipContext.measureText(tipsPriceText).width + 20;
@@ -701,14 +704,14 @@ export default {
             tipContext.lineTo(x + tipsPriceWidth / 2, height + 5);
             tipContext.lineTo(x + 5, height + 5);
             tipContext.lineTo(x, height);
-            if (this.theme === "night") {
+            if (props.theme === "night") {
               tipContext.fillStyle = "rgb(25,25,25)";
             } else {
               tipContext.fillStyle = "#fff";
             }
             tipContext.fill();
             tipContext.stroke();
-            if (this.theme === "night") {
+            if (props.theme === "night") {
               tipContext.fillStyle = "#ccc";
             } else {
               tipContext.fillStyle = "#666";
@@ -729,14 +732,14 @@ export default {
             tipContext.lineTo(8 + tipsAmountWidth, y + 10);
             tipContext.lineTo(8, y + 10);
             tipContext.lineTo(1, y);
-            if (this.theme === "night") {
+            if (props.theme === "night") {
               tipContext.fillStyle = "rgb(25,25,25)";
             } else {
               tipContext.fillStyle = "#fff";
             }
             tipContext.fill();
             tipContext.stroke();
-            if (this.theme === "night") {
+            if (props.theme === "night") {
               tipContext.fillStyle = "#ccc";
             } else {
               tipContext.fillStyle = "#666";
@@ -752,8 +755,8 @@ export default {
       }
     }
     const onMouseOut = () => {
-      const { width, height } = this.options;
-      this.tipContext.clearRect(0, 0, width, height);
+      const { width, height } = options;
+      tipContext.clearRect(0, 0, width, height);
     }
     const drawRoundedRect = (context, x, y, width, height, r, fill, stroke) => {
       context.moveTo(x + r, y);
@@ -799,15 +802,15 @@ export default {
       for (const key in obj) {
         if (Object.prototype.hasOwnProperty.call(obj, key)) {
           // Is it its own object
-          newObj[key] = this.deepClone(obj[key]); // assignment
+          newObj[key] = deepClone(obj[key]); // assignment
         }
       }
       return newObj;
     }
 
     onMounted(() => {
-      if (this.theme === "night") {
-        this.options = Object.assign(defaultNightOptions, props.customizeOptions);
+      if (props.theme === "night") {
+        options = Object.assign(defaultNightOptions, props.customizeOptions);
       }
       // initialize
       init();
@@ -818,47 +821,32 @@ export default {
       reset();
     })
 
-    watchEffect((data) => {
-      this.pointMap = new Map();
-      this.drawDepth(data, this.depthContext, this.options);
-      this.drawAxis(data, this.axisContext, this.options);
-    })
     return {
-      drawWatermask,
-      drawGrid,
       drawAxis,
       drawDepth,
       onMouseMove,
       onMouseOut,
-      drawRoundedRect,
-      getContext2D,
-      toThousand,
-      deepClone,
-      options: Object.assign(defaultDayOptions, this.customizeOptions),
-      watermask: null,
-      watermaskContext: null,
-      grid: null,
-      gridContext: null,
-      depth: null,
-      depthContext: null,
-      axis: null,
-      axisContext: null,
-      tip: null,
-      tipContext: null,
-      pointMap: new Map(),
+      options,
+      watermask,
+      grid,
+      depth,
+      depthContext,
+      axis,
+      axisContext,
+      tip,
+      pointMap,
     };
+  },
+  watchEffect: {
+    data: {
+      handler(val) {
+        this.pointMap = new Map();
+        this.drawDepth(val, this.depthContext, this.options);
+        this.drawAxis(val, this.axisContext, this.options);
+      },
+      immediate: false,
+      deep: true,
+    },
   },
 };
 </script>
-
-<style scoped>
-.content-wrap {
-  position: relative;
-}
-
-canvas {
-  position: absolute;
-  left: 0;
-  top: 0;
-}
-</style>

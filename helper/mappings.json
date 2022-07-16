@@ -584,7 +584,9 @@
   },
   "VChart": {
     "always": [
-      "frappe-charts"
+      "div",
+      "frappe-charts",
+      "post"
     ],
     "optional": [],
     "unstable": []

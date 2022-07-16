@@ -1,87 +1,98 @@
-<script>
-import { onMounted } from 'vue'
+<!-- eslint-disable vue/no-unused-properties -->
+<script lang="ts">
+import { h, onMounted, ref, watch } from 'vue'
+
 import { Chart } from 'frappe-charts'
 
 export default {
   name: 'VChart',
+  inheritAttrs: false,
   props: {
     title: {
       type: String,
       required: true,
-      default: ''
+      default: '',
     },
     type: {
       type: String,
-      required: true
+      required: true,
     },
     height: {
       type: Number,
       required: false,
-      default: null
+      default: null,
     },
     width: {
       type: Number,
       required: false,
-      default: null
+      default: null,
     },
     isNavigable: {
       type: Number,
       required: false,
-      default: 0
+      default: 0,
     },
     xUnit: {
       type: Number,
       required: false,
-      default: 1
+      default: 1,
     },
     data: {
       type: Object,
-      required: true
+      required: true,
     },
     options: {
       type: Object,
-      default: () => ({})
+      default: () => ({}),
     },
     colors: {
       type: Array,
-      default: () => []
-    }
+      default: () => [],
+    },
+    animate: {
+      type: Boolean,
+      default: false,
+    },
+    truncateLegends: {
+      type: Boolean,
+      default: false,
+    },
   },
-  setup (props) {
+  setup(props) {
+    const chartRef = ref(null)
     const chartJSState = {
       chart: null,
       props: {
-        title: props.title,
-        type: props.type,
-        data: props.data,
-        width: props.width,
-        height: props.height,
-        options: props.options,
-        colors: props.colors,
-        isNavigable: props.isNavigable,
-        xUnit: props.xUnit,
-      }
-      // props: { ...props }
+        ...props,
+      },
     }
 
     const render = () => {
-      chartJSState.chart = new Chart(
-        "#chartRef", {
-          title: chartJSState.props.title,
-          type: chartJSState.props.type,
-          data: chartJSState.props.data,
-          height: chartJSState.props.height,
-          colors: chartJSState.props.colors,
-          isNavigable: chartJSState.props.isNavigable,
-          xUnit: chartJSState.props.xUnit,
-          // plugins: chartJSState.plugins
-        }
-      )
+      // @ts-ignore
+      chartJSState.chart = new Chart(chartRef.value, {
+        ...props,
+      })
     }
+
+    watch(
+      () => [props.width],
+      () => {
+        // @ts-ignore
+        chartJSState.chart?.update({
+          ...props.data,
+        })
+      },
+      {
+        flush: 'post',
+      },
+    )
 
     onMounted(() => render())
 
-    return {}
+    return () =>
+      h('div', {
+        ref: chartRef,
+      })
   },
 }
 </script>

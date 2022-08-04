@@ -58,7 +58,7 @@ export default {
       default: false,
     },
   },
-  setup(props) {
+  setup(props, { attrs }) {
     const chartRef = ref(null)
     const chartJSState = {
       chart: null,
@@ -71,6 +71,7 @@ export default {
       // @ts-ignore
       chartJSState.chart = new Chart(chartRef.value, {
         ...props,
+        ...attrs
       })
     }
 

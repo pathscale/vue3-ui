@@ -2,7 +2,7 @@
 <script lang="ts">
 import { h, onMounted, ref, watch } from 'vue'
 
-import { Chart } from 'frappe-charts'
+import { Chart } from '@pathscale/frappe-charts'
 
 export default {
   name: 'VChart',
@@ -71,7 +71,7 @@ export default {
       // @ts-ignore
       chartJSState.chart = new Chart(chartRef.value, {
         ...props,
-        ...attrs
+        ...attrs,
       })
     }
 

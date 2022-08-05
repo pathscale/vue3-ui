@@ -58,6 +58,7 @@
     "@babel/traverse": "7.12.10",
     "@mysticatea/eslint-plugin": "13.0.0",
     "@pathscale/eslint-plugin-vue3": "0.0.1",
+    "@pathscale/frappe-charts": "^0.0.1",
     "@pathscale/rollup-plugin-vue3": "^0.0.4",
     "@rollup/plugin-node-resolve": "11.0.1",
     "@rollup/plugin-replace": "2.3.4",

@@ -42,6 +42,7 @@ class DataGrid {
   originalRows: Row[]
   checkedRows: Set<Row>
   rowsPerPage: number
+  currentPage: number
   draggingRow: { id: number }
   draggingRowIdx: number
   draggingColumn: { id?: number }
@@ -53,6 +54,7 @@ class DataGrid {
     this.originalRows = []
     this.checkedRows = new Set()
     this.rowsPerPage = 0
+    this.currentPage = 0
     this.draggingRow = null
     this.draggingRowIdx = null
     this.draggingColumn = null
@@ -124,6 +126,13 @@ class DataGrid {
         this.checkedRows.delete(row)
       })
     }
+  }
+
+  switchPage(): void {
+    this.rows = this.originalRows.slice(
+      this.currentPage * this.rowsPerPage,
+      this.currentPage * this.rowsPerPage + this.rowsPerPage,
+    )
   }
 
   toggleColumn({ name }: { name: string }): void {

@@ -1,5 +1,5 @@
 <script>
-import { computed, reactive, ref, watch, toRaw } from 'vue'
+import { computed, reactive, ref, watch, toRaw, watchEffect } from 'vue'
 import VTag from '../../primitives/Tag/Tag.vue'
 import VButton from '../../primitives/Button/Button.vue'
 import VCheckbox from '../../primitives/Checkbox/Checkbox.vue'
@@ -44,10 +44,10 @@ export default {
     sticky: Boolean,
     mobileCards: Boolean,
   },
-
-  setup(props, { slots }) {
+  emits: ['update:data'],
+  setup(props, { slots, emit }) {
     // datagrid instance reference
-    const data = ref(props.data)
+    const computedData = ref(props.data)
     const computedRowsPerPage = ref(props.rowsPerPage)
     const currentPage = ref(0)
     const search = reactive({})
@@ -58,30 +58,45 @@ export default {
       0: false,
     })
 
+    const switchPage = () => {
+      if (props.pagination) {
+        computedData.value.rows = computedData.value.originalRows.slice(
+          currentPage.value * computedData.value.rowsPerPage,
+          currentPage.value * computedData.value.rowsPerPage + computedData.value.rowsPerPage,
+        )
+      }
+    }
+
+    watchEffect(() => {
+      if (!props.pagination) {
+        computedData.value = props.data
+      }
+    })
+
     // whenever pagination props changes, update the class state accordingly
     // thsi way pagination settings are directly passed to props and indirectly passed to class
 
     // page goes back to first when rowperpage changes
     watch(computedRowsPerPage, () => {
-      props.data.rowsPerPage = computedRowsPerPage.value
+      computedData.value.rowsPerPage = computedRowsPerPage.value
       currentPage.value = 0
-      props.data.switchPage()
+      switchPage()
     })
 
     // compute new rows window whenever currentpage changes
     watch(currentPage, () => {
-      props.data.currentPage = currentPage.value
-      props.data.switchPage()
+      computedData.value.currentPage = currentPage.value
+      switchPage()
     })
 
     // compute rows window on first render as no change cb triggers
     if (props.pagination) {
-      props.data.rowsPerPage = computedRowsPerPage.value
-      props.data.switchPage()
+      computedData.value.rowsPerPage = computedRowsPerPage.value
+      switchPage()
     }
 
     const sortColumn = column => {
-      props.data.sortByColumn(column.name, column.ascendant)
+      computedData.value.sortByColumn(column.name, column.ascendant)
       column.ascendant = !column.ascendant
     }
 
@@ -102,7 +117,11 @@ export default {
     }
 
     const countColumns = computed(() => {
-      return data.value.getColumns().length + (props.checkable ? 1 : 0) + (props.expandable ? 1 : 0)
+      return (
+        computedData.value.getColumns().length +
+        (props.checkable ? 1 : 0) +
+        (props.expandable ? 1 : 0)
+      )
     })
 
     const handlePageChange = value => {
@@ -141,13 +160,13 @@ export default {
     watch(
       [checked],
       () => {
-        data.value.toggleCheckAll(toRaw(checked)[currentPage.value])
+        computedData.value.toggleCheckAll(toRaw(checked)[currentPage.value])
       },
       { deep: true },
     )
 
     const isChecked = row => {
-      return data.value.checkedRows.has(row)
+      return computedData.value.checkedRows.has(row)
     }
 
     const hasHeader = computed(() => {
@@ -170,11 +189,12 @@ export default {
       slots,
       hasHeader,
       currentPage,
-      total: data.value.originalRows.length,
+      total: computedData.value.originalRows.length,
       computedRowsPerPage,
       checked,
       isChecked,
       UNKNOW,
+      computedData,
     }
   },
 }
@@ -189,7 +209,7 @@ export default {
       <div class="tableHeader" v-if="hasHeader">
         <slot name="header">
           <v-button
-            @click="data.resetFilters()"
+            @click="computedData.resetFilters()"
             v-if="hasResetBtn"
             type="is-light has-text-black"
             class="my-2">
@@ -217,15 +237,15 @@ export default {
             <td v-if="expandable" />
             <th
               class="th"
-              v-for="(column, idx) in data.getColumns()"
+              v-for="(column, idx) in computedData.getColumns()"
               :key="idx"
               :class="columnClasses(column)"
               @click="handleSort(column)"
               :draggable="draggableColumns"
-              @dragstart="data.onDragStartColumn($event, row, idx)"
-              @drop="data.onDropColumn($event, column, idx)"
-              @dragover="data.onDragOverColumn($event, column, idx)"
-              @dragleave="data.onDragLeaveColumn($event, column, idx)">
+              @dragstart="computedData.onDragStartColumn($event, row, idx)"
+              @drop="computedData.onDropColumn($event, column, idx)"
+              @dragover="computedData.onDragOverColumn($event, column, idx)"
+              @dragleave="computedData.onDragLeaveColumn($event, column, idx)">
               {{ column.caption }}
               <span v-if="sortable && column.dataType !== UNKNOW">
                 {{ column.ascendant ? '&darr;' : '\t&uarr;' }}
@@ -238,7 +258,7 @@ export default {
             <td v-if="checkable" />
             <td v-if="expandable" />
             <td
-              v-for="column in data.getColumns()"
+              v-for="column in computedData.getColumns()"
               :data-label="column.caption"
               :key="column.name"
               :class="column.style">
@@ -247,22 +267,22 @@ export default {
                 name="search"
                 type="text"
                 v-model="search[column.name]"
-                @input="data.searchColumn(column.name, search[column.name])"
+                @input="computedData.searchColumn(column.name, search[column.name])"
                 placeholder="Search" />
             </td>
           </tr>
           <template v-if="!groupBy">
-            <template v-for="(row, idx) in data.rows" :key="idx">
+            <template v-for="(row, idx) in computedData.rows" :key="idx">
               <tr
                 :draggable="draggableRows"
-                @dragstart="data.onDragStartRow($event, row, idx)"
-                @drop="data.onDropRow($event, row, idx)"
-                @dragover="data.onDragOverRow($event, row, idx)"
-                @dragleave="data.onDragLeaveRow($event, row, idx)"
+                @dragstart="computedData.onDragStartRow($event, row, idx)"
+                @drop="computedData.onDropRow($event, row, idx)"
+                @dragover="computedData.onDragOverRow($event, row, idx)"
+                @dragleave="computedData.onDragLeaveRow($event, row, idx)"
                 :class="selectedClasses(row)">
                 <td v-if="checkable">
                   <v-checkbox
-                    @change="data.toggleCheck($event, row)"
+                    @change="computedData.toggleCheck($event, row)"
                     :model-value="isChecked(row)" />
                 </td>
                 <td v-if="expandable">
@@ -271,12 +291,12 @@ export default {
                   }}</a>
                 </td>
                 <td
-                  v-for="column in data.getColumns()"
+                  v-for="column in computedData.getColumns()"
                   :data-label="column.caption"
                   :key="column.name"
                   :class="cellClasses(column)"
                   :contenteditable="props.editable"
-                  @blur="data.editCell(row, column, $event.target.textContent)">
+                  @blur="computedData.editCell(row, column, $event.target.textContent)">
                   <slot :name="column.name" :row="row">
                     {{ row[column.name] }}
                   </slot>
@@ -291,7 +311,7 @@ export default {
           </template>
 
           <template v-if="groupBy">
-            <template v-for="(group, idx) in data.groups(groupBy)" :key="idx">
+            <template v-for="(group, idx) in computedData.groups(groupBy)" :key="idx">
               <tr>
                 <td :colspan="countColumns" class="is-aligned-center">
                   <a @click="toggleExpandedGroup(group)" class="mr-4">{{
@@ -304,14 +324,14 @@ export default {
                 </td>
               </tr>
               <template v-if="expandedGroups.has(group)">
-                <tr v-for="(row, rowIdx) in data.filterRows(groupBy, group)" :key="rowIdx">
+                <tr v-for="(row, rowIdx) in computedData.filterRows(groupBy, group)" :key="rowIdx">
                   <td
-                    v-for="column in data.getColumns()"
+                    v-for="column in computedData.getColumns()"
                     :data-label="column.caption"
                     :key="column.name"
                     :class="column.style"
                     :contenteditable="props.editable"
-                    @blur="data.editCell(row, column, $event.target.textContent)">
+                    @blur="computedData.editCell(row, column, $event.target.textContent)">
                     <slot :name="column.name" :row="row">
                       {{ row[column.name] }}
                     </slot>

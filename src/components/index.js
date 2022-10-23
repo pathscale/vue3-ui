@@ -26,6 +26,7 @@ export { default as VTextarea } from './primitives/Textarea/Textarea.vue'
 export { default as VTimeline } from './primitives/Timeline/Timeline.vue'
 export { default as VTooltip } from './primitives/Tooltip/Tooltip.vue'
 export { default as VUpload } from './primitives/Upload/Upload.vue'
+export { default as VAutocomplete } from './primitives/Autocomplete/Autocomplete.vue'
 
 /* Compounds */
 

@@ -153,5 +153,8 @@
     "is-completed": [],
     "is-disabled": [],
     "is-clickable": []
+  },
+  "VAutocomplete": {
+    "is-active": []
   }
 }

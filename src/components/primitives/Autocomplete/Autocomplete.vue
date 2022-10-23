@@ -1,7 +1,9 @@
 
 <script>
 import { reactive, watchEffect } from 'vue'
-import { VField, VInput } from '../../index.js'
+
+import VField from '../Field/Field.vue'
+import VInput from '../Input/Input.vue'
 
 export default {
   name: 'Autocomplete',

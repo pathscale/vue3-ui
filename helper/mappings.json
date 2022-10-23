@@ -526,6 +526,41 @@
       "is-toggle-rounded"
     ]
   },
+  "VAutocomplete": {
+    "always": [
+      "control",
+      "dropdown",
+      "dropdown-content",
+      "dropdown-item",
+      "dropdown-menu",
+      "dropdown-trigger",
+      "field",
+      "field-body",
+      "field-label",
+      "help",
+      "icon",
+      "input",
+      "is-clickable",
+      "is-left",
+      "is-right",
+      "label",
+      "text"
+    ],
+    "optional": [
+      "is-expanded",
+      "is-grouped",
+      "is-horizontal",
+      "is-loading",
+      "is-rounded"
+    ],
+    "unstable": [
+      "has-addons",
+      "has-icons-left",
+      "has-icons-right",
+      "is-active",
+      "is-grouped-multiline"
+    ]
+  },
   "VAvatar": {
     "always": [
       "has-background-link",

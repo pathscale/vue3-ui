@@ -155,6 +155,10 @@
     "is-clickable": []
   },
   "VAutocomplete": {
-    "is-active": []
+    "has-icons-left": [],
+    "has-icons-right": [],
+    "is-active": [],
+    "is-grouped-multiline": [],
+    "has-addons": []
   }
 }

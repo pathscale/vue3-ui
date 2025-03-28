@@ -1,7 +1,6 @@
 <!-- eslint-disable vue/no-unused-properties -->
-<script lang="ts">
+<script>
 import { h, onMounted, ref, watch } from 'vue'
-
 import { Chart } from '@pathscale/frappe-charts'
 
 export default {
@@ -68,7 +67,6 @@ export default {
     }
 
     const render = () => {
-      // @ts-ignore
       chartJSState.chart = new Chart(chartRef.value, {
         ...props,
         ...attrs,
@@ -78,7 +76,6 @@ export default {
     watch(
       () => [props.width],
       () => {
-        // @ts-ignore
         chartJSState.chart?.update({
           ...props.data,
         })

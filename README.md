@@ -22,7 +22,7 @@ The full documentation for Vue3-ui can be found on [vue3.dev](https://vue3.dev/)
 
 To build this project on node 16, you need to install these requiements.
 
--node 16.16.0
+-node 20.14.0
 -python 2.7.15
 -visual studio build tools 2017
 

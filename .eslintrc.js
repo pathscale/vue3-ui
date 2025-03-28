@@ -21,7 +21,6 @@ const baseConfigsNoTS = baseTSConfigs.filter(c => !c.includes('@typescript-eslin
 
 // Node-specific base configs
 const baseNodeConfigs = [
-  'ash-nazg/sauron-node',
   'plugin:import/errors',
   'plugin:import/warnings',
   'plugin:prettier/recommended',

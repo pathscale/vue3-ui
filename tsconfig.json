@@ -15,7 +15,7 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     /* Paths */
-    "baseUrl": "."
+    "baseUrl": "./"
   },
   "include": ["**/*.ts"]
 }

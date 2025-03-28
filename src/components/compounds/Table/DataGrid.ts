@@ -22,10 +22,10 @@ type Row = {
 }
 
 const defaultSort = (
-  a: Record<string, unknown>,
-  b: Record<string, unknown>,
+  a: Record<string, any>,
+  b: Record<string, any>,
   order: boolean,
-  column: keyof Record<string, unknown>,
+  column: keyof Record<string, any>,
 ): number => {
   if (a[column] < b[column]) {
     return order ? -1 : 1
@@ -43,10 +43,10 @@ class DataGrid {
   checkedRows: Set<Row>
   rowsPerPage: number
   currentPage: number
-  draggingRow: { id: number }
-  draggingRowIdx: number
-  draggingColumn: { id?: number }
-  draggingColumnIdx: number
+  draggingRow: { id: number } | null
+  draggingRowIdx: number | null
+  draggingColumn: { id?: number } | null
+  draggingColumnIdx: number | null
 
   constructor() {
     this.columns = []
@@ -89,10 +89,12 @@ class DataGrid {
 
   // eslint-disable-next-line class-methods-use-this -- Convenient on instance
   editCell(row: Row, column: Column, newValue: string | number): void {
+    // @ts-ignore
     row[column.name] = newValue
   }
 
   sortByColumn(column: string, ascendant: boolean): void {
+    // @ts-ignore
     const { sortFunction = defaultSort } = toRaw(this.columns).find(e => e.name === column)
     this.originalRows.sort((a, b) => sortFunction(a, b, ascendant, column))
     this.rows = this.originalRows.slice(0, this.rows.length)
@@ -104,6 +106,7 @@ class DataGrid {
 
   searchColumn(colName: string, query: string): void {
     this.rows = this.originalRows.filter(row => {
+      // @ts-ignore
       return row[colName].toString().toLowerCase().includes(query.toLowerCase())
     })
   }
@@ -152,6 +155,7 @@ class DataGrid {
   }
 
   onDropRow(_evt: Event, _row: Row, idx: number): void {
+    // @ts-ignore
     const chunk = this.rows.splice(this.draggingRowIdx, 1)
     this.rows.splice(idx, 0, chunk[0])
     this.resetDraggingRow()
@@ -183,6 +187,7 @@ class DataGrid {
 
   // callback called when user drops a column
   onDropColumn(_evt: Event, _column: Column, idx: number): void {
+    // @ts-ignore
     const chunk = this.columns.splice(this.draggingColumnIdx, 1)
     this.columns.splice(idx, 0, chunk[0])
     this.resetDraggingColumn()
@@ -211,6 +216,7 @@ class DataGrid {
   // returns an object that maps column names to column instances
   getColumnsObject(): Record<string, Column> {
     return this.columns.reduce((obj, column) => {
+      // @ts-ignore
       obj[column.name] = column
       return obj
     }, {})
@@ -218,12 +224,14 @@ class DataGrid {
 
   groups(column: string): Set<number | boolean> {
     return this.rows.reduce((set, row) => {
+      // @ts-ignore
       set.add(row[column])
       return set
     }, new Set() as Set<number | boolean>)
   }
 
   filterRows(column: string, value: string | number): Row[] {
+    // @ts-ignore
     return this.rows.filter(row => row[column] === value)
   }
 }

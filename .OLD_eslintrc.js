@@ -139,7 +139,7 @@ module.exports = {
     SharedArrayBuffer: 'readonly',
   },
   parserOptions: {
-    ecmaVersion: 2020,
+    ecmaVersion: 'latest',
   },
   overrides: [
     // Node.js config files (non-Vue, non-TS)
@@ -156,7 +156,7 @@ module.exports = {
         require: true,
       },
       parserOptions: {
-        ecmaVersion: 2018,
+        ecmaVersion: 'latest',
         sourceType: 'script',
       },
       rules: {

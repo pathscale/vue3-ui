@@ -17,5 +17,8 @@
     /* Paths */
     "baseUrl": "./"
   },
-  "include": ["**/*.ts"]
+  "include": [
+    "**/*.ts",
+    "**/*.vue",
+  ]
 }

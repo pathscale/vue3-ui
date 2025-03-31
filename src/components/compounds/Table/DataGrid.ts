@@ -21,11 +21,11 @@ type Row = {
   selected?: boolean
 }
 
-const defaultSort = (
-  a: Record<string, any>,
-  b: Record<string, any>,
+const defaultSort = <V>(
+  a: Record<string, V>,
+  b: Record<string, V>,
   order: boolean,
-  column: keyof Record<string, any>,
+  column: keyof Record<string, V>,
 ): number => {
   if (a[column] < b[column]) {
     return order ? -1 : 1
@@ -87,7 +87,6 @@ class DataGrid {
     this.originalRows.splice(index, 1)
   }
 
-  // eslint-disable-next-line class-methods-use-this -- Convenient on instance
   editCell(row: Row, column: Column, newValue: string | number): void {
     // @ts-ignore
     row[column.name] = newValue
@@ -223,11 +222,14 @@ class DataGrid {
   }
 
   groups(column: string): Set<number | boolean> {
-    return this.rows.reduce((set, row) => {
-      // @ts-ignore
-      set.add(row[column])
-      return set
-    }, new Set() as Set<number | boolean>)
+    return this.rows.reduce(
+      (set, row) => {
+        // @ts-ignore
+        set.add(row[column])
+        return set
+      },
+      new Set() as Set<number | boolean>,
+    )
   }
 
   filterRows(column: string, value: string | number): Row[] {

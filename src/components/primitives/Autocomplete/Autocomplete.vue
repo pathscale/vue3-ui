@@ -6,7 +6,7 @@ import VField from '../Field/Field.vue'
 import VInput from '../Input/Input.vue'
 
 export default {
-  name: 'Autocomplete',
+  name: 'VAutocomplete',
   components: {
     VField,
     VInput,

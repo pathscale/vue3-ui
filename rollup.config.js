@@ -2,7 +2,7 @@ import vue from '@pathscale/rollup-plugin-vue3'
 import styles from 'rollup-plugin-styles'
 import resolve from '@rollup/plugin-node-resolve'
 import replace from '@rollup/plugin-replace'
-import ts from '@wessberg/rollup-plugin-ts'
+import ts from 'rollup-plugin-ts'
 import externals from 'rollup-plugin-node-externals'
 
 import pkg from './package.json'

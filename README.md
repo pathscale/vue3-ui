@@ -20,7 +20,7 @@ The full documentation for Vue3-ui can be found on [vue3.dev](https://vue3.dev/)
 
 ## Requirements
 
-To build this project on node 16, you need to install these requiements.
+To build this project on node 20, you need to install these requiements.
 
 -node 20.14.0
 -python 2.7.15

@@ -1,4 +1,4 @@
-import vue from '@pathscale/rollup-plugin-vue3'
+import vue from 'rollup-plugin-vue'
 import styles from 'rollup-plugin-styles'
 import resolve from '@rollup/plugin-node-resolve'
 import replace from '@rollup/plugin-replace'

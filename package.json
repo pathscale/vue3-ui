@@ -23,6 +23,7 @@
   "main": "dist/bundle.js",
   "module": "dist/bundle.js",
   "browser": "dist/bundle-browser.js",
+  "style": "dist/bundle.css",
   "scripts": {
     "prebuild": "bun run helper/index.ts && shx rm -rf dist",
     "build": "rollup -c --environment NODE_ENV:production",

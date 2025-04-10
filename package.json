@@ -1,5 +1,6 @@
 {
   "name": "@pathscale/vue3-ui",
+  "type": "module",
   "version": "1.0.14",
   "description": "Very clean Vue3 components styled with love and care.",
   "keywords": [

@@ -2,3 +2,4 @@ node_modules
 dist
 *.ps1
 .idea
+.rsbuild

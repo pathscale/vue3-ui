@@ -39,8 +39,18 @@ export default {
     const alt = ref(props.alt)
 
     onBeforeMount(async () => {
-      if (props.dataSrc && hasBenchieSupport) {
-        source.value = await t(props.dataSrc, $__CDN)
+      try {
+        if (
+          props.dataSrc &&
+          typeof window.hasBenchieSupport === 'function' &&
+          window.hasBenchieSupport() &&
+          typeof window.t === 'function' &&
+          typeof window.$__CDN !== 'undefined'
+        ) {
+          source.value = await window.t(props.dataSrc, window.$__CDN)
+        }
+      } catch (err) {
+        console.error('VAvatar hydration error:', err)
       }
     })
 

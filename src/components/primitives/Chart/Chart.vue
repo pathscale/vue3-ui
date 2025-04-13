@@ -1,5 +1,5 @@
 <script lang="ts">
-import { h, onMounted, ref, watch, withDefaults, defineProps } from 'vue'
+import { h, onMounted, ref, watch } from 'vue'
 // @ts-ignore
 import { Chart } from '@pathscale/frappe-charts'
 
@@ -17,21 +17,22 @@ interface IProps {
   truncateLegends?: boolean
 }
 
-const props = withDefaults(defineProps<IProps>(), {
-  height: null,
-  width: null,
-  isNavigable: 0,
-  xUnit: 1,
-  options: () => ({}),
-  colors: () => [],
-  animate: false,
-  truncateLegends: false,
-})
-
 export default {
   name: 'VChart',
   inheritAttrs: false,
-  props,
+  props: {
+    title: { type: String, required: true },
+    type: { type: String, required: true },
+    height: { type: Number, default: null },
+    width: { type: Number, default: null },
+    isNavigable: { type: Number, default: 0 },
+    xUnit: { type: Number, default: 1 },
+    data: { type: Object as () => Record<string, unknown>, required: true },
+    options: { type: Object as () => Record<string, unknown>, default: () => ({}) },
+    colors: { type: Array as () => string[], default: () => [] },
+    animate: { type: Boolean, default: false },
+    truncateLegends: { type: Boolean, default: false },
+  },
   setup(props: IProps, { attrs }: { attrs: Record<string, unknown> }) {
     const chartRef = ref(null)
     const chartJSState: {

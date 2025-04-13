@@ -15,6 +15,10 @@ export default [
     output: { format: 'es', file: pkg.module, assetFileNames: '[name][extname]' },
     plugins: [
       externals({ deps: true }),
+      replace({
+        __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: JSON.stringify(true),
+        preventAssignment: true,
+      }),
       resolve({ extensions: ['.vue', '.js', '.css'] }),
       vue({ template: { isProduction: true }, preprocessStyles: false }),
       ts(),
@@ -25,14 +29,18 @@ export default [
     input: 'src/components/index.js',
     output: { format: 'es', file: pkg.browser, assetFileNames: '[name][extname]' },
     plugins: [
+      // Not defined in browser
+      // eslint-disable-next-line node/no-process-env -- Used for build
+      replace({ 
+        'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV), 
+        __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: JSON.stringify(true),
+        preventAssignment: true, 
+      }),
       resolve({ extensions: ['.vue', '.js'] }),
       vue({ template: { isProduction: false }, preprocessStyles: false }),
       ts(),
       // Vue plugin won't handle CSS currently
       styles(),
-      // Not defined in browser
-      // eslint-disable-next-line node/no-process-env -- Used for build
-      replace({ 'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV) }),
     ],
   },
 ]

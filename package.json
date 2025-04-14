@@ -24,8 +24,8 @@
   "browser": "dist/bundle-browser.js",
   "scripts": {
     "prebuild": "bun run helper/index.ts && shx rm -rf dist",
-    "build": "rollup -c --environment NODE_ENV:production",
-    "postbuild": "shx cp helper/mappings.json helper/classes.json dist",
+    "build": "rolldown -c rolldown.config.ts build",
+    "postbuild": "shx cp helper/mappings.json helper/classes.json dist; shx rm -rf dist/dist; mv dist/assets/bundle-*.css dist/bundle.css; rm -r dist/assets",
     "css-lint": "stylelint src",
     "lint": "eslint --ext .js,.ts,.vue,.md,.html --max-warnings=0 .",
     "lint-arg": "eslint --ext .js,.ts,.vue,.md,.html --max-warnings=0",

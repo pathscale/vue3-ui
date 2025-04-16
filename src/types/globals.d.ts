@@ -1,2 +1,2 @@
-declare const t: (...args: any[]) => any | undefined
-declare const $__CDN: string | undefined
+declare const t: any
+declare const $__CDN: any

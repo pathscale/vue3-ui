@@ -618,10 +618,7 @@
     "unstable": []
   },
   "VChart": {
-    "always": [
-      "div",
-      "post"
-    ],
+    "always": [],
     "optional": [],
     "unstable": []
   },

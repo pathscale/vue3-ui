@@ -18,7 +18,7 @@
 </template>
 
 <script setup lang="ts">
-import { onBeforeMount, ref } from 'vue'
+import { defineProps, onBeforeMount, ref } from 'vue'
 import { checkBenchieSupport } from '@/utils/functions'
 
 const hasBenchieSupport = checkBenchieSupport()

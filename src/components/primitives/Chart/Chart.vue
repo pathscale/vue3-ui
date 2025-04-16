@@ -1,5 +1,9 @@
-<script lang="ts">
-import { h, onMounted, ref, watch, withDefaults, defineProps } from 'vue'
+<template>
+  <div ref="chartRef"></div>
+</template>
+
+<script setup lang="ts">
+import { onMounted, ref, watch, withDefaults, defineProps, useAttrs } from 'vue'
 // @ts-ignore
 import { Chart } from '@pathscale/frappe-charts'
 
@@ -28,48 +32,38 @@ const props = withDefaults(defineProps<IProps>(), {
   truncateLegends: false,
 })
 
-export default {
-  name: 'VChart',
-  inheritAttrs: false,
-  props,
-  setup(props: IProps, { attrs }: { attrs: Record<string, unknown> }) {
-    const chartRef = ref(null)
-    const chartJSState: {
-      chart: Record<string, unknown> | null
-      props: IProps
-    } = {
-      chart: null,
-      props: {
-        ...props,
-      },
-    }
+const attrs = useAttrs()
 
-    const render = () => {
-      chartJSState.chart = new Chart(chartRef.value, {
-        ...props,
-        ...attrs,
-      })
-    }
-
-    watch(
-      () => [props.width],
-      () => {
-        // @ts-ignore
-        chartJSState.chart?.update({
-          ...props.data,
-        })
-      },
-      {
-        flush: 'post',
-      },
-    )
-
-    onMounted(() => render())
-
-    return () =>
-      h('div', {
-        ref: chartRef,
-      })
+const chartRef = ref(null)
+const chartJSState: {
+  chart: Record<string, unknown> | null
+  props: IProps
+} = {
+  chart: null,
+  props: {
+    ...props,
   },
 }
+
+const render = () => {
+  chartJSState.chart = new Chart(chartRef.value, {
+    ...props,
+    ...attrs,
+  })
+}
+
+watch(
+  () => [props.width],
+  () => {
+    // @ts-ignore
+    chartJSState.chart?.update({
+      ...props.data,
+    })
+  },
+  {
+    flush: 'post',
+  },
+)
+
+onMounted(() => render())
 </script>

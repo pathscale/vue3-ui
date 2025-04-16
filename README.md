@@ -34,7 +34,7 @@ This repo only contains source code for components and does not come with exampl
 
 For this purpose you can take a look at [vue3-starter](https://github.com/pathscale/vue3-starter) or any other end user project that uses vue3-ui.
 
-Aditionally, if you want to develop new components, they can be locally injected into such project by using `inject.sh`, this will make them available inmediatly allowing you to test them.
+Additionally, if you want to develop new components, they can be locally injected into such project by using `inject.sh`, this will make them available immediately allowing you to test them.
 
 1. Clone [vue3-starter](https://github.com/pathscale/vue3-starter) or any other project that makes use of vue3-ui and make sure they are on the same directory.
 

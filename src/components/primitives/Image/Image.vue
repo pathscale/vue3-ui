@@ -24,13 +24,13 @@ import { checkBenchieSupport } from '@/utils/functions'
 const hasBenchieSupport = checkBenchieSupport()
 
 const props = defineProps<{
-  size: string
-  radio: string
-  rounded: boolean
-  centered: boolean
-  src: string
-  dataSrc: string
-  customClass: string
+  size?: string
+  radio?: string
+  rounded?: boolean
+  centered?: boolean
+  src?: string
+  dataSrc?: string
+  customClass?: string
 }>()
 
 const source = ref(props.src || props.dataSrc)

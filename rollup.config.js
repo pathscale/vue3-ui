@@ -3,7 +3,7 @@ import styles from 'rollup-plugin-styles'
 import resolve from '@rollup/plugin-node-resolve'
 import replace from '@rollup/plugin-replace'
 import alias from '@rollup/plugin-alias'
-import ts from 'rollup-plugin-ts'
+import typescript from '@rollup/plugin-typescript'
 import externals from 'rollup-plugin-node-externals'
 import path from 'path'
 
@@ -24,7 +24,7 @@ export default [
       externals({ deps: true }),
       resolve({ extensions: ['.vue', '.js', '.css'] }),
       vue({ template: { isProduction: true }, preprocessStyles: false }),
-      ts(),
+      typescript(),
       styles({ mode: ['extract', 'bundle.css'], url: { inline: true } }),
     ],
   },
@@ -39,7 +39,7 @@ export default [
       }),
       resolve({ extensions: ['.vue', '.js'] }),
       vue({ template: { isProduction: false }, preprocessStyles: false }),
-      ts(),
+      typescript(),
       // Vue plugin won't handle CSS currently
       styles(),
       // Not defined in browser

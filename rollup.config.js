@@ -2,8 +2,10 @@ import vue from '@pathscale/rollup-plugin-vue3'
 import styles from 'rollup-plugin-styles'
 import resolve from '@rollup/plugin-node-resolve'
 import replace from '@rollup/plugin-replace'
+import alias from '@rollup/plugin-alias'
 import ts from 'rollup-plugin-ts'
 import externals from 'rollup-plugin-node-externals'
+import path from 'path'
 
 import pkg from './package.json'
 
@@ -14,6 +16,11 @@ export default [
     external: ['vue'],
     output: { format: 'es', file: pkg.module, assetFileNames: '[name][extname]' },
     plugins: [
+      alias({
+        entries: [
+          { find: '@', replacement: path.resolve(__dirname, 'src') }
+        ]
+      }),
       externals({ deps: true }),
       resolve({ extensions: ['.vue', '.js', '.css'] }),
       vue({ template: { isProduction: true }, preprocessStyles: false }),
@@ -25,6 +32,11 @@ export default [
     input: 'src/components/index.js',
     output: { format: 'es', file: pkg.browser, assetFileNames: '[name][extname]' },
     plugins: [
+      alias({
+        entries: [
+          { find: '@', replacement: path.resolve(__dirname, 'src') }
+        ]
+      }),
       resolve({ extensions: ['.vue', '.js'] }),
       vue({ template: { isProduction: false }, preprocessStyles: false }),
       ts(),

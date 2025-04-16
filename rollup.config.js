@@ -17,9 +17,7 @@ export default [
     output: { format: 'es', file: pkg.module, assetFileNames: '[name][extname]' },
     plugins: [
       alias({
-        entries: [
-          { find: '@', replacement: path.resolve(__dirname, 'src') }
-        ]
+        entries: [{ find: '@', replacement: path.resolve(__dirname, 'src') }],
       }),
       externals({ deps: true }),
       resolve({ extensions: ['.vue', '.js', '.css'] }),
@@ -33,9 +31,7 @@ export default [
     output: { format: 'es', file: pkg.browser, assetFileNames: '[name][extname]' },
     plugins: [
       alias({
-        entries: [
-          { find: '@', replacement: path.resolve(__dirname, 'src') }
-        ]
+        entries: [{ find: '@', replacement: path.resolve(__dirname, 'src') }],
       }),
       resolve({ extensions: ['.vue', '.js'] }),
       vue({ template: { isProduction: false }, preprocessStyles: false }),
@@ -43,7 +39,6 @@ export default [
       // Vue plugin won't handle CSS currently
       styles(),
       // Not defined in browser
-      // eslint-disable-next-line node/no-process-env -- Used for build
       replace({ 'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV) }),
     ],
   },

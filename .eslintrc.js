@@ -176,6 +176,9 @@ module.exports = {
       globals: {
         __dirname: true, // Switch to `import.meta.url` when using bona fide ESM
       },
+      parserOptions: {
+        sourceType: 'module',
+      },
       extends: baseNodeConfigs,
       rules: {
         ...baseRules,

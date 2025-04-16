@@ -16,7 +16,7 @@ export default [
     plugins: [
       externals({ deps: true }),
       replace({
-        __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: JSON.stringify(true),
+        __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: false,
         preventAssignment: true,
       }),
       resolve({ extensions: ['.vue', '.js', '.css'] }),
@@ -31,10 +31,10 @@ export default [
     plugins: [
       // Not defined in browser
       // eslint-disable-next-line node/no-process-env -- Used for build
-      replace({ 
-        'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV), 
-        __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: JSON.stringify(true),
-        preventAssignment: true, 
+      replace({
+        'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+        __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: false,
+        preventAssignment: true,
       }),
       resolve({ extensions: ['.vue', '.js'] }),
       vue({ template: { isProduction: false }, preprocessStyles: false }),

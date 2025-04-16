@@ -1,3 +1,22 @@
+<template>
+  <figure
+    class="image figure"
+    :class="[
+      size,
+      radio,
+      {
+        'container': centered,
+      },
+    ]">
+    <img
+      class="img"
+      v-bind="$attrs"
+      :src="source"
+      :data-src="dataSrc"
+      :class="[customClass, { 'is-rounded': rounded }]" />
+  </figure>
+</template>
+
 <script>
 /* eslint-disable no-undef -- Access to Benchie variable/function */
 import { onBeforeMount, ref } from 'vue'
@@ -32,22 +51,3 @@ export default {
   },
 }
 </script>
-
-<template>
-  <figure
-    class="image figure"
-    :class="[
-      size,
-      radio,
-      {
-        'container': centered,
-      },
-    ]">
-    <img
-      class="img"
-      v-bind="$attrs"
-      :src="source"
-      :data-src="dataSrc"
-      :class="[customClass, { 'is-rounded': rounded }]" />
-  </figure>
-</template>

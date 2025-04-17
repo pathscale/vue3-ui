@@ -96,28 +96,13 @@ const onEnter = () => {
   state.arrowCounter = -1
 }
 
-const handleClickInside = evt => {
+const handleClickInside = (evt) => {
   state.isOpen = true
 }
 
 // TODO: handle click outside
-const handleClickOutside = evt => {
+const handleClickOutside = (evt) => {
   state.isOpen = false
   state.arrowCounter = -1
 }
-
-// export default {
-//   setup(props, { emit }) {
-//     return {
-//       onChange,
-//       state,
-//       onArrowDown,
-//       onArrowUp,
-//       onEnter,
-//       setResult,
-//       // handleClickOutside,
-//       handleClickInside,
-//     }
-//   },
-// }
 </script>

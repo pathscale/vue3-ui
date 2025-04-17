@@ -72,13 +72,13 @@ const onChange = () => {
   state.isOpen = true
 }
 
-const setResult = result => {
+const setResult = (result) => {
   emit('update:modelValue', result)
   state.search = result
   state.isOpen = false
 }
 
-const onArrowDown = evt => {
+const onArrowDown = (evt) => {
   if (state.arrowCounter < state.results.length) {
     state.arrowCounter += 1
   }

@@ -1,22 +1,3 @@
-<template>
-  <figure
-    class="image figure"
-    :class="[
-      size,
-      radio,
-      {
-        'container': centered,
-      },
-    ]">
-    <img
-      class="img"
-      v-bind="$attrs"
-      :src="source"
-      :data-src="dataSrc"
-      :class="[customClass, { 'is-rounded': rounded }]" />
-  </figure>
-</template>
-
 <script setup lang="ts">
 import { defineProps, onBeforeMount, ref } from 'vue'
 import { checkBenchieSupport } from '@/utils/functions'
@@ -41,3 +22,22 @@ onBeforeMount(async () => {
   }
 })
 </script>
+
+<template>
+  <figure
+    class="image figure"
+    :class="[
+      size,
+      radio,
+      {
+        'container': centered,
+      },
+    ]">
+    <img
+      class="img"
+      v-bind="$attrs"
+      :src="source"
+      :data-src="dataSrc"
+      :class="[customClass, { 'is-rounded': rounded }]" />
+  </figure>
+</template>

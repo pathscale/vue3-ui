@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import { onBeforeMount, ref } from 'vue'
+import { onBeforeMount, ref, computed } from 'vue'
 
 const props = withDefaults(defineProps<{
   alt?: string
@@ -51,6 +51,8 @@ const backgroundColor = source.value ? '' : background.value
 
 const textColor = source.value ? '' : text.value
 
-const caption = alt.value ? alt.value.split(' ')[0][0] + alt.value.split(' ')[1][0] : ''
+const caption = computed(() => {
+  return alt.value ? alt.value.split(' ')[0][0] + alt.value.split(' ')[1][0] : ''
+})
 
 </script>

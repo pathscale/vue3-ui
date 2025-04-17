@@ -34,17 +34,11 @@
 </template>
 
 <script setup lang="ts">
-// import { reactive, watchEffect } from 'vue'
-//
-// import VField from '../Field/Field.vue'
-// import VInput from '../Input/Input.vue'
-//
+import { reactive, watchEffect } from 'vue'
+import VField from '@/components/Field/Field.vue'
+import VInput from '@/components/Input/Input.vue'
+
 // export default {
-//   name: 'VAutocomplete',
-//   components: {
-//     VField,
-//     VInput,
-//   },
 //   props: {
 //     modelValue: [String, Number],
 //     items: {

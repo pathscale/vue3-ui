@@ -1,26 +1,21 @@
-<script>
+<script setup lang="ts">
 import { computed } from 'vue'
 
-export default {
-  name: 'VField',
-  props: {
-    type: String,
-    label: String,
-    labelFor: String,
-    message: String,
-    grouped: Boolean,
-    groupMultiline: Boolean,
-    position: String,
-    expanded: Boolean,
-    horizontal: Boolean,
-    addons: Boolean,
-    size: String,
-  },
-  setup(props) {
-    const hasHorizontalLabel = computed(() => props.horizontal && props.label)
-    return { hasHorizontalLabel }
-  }
-}
+const props = defineProps<{
+  type?: string
+  label?: string
+  labelFor?: string
+  message?: string
+  grouped?: boolean
+  groupMultiline?: boolean
+  position?: string
+  expanded?: boolean
+  horizontal?: boolean
+  addons?: boolean
+  size?: string
+}>()
+
+const hasHorizontalLabel = computed(() => !!(props.horizontal && props.label))
 </script>
 
 <template>

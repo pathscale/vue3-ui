@@ -1,5 +1,4 @@
 <template>
-  <!-- eslint-disable @pathscale/vue3/v-directive -->
   <div>
     <div class="dropdown" :class="{ 'is-active': state.isOpen }">
       <div class="dropdown-trigger">

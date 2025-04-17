@@ -17,11 +17,13 @@
 <script setup lang="ts">
 /* eslint-disable no-undef -- Access to Benchie variable/function */
 // import { onBeforeMount, ref } from 'vue'
-//
+
+defineProps<{
+  alt?: string
+}>()
+
 // export default {
-//   name: 'VAvatar',
 //   props: {
-//     alt: String,
 //     size: {
 //       type: String,
 //       default: 'is-64x64',

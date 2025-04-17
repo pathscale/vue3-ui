@@ -48,7 +48,6 @@ withDefaults(defineProps<{
 })
 
 // export default {
-//   emits: ['update:modelValue'],
 //   setup(props, { emit }) {
 //     const state = reactive({
 //       value: props.modelValue,

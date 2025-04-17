@@ -2,8 +2,7 @@
 
 // Non-TS base
 const baseConfigs = [
-  'ash-nazg/sauron',
-  'plugin:vue/vue3-recommended',
+  'plugin:vue/recommended',
   'plugin:import/errors',
   'plugin:import/warnings',
   'plugin:prettier/recommended',

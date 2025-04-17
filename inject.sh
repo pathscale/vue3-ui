@@ -16,7 +16,7 @@ then
     exit
 fi
 
-npm run build
+bun run build
 echo "bundle created"
 
 cp ./dist/* ../$1/node_modules/@pathscale/vue3-ui/dist/

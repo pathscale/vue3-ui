@@ -15,14 +15,15 @@
 </template>
 
 <script setup lang="ts">
-// import { onBeforeMount, ref } from 'vue'
+import { onBeforeMount, ref } from 'vue'
 
-const {
-  size = 'is-64x64',
-  rounded = true,
-  background = 'has-background-link',
-  text = 'has-text-white',
-} = defineProps<{
+// todo props
+// const {
+  // size = 'is-64x64',
+  // rounded = true,
+  // background = 'has-background-link',
+  // text = 'has-text-white',
+const props = defineProps<{
   alt?: string
   size?: string
   rounded?: boolean
@@ -33,13 +34,13 @@ const {
   customClass?: string
 }>()
 
+const source = ref(props.src || props.dataSrc)
+const background = ref(props.background)
+const text = ref(props.text)
+const alt = ref(props.alt)
+
 // export default {
 //   setup(props) {
-//     const source = ref(props.src || props.dataSrc)
-//     const background = ref(props.background)
-//     const text = ref(props.text)
-//     const alt = ref(props.alt)
-//
 //     onBeforeMount(async () => {
 //       if (props.dataSrc && hasBenchieSupport) {
 //         source.value = await t(props.dataSrc, $__CDN)

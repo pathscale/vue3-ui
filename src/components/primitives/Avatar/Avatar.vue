@@ -51,6 +51,6 @@ const backgroundColor = source.value ? '' : background.value
 
 const textColor = source.value ? '' : text.value
 
-const caption = alt.value ? alt.value.split(' ')[0][0] + alt.value.split(' ')[1][0] : ""
+const caption = alt.value ? alt.value.split(' ')[0][0] + alt.value.split(' ')[1][0] : ''
 
 </script>

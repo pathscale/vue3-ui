@@ -53,7 +53,8 @@ const textColor = source.value ? '' : text.value
 
 const caption = computed(() => {
   if (alt.value) {
-    return alt.value.split(' ')[0][0] + alt.value.split(' ')[1][0]
+    const words = alt.value.split(' ')
+    return words[0][0] + words[1][0]
   }
   return ''
 })

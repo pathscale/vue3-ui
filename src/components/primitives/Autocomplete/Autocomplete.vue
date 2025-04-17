@@ -34,7 +34,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineModel, reactive, watchEffect } from 'vue'
+import { reactive, watchEffect } from 'vue'
 import VField from '@/components/Field/Field.vue'
 import VInput from '@/components/Input/Input.vue'
 
@@ -108,8 +108,6 @@ const handleClickOutside = evt => {
 
 // export default {
 //   setup(props, { emit }) {
-
-//
 //     return {
 //       onChange,
 //       state,

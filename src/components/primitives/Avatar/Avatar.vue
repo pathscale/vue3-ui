@@ -21,16 +21,14 @@
 withDefaults(defineProps<{
   alt?: string
   size?: string
+  rounded?: boolean
 }>(), {
   size: 'is-64x64',
+  rounded: true,
 })
 
 // export default {
 //   props: {
-//     rounded: {
-//       type: Boolean,
-//       default: true,
-//     },
 //     background: {
 //       type: String,
 //       default: 'has-background-link',

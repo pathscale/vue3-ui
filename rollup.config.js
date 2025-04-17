@@ -1,4 +1,4 @@
-import vue from '@pathscale/rollup-plugin-vue3'
+import vue from '@vitejs/plugin-vue'
 import styles from 'rollup-plugin-styles'
 import resolve from '@rollup/plugin-node-resolve'
 import replace from '@rollup/plugin-replace'
@@ -20,7 +20,7 @@ export default [
         preventAssignment: true,
       }),
       resolve({ extensions: ['.vue', '.js', '.css'] }),
-      vue({ template: { isProduction: true }, preprocessStyles: false }),
+      vue(),
       ts(),
       styles({ mode: ['extract', 'bundle.css'], url: { inline: true } }),
     ],
@@ -36,7 +36,7 @@ export default [
         preventAssignment: true,
       }),
       resolve({ extensions: ['.vue', '.js'] }),
-      vue({ template: { isProduction: false }, preprocessStyles: false }),
+      vue(),
       ts(),
       // Vue plugin won't handle CSS currently
       styles(),

@@ -16,6 +16,9 @@
 
 <script setup lang="ts">
 import { onBeforeMount, ref } from 'vue'
+import { checkBenchieSupport } from '@/utils/functions'
+
+const hasBenchieSupport = checkBenchieSupport()
 
 const props = withDefaults(defineProps<{
   alt?: string
@@ -37,9 +40,6 @@ const source = ref(props.src || props.dataSrc)
 const background = ref(props.background)
 const text = ref(props.text)
 const alt = ref(props.alt)
-
-// todo fix: same as image.vue
-const hasBenchieSupport = false
 
 onBeforeMount(async () => {
   if (props.dataSrc && hasBenchieSupport) {

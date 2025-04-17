@@ -38,6 +38,9 @@ export default {
     const text = ref(props.text)
     const alt = ref(props.alt)
 
+    // todo fix: same as image.vue
+    const hasBenchieSupport = false
+
     onBeforeMount(async () => {
       if (props.dataSrc && hasBenchieSupport) {
         source.value = await t(props.dataSrc, $__CDN)

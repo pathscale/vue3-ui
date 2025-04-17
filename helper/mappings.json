@@ -563,10 +563,7 @@
   },
   "VAvatar": {
     "always": [
-      "has-background-link",
-      "has-text-white",
       "image",
-      "is-64x64",
       "is-align-items-center",
       "is-flex",
       "is-justify-content-center",
@@ -618,7 +615,10 @@
     "unstable": []
   },
   "VChart": {
-    "always": [],
+    "always": [
+      "div",
+      "post"
+    ],
     "optional": [],
     "unstable": []
   },

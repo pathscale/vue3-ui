@@ -11,7 +11,7 @@ export default defineConfig([
       file: pkg.module
     },
     plugins: [
-      vue()
+      vue() as any
     ],
   }
 ]);

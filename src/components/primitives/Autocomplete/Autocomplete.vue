@@ -1,5 +1,5 @@
 
-<script setup lang="ts">
+<script>
 import { reactive, watchEffect } from 'vue'
 
 import VField from '../Field/Field.vue'

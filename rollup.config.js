@@ -33,7 +33,7 @@ export default [
         entries: [{ find: '@', replacement: path.resolve(__dirname, 'src') }],
       }),
       resolve({ extensions: ['.vue', '.js'] }),
-      vue({ template: { isProduction: false }, preprocessStyles: false }),
+      vue(),
       ts(),
       // Vue plugin won't handle CSS currently
       styles(),

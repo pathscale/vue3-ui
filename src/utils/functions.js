@@ -1,4 +1,4 @@
-function checkBenchieSupport(): boolean {
+function checkBenchieSupport() {
   const isProduction = process.env.NODE_ENV === 'production'
   if (!isProduction) return false
   return (

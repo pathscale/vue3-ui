@@ -19,6 +19,10 @@ export default [
         entries: [{ find: '@', replacement: path.resolve(__dirname, 'src') }],
       }),
       externals({ deps: true }),
+      replace({
+        __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: JSON.stringify(true),
+        preventAssignment: true,
+      }),
       resolve({ extensions: ['.vue', '.js', '.css'] }),
       vue(),
       ts(),
@@ -32,13 +36,17 @@ export default [
       alias({
         entries: [{ find: '@', replacement: path.resolve(__dirname, 'src') }],
       }),
+      // Not defined in browser
+      replace({
+        'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+        __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: JSON.stringify(true),
+        preventAssignment: true,
+      }),
       resolve({ extensions: ['.vue', '.js'] }),
       vue(),
       ts(),
       // Vue plugin won't handle CSS currently
       styles(),
-      // Not defined in browser
-      replace({ 'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV) }),
     ],
   },
 ]

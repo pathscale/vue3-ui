@@ -28,19 +28,13 @@ const {
   rounded?: boolean
   background?: string
   text?: string
+  src?: string
+  dataSrc?: string
 }>()
 
 // export default {
 //   name: 'VAvatar',
 //   props: {
-//     src: {
-//       type: String,
-//       default: null,
-//     },
-//     dataSrc: {
-//       type: String,
-//       default: null,
-//     },
 //     customClass: String,
 //   },
 //   setup(props) {

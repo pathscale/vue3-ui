@@ -1,28 +1,3 @@
-<script>
-import { computed } from 'vue'
-
-export default {
-  name: 'VField',
-  props: {
-    type: String,
-    label: String,
-    labelFor: String,
-    message: String,
-    grouped: Boolean,
-    groupMultiline: Boolean,
-    position: String,
-    expanded: Boolean,
-    horizontal: Boolean,
-    addons: Boolean,
-    size: String,
-  },
-  setup(props) {
-    const hasHorizontalLabel = computed(() => props.horizontal && props.label)
-    return { hasHorizontalLabel }
-  }
-}
-</script>
-
 <template>
   <div class="field" :class="[
     position, {
@@ -47,3 +22,28 @@ export default {
     </p>
   </div>
 </template>
+
+<script>
+import { computed } from 'vue'
+
+export default {
+  name: 'VField',
+  props: {
+    type: String,
+    label: String,
+    labelFor: String,
+    message: String,
+    grouped: Boolean,
+    groupMultiline: Boolean,
+    position: String,
+    expanded: Boolean,
+    horizontal: Boolean,
+    addons: Boolean,
+    size: String,
+  },
+  setup(props) {
+    const hasHorizontalLabel = computed(() => props.horizontal && props.label)
+    return { hasHorizontalLabel }
+  }
+}
+</script>

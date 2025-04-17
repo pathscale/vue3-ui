@@ -3,7 +3,7 @@
   "module": "index.ts",
   "type": "module",
   "scripts": {
-    "build": "rolldown src/main.js --file bundle.js"
+    "build": "rolldown -c"
   },
   "devDependencies": {
     "@types/bun": "latest",

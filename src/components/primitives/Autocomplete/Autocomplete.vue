@@ -1,3 +1,37 @@
+<template>
+  <!-- eslint-disable @pathscale/vue3/v-directive -->
+  <div>
+    <div class="dropdown" :class="{ 'is-active': state.isOpen }">
+      <div class="dropdown-trigger">
+        <v-field :label="label">
+          <v-input
+            @focus="handleClickInside"
+            type="text"
+            @input="onChange"
+            v-model="state.search"
+            @keyup.down="onArrowDown"
+            @keyup.up="onArrowUp"
+            @keyup.enter="onEnter" />
+        </v-field>
+      </div>
+      <div class="dropdown-menu" role="menu">
+        <div class="dropdown-content">
+          <div v-if="state.results.length === 0" class="dropdown-item">
+            No data available
+          </div>
+          <a
+            v-for="(result, i) in state.results"
+            :key="i"
+            @click="setResult(result)"
+            class="dropdown-item"
+            :class="{ 'is-active': i === state.arrowCounter }">
+            {{ result }}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
 
 <script>
 import { reactive, watchEffect } from 'vue'
@@ -94,39 +128,6 @@ export default {
 }
 </script>
 
-<template>
-  <!-- eslint-disable @pathscale/vue3/v-directive -->
-  <div>
-    <div class="dropdown" :class="{ 'is-active': state.isOpen }">
-      <div class="dropdown-trigger">
-        <v-field :label="label">
-          <v-input
-            @focus="handleClickInside"
-            type="text"
-            @input="onChange"
-            v-model="state.search"
-            @keyup.down="onArrowDown"
-            @keyup.up="onArrowUp"
-            @keyup.enter="onEnter" />
-        </v-field>
-      </div>
-      <div class="dropdown-menu" role="menu">
-        <div class="dropdown-content">
-          <div v-if="state.results.length === 0" class="dropdown-item">
-            No data available
-          </div>
-          <a
-            v-for="(result, i) in state.results"
-            :key="i"
-            @click="setResult(result)"
-            class="dropdown-item"
-            :class="{ 'is-active': i === state.arrowCounter }">
-            {{ result }}
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</template>
+
 
 

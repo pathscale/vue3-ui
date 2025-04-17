@@ -30,7 +30,6 @@ export default [
     output: { format: 'es', file: pkg.browser, assetFileNames: '[name][extname]' },
     plugins: [
       // Not defined in browser
-      // eslint-disable-next-line node/no-process-env -- Used for build
       replace({
         'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
         __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: JSON.stringify(true),

@@ -1,6 +1,8 @@
 {
   "name": "vue3-ui",
+  "main": "dist/bundle.js",
   "module": "dist/bundle.js",
+  "browser": "dist/bundle-browser.js",
   "type": "module",
   "scripts": {
     "build": "rolldown -c rolldown.config.ts"

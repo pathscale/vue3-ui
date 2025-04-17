@@ -1,4 +1,5 @@
-import { defineConfig } from 'rolldown';
+import { defineConfig } from 'rolldown'
+import vue from '@vitejs/plugin-vue'
 
 import pkg from './package.json'
 
@@ -9,5 +10,8 @@ export default defineConfig([
       format: 'esm',
       file: pkg.module
     },
+    plugins: [
+      vue()
+    ],
   }
 ]);

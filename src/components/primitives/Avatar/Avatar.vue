@@ -17,7 +17,7 @@
 <script setup lang="ts">
 import { onBeforeMount, ref } from 'vue'
 
-// todo props
+// todo defaults
 // const {
   // size = 'is-64x64',
   // rounded = true,
@@ -39,13 +39,17 @@ const background = ref(props.background)
 const text = ref(props.text)
 const alt = ref(props.alt)
 
+// todo see Image.vue
+const hasBenchieSupport = false
+
+onBeforeMount(async () => {
+  if (props.dataSrc && hasBenchieSupport) {
+    source.value = await t(props.dataSrc, $__CDN)
+  }
+})
+
 // export default {
 //   setup(props) {
-//     onBeforeMount(async () => {
-//       if (props.dataSrc && hasBenchieSupport) {
-//         source.value = await t(props.dataSrc, $__CDN)
-//       }
-//     })
 //
 //     const backgroundColor = source.value ? '' : background.value
 //

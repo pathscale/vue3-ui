@@ -31,10 +31,10 @@ export default [
     plugins: [
       // Not defined in browser
       // eslint-disable-next-line node/no-process-env -- Used for build
-      replace({ 
-        'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV), 
+      replace({
+        'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
         __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: JSON.stringify(true),
-        preventAssignment: true, 
+        preventAssignment: true,
       }),
       resolve({ extensions: ['.vue', '.js'] }),
       vue({ template: { isProduction: false }, preprocessStyles: false }),

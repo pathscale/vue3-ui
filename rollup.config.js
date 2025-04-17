@@ -20,7 +20,7 @@ export default [
       }),
       externals({ deps: true }),
       resolve({ extensions: ['.vue', '.js', '.css'] }),
-      vue({ template: { isProduction: true }, preprocessStyles: false }),
+      vue(),
       ts(),
       styles({ mode: ['extract', 'bundle.css'], url: { inline: true } }),
     ],

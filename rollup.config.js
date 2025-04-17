@@ -7,7 +7,6 @@ import externals from 'rollup-plugin-node-externals'
 
 import pkg from './package.json'
 
-// eslint-disable-next-line import/no-anonymous-default-export -- Used internally by Rollup
 export default [
   {
     input: 'src/components/index.js',

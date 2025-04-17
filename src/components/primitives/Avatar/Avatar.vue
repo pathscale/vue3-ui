@@ -47,15 +47,14 @@ onBeforeMount(async () => {
   }
 })
 
+const backgroundColor = source.value ? '' : background.value
+
+const textColor = source.value ? '' : text.value
+
+const caption = alt.value ? alt.value.split(' ')[0][0] + alt.value.split(' ')[1][0] : ""
+
 // export default {
 //   setup(props) {
-//
-//     const backgroundColor = source.value ? '' : background.value
-//
-//     const textColor = source.value ? '' : text.value
-//
-//     const caption = alt.value ? alt.value.split(' ')[0][0] + alt.value.split(' ')[1][0] : ""
-//
 //     return { source, backgroundColor, textColor, caption }
 //   },
 // }

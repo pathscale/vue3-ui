@@ -1,19 +1,3 @@
-<template>
-  <figure
-    class="image is-flex is-justify-content-center is-align-items-center mx-1"
-    :class="[size, backgroundColor, textColor]">
-    <img
-      :src="source"
-      :data-src="dataSrc"
-      :alt="alt"
-      v-if="source"
-      :class="[customClass, { 'is-rounded': rounded }]" />
-    <span class="is-size-4" v-if="!source" :class="[{ 'is-rounded': rounded }]">
-      {{ caption }}
-    </span>
-  </figure>
-</template>
-
 <script setup lang="ts">
 import { onBeforeMount, ref } from 'vue'
 import { checkBenchieSupport } from '@/utils/functions'
@@ -53,3 +37,19 @@ const textColor = source.value ? '' : text.value
 
 const caption = alt.value ? alt.value.split(' ')[0][0] + alt.value.split(' ')[1][0] : ""
 </script>
+
+<template>
+  <figure
+    class="image is-flex is-justify-content-center is-align-items-center mx-1"
+    :class="[size, backgroundColor, textColor]">
+    <img
+      :src="source"
+      :data-src="dataSrc"
+      :alt="alt"
+      v-if="source"
+      :class="[customClass, { 'is-rounded': rounded }]" />
+    <span class="is-size-4" v-if="!source" :class="[{ 'is-rounded': rounded }]">
+      {{ caption }}
+    </span>
+  </figure>
+</template>

@@ -42,14 +42,12 @@ const modelValue = defineModel<string | number>()
 
 withDefaults(defineProps<{
   items?: any[]
+  label?: string
 }>(), {
   items: () => [],
 })
 
 // export default {
-//   props: {
-//     label: String,
-//   },
 //   emits: ['update:modelValue'],
 //   setup(props, { emit }) {
 //     const state = reactive({

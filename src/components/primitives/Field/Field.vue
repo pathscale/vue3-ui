@@ -1,28 +1,3 @@
-<template>
-  <div class="field" :class="[
-    position, {
-      'is-expanded': expanded,
-      'is-horizontal': horizontal,
-      'is-grouped': grouped,
-      'is-grouped-multiline': groupMultiline,
-      'has-addons': addons
-    }]">
-    <div v-if="hasHorizontalLabel" class="field-label" :class="size">
-      <label class="label" :for="labelFor">{{ label }}</label>
-    </div>
-    <label v-else-if="label" class="label" :for="labelFor">{{ label }}</label>
-    <div v-if="horizontal" class="field-body">
-      <div class="field" :class="{'is-grouped': grouped}">
-        <slot :rounded="type" />
-      </div>
-    </div>
-    <slot :color="type" v-else />
-    <p v-if="message" class="help" :class="type">
-      {{ message }}
-    </p>
-  </div>
-</template>
-
 <script>
 import { computed } from 'vue'
 
@@ -47,3 +22,28 @@ export default {
   }
 }
 </script>
+
+<template>
+  <div class="field" :class="[
+    position, {
+      'is-expanded': expanded,
+      'is-horizontal': horizontal,
+      'is-grouped': grouped,
+      'is-grouped-multiline': groupMultiline,
+      'has-addons': addons
+    }]">
+    <div v-if="hasHorizontalLabel" class="field-label" :class="size">
+      <label class="label" :for="labelFor">{{ label }}</label>
+    </div>
+    <label v-else-if="label" class="label" :for="labelFor">{{ label }}</label>
+    <div v-if="horizontal" class="field-body">
+      <div class="field" :class="{'is-grouped': grouped}">
+        <slot :rounded="type" />
+      </div>
+    </div>
+    <slot :color="type" v-else />
+    <p v-if="message" class="help" :class="type">
+      {{ message }}
+    </p>
+  </div>
+</template>

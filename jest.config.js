@@ -4,6 +4,7 @@ module.exports = {
   preset: '@vue/cli-plugin-unit-jest',
   transform: {
     '^.+\\.vue$': '@vue/vue3-jest',
+    '^.+\\.ts$': 'ts-jest',
   },
   testMatch: ['**/*.spec.js', '**/*.spec.jsx'],
   snapshotSerializers: ['<rootDir>/node_modules/jest-serializer-vue'],

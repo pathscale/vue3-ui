@@ -38,14 +38,15 @@ import { defineModel, reactive, watchEffect } from 'vue'
 import VField from '@/components/Field/Field.vue'
 import VInput from '@/components/Input/Input.vue'
 
-const modelValue = defineModel<string | number>()
-
-withDefaults(defineProps<{
+const props = withDefaults(defineProps<{
+  modelValue?: string | number
   items?: any[]
   label?: string
 }>(), {
   items: () => [],
 })
+
+const emit = defineEmits(['update:modelValue'])
 
 const state = reactive({
   value: props.modelValue,

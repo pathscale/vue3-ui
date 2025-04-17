@@ -18,16 +18,15 @@
 /* eslint-disable no-undef -- Access to Benchie variable/function */
 // import { onBeforeMount, ref } from 'vue'
 
-defineProps<{
+withDefaults(defineProps<{
   alt?: string
-}>()
+  size?: string
+}>(), {
+  size: 'is-64x64',
+})
 
 // export default {
 //   props: {
-//     size: {
-//       type: String,
-//       default: 'is-64x64',
-//     },
 //     rounded: {
 //       type: Boolean,
 //       default: true,

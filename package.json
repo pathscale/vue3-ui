@@ -2,6 +2,9 @@
   "name": "vue3-ui",
   "module": "index.ts",
   "type": "module",
+  "scripts": {
+    "build": "rolldown src/main.js --file bundle.js"
+  },
   "devDependencies": {
     "@types/bun": "latest",
     "rolldown": "^1.0.0-beta.7"

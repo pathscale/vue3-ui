@@ -1,60 +1,3 @@
-<script>
-/* eslint-disable no-undef -- Access to Benchie variable/function */
-import { onBeforeMount, ref } from 'vue'
-
-export default {
-  name: 'VAvatar',
-  props: {
-    alt: String,
-    size: {
-      type: String,
-      default: 'is-64x64',
-    },
-    rounded: {
-      type: Boolean,
-      default: true,
-    },
-    background: {
-      type: String,
-      default: 'has-background-link',
-    },
-    text: {
-      type: String,
-      default: 'has-text-white',
-    },
-    src: {
-      type: String,
-      default: null,
-    },
-    dataSrc: {
-      type: String,
-      default: null,
-    },
-    customClass: String,
-  },
-  setup(props) {
-    const source = ref(props.src || props.dataSrc)
-    const background = ref(props.background)
-    const text = ref(props.text)
-    const alt = ref(props.alt)
-
-    onBeforeMount(async () => {
-      if (props.dataSrc && hasBenchieSupport) {
-        source.value = await t(props.dataSrc, $__CDN)
-      }
-    })
-
-    const backgroundColor = source.value ? '' : background.value
-
-    const textColor = source.value ? '' : text.value
-
-    const caption = alt.value ? alt.value.split(' ')[0][0] + alt.value.split(' ')[1][0] : ""
-
-    return { source, backgroundColor, textColor, caption }
-  },
-}
-</script>
-
 <template>
   <figure
     class="image is-flex is-justify-content-center is-align-items-center mx-1"
@@ -70,3 +13,59 @@ export default {
     </span>
   </figure>
 </template>
+
+<script setup lang="ts">
+import { onBeforeMount, ref } from 'vue'
+
+// export default {
+//   name: 'VAvatar',
+//   props: {
+//     alt: String,
+//     size: {
+//       type: String,
+//       default: 'is-64x64',
+//     },
+//     rounded: {
+//       type: Boolean,
+//       default: true,
+//     },
+//     background: {
+//       type: String,
+//       default: 'has-background-link',
+//     },
+//     text: {
+//       type: String,
+//       default: 'has-text-white',
+//     },
+//     src: {
+//       type: String,
+//       default: null,
+//     },
+//     dataSrc: {
+//       type: String,
+//       default: null,
+//     },
+//     customClass: String,
+//   },
+//   setup(props) {
+//     const source = ref(props.src || props.dataSrc)
+//     const background = ref(props.background)
+//     const text = ref(props.text)
+//     const alt = ref(props.alt)
+//
+//     onBeforeMount(async () => {
+//       if (props.dataSrc && hasBenchieSupport) {
+//         source.value = await t(props.dataSrc, $__CDN)
+//       }
+//     })
+//
+//     const backgroundColor = source.value ? '' : background.value
+//
+//     const textColor = source.value ? '' : text.value
+//
+//     const caption = alt.value ? alt.value.split(' ')[0][0] + alt.value.split(' ')[1][0] : ""
+//
+//     return { source, backgroundColor, textColor, caption }
+//   },
+// }
+</script>

@@ -1,3 +1,19 @@
+<template>
+  <figure
+    class="image is-flex is-justify-content-center is-align-items-center mx-1"
+    :class="[size, backgroundColor, textColor]">
+    <img
+      :src="source"
+      :data-src="dataSrc"
+      :alt="alt"
+      v-if="source"
+      :class="[customClass, { 'is-rounded': rounded }]" />
+    <span class="is-size-4" v-if="!source" :class="[{ 'is-rounded': rounded }]">
+      {{ caption }}
+    </span>
+  </figure>
+</template>
+
 <script>
 /* eslint-disable no-undef -- Access to Benchie variable/function */
 import { onBeforeMount, ref } from 'vue'
@@ -58,18 +74,4 @@ export default {
 }
 </script>
 
-<template>
-  <figure
-    class="image is-flex is-justify-content-center is-align-items-center mx-1"
-    :class="[size, backgroundColor, textColor]">
-    <img
-      :src="source"
-      :data-src="dataSrc"
-      :alt="alt"
-      v-if="source"
-      :class="[customClass, { 'is-rounded': rounded }]" />
-    <span class="is-size-4" v-if="!source" :class="[{ 'is-rounded': rounded }]">
-      {{ caption }}
-    </span>
-  </figure>
-</template>
+

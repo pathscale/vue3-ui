@@ -15,10 +15,9 @@
 </template>
 
 <script setup lang="ts">
-/* eslint-disable no-undef -- Access to Benchie variable/function */
-// import { onBeforeMount, ref } from 'vue'
+import { onBeforeMount, ref } from 'vue'
 
-withDefaults(defineProps<{
+const props = withDefaults(defineProps<{
   alt?: string
   size?: string
   rounded?: boolean
@@ -34,21 +33,22 @@ withDefaults(defineProps<{
   text: 'has-text-white',
 })
 
+const source = ref(props.src || props.dataSrc)
+const background = ref(props.background)
+const text = ref(props.text)
+const alt = ref(props.alt)
+
+// todo fix: same as image.vue
+const hasBenchieSupport = false
+
+onBeforeMount(async () => {
+  if (props.dataSrc && hasBenchieSupport) {
+    source.value = await t(props.dataSrc, $__CDN)
+  }
+})
+
 // export default {
 //   setup(props) {
-//     const source = ref(props.src || props.dataSrc)
-//     const background = ref(props.background)
-//     const text = ref(props.text)
-//     const alt = ref(props.alt)
-//
-//     // todo fix: same as image.vue
-//     const hasBenchieSupport = false
-//
-//     onBeforeMount(async () => {
-//       if (props.dataSrc && hasBenchieSupport) {
-//         source.value = await t(props.dataSrc, $__CDN)
-//       }
-//     })
 //
 //     const backgroundColor = source.value ? '' : background.value
 //

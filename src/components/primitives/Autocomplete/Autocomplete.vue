@@ -34,13 +34,14 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, watchEffect } from 'vue'
+import { defineModel, reactive, watchEffect } from 'vue'
 import VField from '@/components/Field/Field.vue'
 import VInput from '@/components/Input/Input.vue'
 
+const modelValue = defineModel<string | number>()
+
 // export default {
 //   props: {
-//     modelValue: [String, Number],
 //     items: {
 //       type: Array,
 //       required: false,

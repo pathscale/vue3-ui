@@ -20,19 +20,17 @@
 const {
   size = 'is-64x64',
   rounded = true,
+  background = 'has-background-link',
 } = defineProps<{
   alt?: string
   size?: string
   rounded?: boolean
+  background?: string
 }>()
 
 // export default {
 //   name: 'VAvatar',
 //   props: {
-//     background: {
-//       type: String,
-//       default: 'has-background-link',
-//     },
 //     text: {
 //       type: String,
 //       default: 'has-text-white',

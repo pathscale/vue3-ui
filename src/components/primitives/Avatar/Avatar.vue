@@ -17,13 +17,7 @@
 <script setup lang="ts">
 import { onBeforeMount, ref } from 'vue'
 
-// todo defaults
-// const {
-  // size = 'is-64x64',
-  // rounded = true,
-  // background = 'has-background-link',
-  // text = 'has-text-white',
-const props = defineProps<{
+const props = withDefaults(defineProps<{
   alt?: string
   size?: string
   rounded?: boolean
@@ -32,7 +26,12 @@ const props = defineProps<{
   src?: string
   dataSrc?: string
   customClass?: string
-}>()
+}>(), {
+  size: 'is-64x64',
+  rounded: true,
+  background: 'has-background-link',
+  text: 'has-text-white',
+})
 
 const source = ref(props.src || props.dataSrc)
 const background = ref(props.background)

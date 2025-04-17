@@ -18,19 +18,17 @@
 // import { onBeforeMount, ref } from 'vue'
 
 const {
-  size = 'is-64x64'
+  size = 'is-64x64',
+  rounded = true,
 } = defineProps<{
   alt?: string
   size?: string
+  rounded?: boolean
 }>()
 
 // export default {
 //   name: 'VAvatar',
 //   props: {
-//     rounded: {
-//       type: Boolean,
-//       default: true,
-//     },
 //     background: {
 //       type: String,
 //       default: 'has-background-link',

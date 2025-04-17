@@ -40,13 +40,14 @@ import VInput from '@/components/Input/Input.vue'
 
 const modelValue = defineModel<string | number>()
 
+withDefaults(defineProps<{
+  items?: any[]
+}>(), {
+  items: () => [],
+})
+
 // export default {
 //   props: {
-//     items: {
-//       type: Array,
-//       required: false,
-//       default: () => [],
-//     },
 //     label: String,
 //   },
 //   emits: ['update:modelValue'],

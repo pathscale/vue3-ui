@@ -15,16 +15,18 @@
 </template>
 
 <script setup lang="ts">
-import { onBeforeMount, ref } from 'vue'
+// import { onBeforeMount, ref } from 'vue'
+
+const {
+  size = 'is-64x64'
+} = defineProps<{
+  alt?: string
+  size?: string
+}>()
 
 // export default {
 //   name: 'VAvatar',
 //   props: {
-//     alt: String,
-//     size: {
-//       type: String,
-//       default: 'is-64x64',
-//     },
 //     rounded: {
 //       type: Boolean,
 //       default: true,

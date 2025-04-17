@@ -52,7 +52,10 @@ const backgroundColor = source.value ? '' : background.value
 const textColor = source.value ? '' : text.value
 
 const caption = computed(() => {
-  return alt.value ? alt.value.split(' ')[0][0] + alt.value.split(' ')[1][0] : ''
+  if (alt.value) {
+    return alt.value.split(' ')[0][0] + alt.value.split(' ')[1][0]
+  }
+  return ''
 })
 
 </script>

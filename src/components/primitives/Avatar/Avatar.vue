@@ -24,6 +24,8 @@ withDefaults(defineProps<{
   rounded?: boolean
   background?: string
   text?: string
+  src?: string
+  dataSrc?: string
 }>(), {
   size: 'is-64x64',
   rounded: true,
@@ -33,14 +35,6 @@ withDefaults(defineProps<{
 
 // export default {
 //   props: {
-//     src: {
-//       type: String,
-//       default: null,
-//     },
-//     dataSrc: {
-//       type: String,
-//       default: null,
-//     },
 //     customClass: String,
 //   },
 //   setup(props) {

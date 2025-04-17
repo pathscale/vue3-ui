@@ -26,6 +26,7 @@ withDefaults(defineProps<{
   text?: string
   src?: string
   dataSrc?: string
+  customClass?: string
 }>(), {
   size: 'is-64x64',
   rounded: true,
@@ -34,9 +35,6 @@ withDefaults(defineProps<{
 })
 
 // export default {
-//   props: {
-//     customClass: String,
-//   },
 //   setup(props) {
 //     const source = ref(props.src || props.dataSrc)
 //     const background = ref(props.background)

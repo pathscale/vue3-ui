@@ -30,13 +30,10 @@ const {
   text?: string
   src?: string
   dataSrc?: string
+  customClass?: string
 }>()
 
 // export default {
-//   name: 'VAvatar',
-//   props: {
-//     customClass: String,
-//   },
 //   setup(props) {
 //     const source = ref(props.src || props.dataSrc)
 //     const background = ref(props.background)

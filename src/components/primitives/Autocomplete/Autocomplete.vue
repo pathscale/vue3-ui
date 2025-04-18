@@ -1,5 +1,12 @@
 <script setup lang="ts">
-import { defineEmits, defineModel, reactive } from "vue";
+import {
+  defineEmits,
+  defineModel,
+  onBeforeUnmount,
+  onMounted,
+  reactive,
+  useTemplateRef,
+} from "vue";
 
 import VField from "../Field/Field.vue";
 import VInput from "../Input/Input.vue";
@@ -72,12 +79,29 @@ const handleClickOutside = (evt) => {
   state.isOpen = false;
   state.arrowCounter = -1;
 };
+
+const dropdownWrapper = useTemplateRef<HTMLElement>("dropdown-wrapper");
+
+const detectOutsideClick = (event: MouseEvent) => {
+  const wrapperEl = dropdownWrapper.value;
+  if (wrapperEl && !wrapperEl.contains(event.target as Node)) {
+    console.log("Clicked outside!");
+  }
+};
+
+onMounted(() => {
+  document.addEventListener("click", detectOutsideClick);
+});
+
+onBeforeUnmount(() => {
+  document.removeEventListener("click", detectOutsideClick);
+});
 </script>
 
 <template>
   <!-- eslint-disable @pathscale/vue3/v-directive -->
   <div>
-    <div class="dropdown" :class="{ 'is-active': state.isOpen }">
+    <div ref="dropdown-wrapper" class="dropdown" :class="{ 'is-active': state.isOpen }">
       <div class="dropdown-trigger">
         <v-field :label="label">
           <v-input

@@ -32,11 +32,7 @@
       "ul"
     ],
     "optional": [],
-    "unstable": [
-      "is-alignment",
-      "is-separator",
-      "is-size"
-    ]
+    "unstable": []
   },
   "VBreadcrumbItem": {
     "always": [
@@ -101,10 +97,7 @@
     "optional": [
       "is-narrow"
     ],
-    "unstable": [
-      "is-offset",
-      "is-size"
-    ]
+    "unstable": []
   },
   "VColumns": {
     "always": [
@@ -119,7 +112,6 @@
     ],
     "unstable": [
       "is-centered",
-      "is-gap",
       "is-variable"
     ]
   },
@@ -162,8 +154,7 @@
     ],
     "unstable": [
       "is-active",
-      "is-mobile-modal",
-      "is-position"
+      "is-mobile-modal"
     ]
   },
   "VDropdownItem": {
@@ -212,8 +203,7 @@
       "dropdown-item",
       "has-link",
       "is-active",
-      "is-mobile-modal",
-      "is-position"
+      "is-mobile-modal"
     ]
   },
   "VMenu": {
@@ -266,8 +256,7 @@
       "has-shadow",
       "is-active",
       "is-fixed-bottom",
-      "is-fixed-top",
-      "is-type"
+      "is-fixed-top"
     ]
   },
   "VNavbarBurger": {
@@ -327,9 +316,7 @@
       "is-simple"
     ],
     "unstable": [
-      "is-current",
-      "is-order",
-      "is-size"
+      "is-current"
     ]
   },
   "VPaginationItem": {
@@ -360,9 +347,7 @@
       "is-active",
       "is-clickable",
       "is-completed",
-      "is-disabled",
-      "is-size",
-      "is-type"
+      "is-disabled"
     ]
   },
   "VSteps": {
@@ -382,9 +367,7 @@
       "is-active",
       "is-clickable",
       "is-completed",
-      "is-disabled",
-      "is-size",
-      "is-type"
+      "is-disabled"
     ]
   },
   "VTable": {
@@ -474,13 +457,9 @@
       "has-icons-left",
       "has-icons-right",
       "has-mobile-cards",
-      "is-color",
       "is-current",
       "is-delete",
       "is-fullwidth",
-      "is-order",
-      "is-size",
-      "is-type",
       "sticky-table",
       "tags"
     ]
@@ -579,10 +558,7 @@
       "has-icons-left",
       "has-icons-right",
       "is-active",
-      "is-color",
-      "is-grouped-multiline",
-      "is-position",
-      "is-size"
+      "is-grouped-multiline"
     ]
   },
   "VAvatar": {
@@ -603,9 +579,7 @@
     "optional": [
       "is-rounded"
     ],
-    "unstable": [
-      "is-size"
-    ]
+    "unstable": []
   },
   "VButton": {
     "always": [
@@ -624,9 +598,7 @@
       "is-selected"
     ],
     "unstable": [
-      "is-fullwidth",
-      "is-size",
-      "is-type"
+      "is-fullwidth"
     ]
   },
   "VCalendar": {
@@ -666,9 +638,7 @@
     "optional": [
       "is-disabled"
     ],
-    "unstable": [
-      "is-size"
-    ]
+    "unstable": []
   },
   "VContainer": {
     "always": [
@@ -680,9 +650,7 @@
       "no-repeat"
     ],
     "optional": [],
-    "unstable": [
-      "is-type"
-    ]
+    "unstable": []
   },
   "VDepthChart": {
     "always": [
@@ -745,8 +713,7 @@
     ],
     "unstable": [
       "has-addons",
-      "is-grouped-multiline",
-      "is-position"
+      "is-grouped-multiline"
     ]
   },
   "VFile": {
@@ -763,10 +730,7 @@
       "is-fullwidth"
     ],
     "unstable": [
-      "has-name",
-      "is-alignment",
-      "is-color",
-      "is-size"
+      "has-name"
     ]
   },
   "VIcon": {
@@ -775,8 +739,7 @@
     ],
     "optional": [],
     "unstable": [
-      "icon",
-      "is-size"
+      "icon"
     ]
   },
   "VImage": {
@@ -789,9 +752,7 @@
       "is-rounded"
     ],
     "unstable": [
-      "container",
-      "is-radio",
-      "is-size"
+      "container"
     ]
   },
   "VInput": {
@@ -811,9 +772,7 @@
     ],
     "unstable": [
       "has-icons-left",
-      "has-icons-right",
-      "is-color",
-      "is-size"
+      "has-icons-right"
     ]
   },
   "VMedia": {
@@ -856,8 +815,6 @@
     ],
     "optional": [],
     "unstable": [
-      "is-size",
-      "is-type",
       "more-than-half"
     ]
   },
@@ -878,9 +835,7 @@
       "is-rounded"
     ],
     "unstable": [
-      "is-color",
-      "is-fullwidth",
-      "is-size"
+      "is-fullwidth"
     ]
   },
   "VSidebar": {
@@ -937,8 +892,7 @@
       "is-mini-expand",
       "is-mini-expand-fixed",
       "is-mini-mobile",
-      "is-static",
-      "is-type"
+      "is-static"
     ]
   },
   "VSlider": {
@@ -951,9 +905,7 @@
     "optional": [],
     "unstable": [
       "has-output-tooltip",
-      "is-circle",
-      "is-size",
-      "is-type"
+      "is-circle"
     ]
   },
   "VSwitch": {
@@ -967,10 +919,7 @@
       "is-outlined",
       "is-rounded"
     ],
-    "unstable": [
-      "is-size",
-      "is-type"
-    ]
+    "unstable": []
   },
   "VTag": {
     "always": [
@@ -987,8 +936,6 @@
       "has-delete-icon",
       "has-ellipsis",
       "is-delete",
-      "is-size",
-      "is-type",
       "tags"
     ]
   },
@@ -1003,9 +950,7 @@
       "is-loading"
     ],
     "unstable": [
-      "is-color",
-      "is-invisible",
-      "is-size"
+      "is-invisible"
     ]
   },
   "VTimeline": {
@@ -1035,9 +980,6 @@
       "is-square"
     ],
     "unstable": [
-      "is-position",
-      "is-size",
-      "is-type",
       "v-tooltip"
     ]
   },
@@ -1057,9 +999,7 @@
     ],
     "unstable": [
       "has-name",
-      "is-fullwidth",
-      "is-size",
-      "is-type"
+      "is-fullwidth"
     ]
   }
 }

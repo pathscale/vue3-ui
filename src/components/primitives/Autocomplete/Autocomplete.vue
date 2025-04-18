@@ -70,7 +70,7 @@ const onEnter = () => {
   state.arrowCounter = -1;
 };
 
-const handleClickInside = (evt) => {
+const handleClickInside = () => {
   state.isOpen = true;
 };
 

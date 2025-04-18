@@ -47,7 +47,7 @@ const setResult = (result) => {
   state.isOpen = false;
 };
 
-const onArrowDown = (evt) => {
+const onArrowDown = () => {
   if (state.arrowCounter < state.results.length) {
     state.arrowCounter += 1;
   }

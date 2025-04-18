@@ -21,7 +21,7 @@ const props = withDefaults(
   },
 );
 
-const search1 = defineModel<string | number>();
+const search = defineModel<string | number>();
 
 const state = reactive({
   isOpen: false,
@@ -32,7 +32,7 @@ const state = reactive({
 
 const filterResults = () => {
   // first uncapitalize all the things
-  const filter = (search1.value ?? "").toString().toLowerCase();
+  const filter = (search.value ?? "").toString().toLowerCase();
   state.results = props.items.filter((item) => {
     return item.toString().toLowerCase().includes(filter);
   });
@@ -44,7 +44,7 @@ const onChange = () => {
 };
 
 const setResult = (result) => {
-  search1.value = result;
+  search.value = result;
   state.isOpen = false;
 };
 
@@ -61,7 +61,7 @@ const onArrowUp = () => {
 };
 
 const onEnter = () => {
-  search1.value = state.results[state.arrowCounter];
+  search.value = state.results[state.arrowCounter];
   state.isOpen = false;
   state.arrowCounter = -1;
 };
@@ -104,7 +104,7 @@ onBeforeUnmount(() => {
             @focus="handleClickInside"
             type="text"
             @input="onChange"
-            v-model="search1"
+            v-model="search"
             @keyup.down.stop="onArrowDown"
             @keyup.up.stop="onArrowUp"
             @keyup.enter.stop="onEnter" />

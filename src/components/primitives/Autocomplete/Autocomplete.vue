@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import {
-  defineEmits,
   defineModel,
   onBeforeUnmount,
   onMounted,

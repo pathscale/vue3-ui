@@ -1,6 +1,6 @@
 
 <script setup lang="ts">
-import { defineEmits, reactive, watchEffect } from "vue";
+import { defineEmits, defineModel, reactive } from "vue";
 
 import VField from "../Field/Field.vue";
 import VInput from "../Input/Input.vue";
@@ -18,6 +18,8 @@ const props = withDefaults(
 
 const emit = defineEmits(["update:modelValue"]);
 
+const search1 = defineModel();
+
 const state = reactive({
   value: props.modelValue,
   isOpen: false,
@@ -29,13 +31,9 @@ const state = reactive({
 const filterResults = () => {
   // first uncapitalize all the things
   state.results = props.items.filter((item) => {
-    return item.toString().toLowerCase().includes(state.search.toLowerCase());
+    return item.toString().toLowerCase().includes(search1.value.toLowerCase());
   });
 };
-
-watchEffect(() => {
-  state.search = (props.modelValue ?? "").toString();
-});
 
 const onChange = () => {
   filterResults();
@@ -44,7 +42,7 @@ const onChange = () => {
 
 const setResult = (result) => {
   emit("update:modelValue", result);
-  state.search = result;
+  search1.value = result;
   state.isOpen = false;
 };
 
@@ -61,7 +59,7 @@ const onArrowUp = () => {
 };
 
 const onEnter = () => {
-  state.search = state.results[state.arrowCounter];
+  search1.value = state.results[state.arrowCounter];
   state.isOpen = false;
   state.arrowCounter = -1;
 };
@@ -87,7 +85,7 @@ const handleClickOutside = (evt) => {
             @focus="handleClickInside"
             type="text"
             @input="onChange"
-            v-model="state.search"
+            v-model="search1"
             @keyup.down="onArrowDown"
             @keyup.up="onArrowUp"
             @keyup.enter="onEnter" />

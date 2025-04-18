@@ -1,82 +1,97 @@
 {
-	"name": "@pathscale/vue3-ui",
-	"version": "1.0.15",
-	"description": "Very clean Vue3 components styled with love and care.",
-	"type": "module",
-	"keywords": ["vue", "vue3", "ui"],
-	"homepage": "https://github.com/pathscale/vue3-ui#readme",
-	"bugs": {
-		"url": "https://github.com/pathscale/vue3-ui/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/pathscale/vue3-ui.git"
-	},
-	"license": "MIT",
-	"author": "PathScale (https://vue3.dev/)",
-	"contributors": [],
-	"sideEffects": false,
-	"main": "dist/bundle.js",
-	"module": "dist/bundle.js",
-	"browser": "dist/bundle-browser.js",
-	"scripts": {
-		"prebuild": "bun run helper/index.ts && shx rm -rf dist",
-		"build": "rollup -c --environment NODE_ENV:production",
-		"postbuild": "shx cp helper/mappings.json helper/classes.json dist",
-		"prepublishOnly": "bun run build",
-		"release": "bun run build && np --yolo",
-		"test:unit": "bun test",
-		"test:watch": "bun test --watch",
-		"lint": "biome lint --write .",
-		"lint:fix": "biome check --write ."
-	},
-	"browserslist": [
-		"last 2 versions",
-		"not IE 11",
-		"not dead",
-		"not OperaMini all"
-	],
-	"devDependencies": {
-		"@babel/core": "^7.26.10",
-		"@babel/parser": "^7.27.0",
-		"@babel/traverse": "^7.27.0",
-		"@biomejs/biome": "1.9.4",
-		"@pathscale/frappe-charts": "^0.0.2",
-		"@rollup/plugin-alias": "^5.1.1",
-		"@rollup/plugin-node-resolve": "^16.0.1",
-		"@rollup/plugin-replace": "^6.0.2",
-		"@rollup/plugin-sucrase": "^5.0.2",
-		"@testing-library/jest-dom": "^6.6.3",
-		"@types/babel__traverse": "7.20.7",
-		"@types/fs-extra": "11.0.4",
-		"@types/node": "22.14.1",
-		"@types/resolve": "1.20.6",
-		"@vitejs/plugin-vue": "^5.2.3",
-		"@vue/cli-plugin-babel": "^5.0.8",
-		"@vue/cli-plugin-unit-jest": "^5.0.8",
-		"@vue/cli-service": "^5.0.8",
-		"@vue/compiler-sfc": "3.5.13",
-		"@vue/test-utils": "^2.4.6",
-		"autoprefixer": "^10.4.21",
-		"fast-glob": "3.3.3",
-		"fs-extra": "11.3.0",
-		"htmlparser2": "10.0.0",
-		"np": "^10.2.0",
-		"postcss": "^8.5.3",
-		"query-string": "9.1.1",
-		"resolve": "1.22.10",
-		"rollup": "^4.40.0",
-		"rollup-plugin-node-externals": "^8.0.0",
-		"rollup-plugin-styles": "^4.0.0",
-		"shx": "0.4.0",
-		"typescript": "^5.8.3",
-		"vue": "^3.5.13"
-	},
-	"engines": {
-		"node": ">=10.0.0"
-	},
-	"publishConfig": {
-		"access": "public",
-		"registry": "https://registry.npmjs.org/"
-	}
+  "name": "@pathscale/vue3-ui",
+  "version": "1.0.15",
+  "description": "Very clean Vue3 components styled with love and care.",
+  "type": "module",
+  "keywords": [
+    "vue",
+    "vue3",
+    "ui"
+  ],
+  "homepage": "https://github.com/pathscale/vue3-ui#readme",
+  "bugs": {
+    "url": "https://github.com/pathscale/vue3-ui/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pathscale/vue3-ui.git"
+  },
+  "license": "MIT",
+  "author": "PathScale (https://vue3.dev/)",
+  "contributors": [],
+  "sideEffects": false,
+  "main": "dist/bundle.js",
+  "module": "dist/bundle.js",
+  "browser": "dist/bundle-browser.js",
+  "scripts": {
+    "prepare": "husky",
+    "prebuild": "bun run helper/index.ts && rm -rf dist || true",
+    "build": "rollup -c --environment NODE_ENV:production",
+    "postbuild": "shx cp helper/mappings.json helper/classes.json dist",
+    "prepublishOnly": "bun run build",
+    "release": "bun run build && np --yolo",
+    "test:unit": "bun test",
+    "test:watch": "bun test --watch",
+    "lint": "biome lint --write .",
+    "lint:fix": "biome check --write ."
+  },
+  "browserslist": [
+    "last 2 versions",
+    "not IE 11",
+    "not dead",
+    "not OperaMini all"
+  ],
+  "lint-staged": {
+    "*.{js,ts,vue}": [
+      "biome check --write",
+      "biome lint --write"
+    ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.26.10",
+    "@babel/parser": "^7.27.0",
+    "@babel/traverse": "^7.27.0",
+    "@biomejs/biome": "1.9.4",
+    "@commitlint/cli": "^19.8.0",
+    "@commitlint/config-conventional": "^19.8.0",
+    "@pathscale/frappe-charts": "^0.0.2",
+    "@rollup/plugin-alias": "^5.1.1",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-replace": "^6.0.2",
+    "@rollup/plugin-sucrase": "^5.0.2",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@types/babel__traverse": "7.20.7",
+    "@types/fs-extra": "11.0.4",
+    "@types/node": "22.14.1",
+    "@types/resolve": "1.20.6",
+    "@vitejs/plugin-vue": "^5.2.3",
+    "@vue/cli-plugin-babel": "^5.0.8",
+    "@vue/cli-plugin-unit-jest": "^5.0.8",
+    "@vue/cli-service": "^5.0.8",
+    "@vue/compiler-sfc": "3.5.13",
+    "@vue/test-utils": "^2.4.6",
+    "autoprefixer": "^10.4.21",
+    "fast-glob": "3.3.3",
+    "fs-extra": "11.3.0",
+    "htmlparser2": "10.0.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.1",
+    "np": "^10.2.0",
+    "postcss": "^8.5.3",
+    "query-string": "9.1.1",
+    "resolve": "1.22.10",
+    "rollup": "^4.40.0",
+    "rollup-plugin-node-externals": "^8.0.0",
+    "rollup-plugin-styles": "^4.0.0",
+    "shx": "0.4.0",
+    "typescript": "^5.8.3",
+    "vue": "^3.5.13"
+  },
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
 }

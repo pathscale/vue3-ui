@@ -1,10 +1,10 @@
 <script>
 export default {
-	name: "EyeIcon",
-	inheritAttrs: false,
-	props: {
-		invisible: Boolean,
-	},
+  name: "EyeIcon",
+  inheritAttrs: false,
+  props: {
+    invisible: Boolean,
+  },
 };
 </script>
 

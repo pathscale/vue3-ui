@@ -4,15 +4,15 @@ import Timeline from "./Timeline.vue";
 let wrapper;
 
 describe("Timeline", () => {
-	beforeEach(() => {
-		wrapper = shallowMount(Timeline);
-	});
+  beforeEach(() => {
+    wrapper = shallowMount(Timeline);
+  });
 
-	it("is called", () => {
-		expect(wrapper.exists()).toBeTruthy();
-	});
+  it("is called", () => {
+    expect(wrapper.exists()).toBeTruthy();
+  });
 
-	it("render correctly", () => {
-		expect(wrapper.html()).toMatchSnapshot();
-	});
+  it("render correctly", () => {
+    expect(wrapper.html()).toMatchSnapshot();
+  });
 });

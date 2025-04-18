@@ -5,15 +5,15 @@ import Image from "./Image.vue";
 let wrapper;
 
 describe("Image", () => {
-	beforeEach(() => {
-		wrapper = shallowMount(Image);
-	});
+  beforeEach(() => {
+    wrapper = shallowMount(Image);
+  });
 
-	it("is called", () => {
-		expect(wrapper.exists()).toBeTruthy();
-	});
+  it("is called", () => {
+    expect(wrapper.exists()).toBeTruthy();
+  });
 
-	it("render correctly", () => {
-		expect(wrapper.html()).toMatchSnapshot();
-	});
+  it("render correctly", () => {
+    expect(wrapper.html()).toMatchSnapshot();
+  });
 });

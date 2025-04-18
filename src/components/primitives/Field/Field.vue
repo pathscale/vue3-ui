@@ -2,17 +2,17 @@
 import { computed } from "vue";
 
 const props = defineProps<{
-	type?: string;
-	label?: string;
-	labelFor?: string;
-	message?: string;
-	grouped?: boolean;
-	groupMultiline?: boolean;
-	position?: string;
-	expanded?: boolean;
-	horizontal?: boolean;
-	addons?: boolean;
-	size?: string;
+  type?: string;
+  label?: string;
+  labelFor?: string;
+  message?: string;
+  grouped?: boolean;
+  groupMultiline?: boolean;
+  position?: string;
+  expanded?: boolean;
+  horizontal?: boolean;
+  addons?: boolean;
+  size?: string;
 }>();
 
 const hasHorizontalLabel = computed(() => !!(props.horizontal && props.label));

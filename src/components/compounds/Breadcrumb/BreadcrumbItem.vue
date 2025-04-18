@@ -1,14 +1,14 @@
 <script>
 export default {
-	name: "VBreadcrumbItem",
-	inheritAttrs: false,
-	props: {
-		tag: {
-			type: String,
-			default: "a",
-		},
-		active: Boolean,
-	},
+  name: "VBreadcrumbItem",
+  inheritAttrs: false,
+  props: {
+    tag: {
+      type: String,
+      default: "a",
+    },
+    active: Boolean,
+  },
 };
 </script>
 

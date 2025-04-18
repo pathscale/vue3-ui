@@ -4,39 +4,39 @@ import { ref, watchEffect } from "vue";
 import CheckRadioMixin from "../../../mixins/CheckRadio.js";
 
 export default {
-	name: "VCheckbox",
-	props: {
-		...CheckRadioMixin.props,
-		indeterminate: Boolean,
-		trueValue: {
-			type: [String, Number, Boolean, Function, Object, Array],
-			default: true,
-		},
-		falseValue: {
-			type: [String, Number, Boolean, Function, Object, Array],
-			default: false,
-		},
-	},
-	emits: ["update:modelValue"],
-	setup(props, { emit }) {
-		const label = ref(null);
-		const input = ref(null);
-		const value = ref(props.modelValue);
+  name: "VCheckbox",
+  props: {
+    ...CheckRadioMixin.props,
+    indeterminate: Boolean,
+    trueValue: {
+      type: [String, Number, Boolean, Function, Object, Array],
+      default: true,
+    },
+    falseValue: {
+      type: [String, Number, Boolean, Function, Object, Array],
+      default: false,
+    },
+  },
+  emits: ["update:modelValue"],
+  setup(props, { emit }) {
+    const label = ref(null);
+    const input = ref(null);
+    const value = ref(props.modelValue);
 
-		const focus = () => {
-			input.value.focus();
-		};
+    const focus = () => {
+      input.value.focus();
+    };
 
-		watchEffect(() => {
-			emit("update:modelValue", value.value);
-		});
+    watchEffect(() => {
+      emit("update:modelValue", value.value);
+    });
 
-		watchEffect(() => {
-			value.value = props.modelValue;
-		});
+    watchEffect(() => {
+      value.value = props.modelValue;
+    });
 
-		return { label, input, value, focus };
-	},
+    return { label, input, value, focus };
+  },
 };
 </script>
 

@@ -2,60 +2,60 @@
 import { computed, ref, watchEffect } from "vue";
 
 export default {
-	name: "VUpload",
-	inheritAttrs: false,
-	props: {
-		modelValue: [File, Array],
-		multiple: Boolean,
-		disabled: Boolean,
-		accept: String,
-		dragDrop: Boolean,
-		type: String,
-		size: String,
-		centered: Boolean,
-		right: Boolean,
-		expanded: Boolean,
-		boxed: Boolean,
-	},
-	emits: ["update:modelValue"],
-	setup(props, { emit, slots }) {
-		const value = ref(props.modelValue);
+  name: "VUpload",
+  inheritAttrs: false,
+  props: {
+    modelValue: [File, Array],
+    multiple: Boolean,
+    disabled: Boolean,
+    accept: String,
+    dragDrop: Boolean,
+    type: String,
+    size: String,
+    centered: Boolean,
+    right: Boolean,
+    expanded: Boolean,
+    boxed: Boolean,
+  },
+  emits: ["update:modelValue"],
+  setup(props, { emit, slots }) {
+    const value = ref(props.modelValue);
 
-		watchEffect(() => {
-			value.value = props.modelValue;
-		});
+    watchEffect(() => {
+      value.value = props.modelValue;
+    });
 
-		watchEffect(() => {
-			emit("update:modelValue", value.value);
-		});
+    watchEffect(() => {
+      emit("update:modelValue", value.value);
+    });
 
-		function onChange(e) {
-			const { files } = e.target;
-			value.value = props.multiple ? [...files] : files[0];
-		}
+    function onChange(e) {
+      const { files } = e.target;
+      value.value = props.multiple ? [...files] : files[0];
+    }
 
-		function dragover(e) {
-			props.dragDrop && e.preventDefault();
-		}
+    function dragover(e) {
+      props.dragDrop && e.preventDefault();
+    }
 
-		function drop(e) {
-			if (props.dragDrop) {
-				e.preventDefault();
-				value.value = props.multiple
-					? [...e.dataTransfer.files]
-					: e.dataTransfer.files[0];
-			}
-		}
+    function drop(e) {
+      if (props.dragDrop) {
+        e.preventDefault();
+        value.value = props.multiple
+          ? [...e.dataTransfer.files]
+          : e.dataTransfer.files[0];
+      }
+    }
 
-		const hasName = computed(() => Boolean(slots.name));
+    const hasName = computed(() => Boolean(slots.name));
 
-		return {
-			onChange,
-			hasName,
-			dragover,
-			drop,
-		};
-	},
+    return {
+      onChange,
+      hasName,
+      dragover,
+      drop,
+    };
+  },
 };
 </script>
 

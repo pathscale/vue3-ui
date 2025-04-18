@@ -5,21 +5,21 @@ import { defineProps, onBeforeMount, ref } from "vue";
 const hasBenchieSupport = checkBenchieSupport();
 
 const props = defineProps<{
-	size?: string;
-	radio?: string;
-	rounded?: boolean;
-	centered?: boolean;
-	src?: string;
-	dataSrc?: string;
-	customClass?: string;
+  size?: string;
+  radio?: string;
+  rounded?: boolean;
+  centered?: boolean;
+  src?: string;
+  dataSrc?: string;
+  customClass?: string;
 }>();
 
 const source = ref(props.src || props.dataSrc);
 
 onBeforeMount(async () => {
-	if (props.dataSrc && hasBenchieSupport) {
-		source.value = await t(props.dataSrc, $__CDN);
-	}
+  if (props.dataSrc && hasBenchieSupport) {
+    source.value = await t(props.dataSrc, $__CDN);
+  }
 });
 </script>
 

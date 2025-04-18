@@ -3,54 +3,54 @@ import { computed, ref, watchEffect } from "vue";
 import EyeIcon from "./EyeIcon.vue";
 
 export default {
-	name: "VInput",
-	components: { EyeIcon },
-	inheritAttrs: false,
-	props: {
-		color: String,
-		size: String,
-		rounded: Boolean,
-		loading: Boolean,
-		expanded: Boolean,
-		modelValue: [String, Number],
-		passwordReveal: Boolean,
-	},
-	emits: ["update:modelValue"],
-	setup(props, { emit, slots, attrs }) {
-		const hasLeftIcon = computed(() => Boolean(slots.leftIcon));
-		const hasRightIcon = computed(
-			() => Boolean(slots.rightIcon) || props.passwordReveal,
-		);
-		const value = ref(props.modelValue);
-		const showPassword = ref(false);
+  name: "VInput",
+  components: { EyeIcon },
+  inheritAttrs: false,
+  props: {
+    color: String,
+    size: String,
+    rounded: Boolean,
+    loading: Boolean,
+    expanded: Boolean,
+    modelValue: [String, Number],
+    passwordReveal: Boolean,
+  },
+  emits: ["update:modelValue"],
+  setup(props, { emit, slots, attrs }) {
+    const hasLeftIcon = computed(() => Boolean(slots.leftIcon));
+    const hasRightIcon = computed(
+      () => Boolean(slots.rightIcon) || props.passwordReveal,
+    );
+    const value = ref(props.modelValue);
+    const showPassword = ref(false);
 
-		const computedType = computed(() => {
-			if (showPassword.value) {
-				return "text";
-			}
-			return attrs.type;
-		});
+    const computedType = computed(() => {
+      if (showPassword.value) {
+        return "text";
+      }
+      return attrs.type;
+    });
 
-		const tooglePassword = () => {
-			showPassword.value = !showPassword.value;
-		};
+    const tooglePassword = () => {
+      showPassword.value = !showPassword.value;
+    };
 
-		watchEffect(() => {
-			value.value = props.modelValue;
-		});
+    watchEffect(() => {
+      value.value = props.modelValue;
+    });
 
-		watchEffect(() => emit("update:modelValue", value.value));
+    watchEffect(() => emit("update:modelValue", value.value));
 
-		return {
-			value,
-			hasLeftIcon,
-			hasRightIcon,
-			tooglePassword,
-			computedType,
-			rightIcon: slots.rightIcon,
-			showPassword,
-		};
-	},
+    return {
+      value,
+      hasLeftIcon,
+      hasRightIcon,
+      tooglePassword,
+      computedType,
+      rightIcon: slots.rightIcon,
+      showPassword,
+    };
+  },
 };
 </script>
 

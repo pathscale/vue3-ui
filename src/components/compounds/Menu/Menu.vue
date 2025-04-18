@@ -1,6 +1,6 @@
 <script>
 export default {
-	name: "VMenu",
+  name: "VMenu",
 };
 </script>
 

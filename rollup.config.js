@@ -14,55 +14,55 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 export default [
-	{
-		input: "src/components/index.js",
-		external: ["vue"],
-		output: {
-			format: "es",
-			file: pkg.module,
-			assetFileNames: "[name][extname]",
-		},
-		plugins: [
-			alias({
-				entries: [{ find: "@", replacement: path.resolve(__dirname, "src") }],
-			}),
-			externals({ deps: true }),
-			replace({
-				__VUE_PROD_HYDRATION_MISMATCH_DETAILS__: JSON.stringify(true),
-				preventAssignment: true,
-			}),
-			styles({ mode: ["extract", "bundle.css"], url: { inline: true } }),
-			resolve({ extensions: [".vue", ".js", ".css"] }),
-			vue(),
-			sucrase({
-				transforms: ["typescript"],
-			}),
-		],
-	},
-	{
-		input: "src/components/index.js",
-		output: {
-			format: "es",
-			file: pkg.browser,
-			assetFileNames: "[name][extname]",
-		},
-		plugins: [
-			alias({
-				entries: [{ find: "@", replacement: path.resolve(__dirname, "src") }],
-			}),
-			// Not defined in browser
-			replace({
-				"process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
-				__VUE_PROD_HYDRATION_MISMATCH_DETAILS__: JSON.stringify(true),
-				preventAssignment: true,
-			}),
-			resolve({ extensions: [".vue", ".js"] }),
-			vue(),
-			// Vue plugin won't handle CSS currently
-			styles(),
-			sucrase({
-				transforms: ["typescript"],
-			}),
-		],
-	},
+  {
+    input: "src/components/index.js",
+    external: ["vue"],
+    output: {
+      format: "es",
+      file: pkg.module,
+      assetFileNames: "[name][extname]",
+    },
+    plugins: [
+      alias({
+        entries: [{ find: "@", replacement: path.resolve(__dirname, "src") }],
+      }),
+      externals({ deps: true }),
+      replace({
+        __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: JSON.stringify(true),
+        preventAssignment: true,
+      }),
+      styles({ mode: ["extract", "bundle.css"], url: { inline: true } }),
+      resolve({ extensions: [".vue", ".js", ".css"] }),
+      vue(),
+      sucrase({
+        transforms: ["typescript"],
+      }),
+    ],
+  },
+  {
+    input: "src/components/index.js",
+    output: {
+      format: "es",
+      file: pkg.browser,
+      assetFileNames: "[name][extname]",
+    },
+    plugins: [
+      alias({
+        entries: [{ find: "@", replacement: path.resolve(__dirname, "src") }],
+      }),
+      // Not defined in browser
+      replace({
+        "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
+        __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: JSON.stringify(true),
+        preventAssignment: true,
+      }),
+      resolve({ extensions: [".vue", ".js"] }),
+      vue(),
+      // Vue plugin won't handle CSS currently
+      styles(),
+      sucrase({
+        transforms: ["typescript"],
+      }),
+    ],
+  },
 ];

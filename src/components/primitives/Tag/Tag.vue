@@ -3,43 +3,43 @@ import { computed } from "vue";
 /* eslint no-shadow: ["error", { "allow": ["event"] }] -- prevent warning  'event' is already declared in the upper scope */
 
 export default {
-	name: "VTag",
-	props: {
-		attached: Boolean,
-		closable: Boolean,
-		type: String,
-		size: String,
-		rounded: Boolean,
-		disabled: {
-			type: Boolean,
-			default: null,
-		},
-		ellipsis: Boolean,
-		tabstop: {
-			type: Boolean,
-			default: true,
-		},
-		ariaCloseLabel: String,
-		closeType: String,
-		closeIcon: String,
-	},
-	emits: ["close"],
-	setup(props, { emit }) {
-		const close = (event) => {
-			if (props.disabled) return;
-			emit("close", event);
-		};
+  name: "VTag",
+  props: {
+    attached: Boolean,
+    closable: Boolean,
+    type: String,
+    size: String,
+    rounded: Boolean,
+    disabled: {
+      type: Boolean,
+      default: null,
+    },
+    ellipsis: Boolean,
+    tabstop: {
+      type: Boolean,
+      default: true,
+    },
+    ariaCloseLabel: String,
+    closeType: String,
+    closeIcon: String,
+  },
+  emits: ["close"],
+  setup(props, { emit }) {
+    const close = (event) => {
+      if (props.disabled) return;
+      emit("close", event);
+    };
 
-		const tabIndex = computed(() => (props.tabstop ? 0 : false));
+    const tabIndex = computed(() => (props.tabstop ? 0 : false));
 
-		const isClosable = computed(() => props.attached && props.closable);
+    const isClosable = computed(() => props.attached && props.closable);
 
-		const closeButtonInside = computed(
-			() => props.closable && !(props.attached && props.closable),
-		);
+    const closeButtonInside = computed(
+      () => props.closable && !(props.attached && props.closable),
+    );
 
-		return { close, tabIndex, isClosable, closeButtonInside };
-	},
+    return { close, tabIndex, isClosable, closeButtonInside };
+  },
 };
 </script>
 

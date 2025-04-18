@@ -1,12 +1,12 @@
 <script>
 export default {
-	name: "VColumn",
-	props: {
-		size: String,
-		offset: String,
-		narrow: Boolean,
-		narrowBreakpoint: String,
-	},
+  name: "VColumn",
+  props: {
+    size: String,
+    offset: String,
+    narrow: Boolean,
+    narrowBreakpoint: String,
+  },
 };
 </script>
 

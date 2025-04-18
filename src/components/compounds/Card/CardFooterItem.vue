@@ -1,6 +1,6 @@
 <script>
 export default {
-	name: "VCardFooterItem",
+  name: "VCardFooterItem",
 };
 </script>
 

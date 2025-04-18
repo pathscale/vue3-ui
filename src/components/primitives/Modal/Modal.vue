@@ -2,31 +2,31 @@
 import { onMounted, ref, watchEffect } from "vue";
 
 export default {
-	name: "VModal",
-	props: {
-		modelValue: {
-			type: Boolean,
-			required: true,
-		},
-		card: Boolean,
-	},
-	emits: ["update:modelValue"],
-	setup(props, { emit }) {
-		const active = ref(props.modelValue);
+  name: "VModal",
+  props: {
+    modelValue: {
+      type: Boolean,
+      required: true,
+    },
+    card: Boolean,
+  },
+  emits: ["update:modelValue"],
+  setup(props, { emit }) {
+    const active = ref(props.modelValue);
 
-		onMounted(() => {
-			emit("update:modelValue", active);
-		});
+    onMounted(() => {
+      emit("update:modelValue", active);
+    });
 
-		watchEffect(() => {
-			active.value = props.modelValue;
-		});
+    watchEffect(() => {
+      active.value = props.modelValue;
+    });
 
-		const close = () => {
-			emit("update:modelValue", false);
-		};
-		return { active, close };
-	},
+    const close = () => {
+      emit("update:modelValue", false);
+    };
+    return { active, close };
+  },
 };
 </script>
 

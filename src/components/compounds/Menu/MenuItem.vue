@@ -2,46 +2,46 @@
 import { ref, watchEffect } from "vue";
 
 export default {
-	name: "VMenuItem",
-	inheritAttrs: false,
-	props: {
-		label: String,
-		active: Boolean,
-		expanded: Boolean,
-		disabled: Boolean,
-		icon: String,
-		tag: {
-			type: String,
-			default: "a",
-		},
-		ariaRole: String,
-	},
-	emits: ["update:expanded", "update:active"],
-	setup(props, { emit }) {
-		const newActive = ref(props.active);
-		const newExpanded = ref(props.expanded);
-		const content = ref(null);
+  name: "VMenuItem",
+  inheritAttrs: false,
+  props: {
+    label: String,
+    active: Boolean,
+    expanded: Boolean,
+    disabled: Boolean,
+    icon: String,
+    tag: {
+      type: String,
+      default: "a",
+    },
+    ariaRole: String,
+  },
+  emits: ["update:expanded", "update:active"],
+  setup(props, { emit }) {
+    const newActive = ref(props.active);
+    const newExpanded = ref(props.expanded);
+    const content = ref(null);
 
-		watchEffect(() => {
-			newActive.value = props.active;
-		});
+    watchEffect(() => {
+      newActive.value = props.active;
+    });
 
-		watchEffect(() => {
-			newExpanded.value = props.expanded;
-		});
+    watchEffect(() => {
+      newExpanded.value = props.expanded;
+    });
 
-		const onClick = () => {
-			// TODO Disable previous active item
-			if (props.disabled) return;
+    const onClick = () => {
+      // TODO Disable previous active item
+      if (props.disabled) return;
 
-			newExpanded.value = !newExpanded.value;
-			emit("update:expanded", newExpanded.value);
-			emit("update:active", newActive.value);
-			// newActive.value = true
-		};
+      newExpanded.value = !newExpanded.value;
+      emit("update:expanded", newExpanded.value);
+      emit("update:active", newActive.value);
+      // newActive.value = true
+    };
 
-		return { newActive, newExpanded, onClick, content };
-	},
+    return { newActive, newExpanded, onClick, content };
+  },
 };
 </script>
 

@@ -6,91 +6,91 @@ import VField from "../Field/Field.vue";
 import VInput from "../Input/Input.vue";
 
 export default {
-	name: "VAutocomplete",
-	components: {
-		VField,
-		VInput,
-	},
-	props: {
-		modelValue: [String, Number],
-		items: {
-			type: Array,
-			required: false,
-			default: () => [],
-		},
-		label: String,
-	},
-	emits: ["update:modelValue"],
-	setup(props, { emit }) {
-		const state = reactive({
-			value: props.modelValue,
-			isOpen: false,
-			results: props.items,
-			search: "",
-			arrowCounter: 0,
-		});
+  name: "VAutocomplete",
+  components: {
+    VField,
+    VInput,
+  },
+  props: {
+    modelValue: [String, Number],
+    items: {
+      type: Array,
+      required: false,
+      default: () => [],
+    },
+    label: String,
+  },
+  emits: ["update:modelValue"],
+  setup(props, { emit }) {
+    const state = reactive({
+      value: props.modelValue,
+      isOpen: false,
+      results: props.items,
+      search: "",
+      arrowCounter: 0,
+    });
 
-		const filterResults = () => {
-			// first uncapitalize all the things
-			state.results = props.items.filter((item) => {
-				return item.toLowerCase().includes(state.search.toLowerCase());
-			});
-		};
+    const filterResults = () => {
+      // first uncapitalize all the things
+      state.results = props.items.filter((item) => {
+        return item.toLowerCase().includes(state.search.toLowerCase());
+      });
+    };
 
-		watchEffect(() => {
-			state.search = props.modelValue;
-		});
+    watchEffect(() => {
+      state.search = props.modelValue;
+    });
 
-		const onChange = () => {
-			filterResults();
-			state.isOpen = true;
-		};
+    const onChange = () => {
+      filterResults();
+      state.isOpen = true;
+    };
 
-		const setResult = (result) => {
-			emit("update:modelValue", result);
-			state.search = result;
-			state.isOpen = false;
-		};
+    const setResult = (result) => {
+      emit("update:modelValue", result);
+      state.search = result;
+      state.isOpen = false;
+    };
 
-		const onArrowDown = (evt) => {
-			if (state.arrowCounter < state.results.length) {
-				state.arrowCounter += 1;
-			}
-		};
+    const onArrowDown = (evt) => {
+      if (state.arrowCounter < state.results.length) {
+        state.arrowCounter += 1;
+      }
+    };
 
-		const onArrowUp = () => {
-			if (state.arrowCounter > 0) {
-				state.arrowCounter -= 1;
-			}
-		};
+    const onArrowUp = () => {
+      if (state.arrowCounter > 0) {
+        state.arrowCounter -= 1;
+      }
+    };
 
-		const onEnter = () => {
-			state.search = state.results[state.arrowCounter];
-			state.isOpen = false;
-			state.arrowCounter = -1;
-		};
+    const onEnter = () => {
+      state.search = state.results[state.arrowCounter];
+      state.isOpen = false;
+      state.arrowCounter = -1;
+    };
 
-		const handleClickInside = (evt) => {
-			state.isOpen = true;
-		};
+    const handleClickInside = (evt) => {
+      state.isOpen = true;
+    };
 
-		// TODO: handle click outside
-		const handleClickOutside = (evt) => {
-			state.isOpen = false;
-			state.arrowCounter = -1;
-		};
+    // TODO: handle click outside
+    const handleClickOutside = (evt) => {
+      state.isOpen = false;
+      state.arrowCounter = -1;
+    };
 
-		return {
-			onChange,
-			state,
-			onArrowDown,
-			onArrowUp,
-			onEnter,
-			setResult,
-			// handleClickOutside,
-			handleClickInside,
-		};
-	},
+    return {
+      onChange,
+      state,
+      onArrowDown,
+      onArrowUp,
+      onEnter,
+      setResult,
+      // handleClickOutside,
+      handleClickInside,
+    };
+  },
 };
 </script>
 

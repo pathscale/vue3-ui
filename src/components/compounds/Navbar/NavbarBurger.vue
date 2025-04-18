@@ -1,9 +1,9 @@
 <script>
 export default {
-	name: "NavbarBurger",
-	props: {
-		active: Boolean,
-	},
+  name: "NavbarBurger",
+  props: {
+    active: Boolean,
+  },
 };
 </script>
 

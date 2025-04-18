@@ -1,9 +1,9 @@
 <script>
 export default {
-	name: "Timeline",
-	props: {
-		stages: { type: Object, required: true },
-	},
+  name: "Timeline",
+  props: {
+    stages: { type: Object, required: true },
+  },
 };
 </script>
 

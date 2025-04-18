@@ -7,8 +7,9 @@ import VInput from "../Input/Input.vue";
 
 const props = withDefaults(
   defineProps<{
-    modelValue: string | number;
+    modelValue?: string | number;
     items?: Array<string | number>;
+    label?: string;
   }>(),
   {
     items: () => [],
@@ -16,15 +17,6 @@ const props = withDefaults(
 );
 
 // export default {
-//   props: {
-//     modelValue: [String, Number],
-//     items: {
-//       type: Array,
-//       required: false,
-//       default: () => [],
-//     },
-//     label: String,
-//   },
 //   emits: ["update:modelValue"],
 //   setup(props, { emit }) {
 //     const state = reactive({

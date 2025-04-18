@@ -1,57 +1,44 @@
-<script>
-import { computed, ref, watchEffect } from "vue";
+<script setup lang="ts">
+import { computed, ref, useSlots, watchEffect } from "vue";
 import EyeIcon from "./EyeIcon.vue";
 
-export default {
-  name: "VInput",
-  components: { EyeIcon },
-  inheritAttrs: false,
-  props: {
-    color: String,
-    size: String,
-    rounded: Boolean,
-    loading: Boolean,
-    expanded: Boolean,
-    modelValue: [String, Number],
-    passwordReveal: Boolean,
-  },
-  emits: ["update:modelValue"],
-  setup(props, { emit, slots, attrs }) {
-    const hasLeftIcon = computed(() => Boolean(slots.leftIcon));
-    const hasRightIcon = computed(
-      () => Boolean(slots.rightIcon) || props.passwordReveal,
-    );
-    const value = ref(props.modelValue);
-    const showPassword = ref(false);
+defineProps<{
+  color?: string;
+  size?: string;
+  rounded?: boolean;
+  loading?: boolean;
+  expanded?: boolean;
+  modelValue?: string | number;
+  passwordReveal?: boolean;
+}>();
 
-    const computedType = computed(() => {
-      if (showPassword.value) {
-        return "text";
-      }
-      return attrs.type;
-    });
+const emit = defineEmits(["update:modelValue"]);
 
-    const tooglePassword = () => {
-      showPassword.value = !showPassword.value;
-    };
+const slots = useSlots();
 
-    watchEffect(() => {
-      value.value = props.modelValue;
-    });
+const hasLeftIcon = computed(() => Boolean(slots.leftIcon));
+const hasRightIcon = computed(
+  () => Boolean(slots.rightIcon) || props.passwordReveal,
+);
+const value = ref(props.modelValue);
+const showPassword = ref(false);
 
-    watchEffect(() => emit("update:modelValue", value.value));
+const computedType = computed(() => {
+  if (showPassword.value) {
+    return "text";
+  }
+  return attrs.type;
+});
 
-    return {
-      value,
-      hasLeftIcon,
-      hasRightIcon,
-      tooglePassword,
-      computedType,
-      rightIcon: slots.rightIcon,
-      showPassword,
-    };
-  },
+const tooglePassword = () => {
+  showPassword.value = !showPassword.value;
 };
+
+watchEffect(() => {
+  value.value = props.modelValue;
+});
+
+watchEffect(() => emit("update:modelValue", value.value));
 </script>
 
 <template>

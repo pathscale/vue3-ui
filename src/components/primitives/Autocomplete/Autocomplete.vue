@@ -13,7 +13,6 @@ import VInput from "../Input/Input.vue";
 
 const props = withDefaults(
   defineProps<{
-    modelValue?: string | number;
     items?: Array<string | number>;
     label?: string;
   }>(),
@@ -24,10 +23,9 @@ const props = withDefaults(
 
 const emit = defineEmits(["update:modelValue"]);
 
-const search1 = defineModel();
+const search1 = defineModel<string | number>();
 
 const state = reactive({
-  value: props.modelValue,
   isOpen: false,
   results: props.items,
   search: "",
@@ -36,8 +34,9 @@ const state = reactive({
 
 const filterResults = () => {
   // first uncapitalize all the things
+  const filter = (search1.value ?? "").toString().toLowerCase();
   state.results = props.items.filter((item) => {
-    return item.toString().toLowerCase().includes(search1.value.toLowerCase());
+    return item.toString().toLowerCase().includes(filter);
   });
 };
 

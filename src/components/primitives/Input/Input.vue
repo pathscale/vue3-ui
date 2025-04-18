@@ -71,7 +71,7 @@ watchEffect(() => emit("update:modelValue", value.value));
     </span>
     <span class="icon is-right" v-if="hasRightIcon">
       <div class="is-clickable" v-if="passwordReveal" @click="tooglePassword">
-        <slot v-if="rightIcon" name="rightIcon" />
+        <slot v-if="$slots.rightIcon" name="rightIcon" />
         <div v-else>
           <eye-icon :invisible="showPassword" />
         </div>

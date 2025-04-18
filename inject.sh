@@ -3,8 +3,8 @@
 # Vue3-UI does not comes with examples nor a test environment where you could use components
 # For this purpose you can take a look at vue3-starter or some end user project that uses vue3-ui
 #
-# Aditionally, if you wish to have available on such project components that are local
-# Invoke this script with the name of such component and it will inject the lastest bundle into that project
+# Additionally, if you wish to have available on such project components that are local
+# Invoke this script with the name of such component and it will inject the latest bundle into that project
 
 # For example
 # ./inject.sh my-dev-environment
@@ -16,7 +16,7 @@ then
     exit
 fi
 
-npm run build
+bun run build
 echo "bundle created"
 
 cp ./dist/* ../$1/node_modules/@pathscale/vue3-ui/dist/

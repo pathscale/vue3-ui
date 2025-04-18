@@ -3,11 +3,17 @@ import styles from 'rollup-plugin-styles'
 import resolve from '@rollup/plugin-node-resolve'
 import replace from '@rollup/plugin-replace'
 import alias from '@rollup/plugin-alias'
-import ts from 'rollup-plugin-ts'
+import sucrase from "@rollup/plugin-sucrase";
+import { fileURLToPath } from "node:url";
+import path from "node:path";
 import externals from 'rollup-plugin-node-externals'
-import path from 'path'
 
-import pkg from './package.json'
+
+import pkg from './package.json' with { type: 'json' }
+
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 export default [
   {
@@ -23,10 +29,12 @@ export default [
         __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: JSON.stringify(true),
         preventAssignment: true,
       }),
+      styles({ mode: ['extract', 'bundle.css'], url: { inline: true } }),
       resolve({ extensions: ['.vue', '.js', '.css'] }),
       vue(),
-      ts(),
-      styles({ mode: ['extract', 'bundle.css'], url: { inline: true } }),
+      sucrase({
+        transforms: ['typescript'],
+      }),
     ],
   },
   {
@@ -44,9 +52,11 @@ export default [
       }),
       resolve({ extensions: ['.vue', '.js'] }),
       vue(),
-      ts(),
       // Vue plugin won't handle CSS currently
       styles(),
+      sucrase({
+        transforms: ['typescript'],
+      }),
     ],
   },
 ]

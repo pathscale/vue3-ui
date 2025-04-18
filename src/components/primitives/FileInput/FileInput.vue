@@ -1,6 +1,6 @@
 <script>
 export default {
-  name: 'VFile',
+  name: "VFile",
   inheritAttrs: false,
   props: {
     hasName: Boolean,
@@ -9,11 +9,11 @@ export default {
     size: String,
     color: {
       type: String,
-      default: 'is-primary'
+      default: "is-primary",
     },
-    alignment: String
+    alignment: String,
   },
-}
+};
 </script>
 
 <template>

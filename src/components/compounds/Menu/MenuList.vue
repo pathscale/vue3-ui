@@ -1,11 +1,11 @@
 <script>
 export default {
-  name: 'VMenuList',
+  name: "VMenuList",
   props: {
     label: String,
-    ariaRole: String
-  }
-}
+    ariaRole: String,
+  },
+};
 </script>
 
 <template>

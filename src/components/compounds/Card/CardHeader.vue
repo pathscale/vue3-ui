@@ -1,14 +1,14 @@
 <script>
 export default {
-  name: 'VCardHeader',
+  name: "VCardHeader",
   props: {
     title: String,
     tag: {
       type: String,
-      default: 'header'
-    }
-  }
-}
+      default: "header",
+    },
+  },
+};
 </script>
 
 <template>

@@ -1,18 +1,18 @@
-import { shallowMount } from '@vue/test-utils'
-import Select from './Select.vue'
+import { shallowMount } from "@vue/test-utils";
+import Select from "./Select.vue";
 
-let wrapper
+let wrapper;
 
-describe('Select', () => {
+describe("Select", () => {
   beforeEach(() => {
-    wrapper = shallowMount(Select)
-  })
+    wrapper = shallowMount(Select);
+  });
 
-  it('is called', () => {
-    expect(wrapper.exists()).toBeTruthy()
-  })
+  it("is called", () => {
+    expect(wrapper.exists()).toBeTruthy();
+  });
 
-  it('render correctly', () => {
-    expect(wrapper.html()).toMatchSnapshot()
-  })
-})
+  it("render correctly", () => {
+    expect(wrapper.html()).toMatchSnapshot();
+  });
+});

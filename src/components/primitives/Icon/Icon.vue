@@ -1,8 +1,8 @@
 <script>
-import { computed } from 'vue'
+import { computed } from "vue";
 
 export default {
-  name: 'VIcon',
+  name: "VIcon",
   inheritAttrs: false,
   props: {
     size: String,
@@ -15,17 +15,23 @@ export default {
     },
     cacheVersion: {
       type: String,
-      default: '1.0.0',
+      default: "1.0.0",
     },
   },
   setup(props) {
-    const shouldIconClass = computed(() => !props.customSize && !props.customClass)
+    const shouldIconClass = computed(
+      () => !props.customSize && !props.customClass,
+    );
     // Only apply 100% size when bulma icon class is used
-    const computedHeight = computed(() => (!shouldIconClass.value ? props.customSize : '100%'))
-    const computedWidth = computed(() => (!shouldIconClass.value ? props.customSize : '100%'))
-    return { computedHeight, computedWidth, shouldIconClass }
+    const computedHeight = computed(() =>
+      !shouldIconClass.value ? props.customSize : "100%",
+    );
+    const computedWidth = computed(() =>
+      !shouldIconClass.value ? props.customSize : "100%",
+    );
+    return { computedHeight, computedWidth, shouldIconClass };
   },
-}
+};
 </script>
 
 <template>

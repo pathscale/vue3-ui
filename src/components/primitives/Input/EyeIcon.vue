@@ -1,11 +1,11 @@
 <script>
 export default {
-  name: 'EyeIcon',
+  name: "EyeIcon",
   inheritAttrs: false,
   props: {
     invisible: Boolean,
   },
-}
+};
 </script>
 
 <template>

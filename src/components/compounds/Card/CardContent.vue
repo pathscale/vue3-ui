@@ -1,7 +1,7 @@
 <script>
 export default {
-  name: 'VCardContent',
-}
+  name: "VCardContent",
+};
 </script>
 
 <template>

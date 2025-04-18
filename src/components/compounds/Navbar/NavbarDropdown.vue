@@ -1,8 +1,8 @@
 <script>
-import { watchEffect, reactive, computed } from 'vue'
+import { computed, reactive, watchEffect } from "vue";
 
 export default {
-  name: 'VNavbarDropdown',
+  name: "VNavbarDropdown",
   props: {
     label: String,
     hoverable: Boolean,
@@ -19,29 +19,29 @@ export default {
   setup(props) {
     const state = reactive({
       newActive: props.active,
-    })
+    });
 
     watchEffect(() => {
-      state.newActive = props.active
-    })
+      state.newActive = props.active;
+    });
 
     const closeMenu = () => {
-      state.newActive = !props.closeOnClick
-    }
+      state.newActive = !props.closeOnClick;
+    };
 
     const toggleActive = () => {
-      state.newActive = !state.newActive
-    }
+      state.newActive = !state.newActive;
+    };
 
     const show = computed(() => {
-      return !props.collapsible || (props.collapsible && state.newActive)
-    })
+      return !props.collapsible || (props.collapsible && state.newActive);
+    });
 
-    const isActive = computed(() => state.newActive)
+    const isActive = computed(() => state.newActive);
 
-    return { closeMenu, toggleActive, show, isActive }
+    return { closeMenu, toggleActive, show, isActive };
   },
-}
+};
 </script>
 
 <template>

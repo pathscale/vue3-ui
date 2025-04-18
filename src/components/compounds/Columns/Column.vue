@@ -1,13 +1,13 @@
 <script>
 export default {
-  name: 'VColumn',
+  name: "VColumn",
   props: {
     size: String,
     offset: String,
     narrow: Boolean,
-    narrowBreakpoint: String
+    narrowBreakpoint: String,
   },
-}
+};
 </script>
 
 <template>

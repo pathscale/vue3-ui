@@ -1,9 +1,9 @@
 <script>
-import { ref, watchEffect } from 'vue'
-import NavbarBurger from './NavbarBurger.vue'
+import { ref, watchEffect } from "vue";
+import NavbarBurger from "./NavbarBurger.vue";
 
 export default {
-  name: 'VNavbar',
+  name: "VNavbar",
   components: { NavbarBurger },
   props: {
     type: [String, Object],
@@ -13,31 +13,31 @@ export default {
     wrapperClass: String,
     mobileBurger: {
       type: Boolean,
-      default: true
+      default: true,
     },
     spaced: Boolean,
     shadow: Boolean,
-    modelValue: Boolean
+    modelValue: Boolean,
   },
-  emits: ['update:modelValue'],
+  emits: ["update:modelValue"],
   setup(props, { emit }) {
-    const isActive = ref(props.modelValue)
+    const isActive = ref(props.modelValue);
 
     watchEffect(() => {
-      emit('update:modelValue', isActive.value)
-    })
+      emit("update:modelValue", isActive.value);
+    });
 
     watchEffect(() => {
-      isActive.value = props.modelValue
-    })
+      isActive.value = props.modelValue;
+    });
 
     const toggleActive = () => {
-      isActive.value = !isActive.value
-    }
+      isActive.value = !isActive.value;
+    };
 
-    return { isActive, toggleActive }
-  }
-}
+    return { isActive, toggleActive };
+  },
+};
 </script>
 
 <template>

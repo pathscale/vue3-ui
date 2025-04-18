@@ -1,29 +1,29 @@
 <script>
-import { provide, inject, ref, watchEffect } from 'vue'
+import { inject, provide, ref, watchEffect } from "vue";
 
-const TabsSymbol = Symbol('Tabs')
+const TabsSymbol = Symbol("Tabs");
 
 export function provideStore(store) {
-  const storeRef = ref(store)
-  provide(TabsSymbol, storeRef)
-  return storeRef
+  const storeRef = ref(store);
+  provide(TabsSymbol, storeRef);
+  return storeRef;
 }
 
 export function useStore() {
-  const store = inject(TabsSymbol)
+  const store = inject(TabsSymbol);
   if (!store) {
     // throw error, no store provided
   }
-  return store
+  return store;
 }
 
 export function addToStore(tab) {
-  const tabs = useStore()
-  tabs.value.tabs.push(tab)
+  const tabs = useStore();
+  tabs.value.tabs.push(tab);
 }
 
 export default {
-  name: 'VSteps',
+  name: "VSteps",
   props: {
     modelValue: {
       type: [Number, String],
@@ -33,44 +33,44 @@ export default {
     type: String,
     animated: Boolean,
   },
-  emits: ['update:modelValue', 'change'],
+  emits: ["update:modelValue", "change"],
   setup(props, { emit }) {
     const tabs = provideStore({
       activeTab: 0,
       activeHeight: null,
       tabs: [],
-    })
+    });
 
-    const setActiveTabID = id => {
-      tabs.value.activeTab = id
-    }
+    const setActiveTabID = (id) => {
+      tabs.value.activeTab = id;
+    };
 
-    const setActiveTab = t => {
+    const setActiveTab = (t) => {
       if (!t.disabled && t.clickable) {
-        setActiveTabID(t.id)
+        setActiveTabID(t.id);
       }
-    }
+    };
 
     watchEffect(() => {
-      setActiveTabID(props.modelValue)
-    })
+      setActiveTabID(props.modelValue);
+    });
 
     watchEffect(() => {
-      emit('update:modelValue', tabs.value.activeTab)
-      emit('change', tabs.value.activeTab)
-    })
+      emit("update:modelValue", tabs.value.activeTab);
+      emit("change", tabs.value.activeTab);
+    });
 
-    const isTabActive = t => tabs.value.activeTab === t.id
-    const isTabCompleted = t => tabs.value.activeTab > t.id
+    const isTabActive = (t) => tabs.value.activeTab === t.id;
+    const isTabCompleted = (t) => tabs.value.activeTab > t.id;
 
     return {
       setActiveTab,
       tabs,
       isTabActive,
       isTabCompleted,
-    }
+    };
   },
-}
+};
 </script>
 
 <template>

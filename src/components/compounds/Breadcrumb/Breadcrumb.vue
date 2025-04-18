@@ -1,12 +1,12 @@
 <script>
 export default {
-  name: 'VBreadcrumb',
+  name: "VBreadcrumb",
   props: {
     alignment: String,
     separator: String,
     size: String,
-  }
-}
+  },
+};
 </script>
 
 <template>

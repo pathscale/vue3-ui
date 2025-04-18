@@ -2,20 +2,20 @@
 // eslint-disable-next-line no-shadow -- ignore */
 class Event {
   constructor() {
-    this.queue = {}
+    this.queue = {};
   }
 
   $on(name, callback) {
-    this.queue[name] = this.queue[name] || []
-    this.queue[name].push(callback)
+    this.queue[name] = this.queue[name] || [];
+    this.queue[name].push(callback);
   }
 
   $off(name, callback) {
     if (this.queue[name]) {
       for (let i = 0; i < this.queue[name].length; i++) {
         if (this.queue[name][i] === callback) {
-          this.queue[name].splice(i, 1)
-          break
+          this.queue[name].splice(i, 1);
+          break;
         }
       }
     }
@@ -23,11 +23,11 @@ class Event {
 
   $emit(name, data) {
     if (this.queue[name]) {
-      this.queue[name].forEach(function (callback) {
-        callback(data)
-      })
+      for (const callback of this.queue[name]) {
+        callback(data);
+      }
     }
   }
 }
 
-export default new Event()
+export default new Event();

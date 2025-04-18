@@ -1,7 +1,7 @@
 <script>
 export default {
-  name: 'VAccordionMenu'
-}
+  name: "VAccordionMenu",
+};
 </script>
 
 <template>

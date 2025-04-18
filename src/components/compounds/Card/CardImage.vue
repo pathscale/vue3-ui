@@ -1,7 +1,7 @@
 <script>
 export default {
-  name: 'VCardImage',
-}
+  name: "VCardImage",
+};
 </script>
 
 <template>

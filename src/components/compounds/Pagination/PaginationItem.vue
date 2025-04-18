@@ -1,10 +1,10 @@
 
 
 <script>
-import { computed } from 'vue'
+import { computed } from "vue";
 
 export default {
-  name: 'VPaginationItem',
+  name: "VPaginationItem",
   props: {
     page: {
       type: Object,
@@ -12,26 +12,26 @@ export default {
     },
     tag: {
       type: String,
-      default: 'a',
+      default: "a",
     },
     disabled: Boolean,
   },
 
   setup(props) {
     const href = computed(() => {
-      return props.tag === 'a' ? '#' : null
-    })
+      return props.tag === "a" ? "#" : null;
+    });
 
     const computedDisabled = computed(() => {
-      return props.disabled || props.page.disabled ? true : null
-    })
+      return props.disabled || props.page.disabled ? true : null;
+    });
 
     return {
       href,
       computedDisabled,
-    }
+    };
   },
-}
+};
 </script>
 
 <template>

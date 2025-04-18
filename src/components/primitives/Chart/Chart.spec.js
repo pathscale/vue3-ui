@@ -1,13 +1,13 @@
-import Chart from './Chart.vue'
+import Chart from "./Chart.vue";
 
-let wrapper
+let wrapper;
 
-describe('Chart', () => {
+describe("Chart", () => {
   beforeEach(() => {
-    wrapper = Chart
-  })
+    wrapper = Chart;
+  });
 
-  it('initialize', () => {
-    expect(wrapper.exist).toBe(wrapper.exist)
-  })
-})
+  it("initialize", () => {
+    expect(wrapper.exist).toBe(wrapper.exist);
+  });
+});

@@ -1,8 +1,12 @@
-import { SFCTemplateBlock, SFCScriptBlock, parse } from '@vue/compiler-sfc'
+import {
+  type SFCScriptBlock,
+  type SFCTemplateBlock,
+  parse,
+} from "@vue/compiler-sfc";
 
 export interface ParsedSFC {
-  template: SFCTemplateBlock | null
-  script: SFCScriptBlock | null
+  template: SFCTemplateBlock | null;
+  script: SFCScriptBlock | null;
 }
 
 export function parseSFC(code: string, id: string): ParsedSFC {
@@ -12,12 +16,12 @@ export function parseSFC(code: string, id: string): ParsedSFC {
     sourceMap: false,
     sourceRoot: process.cwd(),
     filename: id,
-    pad: 'line',
-  })
+    pad: "line",
+  });
 
-  return { template, script }
+  return { template, script };
 }
 
 export function isVueSFC(id: string): boolean {
-  return /\.vue$/i.test(id)
+  return /\.vue$/i.test(id);
 }

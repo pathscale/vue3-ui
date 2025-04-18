@@ -1,18 +1,18 @@
-import { shallowMount } from '@vue/test-utils'
-import Icon from './Icon.vue'
+import { shallowMount } from "@vue/test-utils";
+import Icon from "./Icon.vue";
 
-let wrapper
+let wrapper;
 
-describe('Icon', () => {
+describe("Icon", () => {
   beforeEach(() => {
-    wrapper = shallowMount(Icon)
-  })
+    wrapper = shallowMount(Icon);
+  });
 
-  it('is called', () => {
-    expect(wrapper.exists()).toBeTruthy()
-  })
+  it("is called", () => {
+    expect(wrapper.exists()).toBeTruthy();
+  });
 
-  it('render correctly', () => {
-    expect(wrapper.html()).toMatchSnapshot()
-  })
-})
+  it("render correctly", () => {
+    expect(wrapper.html()).toMatchSnapshot();
+  });
+});

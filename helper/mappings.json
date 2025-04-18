@@ -20,96 +20,57 @@
     ]
   },
   "VAccordionMenu": {
-    "always": [
-      "accordion-menu"
-    ],
+    "always": ["accordion-menu"],
     "optional": [],
     "unstable": []
   },
   "VBreadcrumb": {
-    "always": [
-      "breadcrumb",
-      "ul"
-    ],
+    "always": ["breadcrumb", "ul"],
     "optional": [],
-    "unstable": [
-      "is-alignment",
-      "is-separator",
-      "is-size"
-    ]
+    "unstable": []
   },
   "VBreadcrumbItem": {
-    "always": [
-      "a",
-      "li"
-    ],
-    "optional": [
-      "is-active"
-    ],
+    "always": ["a", "li"],
+    "optional": ["is-active"],
     "unstable": []
   },
   "VCard": {
-    "always": [
-      "card",
-      "div"
-    ],
+    "always": ["card", "div"],
     "optional": [],
     "unstable": []
   },
   "VCardContent": {
-    "always": [
-      "card-content"
-    ],
+    "always": ["card-content"],
     "optional": [],
     "unstable": []
   },
   "VCardFooter": {
-    "always": [
-      "card-footer",
-      "footer"
-    ],
+    "always": ["card-footer", "footer"],
     "optional": [],
     "unstable": []
   },
   "VCardFooterItem": {
-    "always": [
-      "card-footer-item"
-    ],
+    "always": ["card-footer-item"],
     "optional": [],
     "unstable": []
   },
   "VCardHeader": {
-    "always": [
-      "card-header",
-      "card-header-title",
-      "header"
-    ],
+    "always": ["card-header", "card-header-title", "header"],
     "optional": [],
     "unstable": []
   },
   "VCardImage": {
-    "always": [
-      "card-image"
-    ],
+    "always": ["card-image"],
     "optional": [],
     "unstable": []
   },
   "VColumn": {
-    "always": [
-      "column"
-    ],
-    "optional": [
-      "is-narrow"
-    ],
-    "unstable": [
-      "is-offset",
-      "is-size"
-    ]
+    "always": ["column"],
+    "optional": ["is-narrow"],
+    "unstable": []
   },
   "VColumns": {
-    "always": [
-      "columns"
-    ],
+    "always": ["columns"],
     "optional": [
       "is-desktop",
       "is-gapless",
@@ -117,11 +78,7 @@
       "is-multiline",
       "is-vcentered"
     ],
-    "unstable": [
-      "is-centered",
-      "is-gap",
-      "is-variable"
-    ]
+    "unstable": ["is-centered", "is-variable"]
   },
   "VDropdown": {
     "always": [
@@ -154,17 +111,8 @@
       "slide-right-leave-active",
       "slide-right-leave-to"
     ],
-    "optional": [
-      "is-disabled",
-      "is-expanded",
-      "is-hoverable",
-      "is-inline"
-    ],
-    "unstable": [
-      "is-active",
-      "is-mobile-modal",
-      "is-position"
-    ]
+    "optional": ["is-disabled", "is-expanded", "is-hoverable", "is-inline"],
+    "unstable": ["is-active", "is-mobile-modal"]
   },
   "VDropdownItem": {
     "always": [
@@ -208,42 +156,20 @@
       "is-inline",
       "is-paddingless"
     ],
-    "unstable": [
-      "dropdown-item",
-      "has-link",
-      "is-active",
-      "is-mobile-modal",
-      "is-position"
-    ]
+    "unstable": ["dropdown-item", "has-link", "is-active", "is-mobile-modal"]
   },
   "VMenu": {
-    "always": [
-      "menu"
-    ],
+    "always": ["menu"],
     "optional": [],
     "unstable": []
   },
   "VMenuItem": {
-    "always": [
-      "a",
-      "li",
-      "pr-2",
-      "ul"
-    ],
-    "optional": [
-      "is-disabled"
-    ],
-    "unstable": [
-      "is-active",
-      "is-flex"
-    ]
+    "always": ["a", "li", "pr-2", "ul"],
+    "optional": ["is-disabled"],
+    "unstable": ["is-active", "is-flex"]
   },
   "VMenuList": {
-    "always": [
-      "menu-label",
-      "menu-list",
-      "ul"
-    ],
+    "always": ["menu-label", "menu-list", "ul"],
     "optional": [],
     "unstable": []
   },
@@ -257,60 +183,27 @@
       "navbar-menu",
       "navbar-start"
     ],
-    "optional": [
-      "is-active",
-      "is-spaced",
-      "is-transparent"
-    ],
-    "unstable": [
-      "has-shadow",
-      "is-active",
-      "is-fixed-bottom",
-      "is-fixed-top",
-      "is-type"
-    ]
+    "optional": ["is-active", "is-spaced", "is-transparent"],
+    "unstable": ["has-shadow", "is-active", "is-fixed-bottom", "is-fixed-top"]
   },
   "VNavbarBurger": {
-    "always": [
-      "burger",
-      "navbar-burger"
-    ],
-    "optional": [
-      "is-active"
-    ],
+    "always": ["burger", "navbar-burger"],
+    "optional": ["is-active"],
     "unstable": []
   },
   "VNavbarDropdown": {
-    "always": [
-      "has-dropdown",
-      "navbar-dropdown",
-      "navbar-item",
-      "navbar-link"
-    ],
-    "optional": [
-      "is-arrowless",
-      "is-boxed",
-      "is-hoverable",
-      "is-right"
-    ],
-    "unstable": [
-      "is-active"
-    ]
+    "always": ["has-dropdown", "navbar-dropdown", "navbar-item", "navbar-link"],
+    "optional": ["is-arrowless", "is-boxed", "is-hoverable", "is-right"],
+    "unstable": ["is-active"]
   },
   "VNavbarItem": {
-    "always": [
-      "a",
-      "navbar-item"
-    ],
-    "optional": [
-      "is-active"
-    ],
+    "always": ["a", "navbar-item"],
+    "optional": ["is-active"],
     "unstable": []
   },
   "VPagination": {
     "always": [
       "#",
-      ",",
       "a",
       "aria-label",
       "change",
@@ -322,26 +215,13 @@
       "pagination-next",
       "pagination-previous"
     ],
-    "optional": [
-      "is-rounded",
-      "is-simple"
-    ],
-    "unstable": [
-      "is-current",
-      "is-order",
-      "is-size"
-    ]
+    "optional": ["is-rounded", "is-simple"],
+    "unstable": ["is-current"]
   },
   "VPaginationItem": {
-    "always": [
-      "#",
-      "a",
-      "pagination-link"
-    ],
+    "always": ["#", "a", "pagination-link"],
     "optional": [],
-    "unstable": [
-      "is-current"
-    ]
+    "unstable": ["is-current"]
   },
   "VStepItem": {
     "always": [
@@ -353,17 +233,8 @@
       "step-title",
       "steps"
     ],
-    "optional": [
-      "is-animated"
-    ],
-    "unstable": [
-      "is-active",
-      "is-clickable",
-      "is-completed",
-      "is-disabled",
-      "is-size",
-      "is-type"
-    ]
+    "optional": ["is-animated"],
+    "unstable": ["is-active", "is-clickable", "is-completed", "is-disabled"]
   },
   "VSteps": {
     "always": [
@@ -375,22 +246,12 @@
       "step-title",
       "steps"
     ],
-    "optional": [
-      "is-animated"
-    ],
-    "unstable": [
-      "is-active",
-      "is-clickable",
-      "is-completed",
-      "is-disabled",
-      "is-size",
-      "is-type"
-    ]
+    "optional": ["is-animated"],
+    "unstable": ["is-active", "is-clickable", "is-completed", "is-disabled"]
   },
   "VTable": {
     "always": [
       "#",
-      ",",
       "a",
       "aria-label",
       "blur",
@@ -474,13 +335,9 @@
       "has-icons-left",
       "has-icons-right",
       "has-mobile-cards",
-      "is-color",
       "is-current",
       "is-delete",
       "is-fullwidth",
-      "is-order",
-      "is-size",
-      "is-type",
       "sticky-table",
       "tags"
     ]
@@ -530,13 +387,7 @@
     ]
   },
   "VTabs": {
-    "always": [
-      "change",
-      "is-toggle-rounded",
-      "li",
-      "tabs",
-      "ul"
-    ],
+    "always": ["change", "is-toggle-rounded", "li", "tabs", "ul"],
     "optional": [],
     "unstable": [
       "is-active",
@@ -579,39 +430,23 @@
       "has-icons-left",
       "has-icons-right",
       "is-active",
-      "is-color",
-      "is-grouped-multiline",
-      "is-position",
-      "is-size"
+      "is-grouped-multiline"
     ]
   },
   "VAvatar": {
     "always": [
-      "function",
-      "has-background-link",
-      "has-text-white",
-      "hydration",
       "image",
-      "is-64x64",
       "is-align-items-center",
       "is-flex",
       "is-justify-content-center",
       "is-size-4",
-      "mx-1",
-      "undefined"
+      "mx-1"
     ],
-    "optional": [
-      "is-rounded"
-    ],
-    "unstable": [
-      "is-size"
-    ]
+    "optional": ["is-rounded"],
+    "unstable": []
   },
   "VButton": {
-    "always": [
-      "button",
-      "is-primary"
-    ],
+    "always": ["button", "is-primary"],
     "optional": [
       "is-active",
       "is-focused",
@@ -623,11 +458,7 @@
       "is-rounded",
       "is-selected"
     ],
-    "unstable": [
-      "is-fullwidth",
-      "is-size",
-      "is-type"
-    ]
+    "unstable": ["is-fullwidth"]
   },
   "VCalendar": {
     "always": [
@@ -649,26 +480,14 @@
     "unstable": []
   },
   "VChart": {
-    "always": [
-      "div",
-      "post"
-    ],
+    "always": ["div", "post"],
     "optional": [],
     "unstable": []
   },
   "VCheckbox": {
-    "always": [
-      "check",
-      "checkbox",
-      "control-label",
-      "v-checkbox"
-    ],
-    "optional": [
-      "is-disabled"
-    ],
-    "unstable": [
-      "is-size"
-    ]
+    "always": ["check", "checkbox", "control-label", "v-checkbox"],
+    "optional": ["is-disabled"],
+    "unstable": []
   },
   "VContainer": {
     "always": [
@@ -680,9 +499,7 @@
       "no-repeat"
     ],
     "optional": [],
-    "unstable": [
-      "is-type"
-    ]
+    "unstable": []
   },
   "VDepthChart": {
     "always": [
@@ -731,23 +548,9 @@
     "unstable": []
   },
   "VField": {
-    "always": [
-      "field",
-      "field-body",
-      "field-label",
-      "help",
-      "label"
-    ],
-    "optional": [
-      "is-expanded",
-      "is-grouped",
-      "is-horizontal"
-    ],
-    "unstable": [
-      "has-addons",
-      "is-grouped-multiline",
-      "is-position"
-    ]
+    "always": ["field", "field-body", "field-label", "help", "label"],
+    "optional": ["is-expanded", "is-grouped", "is-horizontal"],
+    "unstable": ["has-addons", "is-grouped-multiline"]
   },
   "VFile": {
     "always": [
@@ -758,41 +561,18 @@
       "file-name",
       "is-primary"
     ],
-    "optional": [
-      "is-boxed",
-      "is-fullwidth"
-    ],
-    "unstable": [
-      "has-name",
-      "is-alignment",
-      "is-color",
-      "is-size"
-    ]
+    "optional": ["is-boxed", "is-fullwidth"],
+    "unstable": ["has-name"]
   },
   "VIcon": {
-    "always": [
-      "100%"
-    ],
+    "always": ["100%"],
     "optional": [],
-    "unstable": [
-      "icon",
-      "is-size"
-    ]
+    "unstable": ["icon"]
   },
   "VImage": {
-    "always": [
-      "figure",
-      "image",
-      "img"
-    ],
-    "optional": [
-      "is-rounded"
-    ],
-    "unstable": [
-      "container",
-      "is-radio",
-      "is-size"
-    ]
+    "always": ["figure", "image", "img"],
+    "optional": ["is-rounded"],
+    "unstable": ["container"]
   },
   "VInput": {
     "always": [
@@ -804,25 +584,11 @@
       "is-right",
       "text"
     ],
-    "optional": [
-      "is-expanded",
-      "is-loading",
-      "is-rounded"
-    ],
-    "unstable": [
-      "has-icons-left",
-      "has-icons-right",
-      "is-color",
-      "is-size"
-    ]
+    "optional": ["is-expanded", "is-loading", "is-rounded"],
+    "unstable": ["has-icons-left", "has-icons-right"]
   },
   "VMedia": {
-    "always": [
-      "media",
-      "media-content",
-      "media-left",
-      "media-right"
-    ],
+    "always": ["media", "media-content", "media-left", "media-right"],
     "optional": [],
     "unstable": []
   },
@@ -839,9 +605,7 @@
       "modal-close",
       "modal-content"
     ],
-    "optional": [
-      "is-active"
-    ],
+    "optional": ["is-active"],
     "unstable": []
   },
   "VProgress": {
@@ -855,11 +619,7 @@
       "value"
     ],
     "optional": [],
-    "unstable": [
-      "is-size",
-      "is-type",
-      "more-than-half"
-    ]
+    "unstable": ["more-than-half"]
   },
   "VSelect": {
     "always": [
@@ -877,11 +637,7 @@
       "is-multiple",
       "is-rounded"
     ],
-    "unstable": [
-      "is-color",
-      "is-fullwidth",
-      "is-size"
-    ]
+    "unstable": ["is-fullwidth"]
   },
   "VSidebar": {
     "always": [
@@ -923,11 +679,7 @@
       "static",
       "v-sidebar"
     ],
-    "optional": [
-      "is-fullheight",
-      "is-fullwidth",
-      "is-right"
-    ],
+    "optional": ["is-fullheight", "is-fullwidth", "is-right"],
     "unstable": [
       "is-absolute",
       "is-fixed",
@@ -937,81 +689,37 @@
       "is-mini-expand",
       "is-mini-expand-fixed",
       "is-mini-mobile",
-      "is-static",
-      "is-type"
+      "is-static"
     ]
   },
   "VSlider": {
-    "always": [
-      "horizontal",
-      "is-fullwidth",
-      "slider",
-      "vertical"
-    ],
+    "always": ["horizontal", "is-fullwidth", "slider", "vertical"],
     "optional": [],
-    "unstable": [
-      "has-output-tooltip",
-      "is-circle",
-      "is-size",
-      "is-type"
-    ]
+    "unstable": ["has-output-tooltip", "is-circle"]
   },
   "VSwitch": {
-    "always": [
-      "check",
-      "control-label",
-      "switch"
-    ],
-    "optional": [
-      "is-disabled",
-      "is-outlined",
-      "is-rounded"
-    ],
-    "unstable": [
-      "is-size",
-      "is-type"
-    ]
+    "always": ["check", "control-label", "switch"],
+    "optional": ["is-disabled", "is-outlined", "is-rounded"],
+    "unstable": []
   },
   "VTag": {
-    "always": [
-      "close",
-      "delete",
-      "is-small",
-      "tag"
-    ],
-    "optional": [
-      "is-rounded"
-    ],
+    "always": ["close", "delete", "is-small", "tag"],
+    "optional": ["is-rounded"],
     "unstable": [
       "has-addons",
       "has-delete-icon",
       "has-ellipsis",
       "is-delete",
-      "is-size",
-      "is-type",
       "tags"
     ]
   },
   "VTextarea": {
-    "always": [
-      "control",
-      "textarea"
-    ],
-    "optional": [
-      "is-focused",
-      "is-hovered",
-      "is-loading"
-    ],
-    "unstable": [
-      "is-color",
-      "is-invisible",
-      "is-size"
-    ]
+    "always": ["control", "textarea"],
+    "optional": ["is-focused", "is-hovered", "is-loading"],
+    "unstable": ["is-invisible"]
   },
   "VTimeline": {
-    "always": [
-      "timeline"
-    ],
+    "always": ["timeline"],
     "optional": [],
     "unstable": [
       "has-text-danger",
@@ -1021,12 +729,7 @@
     ]
   },
   "VTooltip": {
-    "always": [
-      "is-medium",
-      "is-primary",
-      "is-top",
-      "transition-delay"
-    ],
+    "always": ["is-medium", "is-primary", "is-top", "transition-delay"],
     "optional": [
       "is-always",
       "is-animated",
@@ -1034,12 +737,7 @@
       "is-multiline",
       "is-square"
     ],
-    "unstable": [
-      "is-position",
-      "is-size",
-      "is-type",
-      "v-tooltip"
-    ]
+    "unstable": ["v-tooltip"]
   },
   "VUpload": {
     "always": [
@@ -1050,16 +748,7 @@
       "file-label",
       "file-name"
     ],
-    "optional": [
-      "is-boxed",
-      "is-centered",
-      "is-right"
-    ],
-    "unstable": [
-      "has-name",
-      "is-fullwidth",
-      "is-size",
-      "is-type"
-    ]
+    "optional": ["is-boxed", "is-centered", "is-right"],
+    "unstable": ["has-name", "is-fullwidth"]
   }
 }

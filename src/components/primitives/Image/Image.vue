@@ -1,26 +1,26 @@
 <script setup lang="ts">
-import { defineProps, onBeforeMount, ref } from 'vue'
-import { checkBenchieSupport } from '@/utils/functions'
+import { checkBenchieSupport } from "@/utils/functions";
+import { defineProps, onBeforeMount, ref } from "vue";
 
-const hasBenchieSupport = checkBenchieSupport()
+const hasBenchieSupport = checkBenchieSupport();
 
 const props = defineProps<{
-  size?: string
-  radio?: string
-  rounded?: boolean
-  centered?: boolean
-  src?: string
-  dataSrc?: string
-  customClass?: string
-}>()
+  size?: string;
+  radio?: string;
+  rounded?: boolean;
+  centered?: boolean;
+  src?: string;
+  dataSrc?: string;
+  customClass?: string;
+}>();
 
-const source = ref(props.src || props.dataSrc)
+const source = ref(props.src || props.dataSrc);
 
 onBeforeMount(async () => {
   if (props.dataSrc && hasBenchieSupport) {
-    source.value = await t(props.dataSrc, $__CDN)
+    source.value = await t(props.dataSrc, $__CDN);
   }
-})
+});
 </script>
 
 <template>

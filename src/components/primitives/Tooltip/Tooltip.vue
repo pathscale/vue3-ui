@@ -1,24 +1,24 @@
 <script>
-import { computed } from 'vue'
+import { computed } from "vue";
 
 export default {
-  name: 'VTooltip',
+  name: "VTooltip",
   props: {
     active: {
       type: Boolean,
-      default: true
+      default: true,
     },
     type: {
       type: String,
-      default: 'is-primary'
+      default: "is-primary",
     },
     label: {
       type: String,
-      required: true
+      required: true,
     },
     position: {
       type: String,
-      default: 'is-top'
+      default: "is-top",
     },
     always: Boolean,
     animated: Boolean,
@@ -27,22 +27,22 @@ export default {
     multilined: Boolean,
     size: {
       type: String,
-      default: 'is-medium'
+      default: "is-medium",
     },
     delay: {
       type: Number,
-      default: 0
-    }
+      default: 0,
+    },
   },
   setup(props) {
     const transition = computed(() => {
       return {
-        'transition-delay': `${props.delay}ms`
-      }
-    })
-    return { transition }
-  }
-}
+        "transition-delay": `${props.delay}ms`,
+      };
+    });
+    return { transition };
+  },
+};
 </script>
 
 <template>

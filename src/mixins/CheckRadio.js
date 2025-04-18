@@ -29,6 +29,6 @@ const CheckRadioMixin = {
       default: null,
     },
   },
-}
+};
 
-export default CheckRadioMixin
+export default CheckRadioMixin;

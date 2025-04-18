@@ -1,8 +1,8 @@
 <script>
-import { reactive, computed } from 'vue'
+import { computed, reactive } from "vue";
 
 export default {
-  name: 'VAccordion',
+  name: "VAccordion",
   props: {
     isHorizontal: Boolean,
     triggerRight: Boolean,
@@ -13,7 +13,7 @@ export default {
     hover: Boolean,
     isLink: Boolean,
     isActive: Boolean,
-    headerIsTrigger: Boolean
+    headerIsTrigger: Boolean,
   },
 
   setup(props) {
@@ -21,37 +21,40 @@ export default {
       isExpanded: props.expanded,
       style: {
         backgroundColor: props.background,
-        color: props.color
+        color: props.color,
       },
       hover: props.hover,
       isLink: props.isLink,
-      headerIsTrigger: props.headerIsTrigger
-    })
+      headerIsTrigger: props.headerIsTrigger,
+    });
 
-    const toggle = isHeaderTrigger => {
-      if (props.disabled) return
+    const toggle = (isHeaderTrigger) => {
+      if (props.disabled) return;
 
-      if ((isHeaderTrigger && props.headerIsTrigger) || !props.headerIsTrigger) {
-        state.isExpanded = !state.isExpanded
+      if (
+        (isHeaderTrigger && props.headerIsTrigger) ||
+        !props.headerIsTrigger
+      ) {
+        state.isExpanded = !state.isExpanded;
       }
-    }
+    };
 
     // separate function because of buggy css hover
     const open = () => {
-      state.isExpanded = true
-    }
+      state.isExpanded = true;
+    };
 
     const close = () => {
-      state.isExpanded = false
-    }
+      state.isExpanded = false;
+    };
 
-    const displayActive = computed(() => props.isActive && props.hover)
+    const displayActive = computed(() => props.isActive && props.hover);
 
-    const displayDefault = computed(() => !props.isActive && props.hover)
+    const displayDefault = computed(() => !props.isActive && props.hover);
 
-    return { state, toggle, open, close, displayActive, displayDefault }
-  }
-}
+    return { state, toggle, open, close, displayActive, displayDefault };
+  },
+};
 </script>
 
 <template>

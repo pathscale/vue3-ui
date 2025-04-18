@@ -1,10 +1,10 @@
 <script>
-import { reactive, computed, provide } from 'vue'
+import { computed, provide, reactive } from "vue";
 
-export const DropdownSymbol = Symbol('Dropdown')
+export const DropdownSymbol = Symbol("Dropdown");
 
 export default {
-  name: 'VDropdown',
+  name: "VDropdown",
   props: {
     value: {
       type: [String, Number, Boolean, Object, Array, Function],
@@ -24,42 +24,44 @@ export default {
     },
     expanded: Boolean,
   },
-  emits: ['update:modelValue'],
+  emits: ["update:modelValue"],
   setup(props, { emit }) {
     const state = reactive({
       selected: props.value,
       style: {},
       isActive: false,
       isHoverable: props.hoverable,
-    })
+    });
 
     const toggle = () => {
-      if (props.disabled || props.hoverable) return
-      state.isActive = !state.isActive
-    }
+      if (props.disabled || props.hoverable) return;
+      state.isActive = !state.isActive;
+    };
 
     const closeMenu = () => {
       if (props.closeOnClick) {
-        state.isActive = false
+        state.isActive = false;
       }
-    }
+    };
 
-    const selectItem = newValue => {
-      emit('update:modelValue', newValue)
-      closeMenu()
-    }
+    const selectItem = (newValue) => {
+      emit("update:modelValue", newValue);
+      closeMenu();
+    };
 
     const show = computed(() => {
-      return (!props.disabled && (state.isActive || props.hoverable)) || props.inline
-    })
+      return (
+        (!props.disabled && (state.isActive || props.hoverable)) || props.inline
+      );
+    });
 
-    const displayActive = computed(() => state.isActive || props.inline)
+    const displayActive = computed(() => state.isActive || props.inline);
 
-    provide(DropdownSymbol, { selectItem, value: props.value })
+    provide(DropdownSymbol, { selectItem, value: props.value });
 
-    return { state, toggle, show, displayActive }
+    return { state, toggle, show, displayActive };
   },
-}
+};
 </script>
 
 <template>

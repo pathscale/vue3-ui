@@ -1,9 +1,9 @@
 <script>
-import { computed, ref, watch } from 'vue'
-import { addToStore, useStore } from './Steps.vue'
+import { computed, ref, watch } from "vue";
+import { addToStore, useStore } from "./Steps.vue";
 
 export default {
-  name: 'VStep',
+  name: "VStep",
   props: {
     // eslint-disable-next-line vue/no-unused-properties -- used
     title: String,
@@ -17,21 +17,25 @@ export default {
     clickable: Boolean,
   },
   setup(props, { emit }) {
-    const content = ref(null)
-    const tabs = useStore()
-    const id = JSON.parse(JSON.stringify(tabs.value.tabs)).length
+    const content = ref(null);
+    const tabs = useStore();
+    const id = JSON.parse(JSON.stringify(tabs.value.tabs)).length;
 
-    addToStore({ ...props, id })
+    addToStore({ ...props, id });
 
-    watch(() => tabs.value.tabs.findIndex(tab => tab.id === id), (index) => {
-      tabs.value.tabs.splice(index, 1, { id, ...props })
-    }, { immediate: true })
+    watch(
+      () => tabs.value.tabs.findIndex((tab) => tab.id === id),
+      (index) => {
+        tabs.value.tabs.splice(index, 1, { id, ...props });
+      },
+      { immediate: true },
+    );
 
-    const isActiveTab = computed(() => tabs.value.activeTab === id)
+    const isActiveTab = computed(() => tabs.value.activeTab === id);
 
-    return { content, isActiveTab }
+    return { content, isActiveTab };
   },
-}
+};
 </script>
 
 <template>

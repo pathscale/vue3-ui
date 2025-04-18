@@ -1,8 +1,8 @@
 <script>
-import { reactive, computed, watchEffect } from 'vue'
+import { computed, reactive, watchEffect } from "vue";
 
 export default {
-  name: 'VSidebar',
+  name: "VSidebar",
   props: {
     open: {
       type: Boolean,
@@ -12,7 +12,7 @@ export default {
     overlay: Boolean,
     position: {
       type: String,
-      default: 'fixed',
+      default: "fixed",
     },
     fullheight: Boolean,
     fullwidth: Boolean,
@@ -30,45 +30,47 @@ export default {
       default: 80,
     },
   },
-  emits: ['close', 'update:open'],
+  emits: ["close", "update:open"],
   setup(props, { emit }) {
     const state = reactive({
       transitionName: null,
       animating: true,
-    })
+    });
 
-    const isMiniExpandFixed = computed(() => props.expandOnHover && props.expandOnHoverFixed)
-    const isMiniMobile = computed(() => props.mobile === 'reduce')
-    const isHiddenMobile = computed(() => props.mobile === 'hide')
-    const isFullwidthMobile = computed(() => props.mobile === 'fullwidth')
+    const isMiniExpandFixed = computed(
+      () => props.expandOnHover && props.expandOnHoverFixed,
+    );
+    const isMiniMobile = computed(() => props.mobile === "reduce");
+    const isHiddenMobile = computed(() => props.mobile === "hide");
+    const isFullwidthMobile = computed(() => props.mobile === "fullwidth");
 
     const rootStyles = computed(() => {
-      return `width: ${props.reduce ? props.miniWidth : props.width}px`
-    })
+      return `width: ${props.reduce ? props.miniWidth : props.width}px`;
+    });
 
     const isStatic = computed(() => {
-      return props.position === 'static'
-    })
+      return props.position === "static";
+    });
 
     const isFixed = computed(() => {
-      return props.position === 'fixed'
-    })
+      return props.position === "fixed";
+    });
     const isAbsolute = computed(() => {
-      return props.position === 'absolute'
-    })
+      return props.position === "absolute";
+    });
     const overlayAndOpen = computed(() => {
-      return props.overlay && props.open
-    })
+      return props.overlay && props.open;
+    });
 
     watchEffect(() => {
-      const open = props.right ? !props.open : props.open
-      state.transitionName = open ? 'slide-right' : 'slide-left'
-    })
+      const open = props.right ? !props.open : props.open;
+      state.transitionName = open ? "slide-right" : "slide-left";
+    });
 
     const onClose = () => {
-      emit('update:open', false)
-      emit('close')
-    }
+      emit("update:open", false);
+      emit("close");
+    };
 
     return {
       state,
@@ -81,10 +83,10 @@ export default {
       isStatic,
       isFixed,
       isAbsolute,
-      onClose
-    }
+      onClose,
+    };
   },
-}
+};
 </script>
 
 <template>

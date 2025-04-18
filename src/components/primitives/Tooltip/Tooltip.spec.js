@@ -1,18 +1,18 @@
-import { shallowMount } from '@vue/test-utils'
-import Tooltip from './Tooltip.vue'
+import { shallowMount } from "@vue/test-utils";
+import Tooltip from "./Tooltip.vue";
 
-let wrapper
+let wrapper;
 
-describe('Tooltip', () => {
+describe("Tooltip", () => {
   beforeEach(() => {
-    wrapper = shallowMount(Tooltip)
-  })
+    wrapper = shallowMount(Tooltip);
+  });
 
-  it('is called', () => {
-    expect(wrapper.exists()).toBeTruthy()
-  })
+  it("is called", () => {
+    expect(wrapper.exists()).toBeTruthy();
+  });
 
-  it('render correctly', () => {
-    expect(wrapper.html()).toMatchSnapshot()
-  })
-})
+  it("render correctly", () => {
+    expect(wrapper.html()).toMatchSnapshot();
+  });
+});

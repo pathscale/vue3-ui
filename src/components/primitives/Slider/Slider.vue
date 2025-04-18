@@ -1,8 +1,8 @@
 <script>
-import { computed, ref, watchEffect } from 'vue'
+import { computed, ref, watchEffect } from "vue";
 
 export default {
-  name: 'VSlider',
+  name: "VSlider",
   props: {
     min: {
       type: [Number, String],
@@ -32,31 +32,33 @@ export default {
     vertical: Boolean,
     modelValue: [String, Number],
   },
-  emits: ['update:modelValue'],
+  emits: ["update:modelValue"],
   setup(props, { emit }) {
-    const input = ref(null)
-    const orient = computed(() => (props.vertical ? 'vertical' : 'horizontal'))
-    const position = ref(0)
+    const input = ref(null);
+    const orient = computed(() => (props.vertical ? "vertical" : "horizontal"));
+    const position = ref(0);
 
-    const value = ref(props.modelValue)
-
-    watchEffect(() => {
-      value.value = props.modelValue
-    })
+    const value = ref(props.modelValue);
 
     watchEffect(() => {
-      emit('update:modelValue', value.value)
-    })
+      value.value = props.modelValue;
+    });
+
+    watchEffect(() => {
+      emit("update:modelValue", value.value);
+    });
 
     watchEffect(() => {
       if (input.value) {
         position.value =
-          ((value.value - props.min) * input.value.clientWidth) / (props.max - props.min) - 20
+          ((value.value - props.min) * input.value.clientWidth) /
+            (props.max - props.min) -
+          20;
       }
-    })
-    return { value, orient, input, position }
+    });
+    return { value, orient, input, position };
   },
-}
+};
 </script>
 
 <template>

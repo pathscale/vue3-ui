@@ -1,13 +1,13 @@
-import DepthChart from './DepthChart.vue'
+import DepthChart from "./DepthChart.vue";
 
-let wrapper
+let wrapper;
 
-describe('DepthChart', () => {
+describe("DepthChart", () => {
   beforeEach(() => {
-    wrapper = DepthChart
-  })
+    wrapper = DepthChart;
+  });
 
-  it('initialize', () => {
-    expect(wrapper.exist).toBe(wrapper.exist)
-  })
-})
+  it("initialize", () => {
+    expect(wrapper.exist).toBe(wrapper.exist);
+  });
+});

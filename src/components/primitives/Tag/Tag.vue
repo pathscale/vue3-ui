@@ -1,9 +1,9 @@
 <script>
-import { computed } from 'vue'
+import { computed } from "vue";
 /* eslint no-shadow: ["error", { "allow": ["event"] }] -- prevent warning  'event' is already declared in the upper scope */
 
 export default {
-  name: 'VTag',
+  name: "VTag",
   props: {
     attached: Boolean,
     closable: Boolean,
@@ -12,33 +12,35 @@ export default {
     rounded: Boolean,
     disabled: {
       type: Boolean,
-      default: null
+      default: null,
     },
     ellipsis: Boolean,
     tabstop: {
       type: Boolean,
-      default: true
+      default: true,
     },
     ariaCloseLabel: String,
     closeType: String,
     closeIcon: String,
   },
-  emits: ['close'],
+  emits: ["close"],
   setup(props, { emit }) {
-    const close = function(event) {
-      if (props.disabled) return
-      emit('close', event)
-    }
+    const close = (event) => {
+      if (props.disabled) return;
+      emit("close", event);
+    };
 
-    const tabIndex = computed(() => props.tabstop ? 0 : false )
+    const tabIndex = computed(() => (props.tabstop ? 0 : false));
 
-    const isClosable = computed(() => props.attached && props.closable )
+    const isClosable = computed(() => props.attached && props.closable);
 
-    const closeButtonInside = computed(() => props.closable && !(props.attached && props.closable))
+    const closeButtonInside = computed(
+      () => props.closable && !(props.attached && props.closable),
+    );
 
-    return { close, tabIndex, isClosable, closeButtonInside }
-  }
-}
+    return { close, tabIndex, isClosable, closeButtonInside };
+  },
+};
 </script>
 
 <template>

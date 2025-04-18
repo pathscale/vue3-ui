@@ -1,10 +1,10 @@
 <script>
 export default {
-  name: 'Timeline',
+  name: "Timeline",
   props: {
     stages: { type: Object, required: true },
   },
-}
+};
 </script>
 
 <template>

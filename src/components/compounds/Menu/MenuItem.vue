@@ -1,8 +1,8 @@
 <script>
-import { ref, watchEffect } from 'vue'
+import { ref, watchEffect } from "vue";
 
 export default {
-  name: 'VMenuItem',
+  name: "VMenuItem",
   inheritAttrs: false,
   props: {
     label: String,
@@ -12,37 +12,37 @@ export default {
     icon: String,
     tag: {
       type: String,
-      default: 'a'
+      default: "a",
     },
-    ariaRole: String
+    ariaRole: String,
   },
-  emits: ['update:expanded', 'update:active'],
+  emits: ["update:expanded", "update:active"],
   setup(props, { emit }) {
-    const newActive = ref(props.active)
-    const newExpanded = ref(props.expanded)
-    const content = ref(null)
+    const newActive = ref(props.active);
+    const newExpanded = ref(props.expanded);
+    const content = ref(null);
 
     watchEffect(() => {
-      newActive.value = props.active
-    })
+      newActive.value = props.active;
+    });
 
     watchEffect(() => {
-      newExpanded.value = props.expanded
-    })
+      newExpanded.value = props.expanded;
+    });
 
     const onClick = () => {
       // TODO Disable previous active item
-      if (props.disabled) return
+      if (props.disabled) return;
 
-      newExpanded.value = !newExpanded.value
-      emit('update:expanded', newExpanded.value)
-      emit('update:active', newActive.value )
+      newExpanded.value = !newExpanded.value;
+      emit("update:expanded", newExpanded.value);
+      emit("update:active", newActive.value);
       // newActive.value = true
-    }
+    };
 
-    return { newActive, newExpanded, onClick, content }
-  }
-}
+    return { newActive, newExpanded, onClick, content };
+  },
+};
 </script>
 
 <template>

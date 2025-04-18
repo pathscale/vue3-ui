@@ -1,15 +1,15 @@
 <script>
 export default {
-  name: 'VNavbarItem',
+  name: "VNavbarItem",
   inheritAttrs: false,
   props: {
     tag: {
       type: String,
-      default: 'a'
+      default: "a",
     },
-    active: Boolean
+    active: Boolean,
   },
-}
+};
 </script>
 
 <template>

@@ -11,44 +11,18 @@
     "trigger-left": ["triggerLeft"]
   },
   "VColumns": {
-    "is-gap": ["gap"],
     "is-variable": ["gap"],
-    "is-mobile": ["mobile"],
-    "is-desktop": ["desktop"],
-    "is-gapless": ["gapless"],
-    "is-vcentered": ["vcentered"],
-    "is-multiline": ["multiline"],
     "is-centered": ["hcentered"]
   },
-  "VColumn": {
-    "is-size": ["size"],
-    "is-offset": ["offset"],
-    "is-narrow": ["narrow"],
-    "is-narrowBreakpoint": ["narrowBreakpoint"],
-    "is-narrow-mobile": ["narrowBreakpoint"],
-    "is-narrow-tablet": ["narrowBreakpoint"],
-    "is-narrow-touch": ["narrowBreakpoint"],
-    "is-narrow-desktop": ["narrowBreakpoint"],
-    "is-narrow-widescreen": ["narrowBreakpoint"],
-    "is-narrow-fullhd": ["narrowBreakpoint"]
-  },
   "VDropdown": {
-    "is-position": ["position"],
-    "is-disabled": ["disabled"],
-    "is-hoverable": ["hoverable"],
-    "is-inline": ["inline"],
     "is-active": ["inline"],
-    "is-mobile-modal": ["mobileModal"],
-    "is-expanded": ["expanded"]
+    "is-mobile-modal": ["mobileModal"]
   },
   "VDropdownItem": {
     "is-active": ["isActive"],
     "dropdown-item": ["hasLink"],
     "has-link": ["hasLink"],
-    "is-mobile-modal": [],
-    "is-disabled": ["disabled"],
-    "is-paddingless": ["paddingless"],
-    "is-position": []
+    "is-mobile-modal": []
   },
   "VMenuItem": {
     "is-flex": ["icon"],
@@ -58,11 +32,7 @@
     "is-fixed-top": ["fixedTop"],
     "is-fixed-bottom": ["fixedBottom"],
     "has-shadow": ["shadow"],
-    "is-active": ["modelValue"],
-    "is-transparent": ["transparent"],
-    "is-spaced": ["spaced"],
-    "is-type": ["type"],
-    "is-wrapperClass": ["wrapperClass"]
+    "is-active": []
   },
   "VNavbarBurger": {
     "is-active": ["isActive"]
@@ -79,71 +49,29 @@
     "has-ellipsis": [],
     "has-delete-icon": [],
     "is-delete": [],
-    "is-fullwidth": ["fullwidth"],
+    "is-fullwidth": [],
     "has-icons-left": [],
     "has-icons-right": [],
     "is-current": [],
-    "has-mobile-cards": ["mobileCards"],
-    "is-order": [],
-    "is-size": [],
-    "is-stripped": ["striped"],
-    "is-bordered": ["bordered"],
-    "is-narrow": ["narrow"],
-    "is-hoverable": ["hoverable"],
-    "is-editable": ["editable"],
-    "is-sortable": ["sortable"],
-    "has-checkboxes": ["checkable"],
-    "is-draggable-rows": ["draggableRows"],
-    "is-draggable-columns": ["draggableColumns"],
-    "is-color": [],
-    "is-type": [],
-    "is-closeType": []
+    "has-mobile-cards": ["mobileCards"]
   },
   "VSelect": {
-    "is-fullwidth": ["expanded"],
-    "is-size": ["size"],
-    "is-loading": ["loading"],
-    "is-rounded": ["rounded"],
-    "is-color": ["color"]
+    "is-fullwidth": ["expanded"]
   },
   "VButton": {
     "is-fullwidth": ["expanded"],
-    "disabled": ["disabled"],
-    "is-size": ["size"],
-    "is-type": ["type"],
-    "is-rounded": ["rounded"],
-    "is-loading": ["loading"],
-    "is-outlined": ["outlined"],
-    "is-inverted": ["inverted"],
-    "is-focused": ["focused"],
-    "is-active": ["active"],
-    "is-hovered": ["hovered"],
-    "is-selected": ["selected"],
-    "is-light": ["light"]
+    "disabled": ["disabled"]
   },
   "VTag": {
     "tags": ["isClosable"],
     "has-addons": ["isClosable"],
     "has-ellipsis": ["ellipsis"],
     "has-delete-icon": ["closeIcon"],
-    "is-delete": ["closeIcon"],
-    "is-type": ["type"],
-    "is-size": ["size"],
-    "is-rounded": ["rounded"],
-    "is-disabled": ["disabled"],
-    "is-closable": ["closable"],
-    "is-closeType": ["closeType"]
+    "is-delete": ["closeIcon"]
   },
   "VSlider": {
     "is-circle": ["rounded"],
-    "has-output-tooltip": ["tooltip"],
-    "is-type": ["type"],
-    "is-size": ["size"],
-    "vertical": ["vertical"],
-    "horizontal": [],
-    "slider": [],
-    "slider-track": [],
-    "slider-thumb": []
+    "has-output-tooltip": ["tooltip"]
   },
   "VTabs": {
     "is-fullwidth": ["expanded"],
@@ -163,80 +91,40 @@
   },
   "VField": {
     "is-grouped-multiline": ["groupMultiline"],
-    "has-addons": ["addons"],
-    "is-position": ["position"],
-    "is-expanded": ["expanded"],
-    "is-horizontal": ["horizontal"],
-    "is-grouped": ["grouped"],
-    "is-size": ["size"],
-    "is-type": ["type"]
+    "has-addons": ["addons"]
   },
   "VFile": {
-    "has-name": ["hasName"],
-    "is-fullwidth": ["fullwidth"],
-    "is-boxed": ["boxed"],
-    "is-size": ["size"],
-    "is-color": ["color"],
-    "is-alignment": ["alignment"]
+    "has-name": ["hasName"]
   },
   "VImage": {
-    "container": ["centered"],
-    "is-size": ["size"],
-    "is-radio": ["radio"],
-    "is-rounded": ["rounded"],
-    "is-centered": ["centered"],
-    "is-customClass": ["customClass"]
+    "container": ["centered"]
   },
   "VInput": {
     "has-icons-left": [],
-    "has-icons-right": [],
-    "is-size": ["size"],
-    "is-color": ["color"],
-    "is-rounded": ["rounded"],
-    "is-loading": ["loading"],
-    "is-fullwidth": ["expanded"]
+    "has-icons-right": []
   },
   "VProgress": {
-    "more-than-half": [],
-    "is-size": ["size"],
-    "is-type": ["type"]
+    "more-than-half": []
   },
   "VSidebar": {
-    "is-type": ["type"],
     "is-fixed": ["position"],
     "is-static": ["position"],
     "is-absolute": ["position"],
     "is-mini": ["reduce"],
     "is-mini-expand": ["expandOnHover"],
-    "is-mini-expand-fixed": ["expandOnHover", "expandOnHoverFixed"],
-    "is-mini-mobile": ["mobile"],
-    "is-hidden-mobile": ["mobile"],
-    "is-fullwidth-mobile": ["mobile"]
+    "is-mini-expand-fixed": ["isMiniExpandFixed"],
+    "is-mini-mobile": ["isMiniMobile"],
+    "is-hidden-mobile": ["isHiddenMobile"],
+    "is-fullwidth-mobile": ["isFullwidthMobile"]
   },
   "VTextarea": {
-    "is-invisible": [],
-    "is-color": ["color"],
-    "is-size": ["size"],
-    "is-hovered": ["hovered"],
-    "is-focused": ["focused"],
-    "is-loading": ["loading"]
+    "is-invisible": []
   },
   "VTooltip": {
-    "v-tooltip": ["active"],
-    "is-type": ["type"],
-    "is-position": ["position"],
-    "is-size": ["size"],
-    "is-always": ["always"],
-    "is-animated": ["animated"],
-    "is-square": ["square"],
-    "is-dashed": ["dashed"],
-    "is-multiline": ["multilined"]
+    "v-tooltip": ["active"]
   },
   "VIcon": {
-    "icon": ["shouldIconClass"],
-    "is-size": ["size"],
-    "is-customClass": ["customClass"],
-    "is-customSize": ["customSize"]
+    "icon": ["shouldIconClass"]
   },
   "VTimeline": {
     "has-text-success": ["stages"],
@@ -246,85 +134,31 @@
   },
   "VUpload": {
     "is-fullwidth": ["expanded"],
-    "has-name": [],
-    "is-type": ["type"],
-    "is-size": ["size"],
-    "is-centered": ["centered"],
-    "is-right": ["right"],
-    "is-boxed": ["boxed"],
-    "is-disabled": ["disabled"],
-    "is-drag-drop": ["dragDrop"]
+    "has-name": []
   },
   "VPaginationItem": {
     "is-current": []
   },
   "VPagination": {
-    "is-current": [],
-    "is-order": ["order"],
-    "is-size": ["size"],
-    "is-simple": ["simple"],
-    "is-rounded": ["rounded"]
+    "is-current": []
   },
   "VSteps": {
     "is-active": [],
     "is-completed": [],
     "is-disabled": [],
-    "is-clickable": [],
-    "is-type": ["type"],
-    "is-size": ["size"],
-    "is-height-animated": ["animated"]
+    "is-clickable": []
   },
   "VStepItem": {
     "is-active": [],
     "is-completed": [],
     "is-disabled": [],
-    "is-clickable": [],
-    "is-type": [],
-    "is-size": []
+    "is-clickable": []
   },
   "VAutocomplete": {
     "has-icons-left": [],
     "has-icons-right": [],
     "is-active": [],
     "is-grouped-multiline": [],
-    "has-addons": [],
-    "is-size": [],
-    "is-color": [],
-    "is-position": []
-  },
-  "VBreadcrumb": {
-    "is-alignment": ["alignment"],
-    "is-separator": ["separator"],
-    "is-size": ["size"]
-  },
-  "VBreadcrumbItem": {
-    "is-active": ["active"]
-  },
-  "VAvatar": {
-    "is-size": ["size"],
-    "is-rounded": ["rounded"],
-    "has-background": ["background"],
-    "has-text": ["text"],
-    "is-backgroundColor": ["background"],
-    "is-textColor": ["text"],
-    "is-customClass": ["customClass"]
-  },
-  "VCheckbox": {
-    "is-size": ["size"],
-    "is-type": ["type"],
-    "is-disabled": ["disabled"],
-    "is-fullwidth": ["expanded"]
-  },
-  "VContainer": {
-    "is-type": ["type"]
-  },
-  "VSwitch": {
-    "is-size": ["size"],
-    "is-type": ["type"],
-    "is-passiveType": ["passiveType"],
-    "is-passiveClass": ["passiveType"],
-    "is-rounded": ["rounded"],
-    "is-outlined": ["outlined"],
-    "is-disabled": ["disabled"]
+    "has-addons": []
   }
 }

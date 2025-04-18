@@ -1,12 +1,12 @@
 <script>
-import { computed } from 'vue'
+import { computed } from "vue";
 
 export default {
-  name: 'VButton',
+  name: "VButton",
   props: {
     type: {
       type: String,
-      default: 'is-primary',
+      default: "is-primary",
     },
     size: String,
     label: String,
@@ -21,19 +21,19 @@ export default {
     selected: Boolean,
     nativeType: {
       type: String,
-      default: 'button',
+      default: "button",
     },
     tag: {
       type: String,
-      default: 'button',
+      default: "button",
     },
     light: Boolean,
   },
   setup(props, { attrs }) {
-    const computedTag = computed(() => (attrs.disabled ? 'button' : props.tag))
-    return { computedTag }
+    const computedTag = computed(() => (attrs.disabled ? "button" : props.tag));
+    return { computedTag };
   },
-}
+};
 </script>
 
 <template>

@@ -1,9 +1,9 @@
 <script>
-import { ref, watchEffect, computed } from 'vue'
-import EyeIcon from './EyeIcon.vue'
+import { computed, ref, watchEffect } from "vue";
+import EyeIcon from "./EyeIcon.vue";
 
 export default {
-  name: 'VInput',
+  name: "VInput",
   components: { EyeIcon },
   inheritAttrs: false,
   props: {
@@ -15,29 +15,31 @@ export default {
     modelValue: [String, Number],
     passwordReveal: Boolean,
   },
-  emits: ['update:modelValue'],
+  emits: ["update:modelValue"],
   setup(props, { emit, slots, attrs }) {
-    const hasLeftIcon = computed(() => Boolean(slots.leftIcon))
-    const hasRightIcon = computed(() => Boolean(slots.rightIcon) || props.passwordReveal)
-    const value = ref(props.modelValue)
-    const showPassword = ref(false)
+    const hasLeftIcon = computed(() => Boolean(slots.leftIcon));
+    const hasRightIcon = computed(
+      () => Boolean(slots.rightIcon) || props.passwordReveal,
+    );
+    const value = ref(props.modelValue);
+    const showPassword = ref(false);
 
     const computedType = computed(() => {
       if (showPassword.value) {
-        return 'text'
+        return "text";
       }
-      return attrs.type
-    })
+      return attrs.type;
+    });
 
     const tooglePassword = () => {
-      showPassword.value = !showPassword.value
-    }
+      showPassword.value = !showPassword.value;
+    };
 
     watchEffect(() => {
-      value.value = props.modelValue
-    })
+      value.value = props.modelValue;
+    });
 
-    watchEffect(() => emit('update:modelValue', value.value))
+    watchEffect(() => emit("update:modelValue", value.value));
 
     return {
       value,
@@ -47,9 +49,9 @@ export default {
       computedType,
       rightIcon: slots.rightIcon,
       showPassword,
-    }
+    };
   },
-}
+};
 </script>
 
 <template>

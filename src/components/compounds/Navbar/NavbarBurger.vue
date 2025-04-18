@@ -1,10 +1,10 @@
 <script>
 export default {
-  name: 'NavbarBurger',
+  name: "NavbarBurger",
   props: {
-    active: Boolean
+    active: Boolean,
   },
-}
+};
 </script>
 
 <template>

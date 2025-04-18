@@ -1,8 +1,8 @@
 <script>
-import { ref, watchEffect, computed } from 'vue'
+import { computed, ref, watchEffect } from "vue";
 
 export default {
-  name: 'VSwitch',
+  name: "VSwitch",
   props: {
     modelValue: {
       type: [String, Number, Boolean, Function, Object, Array, Date],
@@ -12,7 +12,7 @@ export default {
     },
     disabled: {
       type: Boolean,
-      default: null
+      default: null,
     },
     type: String,
     passiveType: String,
@@ -21,31 +21,33 @@ export default {
     size: String,
     trueValue: {
       type: [String, Number, Boolean, Function, Object, Array, Date],
-      default: true
+      default: true,
     },
     falseValue: {
       type: [String, Number, Boolean, Function, Object, Array, Date],
-      default: false
+      default: false,
     },
     rounded: {
       type: Boolean,
-      default: true
+      default: true,
     },
-    outlined: Boolean
+    outlined: Boolean,
   },
-  emits: ['update:modelValue'],
+  emits: ["update:modelValue"],
   setup(props, { emit }) {
-    const value = ref(props.modelValue)
-    const passiveClass = computed(() => props.passiveType && `${props.passiveType}-passive`)
+    const value = ref(props.modelValue);
+    const passiveClass = computed(
+      () => props.passiveType && `${props.passiveType}-passive`,
+    );
     watchEffect(() => {
-      value.value = props.modelValue
-    })
+      value.value = props.modelValue;
+    });
     watchEffect(() => {
-      emit('update:modelValue', value.value)
-    })
-    return { value, passiveClass }
-  }
-}
+      emit("update:modelValue", value.value);
+    });
+    return { value, passiveClass };
+  },
+};
 </script>
 
 <template>

@@ -1,6 +1,6 @@
 <script>
 export default {
-  name: 'VColumns',
+  name: "VColumns",
   props: {
     mobile: Boolean,
     desktop: Boolean,
@@ -10,7 +10,7 @@ export default {
     hcentered: Boolean,
     vcentered: Boolean,
   },
-}
+};
 </script>
 
 <template>

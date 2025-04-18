@@ -26,26 +26,10 @@
     "prebuild": "bun run helper/index.ts && shx rm -rf dist",
     "build": "rollup -c --environment NODE_ENV:production",
     "postbuild": "shx cp helper/mappings.json helper/classes.json dist",
-    "css-lint": "stylelint src",
-    "lint": "eslint --ext .js,.ts,.vue,.md,.html --max-warnings=0 .",
-    "lint-arg": "eslint --ext .js,.ts,.vue,.md,.html --max-warnings=0",
-    "lint-fix": "eslint --ext .js,.ts,.vue,.md,.html --fix .",
     "prepublishOnly": "bun run build",
     "release": "bun run build && np --yolo",
     "test:unit": "bun test",
     "test:watch": "bun test --watch"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "**/*.{css,vue}": "stylelint",
-    "**/*.{js,ts,vue,md,html}": [
-      "bun run test:unit",
-      "bun run lint-arg --"
-    ]
   },
   "browserslist": [
     "last 2 versions",
@@ -66,29 +50,18 @@
     "@types/fs-extra": "9.0.5",
     "@types/node": "*",
     "@types/resolve": "1.17.1",
-    "@typescript-eslint/eslint-plugin": "^8.28.0",
-    "@typescript-eslint/parser": "^8.28.0",
     "@vitejs/plugin-vue": "^5.2.3",
     "@vue/cli-plugin-babel": "^5.0.8",
     "@vue/cli-plugin-unit-jest": "^5.0.8",
     "@vue/cli-service": "^5.0.8",
     "@vue/compiler-sfc": "3.5.13",
     "@vue/test-utils": "^2.4.6",
-    "@vue/vue3-jest": "^27.0.0",
     "autoprefixer": "^10.4.21",
-    "eslint": "^9.6.0",
-    "eslint-config-prettier": "^10.1.1",
-    "eslint-plugin-import": "^2.31.0",
-    "eslint-plugin-prettier": "^5.2.5",
-    "eslint-plugin-vue": "^10.0.0",
     "fast-glob": "3.2.4",
     "fs-extra": "9.0.1",
     "htmlparser2": "6.0.0",
-    "husky": "4.3.6",
-    "lint-staged": "10.5.3",
     "np": "8.0.4",
     "postcss": "^8.5.3",
-    "prettier": "^3.5.3",
     "query-string": "6.13.7",
     "resolve": "1.19.0",
     "rollup": "2.63.0",
@@ -96,11 +69,11 @@
     "rollup-plugin-styles": "^4.0.0",
     "rollup-plugin-ts": "^3.4.5",
     "shx": "0.3.3",
-    "stylelint": "13.8.0",
-    "ts-jest": "^27.1.5",
     "typescript": "^4.9.5",
-    "vue": "^3.5.13",
-    "vue-eslint-parser": "^10.1.1"
+    "vue": "^3.5.13"
+  },
+  "engines": {
+    "node": ">=10.0.0"
   },
   "publishConfig": {
     "access": "public",

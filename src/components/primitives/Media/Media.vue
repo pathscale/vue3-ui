@@ -1,8 +1,5 @@
-<script>
-export default {
-  name: "VMedia",
-  props: {},
-};
+<script setup lang="ts">
+//
 </script>
 
 <template>

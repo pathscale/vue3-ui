@@ -1,6 +1,6 @@
 
 <script setup lang="ts">
-import { reactive, watchEffect } from "vue";
+import { defineEmits, reactive, watchEffect } from "vue";
 
 import VField from "../Field/Field.vue";
 import VInput from "../Input/Input.vue";
@@ -16,8 +16,9 @@ const props = withDefaults(
   },
 );
 
+const emit = defineEmits(["update:modelValue"]);
+
 // export default {
-//   emits: ["update:modelValue"],
 //   setup(props, { emit }) {
 //     const state = reactive({
 //       value: props.modelValue,

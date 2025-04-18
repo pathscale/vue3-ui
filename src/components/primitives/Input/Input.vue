@@ -2,7 +2,7 @@
 import { computed, ref, useSlots, watchEffect } from "vue";
 import EyeIcon from "./EyeIcon.vue";
 
-defineProps<{
+const props = defineProps<{
   color?: string;
   size?: string;
   rounded?: boolean;

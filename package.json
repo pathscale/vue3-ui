@@ -62,7 +62,7 @@
     "fast-glob": "3.3.3",
     "fs-extra": "11.3.0",
     "htmlparser2": "10.0.0",
-    "np": "8.0.4",
+    "np": "^10.2.0",
     "postcss": "^8.5.3",
     "query-string": "9.1.1",
     "resolve": "1.22.10",
@@ -70,7 +70,7 @@
     "rollup-plugin-node-externals": "^8.0.0",
     "rollup-plugin-styles": "^4.0.0",
     "shx": "0.4.0",
-    "typescript": "^4.9.5",
+    "typescript": "^5.8.3",
     "vue": "^3.5.13"
   },
   "engines": {

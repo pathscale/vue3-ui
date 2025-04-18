@@ -25,7 +25,6 @@ const search = defineModel<string | number>();
 const state = reactive({
   isOpen: false,
   results: props.items,
-  search: "",
   arrowCounter: 0,
 });
 

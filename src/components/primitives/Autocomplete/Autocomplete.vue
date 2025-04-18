@@ -94,7 +94,6 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <!-- eslint-disable @pathscale/vue3/v-directive -->
   <div>
     <div ref="dropdown-wrapper" class="dropdown" :class="{ 'is-active': state.isOpen }">
       <div class="dropdown-trigger">
@@ -127,5 +126,3 @@ onBeforeUnmount(() => {
     </div>
   </div>
 </template>
-
-

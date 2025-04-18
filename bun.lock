@@ -7,7 +7,7 @@
         "@babel/core": "^7.26.10",
         "@babel/parser": "^7.27.0",
         "@babel/traverse": "^7.27.0",
-        "@pathscale/frappe-charts": "^0.0.1",
+        "@pathscale/frappe-charts": "^0.0.2",
         "@rollup/plugin-alias": "^5.1.1",
         "@rollup/plugin-node-resolve": "11.0.1",
         "@rollup/plugin-replace": "2.3.4",
@@ -385,7 +385,7 @@
 
     "@one-ini/wasm": ["@one-ini/wasm@0.1.1", "", {}, "sha512-XuySG1E38YScSJoMlqovLru4KTUNSjgVTIjyh7qMX6aNN5HY5Ct5LhRJdxO79JtTzKfzV/bnWpz+zquYrISsvw=="],
 
-    "@pathscale/frappe-charts": ["@pathscale/frappe-charts@0.0.1", "", {}, "sha512-jAu6H1uDvku64gqUSi0iGxftO+/3IKVDvySo7gauARj6ZBad63up7bB5hSh5MOsmO96ka8/UJuE4HAkbIqnlLQ=="],
+    "@pathscale/frappe-charts": ["@pathscale/frappe-charts@0.0.2", "", {}, "sha512-Uy9ya0aYd/ZcT5MBEv1N+WLgxvDj4olTS9zNatkYQsAIn6RooMy0YixyvkVv834MyRHhkkPijlj3Aq1vHETppw=="],
 
     "@pkgjs/parseargs": ["@pkgjs/parseargs@0.11.0", "", {}, "sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg=="],
 

@@ -41,7 +41,7 @@ export default {
 </script>
 
 <template>
-  <nav class="navbar" role="navigation" aria-label="main navigation" :class="[
+  <nav class="navbar" aria-label="main navigation" :class="[
     type,
     {
       'is-fixed-top': fixedTop,

@@ -85,9 +85,9 @@ const handleClickOutside = (evt) => {
             type="text"
             @input="onChange"
             v-model="search1"
-            @keyup.down="onArrowDown"
-            @keyup.up="onArrowUp"
-            @keyup.enter="onEnter" />
+            @keyup.down.stop="onArrowDown"
+            @keyup.up.stop="onArrowUp"
+            @keyup.enter.stop="onEnter" />
         </v-field>
       </div>
       <div class="dropdown-menu" role="menu">

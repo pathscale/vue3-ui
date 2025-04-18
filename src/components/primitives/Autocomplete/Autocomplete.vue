@@ -29,12 +29,12 @@ const state = reactive({
 const filterResults = () => {
   // first uncapitalize all the things
   state.results = props.items.filter((item) => {
-    return item.toLowerCase().includes(state.search.toLowerCase());
+    return item.toString().toLowerCase().includes(state.search.toLowerCase());
   });
 };
 
 watchEffect(() => {
-  state.search = props.modelValue;
+  state.search = (props.modelValue ?? "").toString();
 });
 
 const onChange = () => {

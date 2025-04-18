@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, useAttrs, useSlots, watchEffect } from "vue";
+import { computed, defineModel, ref, useAttrs, useSlots } from "vue";
 import EyeIcon from "./EyeIcon.vue";
 
 const props = defineProps<{
@@ -8,11 +8,10 @@ const props = defineProps<{
   rounded?: boolean;
   loading?: boolean;
   expanded?: boolean;
-  modelValue?: string | number;
   passwordReveal?: boolean;
 }>();
 
-const emit = defineEmits(["update:modelValue"]);
+const value = defineModel();
 
 const slots = useSlots();
 const attrs = useAttrs();
@@ -21,7 +20,7 @@ const hasLeftIcon = computed(() => Boolean(slots.leftIcon));
 const hasRightIcon = computed(
   () => Boolean(slots.rightIcon) || props.passwordReveal,
 );
-const value = ref(props.modelValue);
+
 const showPassword = ref(false);
 
 const computedType = computed(() => {
@@ -34,12 +33,6 @@ const computedType = computed(() => {
 const tooglePassword = () => {
   showPassword.value = !showPassword.value;
 };
-
-watchEffect(() => {
-  value.value = props.modelValue;
-});
-
-watchEffect(() => emit("update:modelValue", value.value));
 </script>
 
 <template>

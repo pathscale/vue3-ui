@@ -1,5 +1,5 @@
 import path from 'path'
-import { parse } from 'query-string'
+import queryString from 'query-string'
 
 /** Parsed Vue SFC query. */
 export type Query =
@@ -8,21 +8,21 @@ export type Query =
   | { filename: string; vue: true; type: 'template'; id?: string; src: boolean }
   | { filename: string; vue: true; type: 'script'; src: boolean }
   | {
-      filename: string
-      vue: true
-      type: 'style'
-      index?: number
-      id?: string
-      scoped?: boolean
-      module?: string | boolean
-      src: boolean
-    }
+    filename: string
+    vue: true
+    type: 'style'
+    index?: number
+    id?: string
+    scoped?: boolean
+    module?: string | boolean
+    src: boolean
+  }
 
 export function parseQuery(id: string): Query {
   const [filename, query] = id.split('?', 2)
   if (!query) return { vue: false }
 
-  const raw = parse(query)
+  const raw = queryString.parse(query)
   if (!('vue' in raw)) return { vue: false }
 
   return {

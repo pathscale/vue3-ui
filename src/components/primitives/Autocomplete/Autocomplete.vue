@@ -21,8 +21,6 @@ const props = withDefaults(
   },
 );
 
-const emit = defineEmits(["update:modelValue"]);
-
 const search1 = defineModel<string | number>();
 
 const state = reactive({
@@ -46,7 +44,6 @@ const onChange = () => {
 };
 
 const setResult = (result) => {
-  emit("update:modelValue", result);
   search1.value = result;
   state.isOpen = false;
 };

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, useSlots, watchEffect } from "vue";
+import { computed, ref, useAttrs, useSlots, watchEffect } from "vue";
 import EyeIcon from "./EyeIcon.vue";
 
 const props = defineProps<{
@@ -15,6 +15,7 @@ const props = defineProps<{
 const emit = defineEmits(["update:modelValue"]);
 
 const slots = useSlots();
+const attrs = useAttrs();
 
 const hasLeftIcon = computed(() => Boolean(slots.leftIcon));
 const hasRightIcon = computed(

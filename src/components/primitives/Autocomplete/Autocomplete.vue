@@ -74,8 +74,7 @@ const handleClickInside = (evt) => {
   state.isOpen = true;
 };
 
-// TODO: handle click outside
-const handleClickOutside = (evt) => {
+const handleClickOutside = () => {
   state.isOpen = false;
   state.arrowCounter = -1;
 };
@@ -85,7 +84,8 @@ const dropdownWrapper = useTemplateRef<HTMLElement>("dropdown-wrapper");
 const detectOutsideClick = (event: MouseEvent) => {
   const wrapperEl = dropdownWrapper.value;
   if (wrapperEl && !wrapperEl.contains(event.target as Node)) {
-    console.log("Clicked outside!");
+    // Clicked outside!
+    handleClickOutside();
   }
 };
 

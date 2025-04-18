@@ -1,183 +1,187 @@
 <script>
-import { computed, reactive, ref, watch, toRaw } from 'vue'
-import VTag from '../../primitives/Tag/Tag.vue'
-import VButton from '../../primitives/Button/Button.vue'
-import VCheckbox from '../../primitives/Checkbox/Checkbox.vue'
-import VSelect from '../../primitives/Select/Select.vue'
-import VInput from '../../primitives/Input/Input.vue'
-import VPagination from '../Pagination/Pagination.vue'
+import { computed, reactive, ref, toRaw, watch } from "vue";
+import VButton from "../../primitives/Button/Button.vue";
+import VCheckbox from "../../primitives/Checkbox/Checkbox.vue";
+import VInput from "../../primitives/Input/Input.vue";
+import VSelect from "../../primitives/Select/Select.vue";
+import VTag from "../../primitives/Tag/Tag.vue";
+import VPagination from "../Pagination/Pagination.vue";
 
-const UNKNOW = 'unknow'
+const UNKNOW = "unknow";
 
 export default {
-  name: 'VTable',
-  components: { VButton, VCheckbox, VSelect, VTag, VInput, VPagination },
-  props: {
-    data: {
-      type: Object,
-      default: () => ({}),
-    },
-    searchable: Boolean,
-    checkable: Boolean,
-    pagination: Boolean,
-    rowsPerPage: {
-      type: Number,
-      default: 5,
-    },
-    rowsPerPageOptions: {
-      type: Array,
-      default: () => [],
-    },
-    bordered: Boolean,
-    striped: Boolean,
-    narrow: Boolean,
-    hoverable: Boolean,
-    fullwidth: Boolean,
-    hasResetBtn: Boolean,
-    sortable: Boolean,
-    expandable: Boolean,
-    draggableRows: Boolean,
-    draggableColumns: Boolean,
-    // eslint-disable-next-line vue/no-unused-properties -- editable prop being used in template
-    editable: Boolean,
-    groupBy: String,
-    sticky: Boolean,
-    mobileCards: Boolean,
-  },
+	name: "VTable",
+	components: { VButton, VCheckbox, VSelect, VTag, VInput, VPagination },
+	props: {
+		data: {
+			type: Object,
+			default: () => ({}),
+		},
+		searchable: Boolean,
+		checkable: Boolean,
+		pagination: Boolean,
+		rowsPerPage: {
+			type: Number,
+			default: 5,
+		},
+		rowsPerPageOptions: {
+			type: Array,
+			default: () => [],
+		},
+		bordered: Boolean,
+		striped: Boolean,
+		narrow: Boolean,
+		hoverable: Boolean,
+		fullwidth: Boolean,
+		hasResetBtn: Boolean,
+		sortable: Boolean,
+		expandable: Boolean,
+		draggableRows: Boolean,
+		draggableColumns: Boolean,
+		// eslint-disable-next-line vue/no-unused-properties -- editable prop being used in template
+		editable: Boolean,
+		groupBy: String,
+		sticky: Boolean,
+		mobileCards: Boolean,
+	},
 
-  setup(props, { slots }) {
-    // datagrid instance reference
-    const data = ref(props.data)
-    const computedRowsPerPage = ref(props.rowsPerPage)
-    const currentPage = ref(0)
-    const search = reactive({})
-    const expandedRows = ref(new Set())
-    const expandedGroups = ref(new Set())
-    // handle checked all state per page
-    const checked = reactive({
-      0: false,
-    })
+	setup(props, { slots }) {
+		// datagrid instance reference
+		const data = ref(props.data);
+		const computedRowsPerPage = ref(props.rowsPerPage);
+		const currentPage = ref(0);
+		const search = reactive({});
+		const expandedRows = ref(new Set());
+		const expandedGroups = ref(new Set());
+		// handle checked all state per page
+		const checked = reactive({
+			0: false,
+		});
 
-    // whenever pagination props changes, update the class state accordingly
-    // thsi way pagination settings are directly passed to props and indirectly passed to class
+		// whenever pagination props changes, update the class state accordingly
+		// thsi way pagination settings are directly passed to props and indirectly passed to class
 
-    // page goes back to first when rowperpage changes
-    watch(computedRowsPerPage, () => {
-      props.data.rowsPerPage = computedRowsPerPage.value
-      currentPage.value = 0
-      props.data.switchPage()
-    })
+		// page goes back to first when rowperpage changes
+		watch(computedRowsPerPage, () => {
+			props.data.rowsPerPage = computedRowsPerPage.value;
+			currentPage.value = 0;
+			props.data.switchPage();
+		});
 
-    // compute new rows window whenever currentpage changes
-    watch(currentPage, () => {
-      props.data.currentPage = currentPage.value
-      props.data.switchPage()
-    })
+		// compute new rows window whenever currentpage changes
+		watch(currentPage, () => {
+			props.data.currentPage = currentPage.value;
+			props.data.switchPage();
+		});
 
-    // compute rows window on first render as no change cb triggers
-    if (props.pagination) {
-      props.data.rowsPerPage = computedRowsPerPage.value
-      props.data.switchPage()
-    }
+		// compute rows window on first render as no change cb triggers
+		if (props.pagination) {
+			props.data.rowsPerPage = computedRowsPerPage.value;
+			props.data.switchPage();
+		}
 
-    const sortColumn = column => {
-      props.data.sortByColumn(column.name, column.ascendant)
-      column.ascendant = !column.ascendant
-    }
+		const sortColumn = (column) => {
+			props.data.sortByColumn(column.name, column.ascendant);
+			column.ascendant = !column.ascendant;
+		};
 
-    const toggleExpanded = rowId => {
-      if (expandedRows.value.has(rowId)) {
-        expandedRows.value.delete(rowId)
-        return
-      }
-      expandedRows.value.add(rowId)
-    }
+		const toggleExpanded = (rowId) => {
+			if (expandedRows.value.has(rowId)) {
+				expandedRows.value.delete(rowId);
+				return;
+			}
+			expandedRows.value.add(rowId);
+		};
 
-    const toggleExpandedGroup = group => {
-      if (expandedGroups.value.has(group)) {
-        expandedGroups.value.delete(group)
-        return
-      }
-      expandedGroups.value.add(group)
-    }
+		const toggleExpandedGroup = (group) => {
+			if (expandedGroups.value.has(group)) {
+				expandedGroups.value.delete(group);
+				return;
+			}
+			expandedGroups.value.add(group);
+		};
 
-    const countColumns = computed(() => {
-      return data.value.getColumns().length + (props.checkable ? 1 : 0) + (props.expandable ? 1 : 0)
-    })
+		const countColumns = computed(() => {
+			return (
+				data.value.getColumns().length +
+				(props.checkable ? 1 : 0) +
+				(props.expandable ? 1 : 0)
+			);
+		});
 
-    const handlePageChange = value => {
-      currentPage.value = value - 1 // pagination handle indexes from 1, table from 0
-    }
+		const handlePageChange = (value) => {
+			currentPage.value = value - 1; // pagination handle indexes from 1, table from 0
+		};
 
-    const handleSort = column => {
-      if (props.sortable && column.dataType !== UNKNOW) {
-        sortColumn(column)
-      }
-    }
+		const handleSort = (column) => {
+			if (props.sortable && column.dataType !== UNKNOW) {
+				sortColumn(column);
+			}
+		};
 
-    const columnClasses = column => {
-      return {
-        ...column.style,
-        'has-text-primary': column.selected,
-        'sticky-row': props.sticky,
-        'is-clickable': props.sortable && column.dataType !== UNKNOW,
-      }
-    }
+		const columnClasses = (column) => {
+			return {
+				...column.style,
+				"has-text-primary": column.selected,
+				"sticky-row": props.sticky,
+				"is-clickable": props.sortable && column.dataType !== UNKNOW,
+			};
+		};
 
-    const selectedClasses = row => {
-      return {
-        'has-background-primary': row.selected,
-        'has-text-white': row.selected,
-      }
-    }
+		const selectedClasses = (row) => {
+			return {
+				"has-background-primary": row.selected,
+				"has-text-white": row.selected,
+			};
+		};
 
-    const cellClasses = column => {
-      return {
-        ...column.style,
-        'sticky-column': column.sticky,
-      }
-    }
+		const cellClasses = (column) => {
+			return {
+				...column.style,
+				"sticky-column": column.sticky,
+			};
+		};
 
-    watch(
-      [checked],
-      () => {
-        data.value.toggleCheckAll(toRaw(checked)[currentPage.value])
-      },
-      { deep: true },
-    )
+		watch(
+			[checked],
+			() => {
+				data.value.toggleCheckAll(toRaw(checked)[currentPage.value]);
+			},
+			{ deep: true },
+		);
 
-    const isChecked = row => {
-      return data.value.checkedRows.has(row)
-    }
+		const isChecked = (row) => {
+			return data.value.checkedRows.has(row);
+		};
 
-    const hasHeader = computed(() => {
-      return slots.header || props.hasResetBtn
-    })
+		const hasHeader = computed(() => {
+			return slots.header || props.hasResetBtn;
+		});
 
-    return {
-      props,
-      search,
-      expandedRows,
-      toggleExpanded,
-      expandedGroups,
-      toggleExpandedGroup,
-      countColumns,
-      handlePageChange,
-      handleSort,
-      columnClasses,
-      selectedClasses,
-      cellClasses,
-      slots,
-      hasHeader,
-      currentPage,
-      total: data.value.originalRows.length,
-      computedRowsPerPage,
-      checked,
-      isChecked,
-      UNKNOW,
-    }
-  },
-}
+		return {
+			props,
+			search,
+			expandedRows,
+			toggleExpanded,
+			expandedGroups,
+			toggleExpandedGroup,
+			countColumns,
+			handlePageChange,
+			handleSort,
+			columnClasses,
+			selectedClasses,
+			cellClasses,
+			slots,
+			hasHeader,
+			currentPage,
+			total: data.value.originalRows.length,
+			computedRowsPerPage,
+			checked,
+			isChecked,
+			UNKNOW,
+		};
+	},
+};
 </script>
 
 <template>

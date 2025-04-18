@@ -1,37 +1,37 @@
 
 
 <script>
-import { computed } from 'vue'
+import { computed } from "vue";
 
 export default {
-  name: 'VPaginationItem',
-  props: {
-    page: {
-      type: Object,
-      required: true,
-    },
-    tag: {
-      type: String,
-      default: 'a',
-    },
-    disabled: Boolean,
-  },
+	name: "VPaginationItem",
+	props: {
+		page: {
+			type: Object,
+			required: true,
+		},
+		tag: {
+			type: String,
+			default: "a",
+		},
+		disabled: Boolean,
+	},
 
-  setup(props) {
-    const href = computed(() => {
-      return props.tag === 'a' ? '#' : null
-    })
+	setup(props) {
+		const href = computed(() => {
+			return props.tag === "a" ? "#" : null;
+		});
 
-    const computedDisabled = computed(() => {
-      return props.disabled || props.page.disabled ? true : null
-    })
+		const computedDisabled = computed(() => {
+			return props.disabled || props.page.disabled ? true : null;
+		});
 
-    return {
-      href,
-      computedDisabled,
-    }
-  },
-}
+		return {
+			href,
+			computedDisabled,
+		};
+	},
+};
 </script>
 
 <template>

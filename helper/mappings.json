@@ -299,7 +299,6 @@
   "VPagination": {
     "always": [
       "#",
-      ",",
       "a",
       "aria-label",
       "change",
@@ -373,7 +372,6 @@
   "VTable": {
     "always": [
       "#",
-      ",",
       "a",
       "aria-label",
       "blur",

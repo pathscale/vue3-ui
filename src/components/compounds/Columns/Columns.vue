@@ -1,16 +1,16 @@
 <script>
 export default {
-  name: 'VColumns',
-  props: {
-    mobile: Boolean,
-    desktop: Boolean,
-    gapless: Boolean,
-    gap: String,
-    multiline: Boolean,
-    hcentered: Boolean,
-    vcentered: Boolean,
-  },
-}
+	name: "VColumns",
+	props: {
+		mobile: Boolean,
+		desktop: Boolean,
+		gapless: Boolean,
+		gap: String,
+		multiline: Boolean,
+		hcentered: Boolean,
+		vcentered: Boolean,
+	},
+};
 </script>
 
 <template>

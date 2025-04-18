@@ -1,18 +1,18 @@
-import { shallowMount } from '@vue/test-utils'
-import Slider from './Slider.vue'
+import { shallowMount } from "@vue/test-utils";
+import Slider from "./Slider.vue";
 
-let wrapper
+let wrapper;
 
-describe('Slider', () => {
-  beforeEach(() => {
-    wrapper = shallowMount(Slider)
-  })
+describe("Slider", () => {
+	beforeEach(() => {
+		wrapper = shallowMount(Slider);
+	});
 
-  it('is called', () => {
-    expect(wrapper.exists()).toBeTruthy()
-  })
+	it("is called", () => {
+		expect(wrapper.exists()).toBeTruthy();
+	});
 
-  it('render correctly', () => {
-    expect(wrapper.html()).toMatchSnapshot()
-  })
-})
+	it("render correctly", () => {
+		expect(wrapper.html()).toMatchSnapshot();
+	});
+});

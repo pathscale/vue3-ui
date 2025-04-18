@@ -59,30 +59,45 @@
 </template>
 
 <script>
-import { reactive } from 'vue'
-import { VTextarea, /* VInput, */ VSidebar, VSelect, VField, VSwitch, VButton, useGlobalSettings } from '../components'
+import { reactive } from "vue";
+import {
+	VButton,
+	VField,
+	VSelect,
+	VSidebar,
+	VSwitch,
+	VTextarea,
+	/* VInput, */ useGlobalSettings,
+} from "../components";
 
 export default {
-  name: 'Vue3UIApp',
-  components: { VTextarea, /* VInput, */ VSidebar, VSelect, VField, VSwitch, VButton },
-  setup() {
-    const state = reactive({
-      felipetest: 1010,
-      open: true,
-      expandOnHover: true,
-      mobile: 'reduce',
-      reduce: true,
-    })
-    const settings = useGlobalSettings()
+	name: "Vue3UIApp",
+	components: {
+		VTextarea,
+		/* VInput, */ VSidebar,
+		VSelect,
+		VField,
+		VSwitch,
+		VButton,
+	},
+	setup() {
+		const state = reactive({
+			felipetest: 1010,
+			open: true,
+			expandOnHover: true,
+			mobile: "reduce",
+			reduce: true,
+		});
+		const settings = useGlobalSettings();
 
-    return {
-      state,
-      setRounded() {
-        settings.button.rounded = true
-      }
-    }
-  }
-}
+		return {
+			state,
+			setRounded() {
+				settings.button.rounded = true;
+			},
+		};
+	},
+};
 </script>
 
 <style>

@@ -1,52 +1,56 @@
 <script>
-import { computed, onMounted, onUpdated, ref, watch } from 'vue'
-import { addToStore, useStore } from './Tabs.vue'
+import { computed, onMounted, onUpdated, ref, watch } from "vue";
+import { addToStore, useStore } from "./Tabs.vue";
 
 export default {
-  name: 'VTab',
-  props: {
-    // eslint-disable-next-line vue/no-unused-properties -- used
-    label: {
-      type: String,
-      default: '',
-      required: true,
-    },
-    // eslint-disable-next-line vue/no-unused-properties -- used
-    disabled: Boolean,
-    // eslint-disable-next-line vue/no-unused-properties -- used
-    visible: {
-      type: Boolean,
-      default: true
-    },
-  },
-  setup(props, { emit }) {
-    const content = ref(null)
-    const tabs = useStore()
-    const id = JSON.parse(JSON.stringify(tabs.value.tabs)).length
-    const transitionName = computed(() => {
-      return tabs.value.activeTab < id ? 'slide-right' : 'slide-left'
-    })
+	name: "VTab",
+	props: {
+		// eslint-disable-next-line vue/no-unused-properties -- used
+		label: {
+			type: String,
+			default: "",
+			required: true,
+		},
+		// eslint-disable-next-line vue/no-unused-properties -- used
+		disabled: Boolean,
+		// eslint-disable-next-line vue/no-unused-properties -- used
+		visible: {
+			type: Boolean,
+			default: true,
+		},
+	},
+	setup(props, { emit }) {
+		const content = ref(null);
+		const tabs = useStore();
+		const id = JSON.parse(JSON.stringify(tabs.value.tabs)).length;
+		const transitionName = computed(() => {
+			return tabs.value.activeTab < id ? "slide-right" : "slide-left";
+		});
 
-    const updateActiveHeight = () => {
-      if (tabs.value.vanimated && content.value) {
-        tabs.value.activeHeight = content.value.offsetHeight;
-      }
-    }
+		const updateActiveHeight = () => {
+			if (tabs.value.vanimated && content.value) {
+				tabs.value.activeHeight = content.value.offsetHeight;
+			}
+		};
 
-    onMounted(updateActiveHeight);
-    onUpdated(updateActiveHeight);
+		onMounted(updateActiveHeight);
+		onUpdated(updateActiveHeight);
 
-    addToStore({ ...props, id })
+		addToStore({ ...props, id });
 
-    watch(() => tabs.value.tabs.findIndex(tab => tab.id === id), (index) => {
-      tabs.value.tabs.splice(index, 1, { id, ...props })
-    }, { immediate: true })
+		watch(
+			() => tabs.value.tabs.findIndex((tab) => tab.id === id),
+			(index) => {
+				tabs.value.tabs.splice(index, 1, { id, ...props });
+			},
+			{ immediate: true },
+		);
 
-    const isActiveTab = computed(() => tabs.value.activeTab === id)
+		const isActiveTab = computed(() => tabs.value.activeTab === id);
 
-    return { tabs, transitionName, content, isActiveTab }
-  },
-}
+		return { tabs, transitionName, content, isActiveTab };
+	},
+};
 </script>
 
 <template>

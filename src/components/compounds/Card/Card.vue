@@ -1,13 +1,13 @@
 <script>
 export default {
-  name: 'VCard',
-  props: {
-    tag: {
-      type: String,
-      default: 'div'
-    }
-  }
-}
+	name: "VCard",
+	props: {
+		tag: {
+			type: String,
+			default: "div",
+		},
+	},
+};
 </script>
 
 <template>

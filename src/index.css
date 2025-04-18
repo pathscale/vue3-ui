@@ -1,8 +1,8 @@
 .icon {
-  display: block;
-  text-indent: -9999px;
-  width: 30px;
-  height: 30px;
-  fill: red;
-  background: url(./assets/vue.svg);
+	display: block;
+	text-indent: -9999px;
+	width: 30px;
+	height: 30px;
+	fill: red;
+	background: url(./assets/vue.svg);
 }

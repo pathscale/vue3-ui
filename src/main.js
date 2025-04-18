@@ -1,6 +1,9 @@
-import { createApp } from 'vue'
-import App from './views/App.vue'
-import { stateSymbol, state } from './state'
-import { createGlobalSettings } from './components'
+import { createApp } from "vue";
+import { createGlobalSettings } from "./components";
+import { state, stateSymbol } from "./state";
+import App from "./views/App.vue";
 
-createApp(App).use(createGlobalSettings()).provide(stateSymbol, state).mount('#app')
+createApp(App)
+	.use(createGlobalSettings())
+	.provide(stateSymbol, state)
+	.mount("#app");

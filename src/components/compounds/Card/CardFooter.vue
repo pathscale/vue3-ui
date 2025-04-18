@@ -1,13 +1,13 @@
 <script>
 export default {
-  name: 'VCardFooter',
-  props: {
-    tag: {
-      type: String,
-      default: 'footer'
-    }
-  }
-}
+	name: "VCardFooter",
+	props: {
+		tag: {
+			type: String,
+			default: "footer",
+		},
+	},
+};
 </script>
 
 <template>

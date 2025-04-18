@@ -1,43 +1,43 @@
 <script>
-import { ref, watchEffect } from 'vue'
-import NavbarBurger from './NavbarBurger.vue'
+import { ref, watchEffect } from "vue";
+import NavbarBurger from "./NavbarBurger.vue";
 
 export default {
-  name: 'VNavbar',
-  components: { NavbarBurger },
-  props: {
-    type: [String, Object],
-    transparent: Boolean,
-    fixedTop: Boolean,
-    fixedBottom: Boolean,
-    wrapperClass: String,
-    mobileBurger: {
-      type: Boolean,
-      default: true
-    },
-    spaced: Boolean,
-    shadow: Boolean,
-    modelValue: Boolean
-  },
-  emits: ['update:modelValue'],
-  setup(props, { emit }) {
-    const isActive = ref(props.modelValue)
+	name: "VNavbar",
+	components: { NavbarBurger },
+	props: {
+		type: [String, Object],
+		transparent: Boolean,
+		fixedTop: Boolean,
+		fixedBottom: Boolean,
+		wrapperClass: String,
+		mobileBurger: {
+			type: Boolean,
+			default: true,
+		},
+		spaced: Boolean,
+		shadow: Boolean,
+		modelValue: Boolean,
+	},
+	emits: ["update:modelValue"],
+	setup(props, { emit }) {
+		const isActive = ref(props.modelValue);
 
-    watchEffect(() => {
-      emit('update:modelValue', isActive.value)
-    })
+		watchEffect(() => {
+			emit("update:modelValue", isActive.value);
+		});
 
-    watchEffect(() => {
-      isActive.value = props.modelValue
-    })
+		watchEffect(() => {
+			isActive.value = props.modelValue;
+		});
 
-    const toggleActive = () => {
-      isActive.value = !isActive.value
-    }
+		const toggleActive = () => {
+			isActive.value = !isActive.value;
+		};
 
-    return { isActive, toggleActive }
-  }
-}
+		return { isActive, toggleActive };
+	},
+};
 </script>
 
 <template>

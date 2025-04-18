@@ -1,19 +1,19 @@
 <script>
 export default {
-  name: 'VFile',
-  inheritAttrs: false,
-  props: {
-    hasName: Boolean,
-    fullwidth: Boolean,
-    boxed: Boolean,
-    size: String,
-    color: {
-      type: String,
-      default: 'is-primary'
-    },
-    alignment: String
-  },
-}
+	name: "VFile",
+	inheritAttrs: false,
+	props: {
+		hasName: Boolean,
+		fullwidth: Boolean,
+		boxed: Boolean,
+		size: String,
+		color: {
+			type: String,
+			default: "is-primary",
+		},
+		alignment: String,
+	},
+};
 </script>
 
 <template>

@@ -1,47 +1,47 @@
 <script>
-import { watchEffect, reactive, computed } from 'vue'
+import { computed, reactive, watchEffect } from "vue";
 
 export default {
-  name: 'VNavbarDropdown',
-  props: {
-    label: String,
-    hoverable: Boolean,
-    active: Boolean,
-    right: Boolean,
-    arrowless: Boolean,
-    boxed: Boolean,
-    closeOnClick: {
-      type: Boolean,
-      default: true,
-    },
-    collapsible: Boolean,
-  },
-  setup(props) {
-    const state = reactive({
-      newActive: props.active,
-    })
+	name: "VNavbarDropdown",
+	props: {
+		label: String,
+		hoverable: Boolean,
+		active: Boolean,
+		right: Boolean,
+		arrowless: Boolean,
+		boxed: Boolean,
+		closeOnClick: {
+			type: Boolean,
+			default: true,
+		},
+		collapsible: Boolean,
+	},
+	setup(props) {
+		const state = reactive({
+			newActive: props.active,
+		});
 
-    watchEffect(() => {
-      state.newActive = props.active
-    })
+		watchEffect(() => {
+			state.newActive = props.active;
+		});
 
-    const closeMenu = () => {
-      state.newActive = !props.closeOnClick
-    }
+		const closeMenu = () => {
+			state.newActive = !props.closeOnClick;
+		};
 
-    const toggleActive = () => {
-      state.newActive = !state.newActive
-    }
+		const toggleActive = () => {
+			state.newActive = !state.newActive;
+		};
 
-    const show = computed(() => {
-      return !props.collapsible || (props.collapsible && state.newActive)
-    })
+		const show = computed(() => {
+			return !props.collapsible || (props.collapsible && state.newActive);
+		});
 
-    const isActive = computed(() => state.newActive)
+		const isActive = computed(() => state.newActive);
 
-    return { closeMenu, toggleActive, show, isActive }
-  },
-}
+		return { closeMenu, toggleActive, show, isActive };
+	},
+};
 </script>
 
 <template>

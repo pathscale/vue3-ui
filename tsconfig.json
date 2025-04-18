@@ -1,27 +1,24 @@
 {
-  "compilerOptions": {
-    /* Basic Options */
-    "target": "es6",
-    "module": "commonjs",
-    /* Compile Options */
-    "moduleResolution": "node",
-    "esModuleInterop": true,
-    /* Strict Type-Checking Options */
-    "strict": true,
-    /* Additional Checks */
-    "forceConsistentCasingInFileNames": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    /* Paths */
-    "baseUrl": "./",
-    "paths": {
-      "@/*": ["src/*"]
-    }
-  },
-  "include": [
-    "**/*.ts",
-    "**/*.vue",
-  ]
+	"compilerOptions": {
+		/* Basic Options */
+		"target": "es6",
+		"module": "commonjs",
+		/* Compile Options */
+		"moduleResolution": "node",
+		"esModuleInterop": true,
+		/* Strict Type-Checking Options */
+		"strict": true,
+		/* Additional Checks */
+		"forceConsistentCasingInFileNames": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noImplicitReturns": true,
+		"noFallthroughCasesInSwitch": true,
+		/* Paths */
+		"baseUrl": "./",
+		"paths": {
+			"@/*": ["src/*"]
+		}
+	},
+	"include": ["**/*.ts", "**/*.vue"]
 }

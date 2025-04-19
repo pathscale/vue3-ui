@@ -75,6 +75,7 @@
     "fs-extra": "11.3.0",
     "htmlparser2": "10.0.0",
     "husky": "^9.1.7",
+    "jsdom": "^26.1.0",
     "lint-staged": "^15.5.1",
     "np": "^10.2.0",
     "postcss": "^8.5.3",

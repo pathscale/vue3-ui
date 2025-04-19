@@ -8,7 +8,18 @@ const props = withDefaults(
     // biome-ignore lint/suspicious/noExplicitAny: allow any type according to docs
     nativeValue?: any;
     disabled?: boolean;
-    type?: string; // todo union
+    type?:
+      | "is-white"
+      | "is-light"
+      | "is-dark"
+      | "is-black"
+      | "is-text"
+      | "is-primary"
+      | "is-link"
+      | "is-info"
+      | "is-success"
+      | "is-warning"
+      | "is-danger";
     passiveType?: string; // todo union
     name?: string;
     required?: boolean;

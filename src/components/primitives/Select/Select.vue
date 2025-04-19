@@ -1,40 +1,49 @@
-<script>
+<script setup lang="ts">
 import { computed, ref, watchEffect } from "vue";
 
-export default {
-  name: "VSelect",
+defineOptions({
   inheritAttrs: false,
-  props: {
-    modelValue: {
-      type: [String, Number, Boolean, Object, Array, Function],
-      default: null,
-    },
-    placeholder: String,
-    multiple: Boolean,
-    nativeSize: {
-      type: [String, Number],
-      default: null,
-    },
-    size: String,
-    expanded: Boolean,
-    loading: Boolean,
-    rounded: Boolean,
-    color: String,
+});
+
+type Primitive = string | number | boolean | object;
+
+withDefaults(
+  defineProps<{
+    modelValue?: Primitive | Array<Primitive> | null;
+  }>(),
+  {
+    modelValue: null,
   },
-  emits: ["update:modelValue", "blur", "focus"],
-  setup(props, { emit }) {
-    const value = ref(props.modelValue);
-    const valueIsNullish = computed(() => value.value === null);
-    const empty = computed(() => props.selected === null);
-    watchEffect(() => {
-      emit("update:modelValue", value.value);
-    });
-    watchEffect(() => {
-      value.value = props.modelValue;
-    });
-    return { value, valueIsNullish, empty };
-  },
-};
+);
+
+// export default {
+//   props: {
+//     placeholder: String,
+//     multiple: Boolean,
+//     nativeSize: {
+//       type: [String, Number],
+//       default: null,
+//     },
+//     size: String,
+//     expanded: Boolean,
+//     loading: Boolean,
+//     rounded: Boolean,
+//     color: String,
+//   },
+//   emits: ["update:modelValue", "blur", "focus"],
+//   setup(props, { emit }) {
+//     const value = ref(props.modelValue);
+//     const valueIsNullish = computed(() => value.value === null);
+//     const empty = computed(() => props.selected === null);
+//     watchEffect(() => {
+//       emit("update:modelValue", value.value);
+//     });
+//     watchEffect(() => {
+//       value.value = props.modelValue;
+//     });
+//     return { value, valueIsNullish, empty };
+//   },
+// };
 </script>
 
 <template>

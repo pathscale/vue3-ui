@@ -49,12 +49,21 @@ describe("Timeline", () => {
     const items = wrapper.findAll("li");
     expect(items).length(4);
 
-    // check stage first stage
+    // check first stage
     expect(items[0].classes()).length(1);
     expect(items[0].classes()).contains("has-text-grey");
     expect(items[0].find("h1").text()).toBe("Create Account");
     expect(items[0].find("p").text()).toBe(
       "Start by creating your personal account to access all features.",
+    );
+
+    // check second stage
+    expect(items[1].classes()).length(2);
+    expect(items[1].classes()).contains("has-text-grey");
+    expect(items[1].classes()).contains("has-text-danger");
+    expect(items[1].find("h1").text()).toBe("Complete profile");
+    expect(items[1].find("p").text()).toBe(
+      "Fill out your profile with relevant information to attract employers.",
     );
   });
 });

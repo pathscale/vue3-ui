@@ -33,7 +33,6 @@ const props = withDefaults(
   },
 );
 
-<<<<<<< HEAD
 const progress = useTemplateRef("progress");
 
 const beyondHalf = computed(() => props.value >= 50);
@@ -57,58 +56,6 @@ const formattedValue = computed(() => {
   // 'raw' format
   return formatToFixed(props.value, props.precision, props.keepTrailingZeroes);
 });
-=======
-// export default {
-//   setup(props, { slot }) {
-//     const progress = ref(null);
-//
-//     const toFixed = (num) => {
-//       let fixed = Number(
-//         `${Math.round(Number(`${num}e${props.precision}`))}e${-props.precision}`,
-//       ).toFixed(props.precision);
-//       if (!props.keepTrailingZeroes) {
-//         fixed = fixed.replace(/\.?0+$/, "");
-//       }
-//       return fixed;
-//     };
-//
-//     watchEffect(() =>
-//       nextTick(() => {
-//         if (isIndeterminate.value) {
-//           progress.value.removeAttribute("value");
-//         } else {
-//           progress.value.setAttribute("value", props.value);
-//         }
-//       }),
-//     );
-//
-//     const isIndeterminate = computed(() => {
-//       return props.value === undefined || props.value === null;
-//     });
-//
-//     const beyondHalf = computed(() => props.value >= 50);
-//
-//     const newValue = computed(() => {
-//       if (
-//         props.value === undefined ||
-//         props.value === null ||
-//         Number.isNaN(props.value)
-//       ) {
-//         return undefined;
-//       }
-//
-//       if (props.format === "percent") {
-//         const val = toFixed((props.value * 100) / props.max);
-//         return `${val}%`;
-//       }
-//       const val = toFixed(props.value);
-//       return val;
-//     });
-//
-//     return { beyondHalf, newValue, progress };
-//   },
-// };
->>>>>>> 0b61e1f (refactor(primitives): modern vue sfc style)
 </script>
 
 <template>

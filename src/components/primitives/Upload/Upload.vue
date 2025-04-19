@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import { computed, ref, useSlots, watchEffect } from "vue";
+import { computed, useSlots } from "vue";
 
 defineOptions({
   inheritAttrs: false,
 });
 
 const props = defineProps<{
-  modelValue?: File | File[];
   multiple?: boolean;
   disabled?: boolean;
   accept?: string;
@@ -30,17 +29,7 @@ const props = defineProps<{
   boxed?: boolean;
 }>();
 
-const emit = defineEmits(["update:modelValue"]);
-
-const value = ref(props.modelValue);
-
-watchEffect(() => {
-  value.value = props.modelValue;
-});
-
-watchEffect(() => {
-  emit("update:modelValue", value.value);
-});
+const value = defineModel<File | File[]>();
 
 function onChange(e) {
   const { files } = e.target;

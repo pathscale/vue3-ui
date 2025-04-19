@@ -11,20 +11,18 @@ withDefaults(
     max?: number;
     showValue?: boolean;
     format?: "raw" | "percent";
+    precision?: number;
   }>(),
   {
     type: "is-darkgrey",
     max: 100,
     format: "raw",
+    precision: 2,
   },
 );
 
 // export default {
 //   props: {
-//     precision: {
-//       type: Number,
-//       default: 2,
-//     },
 //     keepTrailingZeroes: Boolean,
 //   },
 //   setup(props, { slot }) {

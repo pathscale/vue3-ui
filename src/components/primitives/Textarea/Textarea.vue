@@ -7,11 +7,22 @@ defineOptions({
 
 const props = defineProps<{
   modelValue?: string;
-  color?: string;
+  color?:
+    | "is-white"
+    | "is-light"
+    | "is-dark"
+    | "is-black"
+    | "is-text"
+    | "is-primary"
+    | "is-link"
+    | "is-info"
+    | "is-success"
+    | "is-warning"
+    | "is-danger";
   hasCounter?: boolean;
   loading?: boolean;
-  maxlength?: string; // todo | number
-  size?: string; // todo union
+  maxlength?: number | string;
+  size?: "is-small" | "is-normal" | "is-medium" | "is-large";
   hovered?: boolean;
   focused?: boolean;
 }>();

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, watchEffect } from "vue";
+import { computed, ref, useTemplateRef, watchEffect } from "vue";
 
 const props = withDefaults(
   defineProps<{
@@ -23,7 +23,7 @@ const props = withDefaults(
 
 const emit = defineEmits(["update:modelValue"]);
 
-const input = ref(null);
+const input = useTemplateRef<HTMLInputElement>("input");
 // Non-standard attribute
 // https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/range#orient
 const orient = computed(() => (props.vertical ? "vertical" : "horizontal"));

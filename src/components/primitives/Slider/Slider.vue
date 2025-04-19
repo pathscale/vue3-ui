@@ -24,6 +24,8 @@ const props = withDefaults(
 const emit = defineEmits(["update:modelValue"]);
 
 const input = ref(null);
+// Non-standard attribute
+// https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/range#orient
 const orient = computed(() => (props.vertical ? "vertical" : "horizontal"));
 const position = ref(0);
 

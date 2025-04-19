@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, nextTick, ref, watchEffect } from "vue";
+import { computed, nextTick, useTemplateRef, watchEffect } from "vue";
 
 type ClassValue = string | string[] | Record<string, boolean>;
 
@@ -7,7 +7,7 @@ const props = withDefaults(
   defineProps<{
     type?: ClassValue;
     size?: "is-small" | "is-medium" | "is-large";
-    value?: number;
+    value?: number | null | undefined;
     max?: number;
     showValue?: boolean;
     format?: "raw" | "percent";
@@ -22,7 +22,7 @@ const props = withDefaults(
   },
 );
 
-const progress = ref(null);
+const progress = useTemplateRef("progress");
 
 const toFixed = (num) => {
   let fixed = Number(

@@ -10,6 +10,8 @@ type Primitive = string | number | boolean | object;
 withDefaults(
   defineProps<{
     modelValue?: Primitive | Array<Primitive> | null;
+    placeholder?: string;
+    multiple?: boolean;
   }>(),
   {
     modelValue: null,
@@ -18,8 +20,6 @@ withDefaults(
 
 // export default {
 //   props: {
-//     placeholder: String,
-//     multiple: Boolean,
 //     nativeSize: {
 //       type: [String, Number],
 //       default: null,

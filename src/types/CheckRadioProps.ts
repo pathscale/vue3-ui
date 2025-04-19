@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /**
  * @see https://vue3.dev/documentation/checkbox#api
  */
@@ -20,4 +21,14 @@ export interface CheckRadioProps {
   required?: boolean;
   name?: string;
   size?: "is-small" | "is-medium" | "is-large";
+=======
+export interface CheckRadioProps {
+  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+  nativeValue?: any;
+  type?: string;
+  disabled?: boolean;
+  required?: boolean;
+  name?: string;
+  size?: string;
+>>>>>>> 657b559 (refactor: move CheckRadioProps.ts)
 }

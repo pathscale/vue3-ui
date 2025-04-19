@@ -1,8 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Tag render correctly 1`] = `
-<div class=""><span class="tag"><span class=""></span>
-  <!--v-if--></span>
-  <!--v-if-->
-</div>
-`;

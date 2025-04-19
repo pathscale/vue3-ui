@@ -1,3 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Tooltip render correctly 1`] = `<span class="is-primary is-top is-medium v-tooltip" style="transition-delay: 0ms;"></span>`;

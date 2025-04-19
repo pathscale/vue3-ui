@@ -3,11 +3,7 @@
   "version": "1.0.15",
   "description": "Very clean Vue3 components styled with love and care.",
   "type": "module",
-  "keywords": [
-    "vue",
-    "vue3",
-    "ui"
-  ],
+  "keywords": ["vue", "vue3", "ui"],
   "homepage": "https://github.com/pathscale/vue3-ui#readme",
   "bugs": {
     "url": "https://github.com/pathscale/vue3-ui/issues"
@@ -30,10 +26,12 @@
     "postbuild": "shx cp helper/mappings.json helper/classes.json dist",
     "prepublishOnly": "bun run build",
     "release": "bun run build && np --yolo",
-    "test:unit": "bun test",
-    "test:watch": "bun test --watch",
     "lint": "biome lint --write .",
-    "lint:fix": "biome check --write ."
+    "lint:fix": "biome check --write .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:ui": "vitest --ui"
   },
   "browserslist": [
     "last 2 versions",
@@ -42,10 +40,7 @@
     "not OperaMini all"
   ],
   "lint-staged": {
-    "*.{js,ts,vue}": [
-      "biome check --write",
-      "biome lint --write"
-    ]
+    "*.{js,ts,vue,spec.ts}": ["biome check --write"]
   },
   "devDependencies": {
     "@babel/core": "^7.26.10",
@@ -59,15 +54,13 @@
     "@rollup/plugin-node-resolve": "^16.0.1",
     "@rollup/plugin-replace": "^6.0.2",
     "@rollup/plugin-sucrase": "^5.0.2",
-    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/vue": "^8.1.0",
     "@types/babel__traverse": "7.20.7",
     "@types/fs-extra": "11.0.4",
     "@types/node": "22.14.1",
     "@types/resolve": "1.20.6",
     "@vitejs/plugin-vue": "^5.2.3",
-    "@vue/cli-plugin-babel": "^5.0.8",
-    "@vue/cli-plugin-unit-jest": "^5.0.8",
-    "@vue/cli-service": "^5.0.8",
+    "@vitest/coverage-v8": "^3.1.1",
     "@vue/compiler-sfc": "3.5.13",
     "@vue/test-utils": "^2.4.6",
     "autoprefixer": "^10.4.21",
@@ -75,6 +68,7 @@
     "fs-extra": "11.3.0",
     "htmlparser2": "10.0.0",
     "husky": "^9.1.7",
+    "jsdom": "^26.1.0",
     "lint-staged": "^15.5.1",
     "np": "^10.2.0",
     "postcss": "^8.5.3",
@@ -85,6 +79,7 @@
     "rollup-plugin-styles": "^4.0.0",
     "shx": "0.4.0",
     "typescript": "^5.8.3",
+    "vitest": "^3.1.1",
     "vue": "^3.5.13"
   },
   "engines": {

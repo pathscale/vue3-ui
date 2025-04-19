@@ -2,9 +2,10 @@
   "compilerOptions": {
     /* Basic Options */
     "target": "es6",
-    "module": "commonjs",
+    "module": "esnext",
+    "lib": ["esnext", "dom"],
     /* Compile Options */
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "esModuleInterop": true,
     /* Strict Type-Checking Options */
     "strict": true,
@@ -14,11 +15,18 @@
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
+    /* Type Declarations */
+    "types": ["vitest/globals", "vue"],
     /* Paths */
     "baseUrl": "./",
     "paths": {
       "@/*": ["src/*"]
     }
   },
-  "include": ["**/*.ts", "**/*.vue"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.vue",
+    "vitest.config.ts"
+  ]
 }

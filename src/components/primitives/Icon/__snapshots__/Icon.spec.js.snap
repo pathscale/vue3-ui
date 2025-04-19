@@ -1,3 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Icon render correctly 1`] = `<span class="icon"><svg height="100%" width="100%" class=""><use href="/undefined.svg?v=1.0.0#undefined"></use></svg></span>`;

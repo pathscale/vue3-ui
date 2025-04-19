@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Media render correctly 1`] = `
-<article class="media">
-  <div class="media-left"></div>
-  <div class="media-content"></div>
-  <div class="media-right"></div>
-</article>
-`;

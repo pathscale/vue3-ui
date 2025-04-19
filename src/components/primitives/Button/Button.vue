@@ -1,39 +1,35 @@
-<script>
-import { computed } from "vue";
+<script setup lang="ts">
+import { computed, useAttrs } from "vue";
 
-export default {
-  name: "VButton",
-  props: {
-    type: {
-      type: String,
-      default: "is-primary",
-    },
-    size: String,
-    label: String,
-    rounded: Boolean,
-    loading: Boolean,
-    outlined: Boolean,
-    expanded: Boolean,
-    inverted: Boolean,
-    focused: Boolean,
-    active: Boolean,
-    hovered: Boolean,
-    selected: Boolean,
-    nativeType: {
-      type: String,
-      default: "button",
-    },
-    tag: {
-      type: String,
-      default: "button",
-    },
-    light: Boolean,
+const props = withDefaults(
+  defineProps<{
+    type?: string;
+    size?: string;
+    label?: string;
+    rounded?: boolean;
+    loading?: boolean;
+    outlined?: boolean;
+    expanded?: boolean;
+    inverted?: boolean;
+    focused?: boolean;
+    active?: boolean;
+    hovered?: boolean;
+    selected?: boolean;
+    // https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/button#type
+    nativeType?: "button" | "submit" | "reset";
+    tag?: string;
+    light?: boolean;
+  }>(),
+  {
+    type: "is-primary",
+    nativeType: "button",
+    tag: "button",
   },
-  setup(props, { attrs }) {
-    const computedTag = computed(() => (attrs.disabled ? "button" : props.tag));
-    return { computedTag };
-  },
-};
+);
+
+const attrs = useAttrs();
+
+const computedTag = computed(() => (attrs.disabled ? "button" : props.tag));
 </script>
 
 <template>

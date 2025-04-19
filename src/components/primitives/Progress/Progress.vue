@@ -7,20 +7,18 @@ withDefaults(
   defineProps<{
     type?: ClassValue;
     size?: "is-small" | "is-medium" | "is-large";
+    value?: number;
+    max?: number;
+    showValue?: boolean;
   }>(),
   {
     type: "is-darkgrey",
+    max: 100,
   },
 );
 
 // export default {
 //   props: {
-//     value: Number,
-//     max: {
-//       type: Number,
-//       default: 100,
-//     },
-//     showValue: Boolean,
 //     format: {
 //       type: String,
 //       default: "raw",

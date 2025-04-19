@@ -1,10 +1,16 @@
-<script>
-export default {
-  name: "Timeline",
-  props: {
-    stages: { type: Object, required: true },
-  },
+<script setup lang="ts">
+type TimelineStage = {
+  active?: boolean;
+  error?: boolean;
+  /** Stage custom props */
+  // biome-ignore lint/suspicious/noExplicitAny: allows custom stage fields
+  [key: string]: any;
 };
+
+defineProps<{
+  /** List of stages */
+  stages: Array<TimelineStage>; // required
+}>();
 </script>
 
 <template>

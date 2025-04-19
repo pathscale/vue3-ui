@@ -1,53 +1,44 @@
-<script>
+<script setup lang="ts">
 import { computed, ref, watchEffect } from "vue";
 
-export default {
-  name: "VSwitch",
-  props: {
-    modelValue: {
-      type: [String, Number, Boolean, Function, Object, Array, Date],
-    },
-    nativeValue: {
-      type: [String, Number, Boolean, Function, Object, Array, Date],
-    },
-    disabled: {
-      type: Boolean,
-      default: null,
-    },
-    type: String,
-    passiveType: String,
-    name: String,
-    required: Boolean,
-    size: String,
-    trueValue: {
-      type: [String, Number, Boolean, Function, Object, Array, Date],
-      default: true,
-    },
-    falseValue: {
-      type: [String, Number, Boolean, Function, Object, Array, Date],
-      default: false,
-    },
-    rounded: {
-      type: Boolean,
-      default: true,
-    },
-    outlined: Boolean,
+const props = withDefaults(
+  defineProps<{
+    // biome-ignore lint/suspicious/noExplicitAny: allow any type according to docs
+    modelValue?: any;
+    // biome-ignore lint/suspicious/noExplicitAny: allow any type according to docs
+    nativeValue?: any;
+    disabled?: boolean;
+    type?: string; // todo union
+    passiveType?: string; // todo union
+    name?: string;
+    required?: boolean;
+    size?: "is-small" | "is-medium" | "is-large";
+    // biome-ignore lint/suspicious/noExplicitAny: allow any type according to docs
+    trueValue?: any;
+    // biome-ignore lint/suspicious/noExplicitAny: allow any type according to docs
+    falseValue?: any;
+    rounded?: boolean;
+    outlined?: boolean;
+  }>(),
+  {
+    trueValue: true,
+    falseValue: false,
+    rounded: true,
   },
-  emits: ["update:modelValue"],
-  setup(props, { emit }) {
-    const value = ref(props.modelValue);
-    const passiveClass = computed(
-      () => props.passiveType && `${props.passiveType}-passive`,
-    );
-    watchEffect(() => {
-      value.value = props.modelValue;
-    });
-    watchEffect(() => {
-      emit("update:modelValue", value.value);
-    });
-    return { value, passiveClass };
-  },
-};
+);
+
+const emit = defineEmits(["update:modelValue"]);
+
+const value = ref(props.modelValue);
+const passiveClass = computed(
+  () => props.passiveType && `${props.passiveType}-passive`,
+);
+watchEffect(() => {
+  value.value = props.modelValue;
+});
+watchEffect(() => {
+  emit("update:modelValue", value.value);
+});
 </script>
 
 <template>

@@ -15,7 +15,7 @@ const props = withDefaults(
       | "is-success"
       | "is-warning"
       | "is-danger";
-    size?: string;
+    size?: "is-small" | "is-normal" | "is-medium" | "is-large";
     label?: string;
     rounded?: boolean;
     loading?: boolean;

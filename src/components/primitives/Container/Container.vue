@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { checkBenchieSupport } from "@/utils/functions";
 // todo add docs to https://vue3.dev/documentation
+import { checkBenchieSupport } from "@/utils/functions";
 import { computed, onBeforeMount, ref } from "vue";
 
 const hasBenchieSupport = checkBenchieSupport();

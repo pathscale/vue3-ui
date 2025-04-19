@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { CheckRadioProps } from "@/mixins/CheckRadioProps";
-import { ref, useTemplateRef, watchEffect } from "vue";
+import { useTemplateRef } from "vue";
 
 interface IProps extends CheckRadioProps {
   indeterminate?: boolean;
@@ -19,19 +19,11 @@ const emit = defineEmits(["update:modelValue"]);
 
 const label = useTemplateRef<HTMLLabelElement>("label");
 const input = useTemplateRef<HTMLInputElement>("input");
-const value = ref(props.modelValue);
+const value = defineModel();
 
 const focus = () => {
   input.value?.focus();
 };
-
-watchEffect(() => {
-  emit("update:modelValue", value.value);
-});
-
-watchEffect(() => {
-  value.value = props.modelValue;
-});
 </script>
 
 <template>

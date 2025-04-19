@@ -1,40 +1,33 @@
-<script>
-import { computed, ref, watchEffect } from "vue";
+<script setup lang="ts">
+import { computed } from "vue";
 
-export default {
-  name: "VSelect",
+defineOptions({
   inheritAttrs: false,
-  props: {
-    modelValue: {
-      type: [String, Number, Boolean, Object, Array, Function],
-      default: null,
-    },
-    placeholder: String,
-    multiple: Boolean,
-    nativeSize: {
-      type: [String, Number],
-      default: null,
-    },
-    size: String,
-    expanded: Boolean,
-    loading: Boolean,
-    rounded: Boolean,
-    color: String,
+});
+
+const props = withDefaults(
+  defineProps<{
+    placeholder?: string;
+    multiple?: boolean;
+    nativeSize?: string | number;
+    size?: "is-small" | "is-normal" | "is-medium" | "is-large";
+    expanded?: boolean;
+    loading?: boolean;
+    rounded?: boolean;
+    color?: string;
+  }>(),
+  {
+    nativeSize: null, // TODO: Update docs — documented default for `nativeSize` is 4, but actual default here is null
   },
-  emits: ["update:modelValue", "blur", "focus"],
-  setup(props, { emit }) {
-    const value = ref(props.modelValue);
-    const valueIsNullish = computed(() => value.value === null);
-    const empty = computed(() => props.selected === null);
-    watchEffect(() => {
-      emit("update:modelValue", value.value);
-    });
-    watchEffect(() => {
-      value.value = props.modelValue;
-    });
-    return { value, valueIsNullish, empty };
-  },
-};
+);
+
+const emit = defineEmits(["update:modelValue", "blur", "focus"]);
+
+const value = defineModel({ default: null });
+
+const valueIsNullish = computed(() => value.value === null);
+
+const empty = computed(() => value.value === null);
 </script>
 
 <template>
@@ -46,8 +39,9 @@ export default {
       'is-loading': loading,
       'is-multiple': multiple,
       'is-rounded': rounded,
-      'is-empty': empty
+      'is-empty': empty,
     }]">
+      <!--suppress TypeScriptValidateTypes -->
       <select
         v-model="value"
         ref="select"

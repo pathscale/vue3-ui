@@ -1,91 +1,77 @@
-<script>
+<script setup lang="ts">
+// todo add docs about this component to https://vue3.dev/documentation
+
 import { computed, reactive, watchEffect } from "vue";
 
-export default {
-  name: "VSidebar",
-  props: {
-    open: {
-      type: Boolean,
-      required: true,
-    },
-    type: [String, Object],
-    overlay: Boolean,
-    position: {
-      type: String,
-      default: "fixed",
-    },
-    fullheight: Boolean,
-    fullwidth: Boolean,
-    right: Boolean,
-    mobile: String,
-    reduce: Boolean,
-    expandOnHover: Boolean,
-    expandOnHoverFixed: Boolean,
-    width: {
-      type: [Number, String],
-      default: 260,
-    },
-    miniWidth: {
-      type: [Number, String],
-      default: 80,
-    },
+const props = withDefaults(
+  defineProps<{
+    open?: boolean;
+    type?: string | object;
+    overlay?: boolean;
+    position?: "static" | "fixed" | "absolute";
+    fullheight?: boolean;
+    fullwidth?: boolean;
+    right?: boolean;
+    mobile?: "reduce" | "hide" | "fullwidth";
+    reduce?: boolean;
+    expandOnHover?: boolean;
+    expandOnHoverFixed?: boolean;
+    width?: number | string;
+    miniWidth?: number | string;
+  }>(),
+  {
+    open: true,
+    position: "fixed",
+    width: 260,
+    miniWidth: 80,
   },
-  emits: ["close", "update:open"],
-  setup(props, { emit }) {
-    const state = reactive({
-      transitionName: null,
-      animating: true,
-    });
+);
 
-    const isMiniExpandFixed = computed(
-      () => props.expandOnHover && props.expandOnHoverFixed,
-    );
-    const isMiniMobile = computed(() => props.mobile === "reduce");
-    const isHiddenMobile = computed(() => props.mobile === "hide");
-    const isFullwidthMobile = computed(() => props.mobile === "fullwidth");
+const emit = defineEmits(["close", "update:open"]);
 
-    const rootStyles = computed(() => {
-      return `width: ${props.reduce ? props.miniWidth : props.width}px`;
-    });
+type State = {
+  transitionName: "slide-right" | "slide-left" | null;
+  animating: boolean;
+};
 
-    const isStatic = computed(() => {
-      return props.position === "static";
-    });
+const state = reactive<State>({
+  transitionName: null,
+  animating: true,
+});
 
-    const isFixed = computed(() => {
-      return props.position === "fixed";
-    });
-    const isAbsolute = computed(() => {
-      return props.position === "absolute";
-    });
-    const overlayAndOpen = computed(() => {
-      return props.overlay && props.open;
-    });
+const isMiniExpandFixed = computed(
+  () => props.expandOnHover && props.expandOnHoverFixed,
+);
+const isMiniMobile = computed(() => props.mobile === "reduce");
+const isHiddenMobile = computed(() => props.mobile === "hide");
+const isFullwidthMobile = computed(() => props.mobile === "fullwidth");
 
-    watchEffect(() => {
-      const open = props.right ? !props.open : props.open;
-      state.transitionName = open ? "slide-right" : "slide-left";
-    });
+const rootStyles = computed(() => {
+  return `width: ${props.reduce ? props.miniWidth : props.width}px`;
+});
 
-    const onClose = () => {
-      emit("update:open", false);
-      emit("close");
-    };
+const isStatic = computed(() => {
+  return props.position === "static";
+});
 
-    return {
-      state,
-      rootStyles,
-      overlayAndOpen,
-      isMiniExpandFixed,
-      isMiniMobile,
-      isHiddenMobile,
-      isFullwidthMobile,
-      isStatic,
-      isFixed,
-      isAbsolute,
-      onClose,
-    };
-  },
+const isFixed = computed(() => {
+  return props.position === "fixed";
+});
+const isAbsolute = computed(() => {
+  return props.position === "absolute";
+});
+const overlayAndOpen = computed(() => {
+  return props.overlay && props.open;
+});
+
+watchEffect(() => {
+  const open = props.right ? !props.open : props.open;
+  state.transitionName = open ? "slide-right" : "slide-left";
+});
+
+const onClose = () => {
+  emit("update:open", false);
+  emit("close");
 };
 </script>
 

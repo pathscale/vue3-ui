@@ -1,10 +1,20 @@
-<script>
-export default {
-  name: "Timeline",
-  props: {
-    stages: { type: Object, required: true },
-  },
+<script setup lang="ts" generic="T extends TimelineStage">
+type TimelineStage = {
+  active?: boolean;
+  error?: boolean;
+  /** Stage custom props */
+  // biome-ignore lint/suspicious/noExplicitAny: allows custom stage fields
+  [key: string]: any;
 };
+
+defineProps<{
+  /** List of stages */
+  /*
+    todo remove default [] from docs, because it required
+     https://vue3.dev/documentation/timeline
+   */
+  stages: Array<T>; // required
+}>();
 </script>
 
 <template>

@@ -95,8 +95,7 @@ describe("Slider", () => {
     await wrapper.find("input").setValue(45);
     const emitted = wrapper.emitted("update:modelValue");
     expect(emitted).toBeTruthy();
-    expect(emitted?.[0]).toEqual([30]);
-    expect(emitted?.[1]).toEqual(["45"]);
+    expect(emitted?.[0]).toEqual(["45"]);
   });
 
   it("updates value when modelValue prop changes", async () => {

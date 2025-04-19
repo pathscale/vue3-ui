@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { checkBenchieSupport } from "@/utils/functions";
-import { defineProps, onBeforeMount, ref } from "vue";
+import { onBeforeMount, ref } from "vue";
 
 const hasBenchieSupport = checkBenchieSupport();
 

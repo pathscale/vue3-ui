@@ -1,48 +1,45 @@
-<script>
+<script setup lang="ts">
 import { computed } from "vue";
 
-export default {
-  name: "VTooltip",
-  props: {
-    active: {
-      type: Boolean,
-      default: true,
-    },
-    type: {
-      type: String,
-      default: "is-primary",
-    },
-    label: {
-      type: String,
-      required: true,
-    },
-    position: {
-      type: String,
-      default: "is-top",
-    },
-    always: Boolean,
-    animated: Boolean,
-    square: Boolean,
-    dashed: Boolean,
-    multilined: Boolean,
-    size: {
-      type: String,
-      default: "is-medium",
-    },
-    delay: {
-      type: Number,
-      default: 0,
-    },
+const props = withDefaults(
+  defineProps<{
+    active?: boolean;
+    type?:
+      | "is-white"
+      | "is-light"
+      | "is-dark"
+      | "is-black"
+      | "is-text"
+      | "is-primary"
+      | "is-link"
+      | "is-info"
+      | "is-success"
+      | "is-warning"
+      | "is-danger";
+    label: string; // required
+    position?: "is-top" | "is-bottom" | "is-left" | "is-right";
+    always?: boolean;
+    animated?: boolean;
+    square?: boolean;
+    dashed?: boolean;
+    multilined?: boolean;
+    size?: "is-small" | "is-medium" | "is-large";
+    delay?: number;
+  }>(),
+  {
+    active: true,
+    type: "is-primary",
+    position: "is-top",
+    size: "is-medium",
+    delay: 0,
   },
-  setup(props) {
-    const transition = computed(() => {
-      return {
-        "transition-delay": `${props.delay}ms`,
-      };
-    });
-    return { transition };
-  },
-};
+);
+
+const rootStyles = computed(() => {
+  return {
+    "transition-delay": `${props.delay}ms`,
+  };
+});
 </script>
 
 <template>
@@ -61,7 +58,7 @@ export default {
         'is-dashed': dashed
       }
     ]"
-    :style="transition">
+    :style="rootStyles">
     <slot />
   </span>
 </template>

@@ -20,8 +20,8 @@ describe("Textarea", () => {
     await wrapper.find("textarea").setValue("New text");
     const emitted = wrapper.emitted("update:modelValue");
     expect(emitted).toBeTruthy();
-    expect(emitted?.[0]).toEqual(["Initial text"]);
-    expect(emitted?.[1]).toEqual(["New text"]);
+    expect(emitted).toHaveLength(1);
+    expect(emitted?.[0]).toEqual(["New text"]);
   });
 
   it("applies style props correctly", () => {

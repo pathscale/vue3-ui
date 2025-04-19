@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, defineModel, ref, useAttrs, useSlots } from "vue";
+import { computed, ref, useAttrs, useSlots } from "vue";
 import EyeIcon from "./EyeIcon.vue";
 
 const props = defineProps<{

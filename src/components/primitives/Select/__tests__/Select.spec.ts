@@ -39,6 +39,7 @@ describe("Select", () => {
         expanded: true,
         loading: true,
         multiple: true,
+        modelValue: [],
         rounded: true,
         color: "is-primary",
       } as const,

@@ -1,32 +1,14 @@
 <script setup lang="ts">
 // todo add docs about this component to https://vue3.dev/documentation
 
-import { onMounted, ref, watchEffect } from "vue";
+const props = defineProps<{
+  card?: boolean;
+}>();
 
-const props = withDefaults(
-  defineProps<{
-    modelValue?: boolean;
-    card?: boolean;
-  }>(),
-  {
-    modelValue: true,
-  },
-);
-
-const emit = defineEmits(["update:modelValue"]);
-
-const active = ref(props.modelValue);
-
-onMounted(() => {
-  emit("update:modelValue", active);
-});
-
-watchEffect(() => {
-  active.value = props.modelValue;
-});
+const active = defineModel({ default: true });
 
 const close = () => {
-  emit("update:modelValue", false);
+  active.value = false;
 };
 </script>
 

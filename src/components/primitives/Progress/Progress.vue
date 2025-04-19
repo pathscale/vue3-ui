@@ -6,7 +6,19 @@ type ClassValue = string | string[] | Record<string, boolean>;
 
 const props = withDefaults(
   defineProps<{
-    type?: ClassValue;
+    type?:
+      | "is-white"
+      | "is-light"
+      | "is-dark"
+      | "is-black"
+      | "is-text"
+      | "is-primary"
+      | "is-link"
+      | "is-info"
+      | "is-success"
+      | "is-warning"
+      | "is-danger"
+      | "is-darkgrey";
     size?: "is-small" | "is-medium" | "is-large";
     value?: number | null | undefined;
     max?: number;

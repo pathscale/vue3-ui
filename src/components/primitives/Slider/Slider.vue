@@ -24,9 +24,13 @@ const props = withDefaults(
 const emit = defineEmits(["update:modelValue"]);
 
 const input = useTemplateRef<HTMLInputElement>("input");
-// Non-standard attribute
-// https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/range#orient
+
+/**
+ * Non-standard attribute
+ * https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/range#orient
+ */
 const orient = computed(() => (props.vertical ? "vertical" : "horizontal"));
+
 const position = ref(0);
 
 const value = ref(props.modelValue);

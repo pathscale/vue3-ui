@@ -50,33 +50,36 @@ describe("Timeline", () => {
     expect(items).length(4);
 
     // check first stage
-    expect(items[0].classes()).length(1);
-    expect(items[0].classes()).contains("has-text-grey");
+    expect(items[0].classes()).toEqual(
+      expect.arrayContaining(["has-text-grey"]),
+    );
     expect(items[0].find("h1").text()).toBe("Create Account");
     expect(items[0].find("p").text()).toBe(
       "Start by creating your personal account to access all features.",
     );
 
     // check second stage
-    expect(items[1].classes()).length(2);
-    expect(items[1].classes()).contains("has-text-grey");
-    expect(items[1].classes()).contains("has-text-danger");
+    expect(items[1].classes()).toEqual(
+      expect.arrayContaining(["has-text-grey", "has-text-danger"]),
+    );
     expect(items[1].find("h1").text()).toBe("Complete profile");
     expect(items[1].find("p").text()).toBe(
       "Fill out your profile with relevant information to attract employers.",
     );
 
     // check third stage
-    expect(items[2].classes()).length(2);
-    expect(items[2].classes()).contains("has-text-success");
-    expect(items[2].classes()).contains("is-active");
+    expect(items[2].classes()).toEqual(
+      expect.arrayContaining(["has-text-success", "is-active"]),
+    );
     expect(items[2].find("h1").text()).toBe("Apply to jobs");
     expect(items[2].find("p").text()).toBe(
       "Browse listings and submit applications to jobs that match your skills.",
     );
 
     // check fourth stage
-    expect(items[3].classes()).length(1);
+    expect(items[3].classes()).toEqual(
+      expect.arrayContaining(["has-text-grey"]),
+    );
     expect(items[3].classes()).contains("has-text-grey");
     expect(items[3].find("h1").text()).toBe("Go on a drinking binge");
     expect(items[3].find("p").text()).toBe(

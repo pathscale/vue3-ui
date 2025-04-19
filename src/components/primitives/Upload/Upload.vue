@@ -27,6 +27,7 @@ const props = defineProps<{
   right?: boolean;
   expanded?: boolean;
   boxed?: boolean;
+  name?: string;
 }>();
 
 const value = defineModel<File | File[]>();
@@ -76,7 +77,7 @@ const hasName = computed(() => Boolean(slots.name));
       <input
         class="file-input"
         type="file"
-        name="resume"
+        :name="name"
         v-bind="$attrs"
         :multiple="multiple"
         :accept="accept"

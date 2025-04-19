@@ -1,3 +1,6 @@
+/**
+ * @deprecated use CheckRadioProps.ts
+ */
 const CheckRadioMixin = {
   props: {
     modelValue: {

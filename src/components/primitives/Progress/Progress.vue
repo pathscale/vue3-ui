@@ -2,8 +2,6 @@
 import { formatToFixed } from "@/utils/functions";
 import { computed, nextTick, useTemplateRef, watchEffect } from "vue";
 
-type ClassValue = string | string[] | Record<string, boolean>;
-
 const props = withDefaults(
   defineProps<{
     type?:

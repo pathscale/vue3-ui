@@ -10,6 +10,18 @@ describe("Container", () => {
     );
   });
 
+  it("render with type class", () => {
+    const wrapper = mount(Container, {
+      props: {
+        type: "type-class-1 type-class-2",
+      },
+    });
+    expect(wrapper.classes()).length(3);
+    expect(wrapper.classes()).toContain("container");
+    expect(wrapper.classes()).toContain("type-class-1");
+    expect(wrapper.classes()).toContain("type-class-2");
+  });
+
   it("render with background image", () => {
     const wrapper = mount(Container, {
       props: {

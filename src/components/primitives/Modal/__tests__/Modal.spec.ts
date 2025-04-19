@@ -11,9 +11,9 @@ describe("Modal", () => {
 
     // click close button
     await wrapper.find(".modal-close").trigger("click");
-    const modelValueEvent = wrapper.emitted("update:modelValue");
-    expect(modelValueEvent).toHaveLength(1);
-    expect(modelValueEvent?.[0]).toEqual([false]);
+    const emitted = wrapper.emitted("update:modelValue");
+    expect(emitted).toHaveLength(1);
+    expect(emitted?.[0]).toEqual([false]);
 
     // 'is-active' class removed
     expect(wrapper.find(".modal").classes()).not.toContain("is-active");

@@ -94,6 +94,3 @@ const hasName = computed(() => Boolean(slots.name));
     </label>
   </div>
 </template>
-
-
-

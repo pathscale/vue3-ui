@@ -51,9 +51,9 @@ const props = withDefaults(
 const emit = defineEmits(["update:modelValue"]);
 
 const value = ref(props.modelValue);
-const passiveClass = computed(
-  () => props.passiveType && `${props.passiveType}-passive`,
-);
+const passiveClass = computed<string | undefined>(() => {
+  return props.passiveType ? `${props.passiveType}-passive` : undefined;
+});
 watchEffect(() => {
   value.value = props.modelValue;
 });

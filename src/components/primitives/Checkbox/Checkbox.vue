@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { CheckRadioProps } from "@/mixins/CheckRadioProps";
+import type { CheckRadioProps } from "@/types/CheckRadioProps";
 import { useTemplateRef } from "vue";
 
 interface IProps extends CheckRadioProps {

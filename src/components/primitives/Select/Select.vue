@@ -13,6 +13,7 @@ withDefaults(
     placeholder?: string;
     multiple?: boolean;
     nativeSize?: string | number;
+    size: "is-small" | "is-normal" | "is-medium" | "is-large";
   }>(),
   {
     modelValue: null,
@@ -22,7 +23,6 @@ withDefaults(
 
 // export default {
 //   props: {
-//     size: String,
 //     expanded: Boolean,
 //     loading: Boolean,
 //     rounded: Boolean,

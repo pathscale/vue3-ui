@@ -15,9 +15,9 @@ defineOptions({
 
 const props = withDefaults(
   defineProps<{
-    size?: "is-small" | "is-normal" | "is-medium" | "is-large";
-    bundle: string; // required
     name: string; // required
+    bundle: string; // required
+    size?: "is-small" | "is-normal" | "is-medium" | "is-large";
     customClass?: string;
     customSize?: string;
     fill?: string;

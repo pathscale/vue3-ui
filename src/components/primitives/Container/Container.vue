@@ -7,7 +7,7 @@ const props = defineProps<{
   bg?: string;
 }>();
 
-const rootClasses = computed(() => {
+const rootStyle = computed(() => {
   return [
     props.bg
       ? {
@@ -24,7 +24,7 @@ const rootClasses = computed(() => {
   <div
     class="container"
     :class="[type]"
-    :style="rootClasses">
+    :style="rootStyle">
     <slot />
   </div>
 </template>

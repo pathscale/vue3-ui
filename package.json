@@ -44,9 +44,8 @@
     "not OperaMini all"
   ],
   "lint-staged": {
-    "*.{js,ts,vue}": [
-      "biome check --write",
-      "biome lint --write"
+    "*.{js,ts,vue,spec.ts}": [
+      "biome check --write"
     ]
   },
   "devDependencies": {

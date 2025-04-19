@@ -31,7 +31,7 @@ const value = ref(props.modelValue);
 
 const valueIsNullish = computed(() => value.value === null);
 
-const empty = computed(() => props.selected === null);
+const empty = computed(() => value.value === null);
 
 watchEffect(() => {
   emit("update:modelValue", value.value);

@@ -29,8 +29,16 @@ describe("Upload", () => {
     expect(emitted).length(1);
 
     // check emitted file
-    expect(emitted?.[0]).toBeTruthy();
     const emittedFile = emitted?.[0][0];
-    expect(emittedFile).instanceOf(File);
+    expect(emittedFile).toBeInstanceOf(File);
+
+    // check name
+    expect((emittedFile as File).name).toBe("hello.txt");
+
+    // check MIME type
+    expect((emittedFile as File).type).toBe("text/plain");
+
+    // check content
+    expect((emittedFile as File).size).toBe(5); // 5 bytes
   });
 });

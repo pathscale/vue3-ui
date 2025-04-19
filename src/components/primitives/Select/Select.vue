@@ -7,7 +7,7 @@ defineOptions({
 
 type Primitive = string | number | boolean | object;
 
-withDefaults(
+const props = withDefaults(
   defineProps<{
     modelValue?: Primitive | Array<Primitive> | null;
     placeholder?: string;
@@ -25,21 +25,21 @@ withDefaults(
   },
 );
 
-// export default {
-//   emits: ["update:modelValue", "blur", "focus"],
-//   setup(props, { emit }) {
-//     const value = ref(props.modelValue);
-//     const valueIsNullish = computed(() => value.value === null);
-//     const empty = computed(() => props.selected === null);
-//     watchEffect(() => {
-//       emit("update:modelValue", value.value);
-//     });
-//     watchEffect(() => {
-//       value.value = props.modelValue;
-//     });
-//     return { value, valueIsNullish, empty };
-//   },
-// };
+const emit = defineEmits(["update:modelValue", "blur", "focus"]);
+
+const value = ref(props.modelValue);
+
+const valueIsNullish = computed(() => value.value === null);
+
+const empty = computed(() => props.selected === null);
+
+watchEffect(() => {
+  emit("update:modelValue", value.value);
+});
+
+watchEffect(() => {
+  value.value = props.modelValue;
+});
 </script>
 
 <template>
@@ -51,7 +51,7 @@ withDefaults(
       'is-loading': loading,
       'is-multiple': multiple,
       'is-rounded': rounded,
-      'is-empty': empty
+      'is-empty': empty,
     }]">
       <select
         v-model="value"

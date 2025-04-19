@@ -13,8 +13,7 @@ describe("Modal", () => {
     await wrapper.find(".modal-close").trigger("click");
     const modelValueEvent = wrapper.emitted("update:modelValue");
     expect(modelValueEvent).toHaveLength(1);
-    // @ts-ignore
-    expect(modelValueEvent[0]).toEqual([false]);
+    expect(modelValueEvent?.[0]).toEqual([false]);
 
     // 'is-active' class removed
     expect(wrapper.find(".modal").classes()).not.toContain("is-active");

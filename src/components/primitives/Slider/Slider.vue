@@ -1,64 +1,50 @@
-<script>
+<script setup lang="ts">
 import { computed, ref, watchEffect } from "vue";
 
-export default {
-  name: "VSlider",
-  props: {
-    min: {
-      type: [Number, String],
-      default: 0,
-    },
-    max: {
-      type: [Number, String],
-      default: 100,
-    },
-    step: {
-      type: [Number, String],
-      default: 1,
-    },
-    type: {
-      type: String,
-    },
-    size: String,
-    tooltip: {
-      type: Boolean,
-    },
-    rounded: {
-      type: Boolean,
-    },
-    disabled: {
-      type: Boolean,
-    },
-    vertical: Boolean,
-    modelValue: [String, Number],
+const props = withDefaults(
+  defineProps<{
+    modelValue?: number | string;
+    min?: number | string;
+    max?: number | string;
+    step?: number | string;
+    type?: "is-info" | "is-success" | "is-warning" | "is-danger";
+    size?: "is-small" | "is-medium" | "is-large";
+    tooltip?: boolean;
+    rounded?: boolean;
+    disabled?: boolean;
+    vertical?: boolean;
+  }>(),
+  {
+    min: 0,
+    max: 100,
+    step: 1,
   },
-  emits: ["update:modelValue"],
-  setup(props, { emit }) {
-    const input = ref(null);
-    const orient = computed(() => (props.vertical ? "vertical" : "horizontal"));
-    const position = ref(0);
+);
 
-    const value = ref(props.modelValue);
+const emit = defineEmits(["update:modelValue"]);
 
-    watchEffect(() => {
-      value.value = props.modelValue;
-    });
+const input = ref(null);
+const orient = computed(() => (props.vertical ? "vertical" : "horizontal"));
+const position = ref(0);
 
-    watchEffect(() => {
-      emit("update:modelValue", value.value);
-    });
+const value = ref(props.modelValue);
 
-    watchEffect(() => {
-      if (input.value) {
-        position.value =
-          ((value.value - props.min) * input.value.clientWidth) /
-            (props.max - props.min) -
-          20;
-      }
-    });
-    return { value, orient, input, position };
-  },
-};
+watchEffect(() => {
+  value.value = props.modelValue;
+});
+
+watchEffect(() => {
+  emit("update:modelValue", value.value);
+});
+
+watchEffect(() => {
+  if (input.value) {
+    position.value =
+      ((value.value - props.min) * input.value.clientWidth) /
+        (props.max - props.min) -
+      20;
+  }
+});
 </script>
 
 <template>

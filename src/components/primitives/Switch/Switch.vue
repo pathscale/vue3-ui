@@ -20,7 +20,17 @@ const props = withDefaults(
       | "is-success"
       | "is-warning"
       | "is-danger";
-    passiveType?: string; // todo union
+    passiveType?:
+      | "is-white"
+      | "is-black"
+      | "is-light"
+      | "is-dark"
+      | "is-primary"
+      | "is-info"
+      | "is-success"
+      | "is-warning"
+      | "is-danger"
+      | string; // and any other colors you've set in the $colors list on Sass
     name?: string;
     required?: boolean;
     size?: "is-small" | "is-medium" | "is-large";

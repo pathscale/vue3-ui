@@ -12,18 +12,16 @@ withDefaults(
     modelValue?: Primitive | Array<Primitive> | null;
     placeholder?: string;
     multiple?: boolean;
+    nativeSize?: string | number;
   }>(),
   {
     modelValue: null,
+    nativeSize: null, // TODO: Update docs — documented default for `nativeSize` is 4, but actual default here is null
   },
 );
 
 // export default {
 //   props: {
-//     nativeSize: {
-//       type: [String, Number],
-//       default: null,
-//     },
 //     size: String,
 //     expanded: Boolean,
 //     loading: Boolean,

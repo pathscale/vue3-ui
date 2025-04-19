@@ -5,6 +5,9 @@
    - Use a separate component (e.g., <v-icons>) for registering the icon sprite,
      since the current approach—using <v-icon> both for sprite declaration and individual usage—
      can be confusing
+   - The `@pathscale/vue3-svg-icons` plugin requires only minimal changes,
+     and it could perform better by avoiding iteration over each individual usage of <v-icon>:
+     https://github.com/pathscale/vue3-svg-icons/blob/2cb1444d11841ad2580d182795ddeabf2dafbe93/src/index.ts#L46C9-L46C61
  */
 
 import { computed } from "vue";

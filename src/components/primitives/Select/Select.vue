@@ -13,7 +13,11 @@ withDefaults(
     placeholder?: string;
     multiple?: boolean;
     nativeSize?: string | number;
-    size: "is-small" | "is-normal" | "is-medium" | "is-large";
+    size?: "is-small" | "is-normal" | "is-medium" | "is-large";
+    expanded?: boolean;
+    loading?: boolean;
+    rounded?: boolean;
+    color?: string;
   }>(),
   {
     modelValue: null,
@@ -22,12 +26,6 @@ withDefaults(
 );
 
 // export default {
-//   props: {
-//     expanded: Boolean,
-//     loading: Boolean,
-//     rounded: Boolean,
-//     color: String,
-//   },
 //   emits: ["update:modelValue", "blur", "focus"],
 //   setup(props, { emit }) {
 //     const value = ref(props.modelValue);

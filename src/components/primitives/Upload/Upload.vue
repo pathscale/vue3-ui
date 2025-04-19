@@ -11,8 +11,19 @@ const props = defineProps<{
   disabled?: boolean;
   accept?: string;
   dragDrop?: boolean;
-  type?: string; // todo union
-  size?: string; // todo union
+  type?:
+    | "is-white"
+    | "is-light"
+    | "is-dark"
+    | "is-black"
+    | "is-text"
+    | "is-primary"
+    | "is-link"
+    | "is-info"
+    | "is-success"
+    | "is-warning"
+    | "is-danger";
+  size?: "is-small" | "is-normal" | "is-medium" | "is-large";
   centered?: boolean;
   right?: boolean;
   expanded?: boolean;

@@ -19,4 +19,21 @@ describe("Modal", () => {
     // 'is-active' class removed
     expect(wrapper.find(".modal").classes()).not.toContain("is-active");
   });
+
+  it("reacts to v-model prop changes", async () => {
+    const wrapper = mount(Modal, {
+      props: {
+        modelValue: false,
+      },
+    });
+
+    // invisible
+    expect(wrapper.find(".modal").classes()).not.toContain("is-active");
+
+    // @ts-ignore
+    await wrapper.setProps({ modelValue: true });
+
+    // visible
+    expect(wrapper.find(".modal").classes()).toContain("is-active");
+  });
 });

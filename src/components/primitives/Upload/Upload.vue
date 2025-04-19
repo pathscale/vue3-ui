@@ -40,6 +40,10 @@ function dragover(e) {
   props.dragDrop && e.preventDefault();
 }
 
+function dragleave(e) {
+  //
+}
+
 function drop(e) {
   if (props.dragDrop) {
     e.preventDefault();

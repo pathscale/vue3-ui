@@ -30,16 +30,23 @@ const props = defineProps<{
 const emit = defineEmits(["update:modelValue"]);
 
 const value = ref(props.modelValue);
+
 const isFocused = ref(false);
+
 const onFocus = () => {
   isFocused.value = true;
 };
+
 const onBlur = () => {
   isFocused.value = false;
 };
+
 const valueLength = computed(() => value.value.length);
+
 const showCounter = computed(() => props.maxlength && props.hasCounter);
+
 watchEffect(() => emit("update:modelValue", value.value));
+
 watchEffect(() => {
   value.value = props.modelValue;
 });

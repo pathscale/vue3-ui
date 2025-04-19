@@ -1,4 +1,8 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-bun commitlint --edit ${1} 
+if [ "$HUSKY" = "0" ]; then
+  exit 0
+fi
+
+bun commitlint --edit ${1}

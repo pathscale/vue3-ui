@@ -1,43 +1,37 @@
-<script>
-/* eslint no-shadow: ["error", { "allow": ["focus"] }] -- prevent warning  'focus' is already declared in the upper scope */
+<script setup lang="ts">
+import type { CheckRadioProps } from "@/mixins/CheckRadioProps";
 import { ref, watchEffect } from "vue";
-import CheckRadioMixin from "../../../mixins/CheckRadio.js";
 
-export default {
-  name: "VCheckbox",
-  props: {
-    ...CheckRadioMixin.props,
-    indeterminate: Boolean,
-    trueValue: {
-      type: [String, Number, Boolean, Function, Object, Array],
-      default: true,
-    },
-    falseValue: {
-      type: [String, Number, Boolean, Function, Object, Array],
-      default: false,
-    },
-  },
-  emits: ["update:modelValue"],
-  setup(props, { emit }) {
-    const label = ref(null);
-    const input = ref(null);
-    const value = ref(props.modelValue);
+interface IProps extends CheckRadioProps {
+  indeterminate?: boolean;
+  // biome-ignore lint/suspicious/noExplicitAny: allow any type according to docs
+  trueValue?: any;
+  // biome-ignore lint/suspicious/noExplicitAny: allow any type according to docs
+  falseValue?: any;
+}
 
-    const focus = () => {
-      input.value.focus();
-    };
+const props = withDefaults(defineProps<IProps>(), {
+  trueValue: true,
+  falseValue: false,
+});
 
-    watchEffect(() => {
-      emit("update:modelValue", value.value);
-    });
+const emit = defineEmits(["update:modelValue"]);
 
-    watchEffect(() => {
-      value.value = props.modelValue;
-    });
+const label = ref(null);
+const input = ref(null);
+const value = ref(props.modelValue);
 
-    return { label, input, value, focus };
-  },
+const focus = () => {
+  input.value.focus();
 };
+
+watchEffect(() => {
+  emit("update:modelValue", value.value);
+});
+
+watchEffect(() => {
+  value.value = props.modelValue;
+});
 </script>
 
 <template>

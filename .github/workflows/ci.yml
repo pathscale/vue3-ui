@@ -25,8 +25,8 @@ jobs:
     - name: Run linting
       run: bun run lint
     
-    # - name: Run tests
-    #   run: bun run test:unit
+    - name: Run tests
+      run: bun run test
     
     - name: Build
       run: bun run build 

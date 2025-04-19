@@ -24,7 +24,24 @@ const props = withDefaults(
 
 const progress = useTemplateRef("progress");
 
-const toFixed = (num) => {
+/**
+ * Formats a number with a specified decimal precision.
+ *
+ * Internally shifts the decimal point to perform rounding with correct precision,
+ * then optionally removes trailing zeroes if `props.keepTrailingZeroes` is `false`.
+ *
+ * @param {number|string} num - The input number to format. Can be a number or a numeric string.
+ * @returns {string} The formatted number as a string.
+ *
+ * @example
+ * // props = { precision: 2, keepTrailingZeroes: true }
+ * toFixed(1.2345) // "1.23"
+ *
+ * // props = { precision: 2, keepTrailingZeroes: false }
+ * toFixed(1.2000) // "1.2"
+ * toFixed(1.0000) // "1"
+ */
+const toFixed = (num: number | string): string => {
   let fixed = Number(
     `${Math.round(Number(`${num}e${props.precision}`))}e${-props.precision}`,
   ).toFixed(props.precision);
@@ -59,12 +76,14 @@ const newValue = computed(() => {
     return undefined;
   }
 
+  // 'percent' format
   if (props.format === "percent") {
     const val = toFixed((props.value * 100) / props.max);
     return `${val}%`;
   }
-  const val = toFixed(props.value);
-  return val;
+
+  // 'raw' format
+  return toFixed(props.value);
 });
 </script>
 

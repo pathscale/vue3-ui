@@ -64,11 +64,8 @@ const newValue = computed(() => {
 
   // 'percent' format
   if (props.format === "percent") {
-    const val = formatToFixed(
-      (props.value * 100) / props.max,
-      props.precision,
-      props.keepTrailingZeroes,
-    );
+    const perc = (props.value * 100) / props.max;
+    const val = formatToFixed(perc, props.precision, props.keepTrailingZeroes);
     return `${val}%`;
   }
 

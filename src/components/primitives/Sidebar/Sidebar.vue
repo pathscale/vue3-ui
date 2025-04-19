@@ -29,7 +29,12 @@ const props = withDefaults(
 
 const emit = defineEmits(["close", "update:open"]);
 
-const state = reactive({
+type State = {
+  transitionName: "slide-right" | "slide-left" | null;
+  animating: boolean;
+};
+
+const state = reactive<State>({
   transitionName: null,
   animating: true,
 });

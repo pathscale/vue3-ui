@@ -13,4 +13,48 @@ describe("Timeline", () => {
     expect(timeline.exists()).toBe(true);
     expect(timeline.html({ raw: true })).toBe('<ol class="timeline"></ol>');
   });
+
+  it("renders stages with active, error and custom props", () => {
+    const wrapper = mount(Timeline, {
+      props: {
+        stages: [
+          {
+            title: "Create Account",
+            desc: "Start by creating your personal account to access all features.",
+          },
+          {
+            title: "Complete profile",
+            desc: "Fill out your profile with relevant information to attract employers.",
+            error: true,
+          },
+          {
+            title: "Apply to jobs",
+            desc: "Browse listings and submit applications to jobs that match your skills.",
+            active: true,
+          },
+          {
+            title: "Go on a drinking binge",
+            desc: "Take a break — you’ve earned it. (Not recommended before interviews.)",
+          },
+        ],
+      },
+      slots: {
+        default: `<template #default="{ stage }">
+                    <h1>{{ stage.title }}</h1>
+                    <p>{{ stage.desc }}</p>
+                  </template>`,
+      },
+    });
+
+    const items = wrapper.findAll("li");
+    expect(items).length(4);
+
+    // check stage first stage
+    expect(items[0].classes()).length(1);
+    expect(items[0].classes()).contains("has-text-grey");
+    expect(items[0].find("h1").text()).toBe("Create Account");
+    expect(items[0].find("p").text()).toBe(
+      "Start by creating your personal account to access all features.",
+    );
+  });
 });

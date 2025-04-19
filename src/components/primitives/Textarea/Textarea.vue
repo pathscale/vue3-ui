@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import { computed, ref, watchEffect } from "vue";
+import { computed, ref } from "vue";
 
 defineOptions({
   inheritAttrs: false,
 });
 
 const props = defineProps<{
-  modelValue?: string;
   color?:
     | "is-white"
     | "is-light"
@@ -27,9 +26,7 @@ const props = defineProps<{
   focused?: boolean;
 }>();
 
-const emit = defineEmits(["update:modelValue"]);
-
-const value = ref(props.modelValue);
+const value = defineModel();
 
 const isFocused = ref(false);
 
@@ -44,12 +41,6 @@ const onBlur = () => {
 const valueLength = computed(() => value.value.length);
 
 const showCounter = computed(() => props.maxlength && props.hasCounter);
-
-watchEffect(() => emit("update:modelValue", value.value));
-
-watchEffect(() => {
-  value.value = props.modelValue;
-});
 </script>
 
 <template>

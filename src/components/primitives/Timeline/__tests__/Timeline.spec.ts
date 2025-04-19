@@ -14,7 +14,7 @@ describe("Timeline", () => {
     expect(timeline.html({ raw: true })).toBe('<ol class="timeline"></ol>');
   });
 
-  it("renders stages with active, error and custom props", () => {
+  it("renders stages with active, error, custom props and slot", () => {
     const wrapper = mount(Timeline, {
       props: {
         stages: [

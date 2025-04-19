@@ -68,7 +68,7 @@ watchEffect(() => {
       v-model="value"
       type="range"
       :disabled="disabled"
-      :orient="orient" />
+      v-bind="{ orient }" />
     <output v-if="tooltip" for="sliderWithValueTooltip" :style="`left: ${position}px`">{{
       value
     }}</output>

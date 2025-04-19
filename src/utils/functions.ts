@@ -10,23 +10,14 @@ export function checkBenchieSupport() {
 }
 
 /**
- * Formats a number with a specified decimal precision.
+ * Formats a number with fixed decimal precision and optional trimming of trailing zeroes.
  *
- * Internally shifts the decimal point to perform rounding with correct precision,
- * then optionally removes trailing zeroes if `props.keepTrailingZeroes` is `false`.
- *
- * @param {number|string} num - The input number to format. Can be a number or a numeric string.
- * @returns {string} The formatted number as a string.
- *
- * @example
- * // props = { precision: 2, keepTrailingZeroes: true }
- * toFixed(1.2345) // "1.23"
- *
- * // props = { precision: 2, keepTrailingZeroes: false }
- * toFixed(1.2000) // "1.2"
- * toFixed(1.0000) // "1"
+ * @param num - The number to format (can be a number or numeric string).
+ * @param precision - Number of digits after the decimal point (default: 2).
+ * @param keepTrailingZeroes - Whether to keep trailing zeroes (default: false).
+ * @returns Formatted number as a string.
  */
-export function toFixed(
+export function formatToFixed(
   num: number | string,
   precision = 2,
   keepTrailingZeroes = false,

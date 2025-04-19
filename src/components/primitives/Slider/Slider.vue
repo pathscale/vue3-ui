@@ -3,7 +3,6 @@ import { computed, ref, useTemplateRef, watchEffect } from "vue";
 
 const props = withDefaults(
   defineProps<{
-    modelValue?: number | string;
     min?: number | string;
     max?: number | string;
     step?: number | string;
@@ -21,7 +20,7 @@ const props = withDefaults(
   },
 );
 
-const emit = defineEmits(["update:modelValue"]);
+const value = defineModel<number | string>();
 
 const input = useTemplateRef<HTMLInputElement>("input");
 
@@ -32,16 +31,6 @@ const input = useTemplateRef<HTMLInputElement>("input");
 const orient = computed(() => (props.vertical ? "vertical" : "horizontal"));
 
 const position = ref(0);
-
-const value = ref(props.modelValue);
-
-watchEffect(() => {
-  value.value = props.modelValue;
-});
-
-watchEffect(() => {
-  emit("update:modelValue", value.value);
-});
 
 watchEffect(() => {
   if (input.value) {

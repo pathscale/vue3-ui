@@ -53,7 +53,7 @@ const isIndeterminate = computed(() => {
 
 const beyondHalf = computed(() => props.value >= 50);
 
-const newValue = computed(() => {
+const formattedValue = computed(() => {
   if (
     props.value === undefined ||
     props.value === null ||
@@ -82,13 +82,13 @@ const newValue = computed(() => {
       :class="[size, type]"
       :max="max"
       :value="value">
-      {{ newValue }}
+      {{ formattedValue }}
     </progress>
     <p
       v-if="showValue"
       class="progress-value"
       :class="{ 'more-than-half': beyondHalf }">
-      <slot>{{ newValue }}</slot>
+      <slot>{{ formattedValue }}</slot>
     </p>
   </div>
 </template>

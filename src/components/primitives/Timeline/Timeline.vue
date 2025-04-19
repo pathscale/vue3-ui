@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang="ts" generic="T extends TimelineStage">
 type TimelineStage = {
   active?: boolean;
   error?: boolean;
@@ -9,7 +9,7 @@ type TimelineStage = {
 
 defineProps<{
   /** List of stages */
-  stages: Array<TimelineStage>; // required
+  stages: Array<T>; // required
 }>();
 </script>
 

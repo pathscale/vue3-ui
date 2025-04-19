@@ -74,5 +74,13 @@ describe("Timeline", () => {
     expect(items[2].find("p").text()).toBe(
       "Browse listings and submit applications to jobs that match your skills.",
     );
+
+    // check fourth stage
+    expect(items[3].classes()).length(1);
+    expect(items[3].classes()).contains("has-text-grey");
+    expect(items[3].find("h1").text()).toBe("Go on a drinking binge");
+    expect(items[3].find("p").text()).toBe(
+      "Take a break — you’ve earned it. (Not recommended before interviews.)",
+    );
   });
 });

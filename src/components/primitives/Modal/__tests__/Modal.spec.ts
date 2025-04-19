@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import Modal from "../Modal.vue";
 
 describe("Modal", () => {
-  it("updates v-model value", async () => {
+  it("updates v-model value on close button click", async () => {
     const wrapper = mount(Modal);
 
     // by default it active

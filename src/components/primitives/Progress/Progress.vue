@@ -10,19 +10,17 @@ withDefaults(
     value?: number;
     max?: number;
     showValue?: boolean;
+    format?: "raw" | "percent";
   }>(),
   {
     type: "is-darkgrey",
     max: 100,
+    format: "raw",
   },
 );
 
 // export default {
 //   props: {
-//     format: {
-//       type: String,
-//       default: "raw",
-//     },
 //     precision: {
 //       type: Number,
 //       default: 2,

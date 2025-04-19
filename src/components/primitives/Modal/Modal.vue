@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// todo add docs about this component to https://vue3.dev/documentation
+
 import { onMounted, ref, watchEffect } from "vue";
 
 const props = withDefaults(

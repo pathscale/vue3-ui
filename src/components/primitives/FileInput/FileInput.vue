@@ -1,5 +1,6 @@
 <script setup lang="ts">
-// todo add docs to https://vue3.dev/documentation
+// todo add docs about this component to https://vue3.dev/documentation
+
 defineOptions({
   inheritAttrs: false,
 });

@@ -3,7 +3,7 @@
  */
 export interface CheckRadioProps {
   // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-  nativeValue?: any;
+  nativeValue?: any; // todo update doc: add set any type
   type?:
     | "is-white"
     | "is-light"

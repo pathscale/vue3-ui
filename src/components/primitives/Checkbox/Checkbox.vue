@@ -12,7 +12,7 @@ interface IProps extends CheckRadioProps {
 
 const props = withDefaults(defineProps<IProps>(), {
   trueValue: true,
-  falseValue: false,
+  falseValue: false, // todo update doc: set false instead N/A
 });
 
 const emit = defineEmits(["update:modelValue"]);

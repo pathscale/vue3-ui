@@ -12,6 +12,7 @@ withDefaults(
     showValue?: boolean;
     format?: "raw" | "percent";
     precision?: number;
+    keepTrailingZeroes?: boolean;
   }>(),
   {
     type: "is-darkgrey",
@@ -22,9 +23,6 @@ withDefaults(
 );
 
 // export default {
-//   props: {
-//     keepTrailingZeroes: Boolean,
-//   },
 //   setup(props, { slot }) {
 //     const progress = ref(null);
 //

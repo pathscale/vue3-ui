@@ -9,6 +9,10 @@ type TimelineStage = {
 
 defineProps<{
   /** List of stages */
+  /*
+    todo remove default [] from docs, because it required
+     https://vue3.dev/documentation/timeline
+   */
   stages: Array<T>; // required
 }>();
 </script>

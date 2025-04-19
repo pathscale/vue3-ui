@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { formatToFixed } from "@/utils/functions";
-import { computed, nextTick, useTemplateRef, watchEffect } from "vue";
+import { computed, useTemplateRef } from "vue";
 
 const props = withDefaults(
   defineProps<{
@@ -34,20 +34,6 @@ const props = withDefaults(
 );
 
 const progress = useTemplateRef("progress");
-
-watchEffect(() =>
-  nextTick(() => {
-    if (isIndeterminate.value) {
-      progress.value.removeAttribute("value");
-    } else {
-      progress.value.setAttribute("value", props.value);
-    }
-  }),
-);
-
-const isIndeterminate = computed(() => {
-  return props.value === undefined || props.value === null;
-});
 
 const beyondHalf = computed(() => props.value >= 50);
 

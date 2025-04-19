@@ -1,6 +1,10 @@
 import { mount } from "@vue/test-utils";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import Container from "../Container.vue";
+
+vi.mock("@/utils/functions", () => ({
+  checkBenchieSupport: () => false,
+}));
 
 describe("Container", () => {
   it("renders with default props", () => {

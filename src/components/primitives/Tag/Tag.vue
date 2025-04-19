@@ -5,14 +5,32 @@ const props = withDefaults(
   defineProps<{
     attached?: boolean;
     closable?: boolean;
-    type?: string; // todo union
-    size?: string; // todo union
+    type?:
+      | "is-white"
+      | "is-black"
+      | "is-light"
+      | "is-dark"
+      | "is-primary"
+      | "is-info"
+      | "is-success"
+      | "is-warning"
+      | "is-danger";
+    size?: "is-normal" | "is-medium" | "is-large";
     rounded?: boolean;
     disabled?: boolean;
     ellipsis?: boolean;
     tabstop?: boolean;
     ariaCloseLabel?: string;
-    closeType?: string;
+    closeType?:
+      | "is-white"
+      | "is-black"
+      | "is-light"
+      | "is-dark"
+      | "is-primary"
+      | "is-info"
+      | "is-success"
+      | "is-warning"
+      | "is-danger";
     closeIcon?: string;
   }>(),
   {

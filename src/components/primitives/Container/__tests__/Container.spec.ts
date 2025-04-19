@@ -69,6 +69,17 @@ describe("Container", () => {
     );
   });
 
+  it("render with class attribute", () => {
+    const wrapper = mount(Container, {
+      attrs: {
+        class: "custom-class",
+      },
+    });
+    expect(wrapper.classes()).length(2);
+    expect(wrapper.classes()).toContain("container");
+    expect(wrapper.classes()).toContain("custom-class");
+  });
+
   it("render with background image", () => {
     const wrapper = mount(Container, {
       props: {

@@ -1,10 +1,8 @@
 <script setup lang="ts">
-import { computed, ref, watchEffect } from "vue";
+import { computed } from "vue";
 
 const props = withDefaults(
   defineProps<{
-    // biome-ignore lint/suspicious/noExplicitAny: allow any type according to docs
-    modelValue?: any;
     // biome-ignore lint/suspicious/noExplicitAny: allow any type according to docs
     nativeValue?: any;
     disabled?: boolean;
@@ -48,17 +46,10 @@ const props = withDefaults(
   },
 );
 
-const emit = defineEmits(["update:modelValue"]);
+const value = defineModel();
 
-const value = ref(props.modelValue);
 const passiveClass = computed<string | undefined>(() => {
   return props.passiveType ? `${props.passiveType}-passive` : undefined;
-});
-watchEffect(() => {
-  value.value = props.modelValue;
-});
-watchEffect(() => {
-  emit("update:modelValue", value.value);
 });
 </script>
 

@@ -1,11 +1,5 @@
-<script>
-export default {
-  name: "EyeIcon",
-  inheritAttrs: false,
-  props: {
-    invisible: Boolean,
-  },
-};
+<script setup lang="ts">
+defineProps<{ invisible?: boolean }>();
 </script>
 
 <template>

@@ -1,56 +1,37 @@
-<script>
-import { computed, ref, watchEffect } from "vue";
+<script setup lang="ts">
+import { computed, defineModel, ref, useAttrs, useSlots } from "vue";
 import EyeIcon from "./EyeIcon.vue";
 
-export default {
-  name: "VInput",
-  components: { EyeIcon },
-  inheritAttrs: false,
-  props: {
-    color: String,
-    size: String,
-    rounded: Boolean,
-    loading: Boolean,
-    expanded: Boolean,
-    modelValue: [String, Number],
-    passwordReveal: Boolean,
-  },
-  emits: ["update:modelValue"],
-  setup(props, { emit, slots, attrs }) {
-    const hasLeftIcon = computed(() => Boolean(slots.leftIcon));
-    const hasRightIcon = computed(
-      () => Boolean(slots.rightIcon) || props.passwordReveal,
-    );
-    const value = ref(props.modelValue);
-    const showPassword = ref(false);
+const props = defineProps<{
+  color?: string;
+  size?: string;
+  rounded?: boolean;
+  loading?: boolean;
+  expanded?: boolean;
+  passwordReveal?: boolean;
+}>();
 
-    const computedType = computed(() => {
-      if (showPassword.value) {
-        return "text";
-      }
-      return attrs.type;
-    });
+const value = defineModel();
 
-    const tooglePassword = () => {
-      showPassword.value = !showPassword.value;
-    };
+const slots = useSlots();
+const attrs = useAttrs();
 
-    watchEffect(() => {
-      value.value = props.modelValue;
-    });
+const hasLeftIcon = computed(() => Boolean(slots.leftIcon));
+const hasRightIcon = computed(
+  () => Boolean(slots.rightIcon) || props.passwordReveal,
+);
 
-    watchEffect(() => emit("update:modelValue", value.value));
+const showPassword = ref(false);
 
-    return {
-      value,
-      hasLeftIcon,
-      hasRightIcon,
-      tooglePassword,
-      computedType,
-      rightIcon: slots.rightIcon,
-      showPassword,
-    };
-  },
+const computedType = computed(() => {
+  if (showPassword.value) {
+    return "text";
+  }
+  return attrs.type;
+});
+
+const tooglePassword = () => {
+  showPassword.value = !showPassword.value;
 };
 </script>
 
@@ -83,7 +64,7 @@ export default {
     </span>
     <span class="icon is-right" v-if="hasRightIcon">
       <div class="is-clickable" v-if="passwordReveal" @click="tooglePassword">
-        <slot v-if="rightIcon" name="rightIcon" />
+        <slot v-if="$slots.rightIcon" name="rightIcon" />
         <div v-else>
           <eye-icon :invisible="showPassword" />
         </div>

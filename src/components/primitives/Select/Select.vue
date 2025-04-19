@@ -1,15 +1,12 @@
 <script setup lang="ts">
-import { computed, ref, watchEffect } from "vue";
+import { computed } from "vue";
 
 defineOptions({
   inheritAttrs: false,
 });
 
-type Primitive = string | number | boolean | object;
-
 const props = withDefaults(
   defineProps<{
-    modelValue?: Primitive | Array<Primitive> | null;
     placeholder?: string;
     multiple?: boolean;
     nativeSize?: string | number;
@@ -20,26 +17,17 @@ const props = withDefaults(
     color?: string;
   }>(),
   {
-    modelValue: null,
     nativeSize: null, // TODO: Update docs — documented default for `nativeSize` is 4, but actual default here is null
   },
 );
 
 const emit = defineEmits(["update:modelValue", "blur", "focus"]);
 
-const value = ref(props.modelValue);
+const value = defineModel({ default: null });
 
 const valueIsNullish = computed(() => value.value === null);
 
 const empty = computed(() => value.value === null);
-
-watchEffect(() => {
-  emit("update:modelValue", value.value);
-});
-
-watchEffect(() => {
-  value.value = props.modelValue;
-});
 </script>
 
 <template>

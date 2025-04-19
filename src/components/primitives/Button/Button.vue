@@ -3,7 +3,18 @@ import { computed, useAttrs } from "vue";
 
 const props = withDefaults(
   defineProps<{
-    type?: string;
+    type?:
+      | "is-white"
+      | "is-light"
+      | "is-dark"
+      | "is-black"
+      | "is-text"
+      | "is-primary"
+      | "is-link"
+      | "is-info"
+      | "is-success"
+      | "is-warning"
+      | "is-danger";
     size?: string;
     label?: string;
     rounded?: boolean;

@@ -8,6 +8,8 @@ describe("FileInput", () => {
       attrs: {
         name: "upload-file",
         accept: "image/png, image/jpeg",
+        multiple: true,
+        disabled: true,
       },
     });
     const file = wrapper.find('input[type="file"]');
@@ -16,5 +18,7 @@ describe("FileInput", () => {
     const fileEl = file.element as HTMLInputElement;
     expect(fileEl.name).toBe("upload-file");
     expect(fileEl.accept).toBe("image/png, image/jpeg");
+    expect(fileEl.multiple).toBe(true);
+    expect(fileEl.disabled).toBe(true);
   });
 });

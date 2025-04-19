@@ -65,5 +65,14 @@ describe("Timeline", () => {
     expect(items[1].find("p").text()).toBe(
       "Fill out your profile with relevant information to attract employers.",
     );
+
+    // check third stage
+    expect(items[2].classes()).length(2);
+    expect(items[2].classes()).contains("has-text-success");
+    expect(items[2].classes()).contains("is-active");
+    expect(items[2].find("h1").text()).toBe("Apply to jobs");
+    expect(items[2].find("p").text()).toBe(
+      "Browse listings and submit applications to jobs that match your skills.",
+    );
   });
 });

@@ -41,6 +41,7 @@ const empty = computed(() => value.value === null);
       'is-rounded': rounded,
       'is-empty': empty,
     }]">
+      <!--suppress TypeScriptValidateTypes -->
       <select
         v-model="value"
         ref="select"

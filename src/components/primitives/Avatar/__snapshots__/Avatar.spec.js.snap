@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Avatar render correctly 1`] = `
-<figure class="image is-flex is-justify-content-center is-align-items-center mx-1 is-64x64 has-background-link has-text-white">
-  <!--v-if--><span class="is-size-4 is-rounded"></span>
-</figure>
-`;

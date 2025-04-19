@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Slider render correctly 1`] = `
-<div><input class="slider is-fullwidth" step="1" min="0" max="100" type="range" orient="horizontal">
-  <!--v-if-->
-</div>
-`;

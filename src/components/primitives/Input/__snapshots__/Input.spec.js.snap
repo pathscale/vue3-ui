@@ -1,8 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Input render correctly 1`] = `
-<div class="control"><input class="input">
-  <!--v-if-->
-  <!--v-if-->
-</div>
-`;

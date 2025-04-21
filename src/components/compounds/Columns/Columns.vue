@@ -1,16 +1,13 @@
-<script>
-export default {
-  name: "VColumns",
-  props: {
-    mobile: Boolean,
-    desktop: Boolean,
-    gapless: Boolean,
-    gap: String,
-    multiline: Boolean,
-    hcentered: Boolean,
-    vcentered: Boolean,
-  },
-};
+<script setup lang="ts">
+defineProps<{
+  mobile: boolean;
+  desktop: boolean;
+  gapless: boolean;
+  gap: string;
+  multiline: boolean;
+  hcentered: boolean;
+  vcentered: boolean;
+}>();
 </script>
 
 <template>

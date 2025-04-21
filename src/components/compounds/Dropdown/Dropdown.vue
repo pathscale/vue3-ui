@@ -58,7 +58,7 @@ const show = computed(() => {
 
 const displayActive = computed(() => state.isActive || props.inline);
 
-// provide item selection for children
+// provide item dropdown selection for children
 export type DDSelection = {
   value: typeof props.modelValue;
   selectItem: typeof selectItem;

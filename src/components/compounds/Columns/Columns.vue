@@ -1,12 +1,12 @@
 <script setup lang="ts">
 defineProps<{
-  mobile: boolean;
-  desktop: boolean;
-  gapless: boolean;
-  gap: string;
-  multiline: boolean;
-  hcentered: boolean;
-  vcentered: boolean;
+  mobile?: boolean;
+  desktop?: boolean;
+  gapless?: boolean;
+  gap?: string;
+  multiline?: boolean;
+  hcentered?: boolean;
+  vcentered?: boolean;
 }>();
 </script>
 

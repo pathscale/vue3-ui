@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { computed, provide, reactive } from "vue";
-
-export const DropdownSymbol = Symbol("Dropdown");
+import type { InjectionKey } from "vue";
 
 // todo close on click outside
 
@@ -58,6 +57,16 @@ const show = computed(() => {
 });
 
 const displayActive = computed(() => state.isActive || props.inline);
+
+// provide item selection for children
+export type DropdownItemSelection = {
+  value: typeof props.modelValue;
+  selectItem: typeof selectItem;
+};
+
+export const DropdownSymbol = Symbol(
+  "Dropdown",
+) as InjectionKey<DropdownItemSelection>;
 
 provide(DropdownSymbol, { selectItem, value: props.modelValue });
 </script>

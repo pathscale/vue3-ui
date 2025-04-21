@@ -1,13 +1,10 @@
-<script>
-export default {
-  name: "VColumn",
-  props: {
-    size: String,
-    offset: String,
-    narrow: Boolean,
-    narrowBreakpoint: String,
-  },
-};
+<script setup lang="ts">
+defineProps<{
+  size?: string;
+  offset?: string;
+  narrow?: boolean;
+  narrowBreakpoint?: string;
+}>();
 </script>
 
 <template>

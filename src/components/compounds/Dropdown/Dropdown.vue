@@ -60,7 +60,8 @@ const displayActive = computed(() => state.isActive || props.inline);
 
 // provide item dropdown selection for children
 export type DDSelection = {
-  value: typeof props.modelValue;
+  // biome-ignore lint/suspicious/noExplicitAny: allow any type according to docs
+  value: any;
   selectItem: typeof selectItem;
 };
 

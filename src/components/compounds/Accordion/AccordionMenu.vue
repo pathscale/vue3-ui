@@ -1,7 +1,5 @@
-<script>
-export default {
-  name: "VAccordionMenu",
-};
+<script setup lang="ts">
+//
 </script>
 
 <template>

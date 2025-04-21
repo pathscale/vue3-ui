@@ -34,7 +34,8 @@ defineProps<{
     | "is-offset-8"
     | "is-offset-9"
     | "is-offset-10"
-    | "is-offset-11";
+    | "is-offset-11"
+    | "is-offset-12";
   narrow?: boolean;
   narrowBreakpoint?:
     | "is-narrow-mobile"

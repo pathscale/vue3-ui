@@ -1,7 +1,5 @@
-<script>
-export default {
-  name: "VCardFooterItem",
-};
+<script setup lang="ts">
+//
 </script>
 
 <template>

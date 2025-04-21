@@ -1,38 +1,46 @@
-<script>
-import { computed, ref, watchEffect } from "vue";
+<script setup lang="ts">
+import { computed, ref } from "vue";
 
-export default {
-  name: "VTextarea",
+defineOptions({
   inheritAttrs: false,
-  props: {
-    color: String,
-    hasCounter: Boolean,
-    loading: Boolean,
-    maxlength: String,
-    modelValue: String,
-    size: String,
-    hovered: Boolean,
-    focused: Boolean,
-  },
-  emits: ["update:modelValue"],
-  setup(props, { emit }) {
-    const value = ref(props.modelValue);
-    const isFocused = ref(false);
-    const onFocus = () => {
-      isFocused.value = true;
-    };
-    const onBlur = () => {
-      isFocused.value = false;
-    };
-    const valueLength = computed(() => value.value.length);
-    const showCounter = computed(() => props.maxlength && props.hasCounter);
-    watchEffect(() => emit("update:modelValue", value.value));
-    watchEffect(() => {
-      value.value = props.modelValue;
-    });
-    return { value, isFocused, onBlur, onFocus, valueLength, showCounter };
-  },
+});
+
+const props = defineProps<{
+  color?:
+    | "is-white"
+    | "is-light"
+    | "is-dark"
+    | "is-black"
+    | "is-text"
+    | "is-primary"
+    | "is-link"
+    | "is-info"
+    | "is-success"
+    | "is-warning"
+    | "is-danger";
+  hasCounter?: boolean;
+  loading?: boolean;
+  maxlength?: number | string;
+  size?: "is-small" | "is-normal" | "is-medium" | "is-large";
+  hovered?: boolean;
+  focused?: boolean;
+}>();
+
+const value = defineModel();
+
+const isFocused = ref(false);
+
+const onFocus = () => {
+  isFocused.value = true;
 };
+
+const onBlur = () => {
+  isFocused.value = false;
+};
+
+const valueLength = computed(() => value.value.length);
+
+const showCounter = computed(() => props.maxlength && props.hasCounter);
 </script>
 
 <template>

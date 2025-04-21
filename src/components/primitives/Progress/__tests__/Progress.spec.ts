@@ -101,13 +101,17 @@ describe("Progress", () => {
     expect(wrapper.find(".progress-value").text()).toBe("50");
   });
 
-  it("handles indeterminate state", () => {
+  it("handles indeterminate state", async () => {
     const wrapper = mount(Progress, {
       props: {
         value: undefined,
       },
     });
     expect(wrapper.find("progress").attributes("value")).toBeUndefined();
+
+    // @ts-ignore
+    await wrapper.setProps({ value: 50 });
+    expect(wrapper.find("progress").attributes("value")).toBe("50");
   });
 
   it("adds more-than-half class when value is >= 50%", () => {

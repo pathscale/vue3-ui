@@ -1,42 +1,28 @@
-<script>
-/* eslint no-shadow: ["error", { "allow": ["focus"] }] -- prevent warning  'focus' is already declared in the upper scope */
-import { ref, watchEffect } from "vue";
-import CheckRadioMixin from "../../../mixins/CheckRadio.js";
+<script setup lang="ts">
+import type { CheckRadioProps } from "@/types/CheckRadioProps";
+import { useTemplateRef } from "vue";
 
-export default {
-  name: "VCheckbox",
-  props: {
-    ...CheckRadioMixin.props,
-    indeterminate: Boolean,
-    trueValue: {
-      type: [String, Number, Boolean, Function, Object, Array],
-      default: true,
-    },
-    falseValue: {
-      type: [String, Number, Boolean, Function, Object, Array],
-      default: false,
-    },
-  },
-  emits: ["update:modelValue"],
-  setup(props, { emit }) {
-    const label = ref(null);
-    const input = ref(null);
-    const value = ref(props.modelValue);
+interface IProps extends CheckRadioProps {
+  indeterminate?: boolean;
+  // biome-ignore lint/suspicious/noExplicitAny: allow any type according to docs
+  trueValue?: any;
+  // biome-ignore lint/suspicious/noExplicitAny: allow any type according to docs
+  falseValue?: any;
+}
 
-    const focus = () => {
-      input.value.focus();
-    };
+const props = withDefaults(defineProps<IProps>(), {
+  trueValue: true,
+  falseValue: false, // todo update doc: set false instead N/A
+});
 
-    watchEffect(() => {
-      emit("update:modelValue", value.value);
-    });
+const emit = defineEmits(["update:modelValue"]);
 
-    watchEffect(() => {
-      value.value = props.modelValue;
-    });
+const label = useTemplateRef<HTMLLabelElement>("label");
+const input = useTemplateRef<HTMLInputElement>("input");
+const value = defineModel();
 
-    return { label, input, value, focus };
-  },
+const focus = () => {
+  input.value?.focus();
 };
 </script>
 
@@ -47,7 +33,7 @@ export default {
     ref="label"
     :disabled="disabled"
     @click="focus"
-    @keydown.prevent.enter="label.click()">
+    @keydown.prevent.enter="label?.click()">
     <input
       v-model="value"
       :indeterminate.prop="indeterminate"

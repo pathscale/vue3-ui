@@ -41,7 +41,7 @@ const onChange = () => {
   state.isOpen = true;
 };
 
-const setResult = (result) => {
+const setResult = (result: string | number) => {
   search.value = result;
   state.isOpen = false;
 };

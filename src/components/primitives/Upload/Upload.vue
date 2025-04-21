@@ -1,62 +1,62 @@
-<script>
-import { computed, ref, watchEffect } from "vue";
+<script setup lang="ts">
+import { computed, useSlots } from "vue";
 
-export default {
-  name: "VUpload",
+defineOptions({
   inheritAttrs: false,
-  props: {
-    modelValue: [File, Array],
-    multiple: Boolean,
-    disabled: Boolean,
-    accept: String,
-    dragDrop: Boolean,
-    type: String,
-    size: String,
-    centered: Boolean,
-    right: Boolean,
-    expanded: Boolean,
-    boxed: Boolean,
-  },
-  emits: ["update:modelValue"],
-  setup(props, { emit, slots }) {
-    const value = ref(props.modelValue);
+});
 
-    watchEffect(() => {
-      value.value = props.modelValue;
-    });
+const props = defineProps<{
+  multiple?: boolean;
+  disabled?: boolean;
+  accept?: string;
+  dragDrop?: boolean;
+  type?:
+    | "is-white"
+    | "is-light"
+    | "is-dark"
+    | "is-black"
+    | "is-text"
+    | "is-primary"
+    | "is-link"
+    | "is-info"
+    | "is-success"
+    | "is-warning"
+    | "is-danger";
+  size?: "is-small" | "is-normal" | "is-medium" | "is-large";
+  centered?: boolean;
+  right?: boolean;
+  expanded?: boolean;
+  boxed?: boolean;
+  name?: string;
+}>();
 
-    watchEffect(() => {
-      emit("update:modelValue", value.value);
-    });
+const value = defineModel<File | File[]>();
 
-    function onChange(e) {
-      const { files } = e.target;
-      value.value = props.multiple ? [...files] : files[0];
-    }
+function onChange(e) {
+  const { files } = e.target;
+  value.value = props.multiple ? [...files] : files[0];
+}
 
-    function dragover(e) {
-      props.dragDrop && e.preventDefault();
-    }
+function dragover(e) {
+  props.dragDrop && e.preventDefault();
+}
 
-    function drop(e) {
-      if (props.dragDrop) {
-        e.preventDefault();
-        value.value = props.multiple
-          ? [...e.dataTransfer.files]
-          : e.dataTransfer.files[0];
-      }
-    }
+function dragleave(e) {
+  //
+}
 
-    const hasName = computed(() => Boolean(slots.name));
+function drop(e) {
+  if (props.dragDrop) {
+    e.preventDefault();
+    value.value = props.multiple
+      ? [...e.dataTransfer.files]
+      : e.dataTransfer.files[0];
+  }
+}
 
-    return {
-      onChange,
-      hasName,
-      dragover,
-      drop,
-    };
-  },
-};
+const slots = useSlots();
+
+const hasName = computed(() => Boolean(slots.name));
 </script>
 
 <template>
@@ -77,7 +77,7 @@ export default {
       <input
         class="file-input"
         type="file"
-        name="resume"
+        :name="name"
         v-bind="$attrs"
         :multiple="multiple"
         :accept="accept"
@@ -95,6 +95,3 @@ export default {
     </label>
   </div>
 </template>
-
-
-

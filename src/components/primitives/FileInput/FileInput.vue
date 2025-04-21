@@ -1,19 +1,23 @@
-<script>
-export default {
-  name: "VFile",
+<script setup lang="ts">
+// todo add docs about this component to https://vue3.dev/documentation
+
+defineOptions({
   inheritAttrs: false,
-  props: {
-    hasName: Boolean,
-    fullwidth: Boolean,
-    boxed: Boolean,
-    size: String,
-    color: {
-      type: String,
-      default: "is-primary",
-    },
-    alignment: String,
+});
+
+withDefaults(
+  defineProps<{
+    hasName?: boolean;
+    fullwidth?: boolean;
+    boxed?: boolean;
+    size?: string;
+    color?: string;
+    alignment?: string;
+  }>(),
+  {
+    color: "is-primary",
   },
-};
+);
 </script>
 
 <template>

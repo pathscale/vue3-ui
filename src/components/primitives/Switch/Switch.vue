@@ -1,53 +1,56 @@
-<script>
-import { computed, ref, watchEffect } from "vue";
+<script setup lang="ts">
+import { computed } from "vue";
 
-export default {
-  name: "VSwitch",
-  props: {
-    modelValue: {
-      type: [String, Number, Boolean, Function, Object, Array, Date],
-    },
-    nativeValue: {
-      type: [String, Number, Boolean, Function, Object, Array, Date],
-    },
-    disabled: {
-      type: Boolean,
-      default: null,
-    },
-    type: String,
-    passiveType: String,
-    name: String,
-    required: Boolean,
-    size: String,
-    trueValue: {
-      type: [String, Number, Boolean, Function, Object, Array, Date],
-      default: true,
-    },
-    falseValue: {
-      type: [String, Number, Boolean, Function, Object, Array, Date],
-      default: false,
-    },
-    rounded: {
-      type: Boolean,
-      default: true,
-    },
-    outlined: Boolean,
+const props = withDefaults(
+  defineProps<{
+    // biome-ignore lint/suspicious/noExplicitAny: allow any type according to docs
+    nativeValue?: any;
+    disabled?: boolean;
+    type?:
+      | "is-white"
+      | "is-light"
+      | "is-dark"
+      | "is-black"
+      | "is-text"
+      | "is-primary"
+      | "is-link"
+      | "is-info"
+      | "is-success"
+      | "is-warning"
+      | "is-danger";
+    passiveType?:
+      | "is-white"
+      | "is-black"
+      | "is-light"
+      | "is-dark"
+      | "is-primary"
+      | "is-info"
+      | "is-success"
+      | "is-warning"
+      | "is-danger"
+      | string; // and any other colors you've set in the $colors list on Sass
+    name?: string;
+    required?: boolean;
+    size?: "is-small" | "is-medium" | "is-large";
+    // biome-ignore lint/suspicious/noExplicitAny: allow any type according to docs
+    trueValue?: any;
+    // biome-ignore lint/suspicious/noExplicitAny: allow any type according to docs
+    falseValue?: any;
+    rounded?: boolean;
+    outlined?: boolean;
+  }>(),
+  {
+    trueValue: true,
+    falseValue: false,
+    rounded: true,
   },
-  emits: ["update:modelValue"],
-  setup(props, { emit }) {
-    const value = ref(props.modelValue);
-    const passiveClass = computed(
-      () => props.passiveType && `${props.passiveType}-passive`,
-    );
-    watchEffect(() => {
-      value.value = props.modelValue;
-    });
-    watchEffect(() => {
-      emit("update:modelValue", value.value);
-    });
-    return { value, passiveClass };
-  },
-};
+);
+
+const value = defineModel();
+
+const passiveClass = computed<string | undefined>(() => {
+  return props.passiveType ? `${props.passiveType}-passive` : undefined;
+});
 </script>
 
 <template>

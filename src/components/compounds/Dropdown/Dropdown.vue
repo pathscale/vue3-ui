@@ -22,7 +22,7 @@ const props = withDefaults(
   },
 );
 
-const sel = defineModel();
+const selected = defineModel();
 
 const state = reactive({
   style: {},
@@ -43,7 +43,7 @@ const closeMenu = () => {
 
 // biome-ignore lint/suspicious/noExplicitAny: allow any type according to docs
 const selectItem = (newValue: any) => {
-  sel.value = newValue;
+  selected.value = newValue;
   closeMenu();
 };
 
@@ -64,7 +64,7 @@ export type DDSelection = {
 
 export const DropdownSymbol = Symbol("Dropdown") as InjectionKey<DDSelection>;
 
-provide(DropdownSymbol, { selectItem, value: readonly(sel) });
+provide(DropdownSymbol, { selectItem, value: readonly(selected) });
 </script>
 
 <template>

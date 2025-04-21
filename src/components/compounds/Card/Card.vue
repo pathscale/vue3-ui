@@ -1,13 +1,12 @@
-<script>
-export default {
-  name: "VCard",
-  props: {
-    tag: {
-      type: String,
-      default: "div",
-    },
+<script setup lang="ts">
+withDefaults(
+  defineProps<{
+    tag?: string;
+  }>(),
+  {
+    tag: "div",
   },
-};
+);
 </script>
 
 <template>

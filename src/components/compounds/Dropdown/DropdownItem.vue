@@ -1,64 +1,58 @@
-<script>
+<script setup lang="ts">
 import { computed, inject } from "vue";
 import { DropdownSymbol } from "./Dropdown.vue";
 
-export default {
-  name: "VDropdownItem",
-  props: {
-    value: {
-      type: [String, Number, Boolean, Object, Array, Function],
-    },
-    separator: Boolean,
-    disabled: Boolean,
-    custom: Boolean,
-    focusable: {
-      type: Boolean,
-      default: true,
-    },
-    paddingless: Boolean,
-    hasLink: Boolean,
-    ariaRole: String,
+const props = withDefaults(
+  defineProps<{
+    // biome-ignore lint/suspicious/noExplicitAny: allow any type according to docs
+    value?: any;
+    separator?: boolean;
+    disabled?: boolean;
+    custom?: boolean;
+    focusable?: boolean;
+    paddingless?: boolean;
+    hasLink?: boolean;
+    ariaRole?: "listitem" | "menuitem";
+  }>(),
+  {
+    focusable: true,
   },
-  setup(props, context) {
-    const ariaRoleItem = computed(() => {
-      return props.ariaRole === "menuitem" || props.ariaRole === "listitem"
-        ? props.ariaRole
-        : null;
-    });
-    const isClickable = computed(() => {
-      return !props.separator && !props.disabled && !props.custom;
-    });
-    const isActive = computed(() => {
-      return false; // TODO
-    });
-    const isFocusable = computed(() => {
-      return props.hasLink ? false : props.focusable;
-    });
-    const tabIndex = computed(() => {
-      return isFocusable.value ? 0 : null;
-    });
-    const dropdownLink = computed(() => {
-      return !props.custom && !props.hasLink;
-    });
-    const { selectItem: reportParent } = inject(DropdownSymbol);
+);
 
-    const selectItem = () => {
-      if (!isClickable.value) return;
-      reportParent(props.value);
-    };
+const ariaRoleItem = computed(() => {
+  return props.ariaRole === "menuitem" || props.ariaRole === "listitem"
+    ? props.ariaRole
+    : null;
+});
 
-    const itemIsBlock = computed(() => !props.hasLink);
+const isClickable = computed(() => {
+  return !props.separator && !props.disabled && !props.custom;
+});
 
-    return {
-      ariaRoleItem,
-      isActive,
-      selectItem,
-      tabIndex,
-      dropdownLink,
-      itemIsBlock,
-    };
-  },
+const isActive = computed(() => {
+  return false; // TODO
+});
+
+const isFocusable = computed(() => {
+  return props.hasLink ? false : props.focusable;
+});
+
+const tabIndex = computed(() => {
+  return isFocusable.value ? 0 : null;
+});
+
+const dropdownLink = computed(() => {
+  return !props.custom && !props.hasLink;
+});
+
+const { selectItem: reportParent } = inject(DropdownSymbol);
+
+const selectItem = () => {
+  if (!isClickable.value) return;
+  reportParent(props.value);
 };
+
+const itemIsBlock = computed(() => !props.hasLink);
 </script>
 
 <template>

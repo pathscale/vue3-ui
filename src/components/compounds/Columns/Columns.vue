@@ -28,7 +28,7 @@ defineProps<{
    * - widescreen
    * - fullhd
    *
-   * And special breakpoints for specific screen sizes:
+   * Additional breakpoints (for targeting only specific screen sizes):
    * - tablet-only
    * - desktop-only
    * - widescreen-only

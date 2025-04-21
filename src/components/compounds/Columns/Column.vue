@@ -23,7 +23,18 @@ defineProps<{
     | "is-three-fifths"
     | "is-two-fifths"
     | "is-one-fifth";
-  offset?: string;
+  offset?:
+    | "is-offset-1"
+    | "is-offset-2"
+    | "is-offset-3"
+    | "is-offset-4"
+    | "is-offset-5"
+    | "is-offset-6"
+    | "is-offset-7"
+    | "is-offset-8"
+    | "is-offset-9"
+    | "is-offset-10"
+    | "is-offset-11";
   narrow?: boolean;
   narrowBreakpoint?: string;
 }>();

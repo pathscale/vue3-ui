@@ -24,7 +24,7 @@ export function onClickOutside(
   };
 
   onMounted(() => {
-    window.addEventListener("click", listener);
+    window.addEventListener("click", listener, { passive: true });
   });
 
   onBeforeUnmount(() => {

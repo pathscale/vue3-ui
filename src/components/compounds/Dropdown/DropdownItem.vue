@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, inject } from "vue";
-import { type DDSelection, DropdownSymbol } from "./Dropdown.vue";
+import { type DDSelection, DropdownSymbol } from "./dropdown-symbol";
 
 const props = withDefaults(
   defineProps<{

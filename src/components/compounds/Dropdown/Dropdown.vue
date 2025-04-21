@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, provide, reactive, readonly } from "vue";
-import type { InjectionKey } from "vue";
+import { type DDSelection, DropdownSymbol } from "./dropdown-symbol";
 
 // todo close on click outside
 
@@ -56,15 +56,7 @@ const show = computed(() => {
 const displayActive = computed(() => state.isActive || props.inline);
 
 // provide item dropdown selection for children
-export type DDSelection = {
-  // biome-ignore lint/suspicious/noExplicitAny: allow any type according to docs
-  value: any;
-  selectItem: typeof selectItem;
-};
-
-export const DropdownSymbol = Symbol("Dropdown") as InjectionKey<DDSelection>;
-
-provide(DropdownSymbol, { selectItem, value: readonly(selected) });
+provide<DDSelection>(DropdownSymbol, { selectItem, value: readonly(selected) });
 </script>
 
 <template>

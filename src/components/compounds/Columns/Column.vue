@@ -36,7 +36,13 @@ defineProps<{
     | "is-offset-10"
     | "is-offset-11";
   narrow?: boolean;
-  narrowBreakpoint?: string;
+  narrowBreakpoint?:
+    | "is-narrow-mobile"
+    | "is-narrow-tablet"
+    | "is-narrow-touch"
+    | "is-narrow-desktop"
+    | "is-narrow-widescreen"
+    | "is-narrow-fullhd";
 }>();
 </script>
 

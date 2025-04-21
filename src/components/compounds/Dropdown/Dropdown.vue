@@ -59,14 +59,12 @@ const show = computed(() => {
 const displayActive = computed(() => state.isActive || props.inline);
 
 // provide item selection for children
-export type DropdownItemSelection = {
+export type DDSelection = {
   value: typeof props.modelValue;
   selectItem: typeof selectItem;
 };
 
-export const DropdownSymbol = Symbol(
-  "Dropdown",
-) as InjectionKey<DropdownItemSelection>;
+export const DropdownSymbol = Symbol("Dropdown") as InjectionKey<DDSelection>;
 
 provide(DropdownSymbol, { selectItem, value: props.modelValue });
 </script>

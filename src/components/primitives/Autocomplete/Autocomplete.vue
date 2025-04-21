@@ -1,11 +1,5 @@
 <script setup lang="ts">
-import {
-  defineModel,
-  onBeforeUnmount,
-  onMounted,
-  reactive,
-  useTemplateRef,
-} from "vue";
+import { onBeforeUnmount, onMounted, reactive, useTemplateRef } from "vue";
 
 import VField from "../Field/Field.vue";
 import VInput from "../Input/Input.vue";

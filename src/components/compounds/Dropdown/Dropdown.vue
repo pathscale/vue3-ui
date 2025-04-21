@@ -1,67 +1,65 @@
-<script>
+<script setup lang="ts">
 import { computed, provide, reactive } from "vue";
 
 export const DropdownSymbol = Symbol("Dropdown");
 
-export default {
-  name: "VDropdown",
-  props: {
-    value: {
-      type: [String, Number, Boolean, Object, Array, Function],
-    },
-    disabled: Boolean,
-    hoverable: Boolean,
-    inline: Boolean,
-    position: String,
-    mobileModal: {
-      type: Boolean,
-      default: true,
-    },
-    ariaRole: String,
-    closeOnClick: {
-      type: Boolean,
-      default: true,
-    },
-    expanded: Boolean,
+// todo close on click outside
+
+const props = withDefaults(
+  defineProps<{
+    // biome-ignore lint/suspicious/noExplicitAny: allow any type according to docs
+    modelValue?: any;
+    disabled?: boolean;
+    hoverable?: boolean;
+    inline?: boolean;
+    position?: "is-left" | "is-up" | "is-down" | "is-right";
+    mobileModal?: boolean;
+    ariaRole?: "list" | "menu" | "dialog";
+    closeOnClick?: boolean;
+    /** Full width */
+    expanded?: boolean;
+  }>(),
+  {
+    mobileModal: true,
+    closeOnClick: true,
   },
-  emits: ["update:modelValue"],
-  setup(props, { emit }) {
-    const state = reactive({
-      selected: props.value,
-      style: {},
-      isActive: false,
-      isHoverable: props.hoverable,
-    });
+);
 
-    const toggle = () => {
-      if (props.disabled || props.hoverable) return;
-      state.isActive = !state.isActive;
-    };
+const emit = defineEmits(["update:modelValue"]);
 
-    const closeMenu = () => {
-      if (props.closeOnClick) {
-        state.isActive = false;
-      }
-    };
+const state = reactive({
+  selected: props.modelValue,
+  style: {},
+  isActive: false,
+  isHoverable: props.hoverable,
+});
 
-    const selectItem = (newValue) => {
-      emit("update:modelValue", newValue);
-      closeMenu();
-    };
-
-    const show = computed(() => {
-      return (
-        (!props.disabled && (state.isActive || props.hoverable)) || props.inline
-      );
-    });
-
-    const displayActive = computed(() => state.isActive || props.inline);
-
-    provide(DropdownSymbol, { selectItem, value: props.value });
-
-    return { state, toggle, show, displayActive };
-  },
+const toggle = () => {
+  if (props.disabled || props.hoverable) return;
+  state.isActive = !state.isActive;
 };
+
+const closeMenu = () => {
+  if (props.closeOnClick) {
+    state.isActive = false;
+  }
+};
+
+// biome-ignore lint/suspicious/noExplicitAny: allow any type according to docs
+const selectItem = (newValue: any) => {
+  emit("update:modelValue", newValue);
+  closeMenu();
+};
+
+const show = computed(() => {
+  return (
+    (!props.disabled && (state.isActive || props.hoverable)) || props.inline
+  );
+});
+
+const displayActive = computed(() => state.isActive || props.inline);
+
+provide(DropdownSymbol, { selectItem, value: props.modelValue });
 </script>
 
 <template>

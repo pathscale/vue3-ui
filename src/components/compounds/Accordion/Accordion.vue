@@ -1,60 +1,51 @@
-<script>
+<script setup lang="ts">
 import { computed, reactive } from "vue";
 
-export default {
-  name: "VAccordion",
-  props: {
-    isHorizontal: Boolean,
-    triggerRight: Boolean,
-    triggerLeft: Boolean,
-    expanded: Boolean,
-    background: String,
-    color: String,
-    hover: Boolean,
-    isLink: Boolean,
-    isActive: Boolean,
-    headerIsTrigger: Boolean,
+const props = defineProps<{
+  isHorizontal?: boolean;
+  triggerRight?: boolean;
+  triggerLeft?: boolean;
+  expanded?: boolean;
+  background?: string;
+  color?: string;
+  hover?: boolean;
+  isLink?: boolean;
+  isActive?: boolean;
+  headerIsTrigger?: boolean;
+  disabled?: boolean;
+}>();
+
+const state = reactive({
+  isExpanded: props.expanded,
+  style: {
+    backgroundColor: props.background,
+    color: props.color,
   },
+  hover: props.hover,
+  isLink: props.isLink,
+  headerIsTrigger: props.headerIsTrigger,
+});
 
-  setup(props) {
-    const state = reactive({
-      isExpanded: props.expanded,
-      style: {
-        backgroundColor: props.background,
-        color: props.color,
-      },
-      hover: props.hover,
-      isLink: props.isLink,
-      headerIsTrigger: props.headerIsTrigger,
-    });
+const toggle = (isHeaderTrigger: boolean) => {
+  if (props.disabled) return;
 
-    const toggle = (isHeaderTrigger) => {
-      if (props.disabled) return;
-
-      if (
-        (isHeaderTrigger && props.headerIsTrigger) ||
-        !props.headerIsTrigger
-      ) {
-        state.isExpanded = !state.isExpanded;
-      }
-    };
-
-    // separate function because of buggy css hover
-    const open = () => {
-      state.isExpanded = true;
-    };
-
-    const close = () => {
-      state.isExpanded = false;
-    };
-
-    const displayActive = computed(() => props.isActive && props.hover);
-
-    const displayDefault = computed(() => !props.isActive && props.hover);
-
-    return { state, toggle, open, close, displayActive, displayDefault };
-  },
+  if ((isHeaderTrigger && props.headerIsTrigger) || !props.headerIsTrigger) {
+    state.isExpanded = !state.isExpanded;
+  }
 };
+
+// separate function because of buggy css hover
+const open = () => {
+  state.isExpanded = true;
+};
+
+const close = () => {
+  state.isExpanded = false;
+};
+
+const displayActive = computed(() => props.isActive && props.hover);
+
+const displayDefault = computed(() => !props.isActive && props.hover);
 </script>
 
 <template>

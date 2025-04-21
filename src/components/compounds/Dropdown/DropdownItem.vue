@@ -22,7 +22,7 @@ const props = withDefaults(
 const ariaRoleItem = computed(() => {
   return props.ariaRole === "menuitem" || props.ariaRole === "listitem"
     ? props.ariaRole
-    : null;
+    : undefined;
 });
 
 const isClickable = computed(() => {
@@ -38,7 +38,7 @@ const isFocusable = computed(() => {
 });
 
 const tabIndex = computed(() => {
-  return isFocusable.value ? 0 : null;
+  return isFocusable.value ? 0 : undefined;
 });
 
 const dropdownLink = computed(() => {

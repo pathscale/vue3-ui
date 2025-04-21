@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, inject } from "vue";
-import { DropdownSymbol } from "./Dropdown.vue";
+import { type DDSelection, DropdownSymbol } from "./Dropdown.vue";
 
 const props = withDefaults(
   defineProps<{
@@ -45,7 +45,7 @@ const dropdownLink = computed(() => {
   return !props.custom && !props.hasLink;
 });
 
-const { selectItem: reportParent } = inject(DropdownSymbol);
+const { selectItem: reportParent } = inject(DropdownSymbol) as DDSelection;
 
 const selectItem = () => {
   if (!isClickable.value) return;

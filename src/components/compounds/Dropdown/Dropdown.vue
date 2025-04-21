@@ -1,13 +1,11 @@
 <script setup lang="ts">
-import { computed, provide, reactive } from "vue";
+import { computed, provide, reactive, readonly } from "vue";
 import type { InjectionKey } from "vue";
 
 // todo close on click outside
 
 const props = withDefaults(
   defineProps<{
-    // biome-ignore lint/suspicious/noExplicitAny: allow any type according to docs
-    modelValue?: any;
     disabled?: boolean;
     hoverable?: boolean;
     inline?: boolean;
@@ -24,10 +22,9 @@ const props = withDefaults(
   },
 );
 
-const emit = defineEmits(["update:modelValue"]);
+const sel = defineModel();
 
 const state = reactive({
-  selected: props.modelValue,
   style: {},
   isActive: false,
   isHoverable: props.hoverable,
@@ -46,7 +43,7 @@ const closeMenu = () => {
 
 // biome-ignore lint/suspicious/noExplicitAny: allow any type according to docs
 const selectItem = (newValue: any) => {
-  emit("update:modelValue", newValue);
+  sel.value = newValue;
   closeMenu();
 };
 
@@ -67,7 +64,7 @@ export type DDSelection = {
 
 export const DropdownSymbol = Symbol("Dropdown") as InjectionKey<DDSelection>;
 
-provide(DropdownSymbol, { selectItem, value: props.modelValue });
+provide(DropdownSymbol, { selectItem, value: readonly(sel) });
 </script>
 
 <template>

@@ -33,5 +33,5 @@ export interface PaginationPage {
   click?: (e: Event) => void;
   disabled?: boolean;
   class?: string;
-  "aria-label"?: string;
+  "aria-label"?: string | null;
 }

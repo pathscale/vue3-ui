@@ -12,15 +12,15 @@ export default Positions;
 export function definePosition(position, top, bottom) {
   let result = null;
   switch (position) {
-    case POSITIONS.TOP:
-    case POSITIONS.TOP_RIGHT:
-    case POSITIONS.TOP_LEFT:
+    case Positions.TOP:
+    case Positions.TOP_RIGHT:
+    case Positions.TOP_LEFT:
       result = top;
       break;
 
-    case POSITIONS.BOTTOM:
-    case POSITIONS.BOTTOM_RIGHT:
-    case POSITIONS.BOTTOM_LEFT:
+    case Positions.BOTTOM:
+    case Positions.BOTTOM_RIGHT:
+    case Positions.BOTTOM_LEFT:
       result = bottom;
       break;
     default:

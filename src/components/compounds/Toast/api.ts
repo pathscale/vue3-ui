@@ -4,7 +4,7 @@ import eventBus from "./helpers/event-bus.js";
 import mount from "./helpers/mount-component";
 
 export interface ToastOptions {
-  type?: "is-success" | "is-danger" | "is-info" | "is-warning";
+  type?: "is-success" | "is-danger" | "is-info" | "is-warning" | "is-primary";
   position?: Position;
   duration?: number | false;
   dismissible?: boolean;

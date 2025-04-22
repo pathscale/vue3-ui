@@ -18,14 +18,15 @@ import {
   reactive,
   useTemplateRef,
 } from "vue";
+import type { ToastGlobalOptions, ToastOptions } from "./api";
 import Position, { definePosition } from "./defaults/position";
 import eventBus from "./helpers/event-bus";
 import { removeElement } from "./helpers/remove-element";
 import Timer from "./helpers/timer";
 
-interface IProps {
+interface IProps extends ToastOptions, ToastGlobalOptions {
   message: string; // required
-  type?: string;
+  type?: "is-success" | "is-danger" | "is-info" | "is-warning" | "is-primary";
   position?: Position;
   maxToasts?: number | false;
   duration?: number | false;

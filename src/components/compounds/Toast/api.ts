@@ -14,16 +14,8 @@ export interface ToastOptions {
 }
 
 export interface ToastGlobalOptions extends ToastOptions {
-  message: string; // required
-  type?: string;
-  position?: Position;
   maxToasts?: number | false;
-  duration?: number | false;
-  dismissible?: boolean;
   queue?: boolean;
-  pauseOnHover?: boolean;
-  onClose?: () => void;
-  onClick?: () => void;
 }
 
 const Api = (globalOptions = {}) => {

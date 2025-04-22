@@ -110,6 +110,7 @@ function getPage(
   options: {
     disabled?: boolean;
     class?: string;
+    "aria-label"?: string;
   } = {},
 ) {
   return {

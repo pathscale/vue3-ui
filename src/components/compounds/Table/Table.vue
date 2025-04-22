@@ -105,7 +105,7 @@ const countColumns = computed(() => {
   );
 });
 
-const handlePageChange = (value) => {
+const handlePageChange = (value: number) => {
   currentPage.value = value - 1; // pagination handle indexes from 1, table from 0
 };
 
@@ -124,14 +124,14 @@ const columnClasses = (column: Column) => {
   };
 };
 
-const selectedClasses = (row) => {
+const selectedClasses = (row: Row) => {
   return {
     "has-background-primary": row.selected,
     "has-text-white": row.selected,
   };
 };
 
-const cellClasses = (column) => {
+const cellClasses = (column: Column) => {
   return {
     ...column.style,
     "sticky-column": column.sticky,
@@ -146,7 +146,7 @@ watch(
   { deep: true },
 );
 
-const isChecked = (row) => {
+const isChecked = (row: Row) => {
   return data.value.checkedRows.has(row);
 };
 

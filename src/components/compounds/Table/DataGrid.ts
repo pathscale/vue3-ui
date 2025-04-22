@@ -12,6 +12,7 @@ export type Column = {
   ascendant: boolean;
   selected?: boolean;
   style?: object;
+  sticky?: boolean;
   sortFunction(
     a: RowData,
     b: RowData,

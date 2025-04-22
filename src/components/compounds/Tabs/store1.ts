@@ -1,4 +1,4 @@
-import type { MaybeRef } from "vue";
+import type { MaybeRef, Ref } from "vue";
 import { inject, provide, toRef } from "vue";
 
 const TabsSymbol = Symbol("Tabs");
@@ -17,7 +17,7 @@ export function useStore<T>(): T {
   return store;
 }
 
-export function addToStore(tab) {
-  const tabs = useStore();
+export function addToStore<Tab, T extends { tabs: Tab[] }>(tab: Tab) {
+  const tabs = useStore<Ref<T>>();
   tabs.value.tabs.push(tab);
 }

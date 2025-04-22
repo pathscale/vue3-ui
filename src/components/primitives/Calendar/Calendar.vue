@@ -63,7 +63,8 @@ onMounted(() => {
     endTime: date.value[1],
   });
 
-  calendar[0].on("save", (e) => {
+  // Seems like deprecated event type
+  /* calendar[0].on("save", (e) => {
     date.value = [e.data.startDate, e.data.endDate];
 
     if (props.range) {
@@ -72,7 +73,7 @@ onMounted(() => {
     }
 
     emit("update:modelValue", date.value[0]);
-  });
+  }); */
 
   calendar[0].on("select", (e) => {
     if (props.range) {

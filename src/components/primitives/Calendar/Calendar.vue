@@ -4,7 +4,7 @@
 
 <script setup lang="ts">
 import { firstIfArray } from "@/utils/functions";
-import { inject, onMounted, ref } from "vue";
+import { inject, onMounted, ref, useTemplateRef } from "vue";
 import type { BulmaCalendarOptions } from "./calendar-types";
 
 const props = withDefaults(
@@ -28,7 +28,7 @@ const emit = defineEmits(["update:modelValue", "select"]);
 type DateRange = [Date | null | undefined, Date | null | undefined];
 
 const date = ref<DateRange>([null, null]);
-const input = ref(null);
+const input = useTemplateRef<HTMLInputElement>("input");
 
 onMounted(() => {
   const bulmaCalendar = inject("$bulmaCalendar");

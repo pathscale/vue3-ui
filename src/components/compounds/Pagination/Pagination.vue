@@ -34,7 +34,10 @@ const props = withDefaults(
   },
 );
 
-const emit = defineEmits(["update:current", "change"]);
+const emit = defineEmits<{
+  (e: "update:current", num: number): void;
+  (e: "change", num: number): void;
+}>();
 
 const beforeCurrent = computed(() => {
   return intOrParseInt(props.rangeBefore);

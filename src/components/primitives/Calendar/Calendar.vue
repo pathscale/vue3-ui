@@ -5,7 +5,7 @@
 <script setup lang="ts">
 import { firstIfArray } from "@/utils/functions";
 import { inject, onMounted, ref, useTemplateRef } from "vue";
-import type { BulmaCalendar, Options } from "./my-bulma-calendar";
+import type { BulmaCalendar, Options } from "./bulma-calendar-types";
 
 const props = withDefaults(
   defineProps<{

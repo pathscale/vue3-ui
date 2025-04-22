@@ -1,76 +1,42 @@
-<script>
-import { inject, provide, ref, watchEffect } from "vue";
+<script setup lang="ts">
+import { watchEffect } from "vue";
 
-const TabsSymbol = Symbol("Tabs");
+const props = defineProps<{
+  modelValue: number | string; // required
+  size?: string; // todo union
+  type?: string; // todo union
+  animated?: boolean;
+}>();
 
-export function provideStore(store) {
-  const storeRef = ref(store);
-  provide(TabsSymbol, storeRef);
-  return storeRef;
-}
+const emit = defineEmits(["update:modelValue", "change"]);
 
-export function useStore() {
-  const store = inject(TabsSymbol);
-  if (!store) {
-    // throw error, no store provided
-  }
-  return store;
-}
+const tabs = provideStore({
+  activeTab: 0,
+  activeHeight: null,
+  tabs: [],
+});
 
-export function addToStore(tab) {
-  const tabs = useStore();
-  tabs.value.tabs.push(tab);
-}
-
-export default {
-  name: "VSteps",
-  props: {
-    modelValue: {
-      type: [Number, String],
-      required: true,
-    },
-    size: String,
-    type: String,
-    animated: Boolean,
-  },
-  emits: ["update:modelValue", "change"],
-  setup(props, { emit }) {
-    const tabs = provideStore({
-      activeTab: 0,
-      activeHeight: null,
-      tabs: [],
-    });
-
-    const setActiveTabID = (id) => {
-      tabs.value.activeTab = id;
-    };
-
-    const setActiveTab = (t) => {
-      if (!t.disabled && t.clickable) {
-        setActiveTabID(t.id);
-      }
-    };
-
-    watchEffect(() => {
-      setActiveTabID(props.modelValue);
-    });
-
-    watchEffect(() => {
-      emit("update:modelValue", tabs.value.activeTab);
-      emit("change", tabs.value.activeTab);
-    });
-
-    const isTabActive = (t) => tabs.value.activeTab === t.id;
-    const isTabCompleted = (t) => tabs.value.activeTab > t.id;
-
-    return {
-      setActiveTab,
-      tabs,
-      isTabActive,
-      isTabCompleted,
-    };
-  },
+const setActiveTabID = (id) => {
+  tabs.value.activeTab = id;
 };
+
+const setActiveTab = (t) => {
+  if (!t.disabled && t.clickable) {
+    setActiveTabID(t.id);
+  }
+};
+
+watchEffect(() => {
+  setActiveTabID(props.modelValue);
+});
+
+watchEffect(() => {
+  emit("update:modelValue", tabs.value.activeTab);
+  emit("change", tabs.value.activeTab);
+});
+
+const isTabActive = (t) => tabs.value.activeTab === t.id;
+const isTabCompleted = (t) => tabs.value.activeTab > t.id;
 </script>
 
 <template>

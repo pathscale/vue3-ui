@@ -1,3 +1,8 @@
+/**
+ * Short declaration based on
+ * https://github.com/michael-hack/bulma-calendar/blob/master/index.d.ts
+ */
+
 export interface Options {
   /**
    * Component type

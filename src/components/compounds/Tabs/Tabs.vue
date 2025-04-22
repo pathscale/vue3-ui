@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Tab, TabsState } from "@/types/component-types";
+import { provideStore } from "@/utils/tabs-store";
 import { computed, watchEffect } from "vue";
-import { provideStore } from "./tabs-store";
 
 const props = defineProps<{
   modelValue: number | string; // required

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Tab, TabsState } from "@/types/component-types";
+import { addToStore, useStore } from "@/utils/tabs-store";
 import { computed, onMounted, onUpdated, useTemplateRef, watch } from "vue";
-import { addToStore, useStore } from "./tabs-store";
 
 const props = withDefaults(
   defineProps<{

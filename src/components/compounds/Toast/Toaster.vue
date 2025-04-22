@@ -147,7 +147,7 @@ function click() {
   }
 }
 
-function toggleTimer(newVal) {
+function toggleTimer(newVal: boolean) {
   if (state.timer && props.pauseOnHover) {
     newVal ? state.timer.pause() : state.timer.resume();
   }

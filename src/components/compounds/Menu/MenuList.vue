@@ -1,11 +1,8 @@
-<script>
-export default {
-  name: "VMenuList",
-  props: {
-    label: String,
-    ariaRole: String,
-  },
-};
+<script setup lang="ts">
+defineProps<{
+  label?: string;
+  ariaRole?: string;
+}>();
 </script>
 
 <template>

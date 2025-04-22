@@ -1,11 +1,11 @@
 <script setup lang="ts">
+import VPagination from "@/components/compounds/Pagination/Pagination.vue";
+import VButton from "@/components/primitives/Button/Button.vue";
+import VCheckbox from "@/components/primitives/Checkbox/Checkbox.vue";
+import VInput from "@/components/primitives/Input/Input.vue";
+import VSelect from "@/components/primitives/Select/Select.vue";
+import VTag from "@/components/primitives/Tag/Tag.vue";
 import { computed, reactive, ref, toRaw, useSlots, watch } from "vue";
-import VButton from "../../primitives/Button/Button.vue";
-import VCheckbox from "../../primitives/Checkbox/Checkbox.vue";
-import VInput from "../../primitives/Input/Input.vue";
-import VSelect from "../../primitives/Select/Select.vue";
-import VTag from "../../primitives/Tag/Tag.vue";
-import VPagination from "../Pagination/Pagination.vue";
 
 const UNKNOW = "unknow";
 

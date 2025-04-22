@@ -63,7 +63,7 @@ const isHorizontal = computed(() => props.position && !props.vertical);
 
 const rounded = computed(() => props.type === "is-toggle-rounded");
 
-const isTabActive = (t) => tabs.value.activeTab === t.id;
+const isTabActive = (t: Tab) => tabs.value.activeTab === t.id;
 </script>
 
 <template>

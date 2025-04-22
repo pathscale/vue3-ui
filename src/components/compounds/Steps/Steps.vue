@@ -3,7 +3,7 @@ import { watchEffect } from "vue";
 
 const props = defineProps<{
   modelValue: number | string; // required
-  size?: string; // todo union
+  size?: "is-small" | "is-medium" | "is-large";
   type?: string; // todo union
   animated?: boolean;
 }>();

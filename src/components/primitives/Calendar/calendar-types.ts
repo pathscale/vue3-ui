@@ -14,5 +14,5 @@ export interface BulmaCalendarOptions {
 }
 
 export interface BulmaCalendar {
-  attach: () => void;
+  attach: (ref: HTMLElement, options: BulmaCalendarOptions) => void;
 }

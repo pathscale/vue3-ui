@@ -46,6 +46,10 @@ onMounted(() => {
     date.value[0] = firstIfArray(props.modelValue);
   }
 
+  if (!input.value) {
+    throw new Error("no template ref for calendar");
+  }
+
   const calendar = bulmaCalendar.attach(input.value, {
     ...props.options,
     displayMode: props.inline ? "inline" : props.dialog ? "dialog" : "default",

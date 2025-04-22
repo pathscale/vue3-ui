@@ -125,7 +125,7 @@ function getPage(
   };
 }
 
-function getAriaPageLabel(pageNumber, isCurrent) {
+function getAriaPageLabel(pageNumber: number, isCurrent: boolean) {
   if (props.ariaPageLabel && (!isCurrent || !props.ariaCurrentLabel)) {
     return `${props.ariaPageLabel} ${pageNumber}.`;
   }

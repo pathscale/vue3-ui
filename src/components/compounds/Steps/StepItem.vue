@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { StepTab, StepTabsState } from "@/types/component-types";
 import { addTabToStore, useTabsStore } from "@/utils/tabs-store";
-import { computed, ref, watch } from "vue";
+import { computed, useTemplateRef, watch } from "vue";
 
 const props = defineProps<{
   title?: string;
@@ -11,7 +11,7 @@ const props = defineProps<{
   clickable?: boolean;
 }>();
 
-const content = ref(null);
+const content = useTemplateRef<HTMLElement>("content");
 const tabs = useTabsStore<StepTabsState>();
 const id = JSON.parse(JSON.stringify(tabs.value.tabs)).length;
 

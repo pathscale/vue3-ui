@@ -1,7 +1,5 @@
-<script>
-export default {
-  name: "VMenu",
-};
+<script setup lang="ts">
+//
 </script>
 
 <template>

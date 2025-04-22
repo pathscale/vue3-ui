@@ -20,7 +20,7 @@ export interface ToastGlobalOptions extends ToastOptions {
 
 const Api = (globalOptions: ToastGlobalOptions = {}) => {
   return {
-    show(message: string, options = {}) {
+    show(message: string, options: ToastOptions = {}) {
       const localOptions = { message, ...options };
       const c = mount(Toaster, {
         props: { ...globalOptions, ...localOptions },

@@ -6,7 +6,7 @@ import { watchEffect } from "vue";
 const props = defineProps<{
   modelValue: number | string; // required
   size?: "is-small" | "is-medium" | "is-large";
-  type?: string; // todo union
+  type?: string; // todo update docs: add type to props table
   animated?: boolean;
 }>();
 

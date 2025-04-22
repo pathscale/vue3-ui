@@ -28,8 +28,8 @@ const props = withDefaults(
     message: string; // required
     type?: string;
     position?: Positions;
-    maxToasts?: false | number | string; // string for numeric strings only
-    duration?: false | number | string; // string for numeric strings only
+    maxToasts?: number | false;
+    duration?: number | false;
     dismissible?: boolean;
     queue?: boolean;
     pauseOnHover?: boolean;

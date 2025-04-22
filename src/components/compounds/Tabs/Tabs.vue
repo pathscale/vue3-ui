@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, inject, provide, ref, watchEffect } from "vue";
+import { computed, watchEffect } from "vue";
 
 defineProps<{
   modelValue: number | string; // required

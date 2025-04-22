@@ -1,17 +1,18 @@
-import { inject, provide, ref } from "vue";
+import type { MaybeRef } from "vue";
+import { inject, provide, toRef } from "vue";
 
 const TabsSymbol = Symbol("Tabs");
 
-export function provideStore(store) {
-  const storeRef = ref(store);
+export function provideStore<T>(store: MaybeRef<T>) {
+  const storeRef = toRef(store);
   provide(TabsSymbol, storeRef);
   return storeRef;
 }
 
-export function useStore() {
-  const store = inject(TabsSymbol);
+export function useStore<T>(): T {
+  const store = inject<T>(TabsSymbol);
   if (!store) {
-    // throw error, no store provided
+    throw new Error("no store provided");
   }
   return store;
 }

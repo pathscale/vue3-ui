@@ -49,7 +49,12 @@ const props = withDefaults(
 
 const root = ref(null);
 
-const state = reactive({
+const state = reactive<{
+  isActive: boolean;
+  parentTop: Element | null;
+  parentBottom: Element | null;
+  isHovered: boolean;
+}>({
   isActive: false,
   parentTop: null,
   parentBottom: null,

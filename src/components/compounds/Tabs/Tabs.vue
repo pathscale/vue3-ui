@@ -20,7 +20,15 @@ type Tab = {
   disabled: boolean;
 };
 
-const tabs = provideStore({
+type TabsState = {
+  activeTab: number;
+  activeHeight: number | null;
+  tabs: Tab[];
+  animated: boolean;
+  vanimated: boolean;
+};
+
+const tabs = provideStore<TabsState>({
   activeTab: 0,
   activeHeight: null,
   tabs: [],

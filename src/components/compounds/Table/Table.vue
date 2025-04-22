@@ -157,7 +157,6 @@ const total = computed(() => data.value.originalRows.length);
 </script>
 
 <template>
-  <!-- eslint-disable @pathscale/vue3/v-directive  -->
   <div class="v-table">
     <div
       class="table-wrapper table-container"

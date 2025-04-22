@@ -54,6 +54,7 @@ const state = reactive<{
   parentTop: Element | null;
   parentBottom: Element | null;
   isHovered: boolean;
+  timer: Timer | null;
 }>({
   isActive: false,
   parentTop: null,
@@ -62,7 +63,7 @@ const state = reactive<{
   timer: null,
 });
 
-let queueTimer = null;
+let queueTimer: number | null = null;
 
 const correctParent = computed(() => {
   return definePosition(props.position, state.parentTop, state.parentBottom);
@@ -126,7 +127,7 @@ function shouldQueue() {
 
 function showNotice() {
   if (shouldQueue()) {
-    queueTimer = setTimeout(showNotice, 250);
+    queueTimer = window.setTimeout(showNotice, 250);
     return;
   }
 

@@ -23,29 +23,28 @@ import eventBus from "./helpers/event-bus";
 import { removeElement } from "./helpers/remove-element";
 import Timer from "./helpers/timer";
 
-const props = withDefaults(
-  defineProps<{
-    message: string; // required
-    type?: string;
-    position?: Position;
-    maxToasts?: number | false;
-    duration?: number | false;
-    dismissible?: boolean;
-    queue?: boolean;
-    pauseOnHover?: boolean;
-    onClose?: () => void;
-    onClick?: () => void;
-  }>(),
-  {
-    type: "is-primary",
-    position: Position.BOTTOM_RIGHT,
-    maxToasts: false,
-    duration: 4000,
-    dismissible: true,
-    onClose: () => {},
-    onClick: () => {},
-  },
-);
+interface IProps {
+  message: string; // required
+  type?: string;
+  position?: Position;
+  maxToasts?: number | false;
+  duration?: number | false;
+  dismissible?: boolean;
+  queue?: boolean;
+  pauseOnHover?: boolean;
+  onClose?: () => void;
+  onClick?: () => void;
+}
+
+const props = withDefaults(defineProps<IProps>(), {
+  type: "is-primary",
+  position: Position.BOTTOM_RIGHT,
+  maxToasts: false,
+  duration: 4000,
+  dismissible: true,
+  onClose: () => {},
+  onClick: () => {},
+});
 
 const root = useTemplateRef<HTMLElement>("root");
 

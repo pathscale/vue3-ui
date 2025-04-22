@@ -4,7 +4,7 @@ import eventBus from "./helpers/event-bus.js";
 import mount from "./helpers/mount-component";
 
 export type ToastOptions = {
-  type?: "is-success" | "is-danger";
+  type?: "is-success" | "is-danger" | "is-info" | "is-warning";
   position?: Position;
   duration?: number | false;
   dismissible?: boolean;
@@ -26,19 +26,19 @@ const Api = (globalOptions = {}) => {
     clear() {
       eventBus.$emit("toast-clear");
     },
-    success(message: string, options = {}) {
+    success(message: string, options: ToastOptions = {}) {
       options.type = "is-success";
       return this.show(message, options);
     },
-    error(message: string, options = {}) {
+    error(message: string, options: ToastOptions = {}) {
       options.type = "is-danger";
       return this.show(message, options);
     },
-    info(message: string, options = {}) {
+    info(message: string, options: ToastOptions = {}) {
       options.type = "is-info";
       return this.show(message, options);
     },
-    warning(message: string, options = {}) {
+    warning(message: string, options: ToastOptions = {}) {
       options.type = "is-warning";
       return this.show(message, options);
     },

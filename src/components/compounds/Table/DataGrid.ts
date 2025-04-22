@@ -3,7 +3,7 @@ import { toRaw } from "vue";
 type CellValue = string | number | boolean;
 type RowData = Record<string, CellValue | null | undefined>;
 
-type Column = {
+export type Column = {
   id?: number;
   name: string;
   caption: string;
@@ -19,7 +19,7 @@ type Column = {
   ): number;
 };
 
-type Row = {
+export type Row = {
   id: number;
   selected?: boolean;
 } & RowData;

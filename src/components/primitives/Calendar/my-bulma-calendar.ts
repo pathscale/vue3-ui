@@ -1,4 +1,4 @@
-interface Options {
+export interface Options {
   /**
    * Component type
    *
@@ -302,7 +302,7 @@ interface Event<T extends EventType = EventType> {
   data: BulmaCalendar;
 }
 
-declare class BulmaCalendar {
+export declare class BulmaCalendar {
   on<T extends EventType>(
     name: T,
     callback: (event: Event<T>) => void,

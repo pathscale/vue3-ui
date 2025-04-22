@@ -22,7 +22,7 @@ export interface ToasterProps extends ToastOptions, ToastGlobalOptions {
   message: string; // required
 }
 
-const Api = (globalOptions: ToastGlobalOptions = {}) => {
+const ToastApi = (globalOptions: ToastGlobalOptions = {}) => {
   return {
     show(message: string, options: ToastOptions = {}) {
       const localOptions = { message, ...options };
@@ -55,4 +55,4 @@ const Api = (globalOptions: ToastGlobalOptions = {}) => {
   };
 };
 
-export default Api;
+export default ToastApi;

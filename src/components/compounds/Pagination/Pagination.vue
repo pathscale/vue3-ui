@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { PaginationPage } from "@/types/component-types";
 import { intOrParseInt } from "@/utils/functions";
 import { computed, nextTick, watchEffect } from "vue";
 import PaginationItem from "./PaginationItem.vue";
@@ -112,7 +113,7 @@ function getPage(
     class?: string;
     "aria-label"?: string;
   } = {},
-) {
+): PaginationPage {
   return {
     number: num,
     isCurrent: props.current === num,

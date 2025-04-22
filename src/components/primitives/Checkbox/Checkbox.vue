@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { CheckRadioProps } from "@/types/CheckRadioProps";
+import type { CheckRadioProps } from "@/types/component-types";
 import { useTemplateRef } from "vue";
 
 interface IProps extends CheckRadioProps {

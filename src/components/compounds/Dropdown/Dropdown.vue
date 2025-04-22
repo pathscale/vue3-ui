@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { computed, provide, reactive, readonly } from "vue";
+import { onClickOutside } from "@/utils/onClickOutside";
+import { computed, provide, reactive, readonly, useTemplateRef } from "vue";
 import { type DDSelection, DropdownSymbol } from "./dropdown-symbol";
-
-// todo close on click outside
 
 const props = withDefaults(
   defineProps<{
@@ -57,10 +56,16 @@ const displayActive = computed(() => state.isActive || props.inline);
 
 // provide item dropdown selection for children
 provide<DDSelection>(DropdownSymbol, { selectItem, value: readonly(selected) });
+
+// close dropdown on click outside
+const dropdownWrapper = useTemplateRef<HTMLElement>("dropdown-wrapper");
+onClickOutside(dropdownWrapper, () => {
+  state.isActive = false;
+});
 </script>
 
 <template>
-  <div class="dropdown" :class="[
+  <div ref="dropdown-wrapper" class="dropdown" :class="[
     position,
     {
       'is-disabled': disabled,

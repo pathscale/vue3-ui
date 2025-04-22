@@ -18,7 +18,7 @@ export interface ToastGlobalOptions extends ToastOptions {
   queue?: boolean;
 }
 
-const Api = (globalOptions = {}) => {
+const Api = (globalOptions: ToastGlobalOptions = {}) => {
   return {
     show(message: string, options = {}) {
       const localOptions = { message, ...options };

@@ -3,6 +3,7 @@
 </template>
 
 <script setup lang="ts">
+import { firstIfArray } from "@/utils/functions";
 import { inject, onMounted, ref } from "vue";
 
 const props = withDefaults(
@@ -23,7 +24,9 @@ const props = withDefaults(
 
 const emit = defineEmits(["update:modelValue", "select"]);
 
-const date = ref<[Date | null, Date | null]>([null, null]);
+type DateRange = [Date | null | undefined, Date | null | undefined];
+
+const date = ref<DateRange>([null, null]);
 const input = ref(null);
 
 onMounted(() => {
@@ -39,7 +42,7 @@ onMounted(() => {
       date.value = props.modelValue;
     }
   } else {
-    date.value[0] = props.modelValue;
+    date.value[0] = firstIfArray(props.modelValue);
   }
 
   const calendar = bulmaCalendar.attach(input.value, {

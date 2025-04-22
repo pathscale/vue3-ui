@@ -1,47 +1,48 @@
-<script>
+<script setup lang="ts">
 import { ref, watchEffect } from "vue";
 
-export default {
-  name: "VMenuItem",
+defineOptions({
   inheritAttrs: false,
-  props: {
-    label: String,
-    active: Boolean,
-    expanded: Boolean,
-    disabled: Boolean,
-    icon: String,
-    tag: {
-      type: String,
-      default: "a",
-    },
-    ariaRole: String,
+});
+
+const props = withDefaults(
+  defineProps<{
+    label?: string;
+    active?: boolean;
+    expanded?: boolean;
+    disabled?: boolean;
+    icon?: string;
+    tag?: string;
+    ariaRole?: string;
+  }>(),
+  {
+    tag: "a",
+    ariaRole: "menuitem",
   },
-  emits: ["update:expanded", "update:active"],
-  setup(props, { emit }) {
-    const newActive = ref(props.active);
-    const newExpanded = ref(props.expanded);
-    const content = ref(null);
+);
 
-    watchEffect(() => {
-      newActive.value = props.active;
-    });
+const emit = defineEmits(["update:expanded", "update:active"]);
 
-    watchEffect(() => {
-      newExpanded.value = props.expanded;
-    });
+const newActive = ref(props.active);
+const newExpanded = ref(props.expanded);
+const content = ref(null);
 
-    const onClick = () => {
-      // TODO Disable previous active item
-      if (props.disabled) return;
+watchEffect(() => {
+  newActive.value = props.active;
+});
 
-      newExpanded.value = !newExpanded.value;
-      emit("update:expanded", newExpanded.value);
-      emit("update:active", newActive.value);
-      // newActive.value = true
-    };
+watchEffect(() => {
+  newExpanded.value = props.expanded;
+});
 
-    return { newActive, newExpanded, onClick, content };
-  },
+const onClick = () => {
+  // TODO Disable previous active item
+  if (props.disabled) return;
+
+  newExpanded.value = !newExpanded.value;
+  emit("update:expanded", newExpanded.value);
+  emit("update:active", newActive.value);
+  // newActive.value = true
 };
 </script>
 

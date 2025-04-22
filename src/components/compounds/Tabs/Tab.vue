@@ -1,8 +1,9 @@
 <script setup lang="ts">
+import type { TabsState } from "@/types/component-types";
 import { computed, onMounted, onUpdated, useTemplateRef, watch } from "vue";
-import { addToStore, useStore } from "./Tabs.vue";
+import { addToStore, useStore } from "./tabs-store";
 
-withDefaults(
+const props = withDefaults(
   defineProps<{
     label: string; // required
     disabled?: boolean;
@@ -15,7 +16,7 @@ withDefaults(
 );
 
 const content = useTemplateRef<HTMLElement>("content");
-const tabs = useStore();
+const tabs = useStore<TabsState>();
 const id = JSON.parse(JSON.stringify(tabs.value.tabs)).length;
 const transitionName = computed(() => {
   return tabs.value.activeTab < id ? "slide-right" : "slide-left";

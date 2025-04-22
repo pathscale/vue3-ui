@@ -11,6 +11,7 @@ export type Column = {
   show: boolean;
   ascendant: boolean;
   selected?: boolean;
+  style?: object;
   sortFunction(
     a: RowData,
     b: RowData,

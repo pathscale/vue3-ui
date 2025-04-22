@@ -6,7 +6,7 @@ import VInput from "@/components/primitives/Input/Input.vue";
 import VSelect from "@/components/primitives/Select/Select.vue";
 import VTag from "@/components/primitives/Tag/Tag.vue";
 import { computed, reactive, ref, toRaw, useSlots, watch } from "vue";
-import DataGrid from "./DataGrid";
+import DataGrid, { type Column } from "./DataGrid";
 
 const UNKNOW = "unknow";
 
@@ -76,7 +76,7 @@ if (props.pagination) {
   props.data.switchPage();
 }
 
-const sortColumn = (column) => {
+const sortColumn = (column: Column) => {
   props.data.sortByColumn(column.name, column.ascendant);
   column.ascendant = !column.ascendant;
 };
@@ -109,13 +109,13 @@ const handlePageChange = (value) => {
   currentPage.value = value - 1; // pagination handle indexes from 1, table from 0
 };
 
-const handleSort = (column) => {
+const handleSort = (column: Column) => {
   if (props.sortable && column.dataType !== UNKNOW) {
     sortColumn(column);
   }
 };
 
-const columnClasses = (column) => {
+const columnClasses = (column: Column) => {
   return {
     ...column.style,
     "has-text-primary": column.selected,

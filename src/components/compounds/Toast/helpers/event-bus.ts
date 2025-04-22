@@ -3,7 +3,7 @@ type Callback = (data?: any) => void;
 
 type Queue = Record<string, Callback[]>;
 
-class Event {
+class EventBus {
   queue: Queue;
 
   constructor() {
@@ -36,4 +36,4 @@ class Event {
   }
 }
 
-export default new Event();
+export default new EventBus();

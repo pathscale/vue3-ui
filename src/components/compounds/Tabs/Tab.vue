@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Tab, TabsState } from "@/types/component-types";
-import { addToStore, useStore } from "@/utils/tabs-store";
+import { addTabToStore, useTabsStore } from "@/utils/tabs-store";
 import { computed, onMounted, onUpdated, useTemplateRef, watch } from "vue";
 
 const props = withDefaults(
@@ -16,7 +16,7 @@ const props = withDefaults(
 );
 
 const content = useTemplateRef<HTMLElement>("content");
-const tabs = useStore<TabsState>();
+const tabs = useTabsStore<TabsState>();
 const id = JSON.parse(JSON.stringify(tabs.value.tabs)).length;
 const transitionName = computed(() => {
   return tabs.value.activeTab < id ? "slide-right" : "slide-left";
@@ -31,7 +31,7 @@ const updateActiveHeight = () => {
 onMounted(updateActiveHeight);
 onUpdated(updateActiveHeight);
 
-addToStore<Tab>({ ...props, id });
+addTabToStore<Tab>({ ...props, id });
 
 watch(
   () => tabs.value.tabs.findIndex((tab) => tab.id === id),

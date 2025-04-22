@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { StepTab, StepTabsState } from "@/types/component-types";
-import { addToStore, useStore } from "@/utils/tabs-store";
+import { addTabToStore, useTabsStore } from "@/utils/tabs-store";
 import { computed, ref, watch } from "vue";
 
 const props = defineProps<{
@@ -12,10 +12,10 @@ const props = defineProps<{
 }>();
 
 const content = ref(null);
-const tabs = useStore<StepTabsState>();
+const tabs = useTabsStore<StepTabsState>();
 const id = JSON.parse(JSON.stringify(tabs.value.tabs)).length;
 
-addToStore<StepTab>({ ...props, id });
+addTabToStore<StepTab>({ ...props, id });
 
 watch(
   () => tabs.value.tabs.findIndex((tab) => tab.id === id),

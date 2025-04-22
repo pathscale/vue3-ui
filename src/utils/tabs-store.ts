@@ -3,13 +3,13 @@ import { inject, provide, toRef } from "vue";
 
 const TabsSymbol = Symbol("Tabs");
 
-export function provideStore<T>(store: MaybeRef<T>) {
+export function provideTabsStore<T>(store: MaybeRef<T>) {
   const storeRef = toRef(store);
   provide(TabsSymbol, storeRef);
   return storeRef;
 }
 
-export function useStore<T>(): Ref<T> {
+export function useTabsStore<T>(): Ref<T> {
   const store = inject<Ref<T>>(TabsSymbol);
   if (!store) {
     throw new Error("no store provided");
@@ -17,9 +17,9 @@ export function useStore<T>(): Ref<T> {
   return store;
 }
 
-export function addToStore<Tab, T extends { tabs: Tab[] } = { tabs: Tab[] }>(
+export function addTabToStore<Tab, T extends { tabs: Tab[] } = { tabs: Tab[] }>(
   tab: Tab,
 ) {
-  const tabs = useStore<T>();
+  const tabs = useTabsStore<T>();
   tabs.value.tabs.push(tab);
 }

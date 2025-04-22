@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { computed, watchEffect } from "vue";
+import { provideStore } from "./store1";
 
-defineProps<{
+const props = defineProps<{
   modelValue: number | string; // required
   size?: string;
   type?: string;
@@ -22,7 +23,7 @@ const tabs = provideStore({
   vanimated: props.vanimated,
 });
 
-const setActiveTabID = (id) => {
+const setActiveTabID = (id: number) => {
   tabs.value.activeTab = id;
 };
 

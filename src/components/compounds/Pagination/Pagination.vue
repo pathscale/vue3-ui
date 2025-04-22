@@ -106,7 +106,7 @@ function last(e) {
   changePage(pageCount.value, e);
 }
 function getPage(
-  num,
+  num: number,
   options: {
     disabled?: boolean;
     class?: string;

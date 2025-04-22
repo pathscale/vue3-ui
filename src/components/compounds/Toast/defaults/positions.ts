@@ -1,13 +1,13 @@
-const POSITIONS = {
-  TOP_RIGHT: "top-right",
-  TOP: "top",
-  TOP_LEFT: "top-left",
-  BOTTOM_RIGHT: "bottom-right",
-  BOTTOM: "bottom",
-  BOTTOM_LEFT: "bottom-left",
-};
+enum Positions {
+  TOP_RIGHT = "top-right",
+  TOP = "top",
+  TOP_LEFT = "top-left",
+  BOTTOM_RIGHT = "bottom-right",
+  BOTTOM = "bottom",
+  BOTTOM_LEFT = "bottom-left",
+}
 
-export default Object.freeze(POSITIONS);
+export default Positions;
 
 export function definePosition(position, top, bottom) {
   let result = null;

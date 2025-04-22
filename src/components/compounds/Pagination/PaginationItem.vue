@@ -1,16 +1,10 @@
 <script setup lang="ts">
+import type { PaginationPage } from "@/types/component-types";
 import { computed } from "vue";
-
-type IPaginationPage = {
-  number: number;
-  isCurrent: boolean;
-  disabled: boolean;
-  class: string;
-};
 
 const props = withDefaults(
   defineProps<{
-    page: IPaginationPage; // required
+    page: PaginationPage; // required
     tag?: string;
     disabled?: boolean;
   }>(),

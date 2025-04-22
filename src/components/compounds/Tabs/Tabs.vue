@@ -5,7 +5,7 @@ import { provideStore } from "./store1";
 const props = defineProps<{
   modelValue: number | string; // required
   size?: "is-small" | "is-medium" | "is-large";
-  type?: "is-boxed" | "is-toggle";
+  type?: "is-boxed" | "is-toggle" | "is-toggle-rounded"; // todo update docs: add "is-toggle-rounded" to table
   expanded?: boolean;
   position?: "is-centered" | "is-right";
   vertical?: boolean; // TODO

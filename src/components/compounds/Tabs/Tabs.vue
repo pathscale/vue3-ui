@@ -4,10 +4,10 @@ import { provideStore } from "./store1";
 
 const props = defineProps<{
   modelValue: number | string; // required
-  size?: string;
-  type?: string;
+  size?: "is-small" | "is-medium" | "is-large";
+  type?: "is-boxed" | "is-toggle";
   expanded?: boolean;
-  position?: string;
+  position?: "is-centered" | "is-right";
   vertical?: boolean; // TODO
   vanimated?: boolean;
   animated?: boolean;

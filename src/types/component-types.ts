@@ -41,8 +41,9 @@ export interface PaginationPage {
  */
 export type Tab = {
   id: number | string;
-  disabled: boolean;
   label: string;
+  disabled?: boolean;
+  visible?: boolean;
 };
 
 export type TabsState = {

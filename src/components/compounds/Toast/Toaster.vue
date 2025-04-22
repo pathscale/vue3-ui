@@ -51,8 +51,8 @@ const root = ref(null);
 
 const state = reactive<{
   isActive: boolean;
-  parentTop: Element | null;
-  parentBottom: Element | null;
+  parentTop: HTMLElement | null;
+  parentBottom: HTMLElement | null;
   isHovered: boolean;
   timer: Timer | null;
 }>({
@@ -90,14 +90,15 @@ function createParents() {
   if (state.parentTop && state.parentBottom) return;
 
   if (!state.parentTop) {
-    state.parentTop = document.createElement("div");
-    state.parentTop.className = "v-toast-container v-toast-container--top";
+    const parentTop = document.createElement("div");
+    parentTop.className = "v-toast-container v-toast-container--top";
+    state.parentTop = parentTop;
   }
 
   if (!state.parentBottom) {
-    state.parentBottom = document.createElement("div");
-    state.parentBottom.className =
-      "v-toast-container v-toast-container--bottom";
+    const parentBottom = document.createElement("div");
+    parentBottom.className = "v-toast-container v-toast-container--bottom";
+    state.parentBottom = parentBottom;
   }
 }
 

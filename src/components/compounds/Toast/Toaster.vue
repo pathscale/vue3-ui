@@ -66,7 +66,11 @@ const state = reactive<{
 let queueTimer: number | undefined = undefined;
 
 const correctParent = computed(() => {
-  return definePosition(props.position, state.parentTop, state.parentBottom);
+  return definePosition(
+    props.position,
+    state.parentTop as HTMLElement,
+    state.parentBottom as HTMLElement,
+  );
 });
 
 const transition = computed(() => {

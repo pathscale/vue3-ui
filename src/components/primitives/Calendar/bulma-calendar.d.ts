@@ -193,6 +193,7 @@ declare namespace bulmaCalendar {
     /**
      * List of highlighted dates
      */
+    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
     highlightedDates?: string | any[];
 
     /**
@@ -208,11 +209,13 @@ declare namespace bulmaCalendar {
     /**
      * List of disabled dates
      */
+    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
     disabledDates?: any[];
 
     /**
      * List of disabled week days
      */
+    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
     disabledWeekDays?: string | any[];
 
     /**
@@ -451,6 +454,7 @@ declare class bulmaCalendar {
   /**
    * Get component instance ID
    */
+  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   get id(): any;
 
   /**

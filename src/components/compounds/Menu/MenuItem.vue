@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watchEffect } from "vue";
+import { ref } from "vue";
 
 defineOptions({
   inheritAttrs: false,
@@ -8,7 +8,6 @@ defineOptions({
 const props = withDefaults(
   defineProps<{
     label?: string;
-    expanded?: boolean;
     disabled?: boolean;
     icon?: string;
     tag?: string;
@@ -20,23 +19,15 @@ const props = withDefaults(
   },
 );
 
-const emit = defineEmits(["update:expanded"]);
-
 const newActive = defineModel<boolean>("active");
-const newExpanded = ref(props.expanded);
+const newExpanded = defineModel<boolean>("expanded");
 const content = ref(null);
-
-watchEffect(() => {
-  newExpanded.value = props.expanded;
-});
 
 const onClick = (e: Event) => {
   // TODO Disable previous active item
   if (props.disabled) return;
 
   newExpanded.value = !newExpanded.value;
-  emit("update:expanded", newExpanded.value);
-
   // newActive.value = true
 };
 </script>

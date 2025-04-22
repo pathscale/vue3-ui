@@ -17,21 +17,19 @@ const props = withDefaults(
   },
 );
 
-const newActive = ref(props.active);
+const isActive = ref(props.active);
 
 const closeMenu = () => {
-  newActive.value = !props.closeOnClick;
+  isActive.value = !props.closeOnClick;
 };
 
 const toggleActive = () => {
-  newActive.value = !newActive.value;
+  isActive.value = !isActive.value;
 };
 
 const show = computed(() => {
-  return !props.collapsible || (props.collapsible && newActive.value);
+  return !props.collapsible || (props.collapsible && isActive.value);
 });
-
-const isActive = computed(() => newActive.value);
 </script>
 
 <template>

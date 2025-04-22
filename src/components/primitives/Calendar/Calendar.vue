@@ -25,9 +25,9 @@ const props = withDefaults(
 
 const emit = defineEmits(["update:modelValue", "select"]);
 
-type DateRange = [Date | null | undefined, Date | null | undefined];
+type DateRange = [Date | undefined, Date | undefined];
 
-const date = ref<DateRange>([null, null]);
+const date = ref<DateRange>([undefined, undefined]);
 const input = useTemplateRef<HTMLInputElement>("input");
 
 onMounted(() => {

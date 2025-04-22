@@ -18,6 +18,7 @@ const emit = defineEmits(["update:modelValue", "change"]);
 type Tab = {
   id: number | string;
   disabled: boolean;
+  label: string;
 };
 
 type TabsState = {
@@ -74,7 +75,7 @@ const isTabActive = (t: Tab) => tabs.value.activeTab === t.id;
         type,
         size,
         {
-          [position]: isHorizontal,
+          [position ?? '']: isHorizontal,
           'is-fullwidth': expanded,
           'is-toggle-rounded is-toggle': rounded,
         },

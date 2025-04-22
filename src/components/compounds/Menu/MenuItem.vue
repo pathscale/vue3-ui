@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { useTemplateRef } from "vue";
 
 defineOptions({
   inheritAttrs: false,
@@ -21,7 +21,7 @@ const props = withDefaults(
 
 const active = defineModel<boolean>("active");
 const expanded = defineModel<boolean>("expanded");
-const content = ref(null);
+const content = useTemplateRef<HTMLElement>("content");
 
 const onClick = () => {
   // TODO Disable previous active item

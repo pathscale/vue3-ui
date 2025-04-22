@@ -9,8 +9,8 @@ export function provideStore<T>(store: MaybeRef<T>) {
   return storeRef;
 }
 
-export function useStore<T>(): T {
-  const store = inject<T>(TabsSymbol);
+export function useStore<T>(): Ref<T> {
+  const store = inject<Ref<T>>(TabsSymbol);
   if (!store) {
     throw new Error("no store provided");
   }
@@ -18,6 +18,6 @@ export function useStore<T>(): T {
 }
 
 export function addToStore<T extends { tabs: Tab[] }, Tab>(tab: Tab) {
-  const tabs = useStore<Ref<T>>();
+  const tabs = useStore<T>();
   tabs.value.tabs.push(tab);
 }

@@ -6,12 +6,13 @@ import VInput from "@/components/primitives/Input/Input.vue";
 import VSelect from "@/components/primitives/Select/Select.vue";
 import VTag from "@/components/primitives/Tag/Tag.vue";
 import { computed, reactive, ref, toRaw, useSlots, watch } from "vue";
+import DataGrid from "./DataGrid";
 
 const UNKNOW = "unknow";
 
 const props = withDefaults(
   defineProps<{
-    data?: object; // todo typed
+    data?: DataGrid;
     searchable?: boolean;
     checkable?: boolean;
     pagination?: boolean;
@@ -33,7 +34,7 @@ const props = withDefaults(
     mobileCards?: boolean;
   }>(),
   {
-    data: () => ({}),
+    data: () => new DataGrid(),
     rowsPerPage: 5,
     rowsPerPageOptions: () => [],
   },

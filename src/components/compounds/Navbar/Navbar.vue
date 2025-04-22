@@ -1,10 +1,8 @@
 <script setup lang="ts">
-import { ref, watchEffect } from "vue";
 import NavbarBurger from "./NavbarBurger.vue";
 
-const props = withDefaults(
+withDefaults(
   defineProps<{
-    modelValue?: boolean; // todo defineModel
     type?: string; // todo union
     transparent?: boolean;
     fixedTop?: boolean;
@@ -19,17 +17,7 @@ const props = withDefaults(
   },
 );
 
-const emit = defineEmits(["update:modelValue"]);
-
-const isActive = ref(props.modelValue);
-
-watchEffect(() => {
-  emit("update:modelValue", isActive.value);
-});
-
-watchEffect(() => {
-  isActive.value = props.modelValue;
-});
+const isActive = defineModel<boolean>();
 
 const toggleActive = () => {
   isActive.value = !isActive.value;

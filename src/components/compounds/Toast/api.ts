@@ -18,12 +18,17 @@ export interface ToastGlobalOptions extends ToastOptions {
   queue?: boolean;
 }
 
+export interface ToasterProps extends ToastOptions, ToastGlobalOptions {
+  message: string; // required
+}
+
 const Api = (globalOptions: ToastGlobalOptions = {}) => {
   return {
     show(message: string, options: ToastOptions = {}) {
       const localOptions = { message, ...options };
+      const mergedOptions: ToasterProps = { ...globalOptions, ...localOptions };
       const c = mount(Toaster, {
-        props: { ...globalOptions, ...localOptions },
+        props: mergedOptions,
       });
 
       return c;

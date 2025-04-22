@@ -18,26 +18,13 @@ import {
   reactive,
   useTemplateRef,
 } from "vue";
-import type { ToastGlobalOptions, ToastOptions } from "./api";
+import type { ToasterProps } from "./api";
 import Position, { definePosition } from "./defaults/position";
 import eventBus from "./helpers/event-bus";
 import { removeElement } from "./helpers/remove-element";
 import Timer from "./helpers/timer";
 
-interface IProps extends ToastOptions, ToastGlobalOptions {
-  message: string; // required
-  type?: "is-success" | "is-danger" | "is-info" | "is-warning" | "is-primary";
-  position?: Position;
-  maxToasts?: number | false;
-  duration?: number | false;
-  dismissible?: boolean;
-  queue?: boolean;
-  pauseOnHover?: boolean;
-  onClose?: () => void;
-  onClick?: () => void;
-}
-
-const props = withDefaults(defineProps<IProps>(), {
+const props = withDefaults(defineProps<ToasterProps>(), {
   type: "is-primary",
   position: Position.BOTTOM_RIGHT,
   maxToasts: false,

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 defineProps<{
   label?: string;
-  ariaRole?: string;
+  ariaRole?: "menu";
 }>();
 </script>
 

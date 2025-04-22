@@ -46,7 +46,7 @@ const slots = useSlots();
 const data = ref(props.data);
 const computedRowsPerPage = ref(props.rowsPerPage);
 const currentPage = ref(0);
-const search = reactive({});
+const search = reactive<Record<string, string>>({});
 const expandedRows = ref(new Set<Row["id"]>());
 const expandedGroups = ref(new Set());
 // handle checked all state per page

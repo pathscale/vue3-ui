@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { TabsState } from "@/types/component-types";
+import type { Tab, TabsState } from "@/types/component-types";
 import { computed, onMounted, onUpdated, useTemplateRef, watch } from "vue";
 import { addToStore, useStore } from "./tabs-store";
 
@@ -31,7 +31,7 @@ const updateActiveHeight = () => {
 onMounted(updateActiveHeight);
 onUpdated(updateActiveHeight);
 
-addToStore({ ...props, id });
+addToStore<Tab>({ ...props, id });
 
 watch(
   () => tabs.value.tabs.findIndex((tab) => tab.id === id),

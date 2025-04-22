@@ -3,7 +3,18 @@ import NavbarBurger from "./NavbarBurger.vue";
 
 withDefaults(
   defineProps<{
-    type?: string; // todo union
+    type?:
+      | "is-white"
+      | "is-light"
+      | "is-dark"
+      | "is-black"
+      | "is-text"
+      | "is-primary"
+      | "is-link"
+      | "is-info"
+      | "is-success"
+      | "is-warning"
+      | "is-danger";
     transparent?: boolean;
     fixedTop?: boolean;
     fixedBottom?: boolean;

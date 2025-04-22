@@ -103,8 +103,8 @@ function createParents() {
 
 function setupContainer() {
   const container = document.body;
-  container.append(state.parentTop);
-  container.append(state.parentBottom);
+  if (state.parentTop) container.append(state.parentTop);
+  if (state.parentBottom) container.append(state.parentBottom);
 }
 
 function shouldQueue() {

@@ -53,8 +53,8 @@ const isTabCompleted = (t: StepTab) => tabs.value.activeTab > t.id;
         },
       ]">
       <div
-        v-for="t in tabs.tabs"
-        :key="t"
+        v-for="(t, idx) in tabs.tabs"
+        :key="idx"
         class="step-item"
         :class="{
           'is-active': isTabActive(t),

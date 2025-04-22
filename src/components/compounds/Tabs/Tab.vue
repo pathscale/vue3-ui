@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, onUpdated, ref, watch } from "vue";
+import { computed, onMounted, onUpdated, useTemplateRef, watch } from "vue";
 import { addToStore, useStore } from "./Tabs.vue";
 
 withDefaults(
@@ -14,7 +14,7 @@ withDefaults(
   },
 );
 
-const content = ref(null);
+const content = useTemplateRef<HTMLElement>("content");
 const tabs = useStore();
 const id = JSON.parse(JSON.stringify(tabs.value.tabs)).length;
 const transitionName = computed(() => {

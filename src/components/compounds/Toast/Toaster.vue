@@ -18,11 +18,11 @@ import {
   reactive,
   useTemplateRef,
 } from "vue";
-import type { ToasterProps } from "./api";
 import Position, { definePosition } from "./defaults/position";
 import eventBus from "./helpers/event-bus";
 import { removeElement } from "./helpers/remove-element";
 import Timer from "./helpers/timer";
+import type { ToasterProps } from "./toast-api";
 
 const props = withDefaults(defineProps<ToasterProps>(), {
   type: "is-primary",

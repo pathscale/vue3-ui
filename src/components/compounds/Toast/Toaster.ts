@@ -1,7 +1,7 @@
 import type { App } from "vue";
 import Toaster from "./Toaster.vue";
-import createToaster from "./api.js";
 import ToasterPositions from "./defaults/position";
+import createToaster from "./toast-api";
 
 Toaster.install = (app: App, options = {}) => {
   const methods = createToaster(options);

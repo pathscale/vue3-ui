@@ -1,4 +1,5 @@
 <script setup lang="ts">
+// todo tests
 import { onClickOutside } from "@/utils/onClickOutside";
 import { computed, provide, reactive, readonly, useTemplateRef } from "vue";
 import { type DDSelection, DropdownSymbol } from "./dropdown-symbol";

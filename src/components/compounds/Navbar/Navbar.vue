@@ -1,4 +1,5 @@
 <script setup lang="ts">
+// todo tests
 import NavbarBurger from "./NavbarBurger.vue";
 
 withDefaults(

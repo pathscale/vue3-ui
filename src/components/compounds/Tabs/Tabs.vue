@@ -1,4 +1,5 @@
 <script setup lang="ts">
+// todo tests
 import type { Tab, TabsState } from "@/types/component-types";
 import { provideTabsStore } from "@/utils/tabs-store";
 import { computed, watchEffect } from "vue";

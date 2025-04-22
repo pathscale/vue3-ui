@@ -23,7 +23,7 @@ const active = defineModel<boolean>("active");
 const expanded = defineModel<boolean>("expanded");
 const content = ref(null);
 
-const onClick = (e: Event) => {
+const onClick = () => {
   // TODO Disable previous active item
   if (props.disabled) return;
 
@@ -42,7 +42,7 @@ const onClick = (e: Event) => {
         'is-active': active,
         'is-disabled': disabled
       }"
-      @click="onClick($event)">
+      @click="onClick">
       <span v-if="icon" class="pr-2">{{ icon }} </span>
       <span v-if="label">{{ label }}</span>
       <slot

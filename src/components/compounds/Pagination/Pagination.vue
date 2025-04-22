@@ -1,154 +1,130 @@
-<script>
+<script setup lang="ts">
 import { computed, nextTick, watchEffect } from "vue";
 import PaginationItem from "./PaginationItem.vue";
 
-export default {
-  name: "VPagination",
-  components: {
-    PaginationItem,
+withDefaults(
+  defineProps<{
+    total?: number | string;
+    perPage?: number | string;
+    current?: number | string;
+    rangeBefore?: number | string;
+    rangeAfter?: number | string;
+    size?: string;
+    simple?: boolean;
+    rounded?: boolean;
+    order?: string;
+    ariaNextLabel?: string;
+    ariaPreviousLabel?: string;
+    ariaPageLabel?: string;
+    ariaCurrentLabel?: string;
+  }>(),
+  {
+    perPage: 20,
+    current: 1,
+    rangeBefore: 1,
+    rangeAfter: 1,
   },
-  props: {
-    total: [Number, String],
-    perPage: {
-      type: [Number, String],
-      default: 20,
-    },
-    current: {
-      type: [Number, String],
-      default: 1,
-    },
-    rangeBefore: {
-      type: [Number, String],
-      default: 1,
-    },
-    rangeAfter: {
-      type: [Number, String],
-      default: 1,
-    },
-    size: String,
-    simple: Boolean,
-    rounded: Boolean,
-    order: String,
-    ariaNextLabel: String,
-    ariaPreviousLabel: String,
-    ariaPageLabel: String,
-    ariaCurrentLabel: String,
-  },
-  emits: ["update:current", "change"],
+);
 
-  setup(props, { emit, slots }) {
-    const beforeCurrent = computed(() => {
-      return Number.parseInt(props.rangeBefore);
-    });
-    const afterCurrent = computed(() => {
-      return Number.parseInt(props.rangeAfter);
-    });
+const emit = defineEmits(["update:current", "change"]);
 
-    const pageCount = computed(() => {
-      return Math.ceil(props.total / props.perPage);
-    });
+const beforeCurrent = computed(() => {
+  return Number.parseInt(props.rangeBefore);
+});
+const afterCurrent = computed(() => {
+  return Number.parseInt(props.rangeAfter);
+});
 
-    const firstItem = computed(() => {
-      const _firstItem = props.current * props.perPage - props.perPage + 1;
-      return _firstItem >= 0 ? _firstItem : 0;
-    });
+const pageCount = computed(() => {
+  return Math.ceil(props.total / props.perPage);
+});
 
-    const hasPrev = computed(() => {
-      return props.current > 1;
-    });
+const firstItem = computed(() => {
+  const _firstItem = props.current * props.perPage - props.perPage + 1;
+  return _firstItem >= 0 ? _firstItem : 0;
+});
 
-    const hasFirst = computed(() => {
-      return props.current >= 2 + beforeCurrent.value;
-    });
+const hasPrev = computed(() => {
+  return props.current > 1;
+});
 
-    const hasFirstEllipsis = computed(() => {
-      return props.current >= beforeCurrent.value + 4;
-    });
+const hasFirst = computed(() => {
+  return props.current >= 2 + beforeCurrent.value;
+});
 
-    const hasLast = computed(() => {
-      return props.current <= pageCount.value - (1 + afterCurrent.value);
-    });
+const hasFirstEllipsis = computed(() => {
+  return props.current >= beforeCurrent.value + 4;
+});
 
-    const hasLastEllipsis = computed(() => {
-      return props.current < pageCount.value - (2 + afterCurrent.value);
-    });
+const hasLast = computed(() => {
+  return props.current <= pageCount.value - (1 + afterCurrent.value);
+});
 
-    const hasNext = computed(() => {
-      return props.current < pageCount.value;
-    });
+const hasLastEllipsis = computed(() => {
+  return props.current < pageCount.value - (2 + afterCurrent.value);
+});
 
-    const pagesInRange = computed(() => {
-      if (props.simple) return null;
-      let left = Math.max(1, props.current - beforeCurrent.value);
-      if (left - 1 === 2) {
-        left--;
-      }
+const hasNext = computed(() => {
+  return props.current < pageCount.value;
+});
 
-      let right = Math.min(props.current + afterCurrent.value, pageCount.value);
-      if (pageCount.value - right === 2) {
-        right++;
-      }
-      const pages = [];
+const pagesInRange = computed(() => {
+  if (props.simple) return null;
+  let left = Math.max(1, props.current - beforeCurrent.value);
+  if (left - 1 === 2) {
+    left--;
+  }
 
-      for (let i = left; i <= right; i++) {
-        pages.push(getPage(i));
-      }
+  let right = Math.min(props.current + afterCurrent.value, pageCount.value);
+  if (pageCount.value - right === 2) {
+    right++;
+  }
+  const pages = [];
 
-      return pages;
-    });
+  for (let i = left; i <= right; i++) {
+    pages.push(getPage(i));
+  }
 
-    watchEffect(() => {
-      if (props.current > pageCount.value) last();
-    });
+  return pages;
+});
 
-    function changePage(num, e) {
-      if (props.current === num || num < 1 || num > pageCount.value) return;
-      emit("update:current", num);
-      emit("change", num);
-      if (e?.target) {
-        nextTick(() => e.target.focus());
-      }
-    }
+watchEffect(() => {
+  if (props.current > pageCount.value) last();
+});
 
-    function last(e) {
-      changePage(pageCount.value, e);
-    }
-    function getPage(num, options = {}) {
-      return {
-        number: num,
-        isCurrent: props.current === num,
-        click: (e) => changePage(num, e),
-        disabled: options.disabled || false,
-        class: options.class || "",
-        "aria-label":
-          options["aria-label"] || getAriaPageLabel(num, props.current === num),
-      };
-    }
+function changePage(num, e) {
+  if (props.current === num || num < 1 || num > pageCount.value) return;
+  emit("update:current", num);
+  emit("change", num);
+  if (e?.target) {
+    nextTick(() => e.target.focus());
+  }
+}
 
-    function getAriaPageLabel(pageNumber, isCurrent) {
-      if (props.ariaPageLabel && (!isCurrent || !props.ariaCurrentLabel)) {
-        return `${props.ariaPageLabel} ${pageNumber}.`;
-      }
-      if (props.ariaPageLabel && isCurrent && props.ariaCurrentLabel) {
-        return `${props.ariaCurrentLabel}, ${props.ariaPageLabel} ${pageNumber}.`;
-      }
-      return null;
-    }
-    return {
-      pageCount,
-      firstItem,
-      hasPrev,
-      hasFirst,
-      hasFirstEllipsis,
-      hasLast,
-      hasLastEllipsis,
-      hasNext,
-      pagesInRange,
-      getPage,
-      slots,
-    };
-  },
-};
+function last(e) {
+  changePage(pageCount.value, e);
+}
+function getPage(num, options = {}) {
+  return {
+    number: num,
+    isCurrent: props.current === num,
+    click: (e) => changePage(num, e),
+    disabled: options.disabled || false,
+    class: options.class || "",
+    "aria-label":
+      options["aria-label"] || getAriaPageLabel(num, props.current === num),
+  };
+}
+
+function getAriaPageLabel(pageNumber, isCurrent) {
+  if (props.ariaPageLabel && (!isCurrent || !props.ariaCurrentLabel)) {
+    return `${props.ariaPageLabel} ${pageNumber}.`;
+  }
+  if (props.ariaPageLabel && isCurrent && props.ariaCurrentLabel) {
+    return `${props.ariaCurrentLabel}, ${props.ariaPageLabel} ${pageNumber}.`;
+  }
+  return null;
+}
 </script>
 
 <template>

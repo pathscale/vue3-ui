@@ -1,7 +1,11 @@
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
 type Callback = (data?: any) => void;
 
+type Queue = Record<string, Callback[]>;
+
 class Event {
+  queue: Queue;
+
   constructor() {
     this.queue = {};
   }
@@ -11,7 +15,7 @@ class Event {
     this.queue[name].push(callback);
   }
 
-  $off(name: string, callback) {
+  $off(name: string, callback: Callback) {
     if (this.queue[name]) {
       for (let i = 0; i < this.queue[name].length; i++) {
         if (this.queue[name][i] === callback) {

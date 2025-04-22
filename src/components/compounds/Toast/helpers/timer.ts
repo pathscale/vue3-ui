@@ -23,10 +23,10 @@ export default class Timer {
   resume() {
     this.stop();
     this.startedAt = Date.now();
-    this.timer = setTimeout(this.callback, this.delay);
+    this.timer = window.setTimeout(this.callback, this.delay);
   }
 
   stop() {
-    clearTimeout(this.timer);
+    window.clearTimeout(this.timer);
   }
 }

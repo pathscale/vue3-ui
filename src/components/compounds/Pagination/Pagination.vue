@@ -6,6 +6,12 @@ import PaginationItem from "./PaginationItem.vue";
 
 const props = withDefaults(
   defineProps<{
+    /*
+    TODO:
+     as per modern Vue conventions, props should use number instead of (number | string) —
+     this improves type safety, reduces unnecessary type casting, and slightly improves performance.
+     Users can still pass values easily using the colon syntax like :total="100"
+    */
     total?: number | string;
     perPage?: number | string;
     current?: number | string;

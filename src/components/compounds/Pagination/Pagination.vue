@@ -2,7 +2,7 @@
 import { computed, nextTick, watchEffect } from "vue";
 import PaginationItem from "./PaginationItem.vue";
 
-withDefaults(
+const props = withDefaults(
   defineProps<{
     total?: number | string;
     perPage?: number | string;
@@ -20,7 +20,7 @@ withDefaults(
   }>(),
   {
     perPage: 20,
-    current: 1,
+    current: 1, // TODO: update documentation to mention the default value
     rangeBefore: 1,
     rangeAfter: 1,
   },

@@ -15,7 +15,7 @@ const content = ref(null);
 const tabs = useStore<StepTabsState>();
 const id = JSON.parse(JSON.stringify(tabs.value.tabs)).length;
 
-addToStore({ ...props, id });
+addToStore<StepTab>({ ...props, id });
 
 watch(
   () => tabs.value.tabs.findIndex((tab) => tab.id === id),

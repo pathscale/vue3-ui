@@ -53,3 +53,12 @@ export type TabsState = {
   animated: boolean;
   vanimated: boolean;
 };
+
+/**
+ * https://vue3.dev/documentation/steps
+ */
+export type StepTabsState = {
+  activeTab: number | string;
+  activeHeight: number | null;
+  tabs: [];
+};

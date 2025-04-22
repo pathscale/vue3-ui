@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { StepTabsState, Tab } from "@/types/component-types";
+import { provideStore } from "@/utils/tabs-store";
 import { watchEffect } from "vue";
 
 const props = defineProps<{
@@ -10,7 +12,7 @@ const props = defineProps<{
 
 const emit = defineEmits(["update:modelValue", "change"]);
 
-const tabs = provideStore({
+const tabs = provideStore<StepTabsState>({
   activeTab: 0,
   activeHeight: null,
   tabs: [],

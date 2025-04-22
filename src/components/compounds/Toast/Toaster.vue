@@ -113,18 +113,14 @@ function shouldQueue() {
     return false;
   }
 
+  const topCount = (state.parentTop as HTMLElement).childElementCount;
+  const botCount = (state.parentBottom as HTMLElement).childElementCount;
+
   if (props.maxToasts !== false) {
-    return (
-      props.maxToasts <=
-      (state.parentTop as HTMLElement).childElementCount +
-        (state.parentBottom as HTMLElement).childElementCount
-    );
+    return props.maxToasts <= topCount + botCount;
   }
 
-  return (
-    (state.parentTop as HTMLElement).childElementCount > 0 ||
-    (state.parentBottom as HTMLElement).childElementCount > 0
-  );
+  return topCount > 0 || botCount > 0;
 }
 
 function showNotice() {

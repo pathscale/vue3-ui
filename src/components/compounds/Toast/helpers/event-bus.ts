@@ -1,9 +1,12 @@
+// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+type Callback = (data?: any) => void;
+
 class Event {
   constructor() {
     this.queue = {};
   }
 
-  $on(name: string, callback) {
+  $on(name: string, callback: Callback) {
     this.queue[name] = this.queue[name] || [];
     this.queue[name].push(callback);
   }

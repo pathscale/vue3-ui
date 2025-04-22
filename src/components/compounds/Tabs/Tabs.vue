@@ -1,91 +1,55 @@
-<script>
+<script setup lang="ts">
 import { computed, inject, provide, ref, watchEffect } from "vue";
 
-const TabsSymbol = Symbol("Tabs");
+defineProps<{
+  modelValue: number | string; // required
+  size?: string;
+  type?: string;
+  expanded?: boolean;
+  position?: string;
+  vertical?: boolean; // TODO
+  vanimated?: boolean;
+  animated?: boolean;
+}>();
 
-export function provideStore(store) {
-  const storeRef = ref(store);
-  provide(TabsSymbol, storeRef);
-  return storeRef;
-}
+const emit = defineEmits(["update:modelValue", "change"]);
 
-export function useStore() {
-  const store = inject(TabsSymbol);
-  if (!store) {
-    // throw error, no store provided
-  }
-  return store;
-}
+const tabs = provideStore({
+  activeTab: 0,
+  activeHeight: null,
+  tabs: [],
+  animated: props.animated,
+  vanimated: props.vanimated,
+});
 
-export function addToStore(tab) {
-  const tabs = useStore();
-  tabs.value.tabs.push(tab);
-}
-
-export default {
-  name: "VTabs",
-  props: {
-    modelValue: {
-      type: [Number, String],
-      required: true,
-    },
-    size: String,
-    type: String,
-    expanded: Boolean,
-    position: String,
-    vertical: Boolean, // TODO
-    vanimated: Boolean,
-    animated: Boolean,
-  },
-  emits: ["update:modelValue", "change"],
-  setup(props, { emit }) {
-    const tabs = provideStore({
-      activeTab: 0,
-      activeHeight: null,
-      tabs: [],
-      animated: props.animated,
-      vanimated: props.vanimated,
-    });
-
-    const setActiveTabID = (id) => {
-      tabs.value.activeTab = id;
-    };
-
-    const setActiveTab = (t) => {
-      if (!t.disabled) {
-        setActiveTabID(t.id);
-      }
-    };
-
-    const contentHeight = computed(() => {
-      return `height:${tabs.value.activeHeight}px`;
-    });
-
-    watchEffect(() => {
-      setActiveTabID(props.modelValue);
-    });
-
-    watchEffect(() => {
-      emit("update:modelValue", tabs.value.activeTab);
-      emit("change", tabs.value.activeTab);
-    });
-
-    const isHorizontal = computed(() => props.position && !props.vertical);
-
-    const rounded = computed(() => props.type === "is-toggle-rounded");
-
-    const isTabActive = (t) => tabs.value.activeTab === t.id;
-
-    return {
-      contentHeight,
-      setActiveTab,
-      tabs,
-      isHorizontal,
-      rounded,
-      isTabActive,
-    };
-  },
+const setActiveTabID = (id) => {
+  tabs.value.activeTab = id;
 };
+
+const setActiveTab = (t) => {
+  if (!t.disabled) {
+    setActiveTabID(t.id);
+  }
+};
+
+const contentHeight = computed(() => {
+  return `height:${tabs.value.activeHeight}px`;
+});
+
+watchEffect(() => {
+  setActiveTabID(props.modelValue);
+});
+
+watchEffect(() => {
+  emit("update:modelValue", tabs.value.activeTab);
+  emit("change", tabs.value.activeTab);
+});
+
+const isHorizontal = computed(() => props.position && !props.vertical);
+
+const rounded = computed(() => props.type === "is-toggle-rounded");
+
+const isTabActive = (t) => tabs.value.activeTab === t.id;
 </script>
 
 <template>

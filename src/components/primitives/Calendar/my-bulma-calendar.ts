@@ -294,7 +294,7 @@ export interface Options {
   };
 }
 
-type EventType = "show" | "hide" | "select" | "select:start";
+type EventType = "show" | "hide" | "save" | "select" | "select:start";
 
 interface Event<T extends EventType = EventType> {
   type: T;
@@ -303,6 +303,12 @@ interface Event<T extends EventType = EventType> {
 }
 
 export declare class BulmaCalendar {
+  /** Selected start date */
+  startDate: Date;
+
+  /** Selected end date */
+  endDate: Date;
+
   on<T extends EventType>(
     name: T,
     callback: (event: Event<T>) => void,

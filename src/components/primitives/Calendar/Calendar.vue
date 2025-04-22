@@ -5,9 +5,7 @@
 <script setup lang="ts">
 import { firstIfArray } from "@/utils/functions";
 import { inject, onMounted, ref, useTemplateRef } from "vue";
-import type bulmaCalendarType from "./bulma-calendar";
-
-type BulmaCalendar = typeof bulmaCalendarType;
+import type { BulmaCalendar, Options } from "./my-bulma-calendar";
 
 const props = withDefaults(
   defineProps<{
@@ -16,7 +14,7 @@ const props = withDefaults(
     inline?: boolean;
     range?: boolean;
     // https://bulma-calendar.onrender.com/#options
-    options?: bulmaCalendarType.Options;
+    options?: Options;
     type?: "date" | "time" | "datetime";
     modelValue?: Date | [Date, Date];
   }>(),
@@ -34,7 +32,7 @@ const date = ref<DateRange>([undefined, undefined]);
 const input = useTemplateRef<HTMLInputElement>("input");
 
 onMounted(() => {
-  const bulmaCalendar = inject<BulmaCalendar>("$bulmaCalendar");
+  const bulmaCalendar = inject<typeof BulmaCalendar>("$bulmaCalendar");
   if (!bulmaCalendar) {
     throw new Error(
       "BulmaCalendar component requires the bulmaCalendar service to be provided",
@@ -62,10 +60,9 @@ onMounted(() => {
     startTime: date.value[0],
     endDate: date.value[1],
     endTime: date.value[1],
-  });
+  })[0];
 
-  // Seems like deprecated event type
-  /* calendar[0].on("save", (e) => {
+  calendar.on("save", (e) => {
     date.value = [e.data.startDate, e.data.endDate];
 
     if (props.range) {
@@ -74,9 +71,9 @@ onMounted(() => {
     }
 
     emit("update:modelValue", date.value[0]);
-  }); */
+  });
 
-  calendar[0].on("select", (e) => {
+  calendar.on("select", (e) => {
     if (props.range) {
       emit("select", [e.data.startDate, e.data.endDate]);
       return;

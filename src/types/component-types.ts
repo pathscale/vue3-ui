@@ -57,8 +57,17 @@ export type TabsState = {
 /**
  * https://vue3.dev/documentation/steps
  */
+export type StepTab = {
+  id: number | string;
+  title?: string;
+  subtitle?: string;
+  marker?: string;
+  disabled?: boolean;
+  clickable?: boolean;
+};
+
 export type StepTabsState = {
   activeTab: number | string;
   activeHeight: number | null;
-  tabs: [];
+  tabs: StepTab[];
 };

@@ -1,8 +1,9 @@
 <script setup lang="ts">
+import type { StepTab, StepTabsState } from "@/types/component-types";
+import { addToStore, useStore } from "@/utils/tabs-store";
 import { computed, ref, watch } from "vue";
-import { addToStore, useStore } from "./Steps.vue";
 
-defineProps<{
+const props = defineProps<{
   title?: string;
   subtitle?: string;
   marker?: string;
@@ -11,7 +12,7 @@ defineProps<{
 }>();
 
 const content = ref(null);
-const tabs = useStore();
+const tabs = useStore<StepTabsState>();
 const id = JSON.parse(JSON.stringify(tabs.value.tabs)).length;
 
 addToStore({ ...props, id });

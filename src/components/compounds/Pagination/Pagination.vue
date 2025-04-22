@@ -128,7 +128,6 @@ function getAriaPageLabel(pageNumber, isCurrent) {
 </script>
 
 <template>
-	<!-- eslint-disable @pathscale/vue3/v-directive  -->
 	<nav class="pagination" :class="[
 		order,
 		size,

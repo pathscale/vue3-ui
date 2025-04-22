@@ -17,7 +17,7 @@ const href = computed(() => {
   return props.tag === "a" ? "#" : undefined;
 });
 
-const computedDisabled = computed(() => {
+const effectiveDisabled = computed(() => {
   return props.disabled || props.page.disabled ? true : undefined;
 });
 </script>
@@ -27,7 +27,7 @@ const computedDisabled = computed(() => {
     :is="tag"
     role="button"
     :href="href"
-    :disabled="computedDisabled"
+    :disabled="effectiveDisabled"
     class="pagination-link"
     :class="{ 'is-current': page.isCurrent, [page.class]: true }"
     v-bind="$attrs"

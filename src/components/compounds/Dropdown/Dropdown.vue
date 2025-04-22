@@ -11,6 +11,7 @@ const props = withDefaults(
     position?: "is-left" | "is-up" | "is-down" | "is-right";
     mobileModal?: boolean;
     ariaRole?: "list" | "menu" | "dialog";
+    /** Close dropdown when content is clicked */
     closeOnClick?: boolean;
     /** Full width */
     expanded?: boolean;
@@ -34,11 +35,18 @@ const toggle = () => {
   state.isActive = !state.isActive;
 };
 
+// close dropdown on click inside
 const closeMenu = () => {
   if (props.closeOnClick) {
     state.isActive = false;
   }
 };
+
+// close dropdown on click outside
+const dropdownWrapper = useTemplateRef<HTMLElement>("dropdown-wrapper");
+onClickOutside(dropdownWrapper, () => {
+  state.isActive = false;
+});
 
 // biome-ignore lint/suspicious/noExplicitAny: allow any type according to docs
 const selectItem = (newValue: any) => {
@@ -56,12 +64,6 @@ const displayActive = computed(() => state.isActive || props.inline);
 
 // provide item dropdown selection for children
 provide<DDSelection>(DropdownSymbol, { selectItem, value: readonly(selected) });
-
-// close dropdown on click outside
-const dropdownWrapper = useTemplateRef<HTMLElement>("dropdown-wrapper");
-onClickOutside(dropdownWrapper, () => {
-  state.isActive = false;
-});
 </script>
 
 <template>

@@ -15,6 +15,7 @@ const props = withDefaults(
     dialog?: boolean;
     inline?: boolean;
     range?: boolean;
+    // https://bulma-calendar.onrender.com/#options
     options?: bulmaCalendarType.Options;
     type?: "date" | "time" | "datetime";
     modelValue?: Date | [Date, Date];

@@ -98,8 +98,8 @@ function changePage(num: number, e: Event) {
   if (props.current === num || num < 1 || num > pageCount.value) return;
   emit("update:current", num);
   emit("change", num);
-  if (e?.target) {
-    nextTick(() => e.target.focus());
+  if (e?.target instanceof HTMLElement) {
+    nextTick(() => (e.target as HTMLElement).focus());
   }
 }
 

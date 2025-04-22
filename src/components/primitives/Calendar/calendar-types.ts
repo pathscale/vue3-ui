@@ -7,10 +7,10 @@ export interface BulmaCalendarOptions {
   displayMode?: "default" | "dialog" | "inline";
   isRange?: boolean;
   showClearButton?: boolean;
-  startDate?: Date;
-  startTime?: Date;
-  endDate?: Date;
-  endTime?: Date;
+  startDate?: Date | null;
+  startTime?: Date | null;
+  endDate?: Date | null;
+  endTime?: Date | null;
 }
 
 export interface BulmaCalendar {

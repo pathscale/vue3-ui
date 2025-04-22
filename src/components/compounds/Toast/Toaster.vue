@@ -16,7 +16,7 @@ import {
   onBeforeUnmount,
   onMounted,
   reactive,
-  ref,
+  useTemplateRef,
 } from "vue";
 import Position, { definePosition } from "./defaults/position";
 import eventBus from "./helpers/event-bus";
@@ -47,7 +47,7 @@ const props = withDefaults(
   },
 );
 
-const root = ref(null);
+const root = useTemplateRef("root");
 
 const state = reactive<{
   isActive: boolean;

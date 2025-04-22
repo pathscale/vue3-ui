@@ -44,8 +44,7 @@ const onClick = (e: Event) => {
       }"
       @click="onClick($event)">
       <span v-if="icon" class="pr-2">{{ icon }} </span>
-      <span v-if="label">
-        {{ label }}</span>
+      <span v-if="label">{{ label }}</span>
       <slot
         v-else
         name="label"

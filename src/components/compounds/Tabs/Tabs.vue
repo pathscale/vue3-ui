@@ -9,8 +9,8 @@ const props = defineProps<{
   expanded?: boolean;
   position?: "is-centered" | "is-right";
   vertical?: boolean; // TODO
-  vanimated?: boolean;
-  animated?: boolean;
+  vanimated?: boolean; // todo update docs: remove true as default
+  animated?: boolean; // todo update docs: remove true as default
 }>();
 
 const emit = defineEmits(["update:modelValue", "change"]);

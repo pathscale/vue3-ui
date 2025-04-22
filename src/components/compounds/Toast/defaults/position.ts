@@ -1,4 +1,4 @@
-enum Positions {
+enum Position {
   TOP_RIGHT = "top-right",
   TOP = "top",
   TOP_LEFT = "top-left",
@@ -7,20 +7,20 @@ enum Positions {
   BOTTOM_LEFT = "bottom-left",
 }
 
-export default Positions;
+export default Position;
 
-export function definePosition(position, top, bottom) {
+export function definePosition(position: Position, top, bottom) {
   let result = null;
   switch (position) {
-    case Positions.TOP:
-    case Positions.TOP_RIGHT:
-    case Positions.TOP_LEFT:
+    case Position.TOP:
+    case Position.TOP_RIGHT:
+    case Position.TOP_LEFT:
       result = top;
       break;
 
-    case Positions.BOTTOM:
-    case Positions.BOTTOM_RIGHT:
-    case Positions.BOTTOM_LEFT:
+    case Position.BOTTOM:
+    case Position.BOTTOM_RIGHT:
+    case Position.BOTTOM_LEFT:
       result = bottom;
       break;
     default:

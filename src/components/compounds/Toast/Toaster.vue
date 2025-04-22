@@ -18,7 +18,7 @@ import {
   reactive,
   ref,
 } from "vue";
-import Positions, { definePosition } from "./defaults/positions";
+import Position, { definePosition } from "./defaults/position";
 import eventBus from "./helpers/event-bus";
 import { removeElement } from "./helpers/remove-element";
 import Timer from "./helpers/timer";
@@ -27,7 +27,7 @@ const props = withDefaults(
   defineProps<{
     message: string; // required
     type?: string;
-    position?: Positions;
+    position?: Position;
     maxToasts?: number | false;
     duration?: number | false;
     dismissible?: boolean;
@@ -38,7 +38,7 @@ const props = withDefaults(
   }>(),
   {
     type: "is-primary",
-    position: Positions.BOTTOM_RIGHT,
+    position: Position.BOTTOM_RIGHT,
     maxToasts: false,
     duration: 4000,
     dismissible: true,

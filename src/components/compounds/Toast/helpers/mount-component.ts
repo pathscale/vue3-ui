@@ -5,7 +5,8 @@ const createElement = () =>
 
 const mount = (
   component: Component,
-  { props, children, element, app } = {},
+  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+  { props, children, element, app }: any = {},
 ) => {
   let el = element || createElement();
 

@@ -47,7 +47,7 @@ const props = withDefaults(
   },
 );
 
-const root = useTemplateRef("root");
+const root = useTemplateRef<HTMLElement>("root");
 
 const state = reactive<{
   isActive: boolean;

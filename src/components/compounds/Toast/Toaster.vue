@@ -63,7 +63,7 @@ const state = reactive<{
   timer: null,
 });
 
-let queueTimer: number | null = null;
+let queueTimer: number | undefined = undefined;
 
 const correctParent = computed(() => {
   return definePosition(props.position, state.parentTop, state.parentBottom);
@@ -153,7 +153,7 @@ function toggleTimer(newVal: boolean) {
 
 function stopTimer() {
   state.timer?.stop();
-  clearTimeout(queueTimer);
+  window.clearTimeout(queueTimer);
 }
 
 function close() {

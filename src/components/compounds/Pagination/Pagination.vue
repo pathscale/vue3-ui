@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { intOrParseInt } from "@/utils/functions";
 import { computed, nextTick, watchEffect } from "vue";
 import PaginationItem from "./PaginationItem.vue";
 
@@ -29,10 +30,10 @@ const props = withDefaults(
 const emit = defineEmits(["update:current", "change"]);
 
 const beforeCurrent = computed(() => {
-  return Number.parseInt(props.rangeBefore);
+  return intOrParseInt(props.rangeBefore);
 });
 const afterCurrent = computed(() => {
-  return Number.parseInt(props.rangeAfter);
+  return intOrParseInt(props.rangeAfter);
 });
 
 const pageCount = computed(() => {

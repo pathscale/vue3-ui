@@ -116,13 +116,14 @@ function shouldQueue() {
   if (props.maxToasts !== false) {
     return (
       props.maxToasts <=
-      state.parentTop.childElementCount + state.parentBottom.childElementCount
+      (state.parentTop as HTMLElement).childElementCount +
+        (state.parentBottom as HTMLElement).childElementCount
     );
   }
 
   return (
-    state.parentTop.childElementCount > 0 ||
-    state.parentBottom.childElementCount > 0
+    (state.parentTop as HTMLElement).childElementCount > 0 ||
+    (state.parentBottom as HTMLElement).childElementCount > 0
   );
 }
 

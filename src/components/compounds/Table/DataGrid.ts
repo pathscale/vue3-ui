@@ -1,6 +1,6 @@
 import { toRaw } from "vue";
 
-type CellValue = string | number | boolean;
+export type CellValue = string | number | boolean;
 type RowData = Record<string, CellValue | null | undefined>;
 
 export type Column = {

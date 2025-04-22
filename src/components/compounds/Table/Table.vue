@@ -6,7 +6,7 @@ import VInput from "@/components/primitives/Input/Input.vue";
 import VSelect from "@/components/primitives/Select/Select.vue";
 import VTag from "@/components/primitives/Tag/Tag.vue";
 import { computed, reactive, ref, toRaw, useSlots, watch } from "vue";
-import DataGrid, { type Column, type Row } from "./DataGrid";
+import DataGrid, { type Column, type Row, type CellValue } from "./DataGrid";
 
 const UNKNOW = "unknow";
 
@@ -89,7 +89,7 @@ const toggleExpanded = (rowId: Row["id"]) => {
   expandedRows.value.add(rowId);
 };
 
-const toggleExpandedGroup = (group) => {
+const toggleExpandedGroup = (group: CellValue) => {
   if (expandedGroups.value.has(group)) {
     expandedGroups.value.delete(group);
     return;

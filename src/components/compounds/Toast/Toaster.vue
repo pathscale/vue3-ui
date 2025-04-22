@@ -133,7 +133,10 @@ function showNotice() {
     return;
   }
 
-  correctParent.value.insertAdjacentElement("afterbegin", root.value);
+  correctParent.value.insertAdjacentElement(
+    "afterbegin",
+    root.value as HTMLElement,
+  );
   state.isActive = true;
 
   state.timer =
@@ -166,7 +169,7 @@ function close() {
   setTimeout(() => {
     // biome-ignore lint/style/noArguments: <explanation>
     Reflect.apply(props.onClose, null, arguments);
-    removeElement(root.value);
+    removeElement(root.value as HTMLElement);
   }, 150);
 }
 

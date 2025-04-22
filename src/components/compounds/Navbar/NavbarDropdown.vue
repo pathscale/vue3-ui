@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, reactive, watchEffect } from "vue";
+import { computed, ref } from "vue";
 
 const props = withDefaults(
   defineProps<{
@@ -17,27 +17,21 @@ const props = withDefaults(
   },
 );
 
-const state = reactive({
-  newActive: props.active,
-});
-
-watchEffect(() => {
-  state.newActive = props.active;
-});
+const newActive = ref(props.active);
 
 const closeMenu = () => {
-  state.newActive = !props.closeOnClick;
+  newActive.value = !props.closeOnClick;
 };
 
 const toggleActive = () => {
-  state.newActive = !state.newActive;
+  newActive.value = !newActive.value;
 };
 
 const show = computed(() => {
-  return !props.collapsible || (props.collapsible && state.newActive);
+  return !props.collapsible || (props.collapsible && newActive.value);
 });
 
-const isActive = computed(() => state.newActive);
+const isActive = computed(() => newActive.value);
 </script>
 
 <template>

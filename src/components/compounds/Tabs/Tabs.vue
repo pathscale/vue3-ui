@@ -21,7 +21,7 @@ type Tab = {
 };
 
 type TabsState = {
-  activeTab: number;
+  activeTab: number | string;
   activeHeight: number | null;
   tabs: Tab[];
   animated: boolean;
@@ -36,7 +36,7 @@ const tabs = provideStore<TabsState>({
   vanimated: props.vanimated,
 });
 
-const setActiveTabID = (id: number) => {
+const setActiveTabID = (id: number | string) => {
   tabs.value.activeTab = id;
 };
 

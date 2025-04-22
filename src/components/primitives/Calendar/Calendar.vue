@@ -5,7 +5,7 @@
 <script setup lang="ts">
 import { firstIfArray } from "@/utils/functions";
 import { inject, onMounted, ref, useTemplateRef } from "vue";
-import type { BulmaCalendarOptions } from "./calendar-types";
+import type { BulmaCalendar, BulmaCalendarOptions } from "./calendar-types";
 
 const props = withDefaults(
   defineProps<{
@@ -31,7 +31,7 @@ const date = ref<DateRange>([null, null]);
 const input = useTemplateRef<HTMLInputElement>("input");
 
 onMounted(() => {
-  const bulmaCalendar = inject("$bulmaCalendar");
+  const bulmaCalendar = inject<BulmaCalendar>("$bulmaCalendar");
   if (!bulmaCalendar) {
     throw new Error(
       "BulmaCalendar component requires the bulmaCalendar service to be provided",

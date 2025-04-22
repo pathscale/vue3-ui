@@ -16,7 +16,7 @@ const props = defineProps<{
 const emit = defineEmits(["update:modelValue", "change"]);
 
 type Tab = {
-  id: number;
+  id: number | string;
   disabled: boolean;
 };
 

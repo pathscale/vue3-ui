@@ -93,7 +93,7 @@ watchEffect(() => {
   if (props.current > pageCount.value) last();
 });
 
-function changePage(num: number, e) {
+function changePage(num: number, e: Event) {
   if (props.current === num || num < 1 || num > pageCount.value) return;
   emit("update:current", num);
   emit("change", num);

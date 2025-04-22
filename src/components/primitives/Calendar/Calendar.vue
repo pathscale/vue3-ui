@@ -13,7 +13,7 @@ const props = withDefaults(
     range?: boolean;
     options?: object; // todo typed
     type?: "date" | "time" | "datetime";
-    modelValue?: Date | Date[];
+    modelValue?: Date | [Date, Date];
   }>(),
   {
     options: () => ({}),
@@ -23,7 +23,7 @@ const props = withDefaults(
 
 const emit = defineEmits(["update:modelValue", "select"]);
 
-const date = ref([null, null]);
+const date = ref<[Date | null, Date | null]>([null, null]);
 const input = ref(null);
 
 onMounted(() => {

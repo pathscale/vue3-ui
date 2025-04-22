@@ -15,6 +15,11 @@ const props = defineProps<{
 
 const emit = defineEmits(["update:modelValue", "change"]);
 
+type Tab = {
+  id: number;
+  disabled: boolean;
+};
+
 const tabs = provideStore({
   activeTab: 0,
   activeHeight: null,
@@ -27,7 +32,7 @@ const setActiveTabID = (id: number) => {
   tabs.value.activeTab = id;
 };
 
-const setActiveTab = (t) => {
+const setActiveTab = (t: Tab) => {
   if (!t.disabled) {
     setActiveTabID(t.id);
   }

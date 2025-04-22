@@ -19,7 +19,7 @@ const props = withDefaults(
   },
 );
 
-const newActive = defineModel<boolean>("active");
+const active = defineModel<boolean>("active");
 const newExpanded = defineModel<boolean>("expanded");
 const content = ref(null);
 
@@ -28,7 +28,7 @@ const onClick = (e: Event) => {
   if (props.disabled) return;
 
   newExpanded.value = !newExpanded.value;
-  // newActive.value = true
+  // active.value = true
 };
 </script>
 
@@ -39,7 +39,7 @@ const onClick = (e: Event) => {
       v-bind="$attrs"
       :class="{
         'is-flex': icon,
-        'is-active': newActive,
+        'is-active': active,
         'is-disabled': disabled
       }"
       @click="onClick($event)">
@@ -49,7 +49,7 @@ const onClick = (e: Event) => {
         v-else
         name="label"
         :expanded="newExpanded"
-        :active="newActive" />
+        :active="active" />
     </component>
     <template v-if="$slots.default">
       <!-- <transition name="slide"> -->

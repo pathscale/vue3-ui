@@ -105,7 +105,7 @@ function changePage(num, e) {
 function last(e) {
   changePage(pageCount.value, e);
 }
-function getPage(num, options = {}) {
+function getPage(num, options: { disabled?: boolean; class?: string } = {}) {
   return {
     number: num,
     isCurrent: props.current === num,

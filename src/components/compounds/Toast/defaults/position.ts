@@ -9,8 +9,8 @@ enum Position {
 
 export default Position;
 
-export function definePosition(position: Position, top, bottom) {
-  let result = null;
+export function definePosition<T, B>(position: Position, top: T, bottom: B) {
+  let result: T | B;
   switch (position) {
     case Position.TOP:
     case Position.TOP_RIGHT:

@@ -3,12 +3,12 @@ class Event {
     this.queue = {};
   }
 
-  $on(name, callback) {
+  $on(name: string, callback) {
     this.queue[name] = this.queue[name] || [];
     this.queue[name].push(callback);
   }
 
-  $off(name, callback) {
+  $off(name: string, callback) {
     if (this.queue[name]) {
       for (let i = 0; i < this.queue[name].length; i++) {
         if (this.queue[name][i] === callback) {
@@ -19,7 +19,8 @@ class Event {
     }
   }
 
-  $emit(name, data) {
+  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+  $emit(name: string, data?: any) {
     if (this.queue[name]) {
       for (const callback of this.queue[name]) {
         callback(data);

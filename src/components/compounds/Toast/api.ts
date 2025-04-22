@@ -1,6 +1,17 @@
 import Toaster from "./Toaster.vue";
+import type Position from "./defaults/position";
 import eventBus from "./helpers/event-bus.js";
 import mount from "./helpers/mount-component";
+
+export type ToastOptions = {
+  type?: "is-success" | "is-danger";
+  position?: Position;
+  duration?: number | false;
+  dismissible?: boolean;
+  pauseOnHover?: boolean;
+  onClose?: () => void;
+  onClick?: () => void;
+};
 
 const Api = (globalOptions = {}) => {
   return {

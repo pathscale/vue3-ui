@@ -35,3 +35,20 @@ export interface PaginationPage {
   class?: string;
   "aria-label"?: string | null;
 }
+
+/**
+ * https://vue3.dev/documentation/tabs
+ */
+export type Tab = {
+  id: number | string;
+  disabled: boolean;
+  label: string;
+};
+
+export type TabsState = {
+  activeTab: number | string;
+  activeHeight: number | null;
+  tabs: Tab[];
+  animated: boolean;
+  vanimated: boolean;
+};

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { Tab, TabsState } from "@/types/component-types";
 import { computed, watchEffect } from "vue";
 import { provideStore } from "./tabs-store";
 
@@ -14,20 +15,6 @@ const props = defineProps<{
 }>();
 
 const emit = defineEmits(["update:modelValue", "change"]);
-
-type Tab = {
-  id: number | string;
-  disabled: boolean;
-  label: string;
-};
-
-type TabsState = {
-  activeTab: number | string;
-  activeHeight: number | null;
-  tabs: Tab[];
-  animated: boolean;
-  vanimated: boolean;
-};
 
 const tabs = provideStore<TabsState>({
   activeTab: 0,

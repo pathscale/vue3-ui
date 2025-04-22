@@ -114,6 +114,12 @@ describe("MenuItem", () => {
     expect(wrapper.emitted("update:expanded")?.[1]).toEqual([false]);
     /** did not emit ('update:active', true) because previous value is already true */
     expect(wrapper.emitted("update:active")?.[1]).toBeUndefined();
+
+    // all emits
+    expect(Object.entries(wrapper.emitted())).toHaveLength(3);
+    expect(wrapper.emitted("update:expanded")).toHaveLength(2);
+    expect(wrapper.emitted("update:active")).toHaveLength(1);
+    expect(wrapper.emitted("click")).toHaveLength(2);
   });
 
   it("does not emit events when disabled", async () => {

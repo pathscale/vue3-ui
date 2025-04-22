@@ -28,7 +28,7 @@ const onClick = () => {
   if (props.disabled) return;
 
   expanded.value = !expanded.value;
-  // active.value = true
+  active.value = true;
 };
 </script>
 

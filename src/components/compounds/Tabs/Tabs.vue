@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, watchEffect } from "vue";
-import { provideStore } from "./store1";
+import { provideStore } from "./tabs-store";
 
 const props = defineProps<{
   modelValue: number | string; // required

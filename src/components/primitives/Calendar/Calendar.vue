@@ -5,6 +5,7 @@
 <script setup lang="ts">
 import { firstIfArray } from "@/utils/functions";
 import { inject, onMounted, ref } from "vue";
+import type { BulmaCalendarOptions } from "./calendar-types";
 
 const props = withDefaults(
   defineProps<{
@@ -12,7 +13,7 @@ const props = withDefaults(
     dialog?: boolean;
     inline?: boolean;
     range?: boolean;
-    options?: object; // todo typed
+    options?: BulmaCalendarOptions;
     type?: "date" | "time" | "datetime";
     modelValue?: Date | [Date, Date];
   }>(),

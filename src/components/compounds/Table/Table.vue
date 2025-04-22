@@ -6,7 +6,7 @@ import VInput from "@/components/primitives/Input/Input.vue";
 import VSelect from "@/components/primitives/Select/Select.vue";
 import VTag from "@/components/primitives/Tag/Tag.vue";
 import { computed, reactive, ref, toRaw, useSlots, watch } from "vue";
-import DataGrid, { type Column } from "./DataGrid";
+import DataGrid, { type Column, type Row } from "./DataGrid";
 
 const UNKNOW = "unknow";
 
@@ -47,7 +47,7 @@ const data = ref(props.data);
 const computedRowsPerPage = ref(props.rowsPerPage);
 const currentPage = ref(0);
 const search = reactive({});
-const expandedRows = ref(new Set());
+const expandedRows = ref(new Set<Row["id"]>());
 const expandedGroups = ref(new Set());
 // handle checked all state per page
 const checked = reactive({
@@ -81,7 +81,7 @@ const sortColumn = (column: Column) => {
   column.ascendant = !column.ascendant;
 };
 
-const toggleExpanded = (rowId) => {
+const toggleExpanded = (rowId: Row["id"]) => {
   if (expandedRows.value.has(rowId)) {
     expandedRows.value.delete(rowId);
     return;

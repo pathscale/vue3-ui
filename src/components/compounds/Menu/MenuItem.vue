@@ -20,14 +20,14 @@ const props = withDefaults(
 );
 
 const active = defineModel<boolean>("active");
-const newExpanded = defineModel<boolean>("expanded");
+const expanded = defineModel<boolean>("expanded");
 const content = ref(null);
 
 const onClick = (e: Event) => {
   // TODO Disable previous active item
   if (props.disabled) return;
 
-  newExpanded.value = !newExpanded.value;
+  expanded.value = !expanded.value;
   // active.value = true
 };
 </script>
@@ -48,12 +48,12 @@ const onClick = (e: Event) => {
       <slot
         v-else
         name="label"
-        :expanded="newExpanded"
+        :expanded="expanded"
         :active="active" />
     </component>
     <template v-if="$slots.default">
       <!-- <transition name="slide"> -->
-      <ul class="ul" v-show="newExpanded">
+      <ul class="ul" v-show="expanded">
         <slot />
       </ul>
       <!-- </transition> -->

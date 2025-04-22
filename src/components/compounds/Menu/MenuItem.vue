@@ -8,7 +8,6 @@ defineOptions({
 const props = withDefaults(
   defineProps<{
     label?: string;
-    active?: boolean;
     expanded?: boolean;
     disabled?: boolean;
     icon?: string;
@@ -21,27 +20,23 @@ const props = withDefaults(
   },
 );
 
-const emit = defineEmits(["update:expanded", "update:active"]);
+const emit = defineEmits(["update:expanded"]);
 
-const newActive = ref(props.active);
+const newActive = defineModel<boolean>("active");
 const newExpanded = ref(props.expanded);
 const content = ref(null);
-
-watchEffect(() => {
-  newActive.value = props.active;
-});
 
 watchEffect(() => {
   newExpanded.value = props.expanded;
 });
 
-const onClick = () => {
+const onClick = (e: Event) => {
   // TODO Disable previous active item
   if (props.disabled) return;
 
   newExpanded.value = !newExpanded.value;
   emit("update:expanded", newExpanded.value);
-  emit("update:active", newActive.value);
+
   // newActive.value = true
 };
 </script>

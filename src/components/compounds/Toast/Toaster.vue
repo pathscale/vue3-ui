@@ -8,7 +8,7 @@
 	</transition>
 </template>
 
-<script>
+<script setup lang="ts">
 // Credits: @MeForma/vue-toaster
 import {
   computed,
@@ -23,189 +23,156 @@ import eventBus from "./helpers/event-bus";
 import { removeElement } from "./helpers/remove-element";
 import Timer from "./helpers/timer";
 
-export default {
-  name: "Toast",
-  props: {
-    message: {
-      type: String,
-      required: true,
-    },
-    type: {
-      type: String,
-      default: "is-primary",
-    },
-    position: {
-      type: String,
-      default: Positions.BOTTOM_RIGHT,
-      validator(value) {
-        return Object.values(Positions).includes(value);
-      },
-    },
-    maxToasts: {
-      type: [Number, Boolean, String],
-      default: false,
-    },
-    duration: {
-      type: [Number, Boolean, String],
-      default: 4000,
-    },
-    dismissible: {
-      type: Boolean,
-      default: true,
-    },
-    queue: {
-      type: Boolean,
-    },
-    pauseOnHover: {
-      type: Boolean,
-    },
-    onClose: {
-      type: Function,
-      // eslint-disable-next-line no-empty-function -- ignore
-      default() {},
-    },
-    onClick: {
-      type: Function,
-      // eslint-disable-next-line no-empty-function -- ignore
-      default() {},
-    },
+const props = withDefaults(
+  defineProps<{
+    message: string; // required
+    type?: string;
+    position?: Positions;
+    maxToasts?: false | number | string; // string for numeric strings only
+    duration?: false | number | string; // string for numeric strings only
+    dismissible?: boolean;
+    queue?: boolean;
+    pauseOnHover?: boolean;
+    onClose?: () => void;
+    onClick?: () => void;
+  }>(),
+  {
+    type: "is-primary",
+    position: Positions.BOTTOM_RIGHT,
+    maxToasts: false,
+    duration: 4000,
+    dismissible: true,
+    onClose: () => {},
+    onClick: () => {},
   },
-  setup(props) {
-    const root = ref(null);
+);
 
-    const state = reactive({
-      isActive: false,
-      parentTop: null,
-      parentBottom: null,
-      isHovered: false,
-      timer: null,
-    });
+const root = ref(null);
 
-    let queueTimer = null;
+const state = reactive({
+  isActive: false,
+  parentTop: null,
+  parentBottom: null,
+  isHovered: false,
+  timer: null,
+});
 
-    const correctParent = computed(() => {
-      return definePosition(
-        props.position,
-        state.parentTop,
-        state.parentBottom,
-      );
-    });
+let queueTimer = null;
 
-    const transition = computed(() => {
-      return definePosition(
-        props.position,
-        {
-          enter: "fadeInDown",
-          leave: "fadeOut",
-        },
-        {
-          enter: "fadeInUp",
-          leave: "fadeOut",
-        },
-      );
-    });
+const correctParent = computed(() => {
+  return definePosition(props.position, state.parentTop, state.parentBottom);
+});
 
-    function createParents() {
-      state.parentTop = document.querySelector(".v-toast-container--top");
-      state.parentBottom = document.querySelector(".v-toast-container--bottom");
+const transition = computed(() => {
+  return definePosition(
+    props.position,
+    {
+      enter: "fadeInDown",
+      leave: "fadeOut",
+    },
+    {
+      enter: "fadeInUp",
+      leave: "fadeOut",
+    },
+  );
+});
 
-      if (state.parentTop && state.parentBottom) return;
+function createParents() {
+  state.parentTop = document.querySelector(".v-toast-container--top");
+  state.parentBottom = document.querySelector(".v-toast-container--bottom");
 
-      if (!state.parentTop) {
-        state.parentTop = document.createElement("div");
-        state.parentTop.className = "v-toast-container v-toast-container--top";
-      }
+  if (state.parentTop && state.parentBottom) return;
 
-      if (!state.parentBottom) {
-        state.parentBottom = document.createElement("div");
-        state.parentBottom.className =
-          "v-toast-container v-toast-container--bottom";
-      }
-    }
+  if (!state.parentTop) {
+    state.parentTop = document.createElement("div");
+    state.parentTop.className = "v-toast-container v-toast-container--top";
+  }
 
-    function setupContainer() {
-      const container = document.body;
-      container.append(state.parentTop);
-      container.append(state.parentBottom);
-    }
+  if (!state.parentBottom) {
+    state.parentBottom = document.createElement("div");
+    state.parentBottom.className =
+      "v-toast-container v-toast-container--bottom";
+  }
+}
 
-    function shouldQueue() {
-      if (!props.queue && props.maxToasts === false) {
-        return false;
-      }
+function setupContainer() {
+  const container = document.body;
+  container.append(state.parentTop);
+  container.append(state.parentBottom);
+}
 
-      if (props.maxToasts !== false) {
-        return (
-          props.maxToasts <=
-          state.parentTop.childElementCount +
-            state.parentBottom.childElementCount
-        );
-      }
+function shouldQueue() {
+  if (!props.queue && props.maxToasts === false) {
+    return false;
+  }
 
-      return (
-        state.parentTop.childElementCount > 0 ||
-        state.parentBottom.childElementCount > 0
-      );
-    }
+  if (props.maxToasts !== false) {
+    return (
+      props.maxToasts <=
+      state.parentTop.childElementCount + state.parentBottom.childElementCount
+    );
+  }
 
-    function showNotice() {
-      if (shouldQueue()) {
-        queueTimer = setTimeout(showNotice, 250);
-        return;
-      }
+  return (
+    state.parentTop.childElementCount > 0 ||
+    state.parentBottom.childElementCount > 0
+  );
+}
 
-      correctParent.value.insertAdjacentElement("afterbegin", root.value);
-      state.isActive = true;
+function showNotice() {
+  if (shouldQueue()) {
+    queueTimer = setTimeout(showNotice, 250);
+    return;
+  }
 
-      state.timer =
-        props.duration !== false ? new Timer(close, props.duration) : null;
-    }
+  correctParent.value.insertAdjacentElement("afterbegin", root.value);
+  state.isActive = true;
 
-    function click() {
-      // biome-ignore lint/style/noArguments: <explanation>
-      Reflect.apply(props.onClick, null, arguments);
+  state.timer =
+    props.duration !== false ? new Timer(close, props.duration) : null;
+}
 
-      if (props.dismissible) {
-        close();
-      }
-    }
+function click() {
+  // biome-ignore lint/style/noArguments: <explanation>
+  Reflect.apply(props.onClick, null, arguments);
 
-    function toggleTimer(newVal) {
-      if (state.timer && props.pauseOnHover) {
-        newVal ? state.timer.pause() : state.timer.resume();
-      }
-    }
+  if (props.dismissible) {
+    close();
+  }
+}
 
-    function stopTimer() {
-      state.timer?.stop();
-      clearTimeout(queueTimer);
-    }
+function toggleTimer(newVal) {
+  if (state.timer && props.pauseOnHover) {
+    newVal ? state.timer.pause() : state.timer.resume();
+  }
+}
 
-    function close() {
-      stopTimer();
-      state.isActive = false;
-      setTimeout(() => {
-        // biome-ignore lint/style/noArguments: <explanation>
-        Reflect.apply(props.onClose, null, arguments);
-        removeElement(root.value);
-      }, 150);
-    }
+function stopTimer() {
+  state.timer?.stop();
+  clearTimeout(queueTimer);
+}
 
-    onBeforeMount(() => {
-      createParents();
-      setupContainer();
-    });
+function close() {
+  stopTimer();
+  state.isActive = false;
+  setTimeout(() => {
+    // biome-ignore lint/style/noArguments: <explanation>
+    Reflect.apply(props.onClose, null, arguments);
+    removeElement(root.value);
+  }, 150);
+}
 
-    onMounted(() => {
-      showNotice();
-      eventBus.$on("toast-clear", close);
-    });
+onBeforeMount(() => {
+  createParents();
+  setupContainer();
+});
 
-    onBeforeUnmount(() => {
-      eventBus.$off("toast-clear", close);
-    });
+onMounted(() => {
+  showNotice();
+  eventBus.$on("toast-clear", close);
+});
 
-    return { state, transition, toggleTimer, click, root };
-  },
-};
+onBeforeUnmount(() => {
+  eventBus.$off("toast-clear", close);
+});
 </script>

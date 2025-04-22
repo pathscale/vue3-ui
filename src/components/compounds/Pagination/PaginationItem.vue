@@ -20,11 +20,11 @@ const props = withDefaults(
 );
 
 const href = computed(() => {
-  return props.tag === "a" ? "#" : null;
+  return props.tag === "a" ? "#" : undefined;
 });
 
 const computedDisabled = computed(() => {
-  return props.disabled || props.page.disabled ? true : null;
+  return props.disabled || props.page.disabled ? true : undefined;
 });
 </script>
 

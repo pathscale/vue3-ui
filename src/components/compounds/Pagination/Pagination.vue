@@ -161,7 +161,7 @@ export default {
 			'is-rounded': rounded,
 		},
 	]">
-		<slot v-if="slots.previous" name="previous" :page="getPage(current - 1, {
+		<slot v-if="$slots.previous" name="previous" :page="getPage(current - 1, {
 			disabled: !hasPrev,
 			class: 'pagination-previous',
 			'aria-label': ariaPreviousLabel,
@@ -173,7 +173,7 @@ export default {
 			:aria-label="ariaPreviousLabel">
 			&laquo;
 		</pagination-item>
-		<slot v-if="slots.next" name="next" :page="getPage(current + 1, {
+		<slot v-if="$slots.next" name="next" :page="getPage(current + 1, {
 			disabled: !hasNext,
 			class: 'pagination-next',
 			'aria-label': ariaNextLabel,
@@ -194,7 +194,7 @@ export default {
 		</small>
 		<ul class="pagination-list" v-else>
 			<li v-if="hasFirst">
-				<slot v-if="slots.default" :page="getPage(1)" />
+				<slot v-if="$slots.default" :page="getPage(1)" />
 				<pagination-item v-else :page="getPage(1)" />
 			</li>
 			<li v-if="hasFirstEllipsis">
@@ -202,7 +202,7 @@ export default {
 			</li>
 
 			<li v-for="page in pagesInRange" :key="page.number">
-				<slot v-if="slots.default" :page="page" />
+				<slot v-if="$slots.default" :page="page" />
 				<pagination-item v-else :page="page" />
 			</li>
 
@@ -210,7 +210,7 @@ export default {
 				<span class="pagination-ellipsis">&hellip;</span>
 			</li>
 			<li v-if="hasLast">
-				<slot v-if="slots.default" :page="getPage(pageCount)" />
+				<slot v-if="$slots.default" :page="getPage(pageCount)" />
 				<pagination-item v-else :page="getPage(pageCount)" />
 			</li>
 		</ul>

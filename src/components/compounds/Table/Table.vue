@@ -50,7 +50,7 @@ const search = reactive<Record<string, string>>({});
 const expandedRows = ref(new Set<Row["id"]>());
 const expandedGroups = ref(new Set());
 // handle checked all state per page
-const checked = reactive({
+const checked = reactive<Record<number, boolean>>({
   0: false,
 });
 
@@ -198,7 +198,7 @@ const total = computed(() => data.value.originalRows.length);
               :class="columnClasses(column)"
               @click="handleSort(column)"
               :draggable="draggableColumns"
-              @dragstart="data.onDragStartColumn($event, row, idx)"
+              @dragstart="data.onDragStartColumn($event, column, idx)"
               @drop="data.onDropColumn($event, column, idx)"
               @dragover="data.onDragOverColumn($event, column, idx)"
               @dragleave="data.onDragLeaveColumn($event, column, idx)">
@@ -252,7 +252,7 @@ const total = computed(() => data.value.originalRows.length);
                   :key="column.name"
                   :class="cellClasses(column)"
                   :contenteditable="props.editable"
-                  @blur="data.editCell(row, column, $event.target.textContent)">
+                  @blur="data.editCell(row, column, ($event.target as HTMLElement).textContent ?? '')">
                   <slot :name="column.name" :row="row">
                     {{ row[column.name] }}
                   </slot>
@@ -287,7 +287,7 @@ const total = computed(() => data.value.originalRows.length);
                     :key="column.name"
                     :class="column.style"
                     :contenteditable="props.editable"
-                    @blur="data.editCell(row, column, $event.target.textContent)">
+                    @blur="data.editCell(row, column, ($event.target as HTMLElement).textContent ?? '')">
                     <slot :name="column.name" :row="row">
                       {{ row[column.name] }}
                     </slot>

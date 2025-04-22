@@ -3,7 +3,7 @@ import type Position from "./defaults/position";
 import eventBus from "./helpers/event-bus.js";
 import mount from "./helpers/mount-component";
 
-export type ToastOptions = {
+export interface ToastOptions {
   type?: "is-success" | "is-danger" | "is-info" | "is-warning";
   position?: Position;
   duration?: number | false;
@@ -11,7 +11,20 @@ export type ToastOptions = {
   pauseOnHover?: boolean;
   onClose?: () => void;
   onClick?: () => void;
-};
+}
+
+export interface ToastGlobalOptions extends ToastOptions {
+  message: string; // required
+  type?: string;
+  position?: Position;
+  maxToasts?: number | false;
+  duration?: number | false;
+  dismissible?: boolean;
+  queue?: boolean;
+  pauseOnHover?: boolean;
+  onClose?: () => void;
+  onClick?: () => void;
+}
 
 const Api = (globalOptions = {}) => {
   return {

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { StepTabsState, Tab } from "@/types/component-types";
+import type { StepTab, StepTabsState } from "@/types/component-types";
 import { provideStore } from "@/utils/tabs-store";
 import { watchEffect } from "vue";
 
@@ -18,11 +18,11 @@ const tabs = provideStore<StepTabsState>({
   tabs: [],
 });
 
-const setActiveTabID = (id) => {
+const setActiveTabID = (id: number | string) => {
   tabs.value.activeTab = id;
 };
 
-const setActiveTab = (t) => {
+const setActiveTab = (t: StepTab) => {
   if (!t.disabled && t.clickable) {
     setActiveTabID(t.id);
   }
@@ -37,8 +37,8 @@ watchEffect(() => {
   emit("change", tabs.value.activeTab);
 });
 
-const isTabActive = (t) => tabs.value.activeTab === t.id;
-const isTabCompleted = (t) => tabs.value.activeTab > t.id;
+const isTabActive = (t: StepTab) => tabs.value.activeTab === t.id;
+const isTabCompleted = (t: StepTab) => tabs.value.activeTab > t.id;
 </script>
 
 <template>

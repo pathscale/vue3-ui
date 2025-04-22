@@ -17,7 +17,7 @@ export function useStore<T>(): T {
   return store;
 }
 
-export function addToStore<Tab, T extends { tabs: Tab[] }>(tab: Tab) {
+export function addToStore<T extends { tabs: Tab[] }, Tab>(tab: Tab) {
   const tabs = useStore<Ref<T>>();
   tabs.value.tabs.push(tab);
 }

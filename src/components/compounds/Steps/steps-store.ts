@@ -9,10 +9,9 @@ export function provideStore<T>(store: MaybeRef<T>) {
   return storeRef;
 }
 
-export function useStore<T>() {
+export function useStore<T>(): Ref<T> {
   const store = inject<Ref<T>>(TabsSymbol);
   if (!store) {
-    // throw error, no store provided
     throw new Error("no store provided");
   }
   return store;

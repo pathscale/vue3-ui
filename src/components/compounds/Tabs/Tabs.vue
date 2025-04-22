@@ -68,13 +68,16 @@ const isTabActive = (t: Tab) => tabs.value.activeTab === t.id;
         },
       ]">
       <ul class="ul">
-        <template v-for="t in tabs.tabs" :key="t">
-          <li class="li" :class="{ 'is-active': isTabActive(t) }" @click="setActiveTab(t)">
-            <a :class="{ 'is-disabled': t.disabled }">
-              {{ t.label }}
-            </a>
-          </li>
-        </template>
+        <li
+          v-for="(t, idx) in tabs.tabs"
+          :key="idx"
+          class="li"
+          :class="{ 'is-active': isTabActive(t) }"
+          @click="setActiveTab(t)">
+          <a :class="{ 'is-disabled': t.disabled }">
+            {{ t.label }}
+          </a>
+        </li>
       </ul>
     </nav>
     <div :class="{ 'is-height-animated': vanimated }" :style="contentHeight">

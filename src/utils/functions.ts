@@ -30,3 +30,10 @@ export function formatToFixed(
   }
   return fixed;
 }
+
+export const intOrParseInt = (num: number | string): number => {
+  if (Number.isInteger(num)) {
+    return num as number;
+  }
+  return Number.parseInt(num as string);
+};

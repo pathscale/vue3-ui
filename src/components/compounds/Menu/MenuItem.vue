@@ -46,10 +46,14 @@ const onClick = (event: Event) => {
 
   // Toggle expansion state
   const newExpanded = !expanded.value;
+  const newActive = !active.value;
   expanded.value = newExpanded;
-
+  active.value = newActive;
   // Emit changes to parent
   emit("update:expanded", newExpanded);
+  if (newActive) {
+    emit("update:active", newActive);
+  }
 };
 </script>
 

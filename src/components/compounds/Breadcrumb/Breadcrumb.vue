@@ -1,12 +1,13 @@
-<script>
-export default {
-  name: "VBreadcrumb",
-  props: {
-    alignment: String,
-    separator: String,
-    size: String,
-  },
-};
+<script setup lang="ts">
+defineProps<{
+  alignment?: "is-centered" | "is-right";
+  separator?:
+    | "has-arrow-separator"
+    | "has-bullet-separator"
+    | "has-dot-separator"
+    | "has-succeeds-separator";
+  size?: "is-normal" | "is-medium" | "is-large";
+}>();
 </script>
 
 <template>

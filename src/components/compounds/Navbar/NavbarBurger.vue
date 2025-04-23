@@ -1,10 +1,5 @@
-<script>
-export default {
-  name: "NavbarBurger",
-  props: {
-    active: Boolean,
-  },
-};
+<script setup lang="ts">
+defineProps<{ active?: boolean }>();
 </script>
 
 <template>

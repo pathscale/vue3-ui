@@ -4,6 +4,7 @@
 </template>
 
 <script>
+// todo delete
 import HelloWorld from "./components/HelloWorld.vue";
 
 export default {

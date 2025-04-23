@@ -98,13 +98,28 @@ describe("MenuItem", () => {
   it("emits events on click when not disabled", async () => {
     const wrapper = mount(MenuItem, {
       props: {
-        active: true,
+        active: false,
         expanded: false,
       },
     });
+
+    // first click
     await wrapper.find("a").trigger("click");
     expect(wrapper.emitted("update:expanded")?.[0]).toEqual([true]);
+    /** emitted ('update:active', true) because previous value was false */
     expect(wrapper.emitted("update:active")?.[0]).toEqual([true]);
+
+    // second click
+    await wrapper.find("a").trigger("click");
+    expect(wrapper.emitted("update:expanded")?.[1]).toEqual([false]);
+    /** did not emit ('update:active', true) because previous value is already true */
+    expect(wrapper.emitted("update:active")?.[1]).toBeUndefined();
+
+    // all emits
+    expect(Object.entries(wrapper.emitted())).toHaveLength(3);
+    expect(wrapper.emitted("update:expanded")).toHaveLength(2);
+    expect(wrapper.emitted("update:active")).toHaveLength(1);
+    expect(wrapper.emitted("click")).toHaveLength(2);
   });
 
   it("does not emit events when disabled", async () => {

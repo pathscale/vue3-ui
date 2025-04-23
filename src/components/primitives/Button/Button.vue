@@ -14,7 +14,8 @@ const props = withDefaults(
       | "is-info"
       | "is-success"
       | "is-warning"
-      | "is-danger";
+      | "is-danger"
+      | string; // or combination of types for example 'is-light has-text-black'
     size?: "is-small" | "is-normal" | "is-medium" | "is-large";
     label?: string;
     rounded?: boolean;

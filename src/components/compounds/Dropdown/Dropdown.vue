@@ -1,71 +1,74 @@
-<script>
-import { computed, provide, reactive } from "vue";
+<script setup lang="ts">
+// todo tests
+import { onClickOutside } from "@/utils/onClickOutside";
+import { computed, provide, reactive, readonly, useTemplateRef } from "vue";
+import { type DDSelection, DropdownSymbol } from "./dropdown-symbol";
 
-export const DropdownSymbol = Symbol("Dropdown");
-
-export default {
-  name: "VDropdown",
-  props: {
-    value: {
-      type: [String, Number, Boolean, Object, Array, Function],
-    },
-    disabled: Boolean,
-    hoverable: Boolean,
-    inline: Boolean,
-    position: String,
-    mobileModal: {
-      type: Boolean,
-      default: true,
-    },
-    ariaRole: String,
-    closeOnClick: {
-      type: Boolean,
-      default: true,
-    },
-    expanded: Boolean,
+const props = withDefaults(
+  defineProps<{
+    disabled?: boolean;
+    hoverable?: boolean;
+    inline?: boolean;
+    position?: "is-left" | "is-up" | "is-down" | "is-right";
+    mobileModal?: boolean;
+    ariaRole?: "list" | "menu" | "dialog";
+    /** Close dropdown when content is clicked */
+    closeOnClick?: boolean;
+    /** Full width */
+    expanded?: boolean;
+  }>(),
+  {
+    mobileModal: true,
+    closeOnClick: true,
   },
-  emits: ["update:modelValue"],
-  setup(props, { emit }) {
-    const state = reactive({
-      selected: props.value,
-      style: {},
-      isActive: false,
-      isHoverable: props.hoverable,
-    });
+);
 
-    const toggle = () => {
-      if (props.disabled || props.hoverable) return;
-      state.isActive = !state.isActive;
-    };
+const selected = defineModel();
 
-    const closeMenu = () => {
-      if (props.closeOnClick) {
-        state.isActive = false;
-      }
-    };
+const state = reactive({
+  style: {},
+  isActive: false,
+  isHoverable: props.hoverable,
+});
 
-    const selectItem = (newValue) => {
-      emit("update:modelValue", newValue);
-      closeMenu();
-    };
-
-    const show = computed(() => {
-      return (
-        (!props.disabled && (state.isActive || props.hoverable)) || props.inline
-      );
-    });
-
-    const displayActive = computed(() => state.isActive || props.inline);
-
-    provide(DropdownSymbol, { selectItem, value: props.value });
-
-    return { state, toggle, show, displayActive };
-  },
+const toggle = () => {
+  if (props.disabled || props.hoverable) return;
+  state.isActive = !state.isActive;
 };
+
+// close dropdown on click inside
+const closeMenu = () => {
+  if (props.closeOnClick) {
+    state.isActive = false;
+  }
+};
+
+// close dropdown on click outside
+const dropdownWrapper = useTemplateRef<HTMLElement>("dropdown-wrapper");
+onClickOutside(dropdownWrapper, () => {
+  state.isActive = false;
+});
+
+// biome-ignore lint/suspicious/noExplicitAny: allow any type according to docs
+const selectItem = (newValue: any) => {
+  selected.value = newValue;
+  closeMenu();
+};
+
+const show = computed(() => {
+  return (
+    (!props.disabled && (state.isActive || props.hoverable)) || props.inline
+  );
+});
+
+const displayActive = computed(() => state.isActive || props.inline);
+
+// provide item dropdown selection for children
+provide<DDSelection>(DropdownSymbol, { selectItem, value: readonly(selected) });
 </script>
 
 <template>
-  <div class="dropdown" :class="[
+  <div ref="dropdown-wrapper" class="dropdown" :class="[
     position,
     {
       'is-disabled': disabled,

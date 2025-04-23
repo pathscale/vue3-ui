@@ -1,37 +1,25 @@
-
-
-<script>
+<script setup lang="ts">
+import type { PaginationPage } from "@/types/component-types";
 import { computed } from "vue";
 
-export default {
-  name: "VPaginationItem",
-  props: {
-    page: {
-      type: Object,
-      required: true,
-    },
-    tag: {
-      type: String,
-      default: "a",
-    },
-    disabled: Boolean,
+const props = withDefaults(
+  defineProps<{
+    page: PaginationPage; // required
+    tag?: string;
+    disabled?: boolean;
+  }>(),
+  {
+    tag: "a",
   },
+);
 
-  setup(props) {
-    const href = computed(() => {
-      return props.tag === "a" ? "#" : null;
-    });
+const href = computed(() => {
+  return props.tag === "a" ? "#" : undefined;
+});
 
-    const computedDisabled = computed(() => {
-      return props.disabled || props.page.disabled ? true : null;
-    });
-
-    return {
-      href,
-      computedDisabled,
-    };
-  },
-};
+const effectiveDisabled = computed(() => {
+  return props.disabled || props.page.disabled ? true : undefined;
+});
 </script>
 
 <template>
@@ -39,7 +27,7 @@ export default {
     :is="tag"
     role="button"
     :href="href"
-    :disabled="computedDisabled"
+    :disabled="effectiveDisabled"
     class="pagination-link"
     :class="{ 'is-current': page.isCurrent, [page.class]: true }"
     v-bind="$attrs"

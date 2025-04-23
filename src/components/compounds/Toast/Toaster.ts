@@ -1,8 +1,9 @@
+import type { App } from "vue";
 import Toaster from "./Toaster.vue";
-import createToaster from "./api.js";
-import ToasterPositions from "./defaults/positions.js";
+import ToasterPositions from "./defaults/position";
+import createToaster from "./toast-api";
 
-Toaster.install = (app, options = {}) => {
+Toaster.install = (app: App, options = {}) => {
   const methods = createToaster(options);
   app.config.globalProperties.$toast = methods;
   app.provide("$toast", methods);

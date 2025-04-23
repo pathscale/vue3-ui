@@ -30,3 +30,17 @@ export function formatToFixed(
   }
   return fixed;
 }
+
+export const intOrParseInt = (num: number | string): number => {
+  if (Number.isInteger(num)) {
+    return num as number;
+  }
+  return Number.parseInt(num as string);
+};
+
+/**
+ * Returns typed version of first element of array
+ */
+export function firstIfArray<T>(arr: T | T[]): T {
+  return Array.isArray(arr) ? arr[0] : arr;
+}

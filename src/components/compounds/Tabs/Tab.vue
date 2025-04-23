@@ -1,56 +1,47 @@
-<script>
-import { computed, onMounted, onUpdated, ref, watch } from "vue";
-import { addToStore, useStore } from "./Tabs.vue";
+<script setup lang="ts">
+import type { Tab, TabsState } from "@/types/component-types";
+import { addTabToStore, useTabsStore } from "@/utils/tabs-store";
+import { computed, onMounted, onUpdated, useTemplateRef, watch } from "vue";
 
-export default {
-  name: "VTab",
-  props: {
-    // eslint-disable-next-line vue/no-unused-properties -- used
-    label: {
-      type: String,
-      default: "",
-      required: true,
-    },
-    // eslint-disable-next-line vue/no-unused-properties -- used
-    disabled: Boolean,
-    // eslint-disable-next-line vue/no-unused-properties -- used
-    visible: {
-      type: Boolean,
-      default: true,
-    },
+const props = withDefaults(
+  defineProps<{
+    label: string; // required
+    disabled?: boolean;
+    visible?: boolean;
+  }>(),
+  {
+    label: "",
+    visible: true,
   },
-  setup(props, { emit }) {
-    const content = ref(null);
-    const tabs = useStore();
-    const id = JSON.parse(JSON.stringify(tabs.value.tabs)).length;
-    const transitionName = computed(() => {
-      return tabs.value.activeTab < id ? "slide-right" : "slide-left";
-    });
+);
 
-    const updateActiveHeight = () => {
-      if (tabs.value.vanimated && content.value) {
-        tabs.value.activeHeight = content.value.offsetHeight;
-      }
-    };
+const content = useTemplateRef<HTMLElement>("content");
+const tabs = useTabsStore<TabsState>();
+const id = JSON.parse(JSON.stringify(tabs.value.tabs)).length;
+const transitionName = computed(() => {
+  return tabs.value.activeTab < id ? "slide-right" : "slide-left";
+});
 
-    onMounted(updateActiveHeight);
-    onUpdated(updateActiveHeight);
-
-    addToStore({ ...props, id });
-
-    watch(
-      () => tabs.value.tabs.findIndex((tab) => tab.id === id),
-      (index) => {
-        tabs.value.tabs.splice(index, 1, { id, ...props });
-      },
-      { immediate: true },
-    );
-
-    const isActiveTab = computed(() => tabs.value.activeTab === id);
-
-    return { tabs, transitionName, content, isActiveTab };
-  },
+const updateActiveHeight = () => {
+  if (tabs.value.vanimated && content.value) {
+    tabs.value.activeHeight = content.value.offsetHeight;
+  }
 };
+
+onMounted(updateActiveHeight);
+onUpdated(updateActiveHeight);
+
+addTabToStore<Tab>({ ...props, id });
+
+watch(
+  () => tabs.value.tabs.findIndex((tab) => tab.id === id),
+  (index) => {
+    tabs.value.tabs.splice(index, 1, { id, ...props });
+  },
+  { immediate: true },
+);
+
+const isActiveTab = computed(() => tabs.value.activeTab === id);
 </script>
 
 <template>

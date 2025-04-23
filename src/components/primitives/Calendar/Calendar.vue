@@ -2,93 +2,84 @@
   <input ref="input" :type="type" />
 </template>
 
-<script>
-import { inject, onMounted, ref } from "vue";
+<script setup lang="ts">
+import { firstIfArray } from "@/utils/functions";
+import { inject, onMounted, ref, useTemplateRef } from "vue";
+import type { BulmaCalendar, Options } from "./bulma-calendar";
 
-export default {
-  name: "VCalendar",
-  props: {
-    clearable: {
-      type: Boolean,
-    },
-    dialog: {
-      type: Boolean,
-    },
-    inline: {
-      type: Boolean,
-    },
-    range: {
-      type: Boolean,
-    },
-    options: {
-      type: Object,
-      default() {
-        return {};
-      },
-    },
-    type: {
-      type: String,
-      default: "datetime",
-    },
-    modelValue: [Date, Array],
+const props = withDefaults(
+  defineProps<{
+    clearable?: boolean;
+    dialog?: boolean;
+    inline?: boolean;
+    range?: boolean;
+    // https://bulma-calendar.onrender.com/#options
+    options?: Options;
+    type?: "date" | "time" | "datetime";
+    modelValue?: Date | [Date, Date];
+  }>(),
+  {
+    options: () => ({}),
+    type: "datetime",
   },
-  emits: ["update:modelValue", "select"],
-  setup(props, { emit, slots }) {
-    const date = ref([null, null]);
-    const input = ref(null);
+);
 
-    onMounted(() => {
-      const bulmaCalendar = inject("$bulmaCalendar");
-      if (!bulmaCalendar) {
-        throw new Error(
-          "BulmaCalendar component requires the bulmaCalendar service to be provided",
-        );
-      }
-      // Set date
-      if (props.range) {
-        if (Array.isArray(props.modelValue)) {
-          date.value = props.modelValue;
-        }
-      } else {
-        date.value[0] = props.modelValue;
-      }
+const emit = defineEmits(["update:modelValue", "select"]);
 
-      const calendar = bulmaCalendar.attach(input.value, {
-        ...props.options,
-        displayMode: props.inline
-          ? "inline"
-          : props.dialog
-            ? "dialog"
-            : "default",
-        isRange: props.range,
-        showClearButton: props.clearable,
-        startDate: date.value[0],
-        startTime: date.value[0],
-        endDate: date.value[1],
-        endTime: date.value[1],
-      });
+type DateRange = [Date | undefined, Date | undefined];
 
-      calendar[0].on("save", (e) => {
-        date.value = [e.data.startDate, e.data.endDate];
+const date = ref<DateRange>([undefined, undefined]);
+const input = useTemplateRef<HTMLInputElement>("input");
 
-        if (props.range) {
-          emit("update:modelValue", date.value);
-          return;
-        }
+onMounted(() => {
+  const bulmaCalendar = inject<typeof BulmaCalendar>("$bulmaCalendar");
+  if (!bulmaCalendar) {
+    throw new Error(
+      "BulmaCalendar component requires the bulmaCalendar service to be provided",
+    );
+  }
+  // Set date
+  if (props.range) {
+    if (Array.isArray(props.modelValue)) {
+      date.value = props.modelValue;
+    }
+  } else {
+    date.value[0] = firstIfArray(props.modelValue);
+  }
 
-        emit("update:modelValue", date.value[0]);
-      });
+  if (!input.value) {
+    throw new Error("no template ref for calendar");
+  }
 
-      calendar[0].on("select", (e) => {
-        if (props.range) {
-          emit("select", [e.data.startDate, e.data.endDate]);
-          return;
-        }
+  const calendar = bulmaCalendar.attach(input.value, {
+    ...props.options,
+    displayMode: props.inline ? "inline" : props.dialog ? "dialog" : "default",
+    isRange: props.range,
+    showClearButton: props.clearable,
+    startDate: date.value[0],
+    startTime: date.value[0],
+    endDate: date.value[1],
+    endTime: date.value[1],
+  })[0];
 
-        emit("select", e.data.startDate);
-      });
-    });
-    return { input };
-  },
-};
+  calendar.on("save", (e) => {
+    date.value = [e.data.startDate, e.data.endDate];
+
+    if (props.range) {
+      emit("update:modelValue", date.value);
+      return;
+    }
+
+    emit("update:modelValue", date.value[0]);
+  });
+
+  calendar.on("select", (e) => {
+    if (props.range) {
+      emit("select", [e.data.startDate, e.data.endDate]);
+      return;
+    }
+
+    emit("select", e.data.startDate);
+  });
+});
 </script>

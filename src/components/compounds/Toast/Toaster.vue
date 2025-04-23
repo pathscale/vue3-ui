@@ -8,7 +8,7 @@
 	</transition>
 </template>
 
-<script>
+<script setup lang="ts">
 // Credits: @MeForma/vue-toaster
 import {
   computed,
@@ -16,196 +16,161 @@ import {
   onBeforeUnmount,
   onMounted,
   reactive,
-  ref,
+  useTemplateRef,
 } from "vue";
-import Positions, { definePosition } from "./defaults/positions";
+import Position, { definePosition } from "./defaults/position";
 import eventBus from "./helpers/event-bus";
 import { removeElement } from "./helpers/remove-element";
 import Timer from "./helpers/timer";
+import type { ToasterProps } from "./toast-api";
 
-export default {
-  name: "Toast",
-  props: {
-    message: {
-      type: String,
-      required: true,
+const props = withDefaults(defineProps<ToasterProps>(), {
+  type: "is-primary",
+  position: Position.BOTTOM_RIGHT,
+  maxToasts: false,
+  duration: 4000,
+  dismissible: true,
+  onClose: () => {},
+  onClick: () => {},
+});
+
+const root = useTemplateRef<HTMLElement>("root");
+
+const state = reactive<{
+  isActive: boolean;
+  parentTop: HTMLElement | null;
+  parentBottom: HTMLElement | null;
+  isHovered: boolean;
+  timer: Timer | null;
+}>({
+  isActive: false,
+  parentTop: null,
+  parentBottom: null,
+  isHovered: false,
+  timer: null,
+});
+
+let queueTimer: number | undefined = undefined;
+
+const correctParent = computed(() => {
+  return definePosition(
+    props.position,
+    state.parentTop as HTMLElement,
+    state.parentBottom as HTMLElement,
+  );
+});
+
+const transition = computed(() => {
+  return definePosition(
+    props.position,
+    {
+      enter: "fadeInDown",
+      leave: "fadeOut",
     },
-    type: {
-      type: String,
-      default: "is-primary",
+    {
+      enter: "fadeInUp",
+      leave: "fadeOut",
     },
-    position: {
-      type: String,
-      default: Positions.BOTTOM_RIGHT,
-      validator(value) {
-        return Object.values(Positions).includes(value);
-      },
-    },
-    maxToasts: {
-      type: [Number, Boolean, String],
-      default: false,
-    },
-    duration: {
-      type: [Number, Boolean, String],
-      default: 4000,
-    },
-    dismissible: {
-      type: Boolean,
-      default: true,
-    },
-    queue: {
-      type: Boolean,
-    },
-    pauseOnHover: {
-      type: Boolean,
-    },
-    onClose: {
-      type: Function,
-      // eslint-disable-next-line no-empty-function -- ignore
-      default() {},
-    },
-    onClick: {
-      type: Function,
-      // eslint-disable-next-line no-empty-function -- ignore
-      default() {},
-    },
-  },
-  setup(props) {
-    const root = ref(null);
+  );
+});
 
-    const state = reactive({
-      isActive: false,
-      parentTop: null,
-      parentBottom: null,
-      isHovered: false,
-      timer: null,
-    });
+function createParents() {
+  state.parentTop = document.querySelector(".v-toast-container--top");
+  state.parentBottom = document.querySelector(".v-toast-container--bottom");
 
-    let queueTimer = null;
+  if (state.parentTop && state.parentBottom) return;
 
-    const correctParent = computed(() => {
-      return definePosition(
-        props.position,
-        state.parentTop,
-        state.parentBottom,
-      );
-    });
+  if (!state.parentTop) {
+    const parentTop = document.createElement("div");
+    parentTop.className = "v-toast-container v-toast-container--top";
+    state.parentTop = parentTop;
+  }
 
-    const transition = computed(() => {
-      return definePosition(
-        props.position,
-        {
-          enter: "fadeInDown",
-          leave: "fadeOut",
-        },
-        {
-          enter: "fadeInUp",
-          leave: "fadeOut",
-        },
-      );
-    });
+  if (!state.parentBottom) {
+    const parentBottom = document.createElement("div");
+    parentBottom.className = "v-toast-container v-toast-container--bottom";
+    state.parentBottom = parentBottom;
+  }
+}
 
-    function createParents() {
-      state.parentTop = document.querySelector(".v-toast-container--top");
-      state.parentBottom = document.querySelector(".v-toast-container--bottom");
+function setupContainer() {
+  const container = document.body;
+  container.append(state.parentTop as HTMLElement);
+  container.append(state.parentBottom as HTMLElement);
+}
 
-      if (state.parentTop && state.parentBottom) return;
+function shouldQueue() {
+  if (!props.queue && props.maxToasts === false) {
+    return false;
+  }
 
-      if (!state.parentTop) {
-        state.parentTop = document.createElement("div");
-        state.parentTop.className = "v-toast-container v-toast-container--top";
-      }
+  const topCount = (state.parentTop as HTMLElement).childElementCount;
+  const botCount = (state.parentBottom as HTMLElement).childElementCount;
 
-      if (!state.parentBottom) {
-        state.parentBottom = document.createElement("div");
-        state.parentBottom.className =
-          "v-toast-container v-toast-container--bottom";
-      }
-    }
+  if (props.maxToasts !== false) {
+    return props.maxToasts <= topCount + botCount;
+  }
 
-    function setupContainer() {
-      const container = document.body;
-      container.append(state.parentTop);
-      container.append(state.parentBottom);
-    }
+  return topCount > 0 || botCount > 0;
+}
 
-    function shouldQueue() {
-      if (!props.queue && props.maxToasts === false) {
-        return false;
-      }
+function showNotice() {
+  if (shouldQueue()) {
+    queueTimer = window.setTimeout(showNotice, 250);
+    return;
+  }
 
-      if (props.maxToasts !== false) {
-        return (
-          props.maxToasts <=
-          state.parentTop.childElementCount +
-            state.parentBottom.childElementCount
-        );
-      }
+  correctParent.value.insertAdjacentElement(
+    "afterbegin",
+    root.value as HTMLElement,
+  );
+  state.isActive = true;
 
-      return (
-        state.parentTop.childElementCount > 0 ||
-        state.parentBottom.childElementCount > 0
-      );
-    }
+  state.timer =
+    props.duration !== false ? new Timer(close, props.duration) : null;
+}
 
-    function showNotice() {
-      if (shouldQueue()) {
-        queueTimer = setTimeout(showNotice, 250);
-        return;
-      }
+function click() {
+  // biome-ignore lint/style/noArguments: <explanation>
+  Reflect.apply(props.onClick, null, arguments);
 
-      correctParent.value.insertAdjacentElement("afterbegin", root.value);
-      state.isActive = true;
+  if (props.dismissible) {
+    close();
+  }
+}
 
-      state.timer =
-        props.duration !== false ? new Timer(close, props.duration) : null;
-    }
+function toggleTimer(newVal: boolean) {
+  if (state.timer && props.pauseOnHover) {
+    newVal ? state.timer.pause() : state.timer.resume();
+  }
+}
 
-    function click() {
-      // biome-ignore lint/style/noArguments: <explanation>
-      Reflect.apply(props.onClick, null, arguments);
+function stopTimer() {
+  state.timer?.stop();
+  window.clearTimeout(queueTimer);
+}
 
-      if (props.dismissible) {
-        close();
-      }
-    }
+function close() {
+  stopTimer();
+  state.isActive = false;
+  setTimeout(() => {
+    // biome-ignore lint/style/noArguments: <explanation>
+    Reflect.apply(props.onClose, null, arguments);
+    removeElement(root.value as HTMLElement);
+  }, 150);
+}
 
-    function toggleTimer(newVal) {
-      if (state.timer && props.pauseOnHover) {
-        newVal ? state.timer.pause() : state.timer.resume();
-      }
-    }
+onBeforeMount(() => {
+  createParents();
+  setupContainer();
+});
 
-    function stopTimer() {
-      state.timer?.stop();
-      clearTimeout(queueTimer);
-    }
+onMounted(() => {
+  showNotice();
+  eventBus.$on("toast-clear", close);
+});
 
-    function close() {
-      stopTimer();
-      state.isActive = false;
-      setTimeout(() => {
-        // biome-ignore lint/style/noArguments: <explanation>
-        Reflect.apply(props.onClose, null, arguments);
-        removeElement(root.value);
-      }, 150);
-    }
-
-    onBeforeMount(() => {
-      createParents();
-      setupContainer();
-    });
-
-    onMounted(() => {
-      showNotice();
-      eventBus.$on("toast-clear", close);
-    });
-
-    onBeforeUnmount(() => {
-      eventBus.$off("toast-clear", close);
-    });
-
-    return { state, transition, toggleTimer, click, root };
-  },
-};
+onBeforeUnmount(() => {
+  eventBus.$off("toast-clear", close);
+});
 </script>

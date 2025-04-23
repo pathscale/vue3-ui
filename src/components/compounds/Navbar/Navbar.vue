@@ -1,42 +1,38 @@
-<script>
-import { ref, watchEffect } from "vue";
+<script setup lang="ts">
+// todo tests
 import NavbarBurger from "./NavbarBurger.vue";
 
-export default {
-  name: "VNavbar",
-  components: { NavbarBurger },
-  props: {
-    type: [String, Object],
-    transparent: Boolean,
-    fixedTop: Boolean,
-    fixedBottom: Boolean,
-    wrapperClass: String,
-    mobileBurger: {
-      type: Boolean,
-      default: true,
-    },
-    spaced: Boolean,
-    shadow: Boolean,
-    modelValue: Boolean,
+withDefaults(
+  defineProps<{
+    type?:
+      | "is-white"
+      | "is-light"
+      | "is-dark"
+      | "is-black"
+      | "is-text"
+      | "is-primary"
+      | "is-link"
+      | "is-info"
+      | "is-success"
+      | "is-warning"
+      | "is-danger";
+    transparent?: boolean;
+    fixedTop?: boolean;
+    fixedBottom?: boolean;
+    wrapperClass?: string;
+    mobileBurger?: boolean;
+    spaced?: boolean;
+    shadow?: boolean;
+  }>(),
+  {
+    mobileBurger: true,
   },
-  emits: ["update:modelValue"],
-  setup(props, { emit }) {
-    const isActive = ref(props.modelValue);
+);
 
-    watchEffect(() => {
-      emit("update:modelValue", isActive.value);
-    });
+const isActive = defineModel<boolean>();
 
-    watchEffect(() => {
-      isActive.value = props.modelValue;
-    });
-
-    const toggleActive = () => {
-      isActive.value = !isActive.value;
-    };
-
-    return { isActive, toggleActive };
-  },
+const toggleActive = () => {
+  isActive.value = !isActive.value;
 };
 </script>
 

@@ -1,7 +1,5 @@
-<script>
-export default {
-  name: "VCardContent",
-};
+<script setup lang="ts">
+//
 </script>
 
 <template>

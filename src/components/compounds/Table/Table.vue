@@ -1,191 +1,163 @@
-<script>
-import { computed, reactive, ref, toRaw, watch } from "vue";
-import VButton from "../../primitives/Button/Button.vue";
-import VCheckbox from "../../primitives/Checkbox/Checkbox.vue";
-import VInput from "../../primitives/Input/Input.vue";
-import VSelect from "../../primitives/Select/Select.vue";
-import VTag from "../../primitives/Tag/Tag.vue";
-import VPagination from "../Pagination/Pagination.vue";
+<script setup lang="ts">
+import VPagination from "@/components/compounds/Pagination/Pagination.vue";
+import VButton from "@/components/primitives/Button/Button.vue";
+import VCheckbox from "@/components/primitives/Checkbox/Checkbox.vue";
+import VInput from "@/components/primitives/Input/Input.vue";
+import VSelect from "@/components/primitives/Select/Select.vue";
+import VTag from "@/components/primitives/Tag/Tag.vue";
+import { computed, reactive, ref, toRaw, useSlots, watch } from "vue";
+import DataGrid, { type Column, type Row, type CellValue } from "./DataGrid";
 
 const UNKNOW = "unknow";
 
-export default {
-  name: "VTable",
-  components: { VButton, VCheckbox, VSelect, VTag, VInput, VPagination },
-  props: {
-    data: {
-      type: Object,
-      default: () => ({}),
-    },
-    searchable: Boolean,
-    checkable: Boolean,
-    pagination: Boolean,
-    rowsPerPage: {
-      type: Number,
-      default: 5,
-    },
-    rowsPerPageOptions: {
-      type: Array,
-      default: () => [],
-    },
-    bordered: Boolean,
-    striped: Boolean,
-    narrow: Boolean,
-    hoverable: Boolean,
-    fullwidth: Boolean,
-    hasResetBtn: Boolean,
-    sortable: Boolean,
-    expandable: Boolean,
-    draggableRows: Boolean,
-    draggableColumns: Boolean,
-    // eslint-disable-next-line vue/no-unused-properties -- editable prop being used in template
-    editable: Boolean,
-    groupBy: String,
-    sticky: Boolean,
-    mobileCards: Boolean,
+const props = withDefaults(
+  defineProps<{
+    data?: DataGrid;
+    searchable?: boolean;
+    checkable?: boolean;
+    pagination?: boolean;
+    rowsPerPage?: number;
+    rowsPerPageOptions?: number[]; // todo update docs: use 'Array<Number>', but not just 'Array'
+    bordered?: boolean;
+    striped?: boolean;
+    narrow?: boolean;
+    hoverable?: boolean;
+    fullwidth?: boolean;
+    hasResetBtn?: boolean;
+    sortable?: boolean;
+    expandable?: boolean;
+    draggableRows?: boolean;
+    draggableColumns?: boolean;
+    editable?: boolean;
+    groupBy?: string;
+    sticky?: boolean;
+    mobileCards?: boolean;
+  }>(),
+  {
+    data: () => new DataGrid(),
+    rowsPerPage: 5,
+    rowsPerPageOptions: () => [],
   },
+);
 
-  setup(props, { slots }) {
-    // datagrid instance reference
-    const data = ref(props.data);
-    const computedRowsPerPage = ref(props.rowsPerPage);
-    const currentPage = ref(0);
-    const search = reactive({});
-    const expandedRows = ref(new Set());
-    const expandedGroups = ref(new Set());
-    // handle checked all state per page
-    const checked = reactive({
-      0: false,
-    });
+const slots = useSlots();
 
-    // whenever pagination props changes, update the class state accordingly
-    // thsi way pagination settings are directly passed to props and indirectly passed to class
+// datagrid instance reference
+const data = ref(props.data);
+const computedRowsPerPage = ref(props.rowsPerPage);
+const currentPage = ref(0);
+const search = reactive<Record<string, string>>({});
+const expandedRows = ref(new Set<Row["id"]>());
+const expandedGroups = ref(new Set());
+// handle checked all state per page
+const checked = reactive<Record<number, boolean>>({
+  0: false,
+});
 
-    // page goes back to first when rowperpage changes
-    watch(computedRowsPerPage, () => {
-      props.data.rowsPerPage = computedRowsPerPage.value;
-      currentPage.value = 0;
-      props.data.switchPage();
-    });
+// whenever pagination props changes, update the class state accordingly
+// this way pagination settings are directly passed to props and indirectly passed to class
 
-    // compute new rows window whenever currentpage changes
-    watch(currentPage, () => {
-      props.data.currentPage = currentPage.value;
-      props.data.switchPage();
-    });
+// page goes back to first when rowperpage changes
+watch(computedRowsPerPage, () => {
+  props.data.rowsPerPage = computedRowsPerPage.value;
+  currentPage.value = 0;
+  props.data.switchPage();
+});
 
-    // compute rows window on first render as no change cb triggers
-    if (props.pagination) {
-      props.data.rowsPerPage = computedRowsPerPage.value;
-      props.data.switchPage();
-    }
+// compute new rows window whenever currentpage changes
+watch(currentPage, () => {
+  props.data.currentPage = currentPage.value;
+  props.data.switchPage();
+});
 
-    const sortColumn = (column) => {
-      props.data.sortByColumn(column.name, column.ascendant);
-      column.ascendant = !column.ascendant;
-    };
+// compute rows window on first render as no change cb triggers
+if (props.pagination) {
+  props.data.rowsPerPage = computedRowsPerPage.value;
+  props.data.switchPage();
+}
 
-    const toggleExpanded = (rowId) => {
-      if (expandedRows.value.has(rowId)) {
-        expandedRows.value.delete(rowId);
-        return;
-      }
-      expandedRows.value.add(rowId);
-    };
-
-    const toggleExpandedGroup = (group) => {
-      if (expandedGroups.value.has(group)) {
-        expandedGroups.value.delete(group);
-        return;
-      }
-      expandedGroups.value.add(group);
-    };
-
-    const countColumns = computed(() => {
-      return (
-        data.value.getColumns().length +
-        (props.checkable ? 1 : 0) +
-        (props.expandable ? 1 : 0)
-      );
-    });
-
-    const handlePageChange = (value) => {
-      currentPage.value = value - 1; // pagination handle indexes from 1, table from 0
-    };
-
-    const handleSort = (column) => {
-      if (props.sortable && column.dataType !== UNKNOW) {
-        sortColumn(column);
-      }
-    };
-
-    const columnClasses = (column) => {
-      return {
-        ...column.style,
-        "has-text-primary": column.selected,
-        "sticky-row": props.sticky,
-        "is-clickable": props.sortable && column.dataType !== UNKNOW,
-      };
-    };
-
-    const selectedClasses = (row) => {
-      return {
-        "has-background-primary": row.selected,
-        "has-text-white": row.selected,
-      };
-    };
-
-    const cellClasses = (column) => {
-      return {
-        ...column.style,
-        "sticky-column": column.sticky,
-      };
-    };
-
-    watch(
-      [checked],
-      () => {
-        data.value.toggleCheckAll(toRaw(checked)[currentPage.value]);
-      },
-      { deep: true },
-    );
-
-    const isChecked = (row) => {
-      return data.value.checkedRows.has(row);
-    };
-
-    const hasHeader = computed(() => {
-      return slots.header || props.hasResetBtn;
-    });
-
-    return {
-      props,
-      search,
-      expandedRows,
-      toggleExpanded,
-      expandedGroups,
-      toggleExpandedGroup,
-      countColumns,
-      handlePageChange,
-      handleSort,
-      columnClasses,
-      selectedClasses,
-      cellClasses,
-      slots,
-      hasHeader,
-      currentPage,
-      total: data.value.originalRows.length,
-      computedRowsPerPage,
-      checked,
-      isChecked,
-      UNKNOW,
-    };
-  },
+const sortColumn = (column: Column) => {
+  props.data.sortByColumn(column.name, column.ascendant);
+  column.ascendant = !column.ascendant;
 };
+
+const toggleExpanded = (rowId: Row["id"]) => {
+  if (expandedRows.value.has(rowId)) {
+    expandedRows.value.delete(rowId);
+    return;
+  }
+  expandedRows.value.add(rowId);
+};
+
+const toggleExpandedGroup = (group: CellValue) => {
+  if (expandedGroups.value.has(group)) {
+    expandedGroups.value.delete(group);
+    return;
+  }
+  expandedGroups.value.add(group);
+};
+
+const countColumns = computed(() => {
+  return (
+    data.value.getColumns().length +
+    (props.checkable ? 1 : 0) +
+    (props.expandable ? 1 : 0)
+  );
+});
+
+const handlePageChange = (value: number) => {
+  currentPage.value = value - 1; // pagination handle indexes from 1, table from 0
+};
+
+const handleSort = (column: Column) => {
+  if (props.sortable && column.dataType !== UNKNOW) {
+    sortColumn(column);
+  }
+};
+
+const columnClasses = (column: Column) => {
+  return {
+    ...column.style,
+    "has-text-primary": column.selected,
+    "sticky-row": props.sticky,
+    "is-clickable": props.sortable && column.dataType !== UNKNOW,
+  };
+};
+
+const selectedClasses = (row: Row) => {
+  return {
+    "has-background-primary": row.selected,
+    "has-text-white": row.selected,
+  };
+};
+
+const cellClasses = (column: Column) => {
+  return {
+    ...column.style,
+    "sticky-column": column.sticky,
+  };
+};
+
+watch(
+  [checked],
+  () => {
+    data.value.toggleCheckAll(toRaw(checked)[currentPage.value]);
+  },
+  { deep: true },
+);
+
+const isChecked = (row: Row) => {
+  return data.value.checkedRows.has(row);
+};
+
+const hasHeader = computed(() => {
+  return slots.header || props.hasResetBtn;
+});
+
+const total = computed(() => data.value.originalRows.length);
 </script>
 
 <template>
-  <!-- eslint-disable @pathscale/vue3/v-directive  -->
   <div class="v-table">
     <div
       class="table-wrapper table-container"
@@ -226,7 +198,7 @@ export default {
               :class="columnClasses(column)"
               @click="handleSort(column)"
               :draggable="draggableColumns"
-              @dragstart="data.onDragStartColumn($event, row, idx)"
+              @dragstart="data.onDragStartColumn($event, column, idx)"
               @drop="data.onDropColumn($event, column, idx)"
               @dragover="data.onDragOverColumn($event, column, idx)"
               @dragleave="data.onDragLeaveColumn($event, column, idx)">
@@ -280,7 +252,7 @@ export default {
                   :key="column.name"
                   :class="cellClasses(column)"
                   :contenteditable="props.editable"
-                  @blur="data.editCell(row, column, $event.target.textContent)">
+                  @blur="data.editCell(row, column, ($event.target as HTMLElement).textContent ?? '')">
                   <slot :name="column.name" :row="row">
                     {{ row[column.name] }}
                   </slot>
@@ -315,7 +287,7 @@ export default {
                     :key="column.name"
                     :class="column.style"
                     :contenteditable="props.editable"
-                    @blur="data.editCell(row, column, $event.target.textContent)">
+                    @blur="data.editCell(row, column, ($event.target as HTMLElement).textContent ?? '')">
                     <slot :name="column.name" :row="row">
                       {{ row[column.name] }}
                     </slot>

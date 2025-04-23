@@ -35,7 +35,7 @@ export {
   default as Toaster,
   ToasterPositions,
   createToaster,
-} from "./compounds/Toast/Toaster.js";
+} from "./compounds/Toast/Toaster";
 export { default as VAccordion } from "./compounds/Accordion/Accordion.vue";
 export { default as VAccordionMenu } from "./compounds/Accordion/AccordionMenu.vue";
 export { default as VBreadcrumb } from "./compounds/Breadcrumb/Breadcrumb.vue";

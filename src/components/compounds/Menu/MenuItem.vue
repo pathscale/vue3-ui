@@ -1,76 +1,80 @@
-<script>
+<script setup lang="ts">
 import { ref, watchEffect } from "vue";
 
-export default {
-  name: "VMenuItem",
+defineOptions({
   inheritAttrs: false,
-  props: {
-    label: String,
-    active: Boolean,
-    expanded: Boolean,
-    disabled: Boolean,
-    icon: String,
-    tag: {
-      type: String,
-      default: "a",
-    },
-    ariaRole: String,
+});
+
+const props = withDefaults(
+  defineProps<{
+    label?: string;
+    disabled?: boolean;
+    icon?: string;
+    tag?: string;
+    ariaRole?: string;
+    active?: boolean;
+    expanded?: boolean;
+  }>(),
+  {
+    tag: "a",
+    ariaRole: "menuitem",
+    active: false,
+    expanded: false,
   },
-  emits: ["update:expanded", "update:active"],
-  setup(props, { emit }) {
-    const newActive = ref(props.active);
-    const newExpanded = ref(props.expanded);
-    const content = ref(null);
+);
 
-    watchEffect(() => {
-      newActive.value = props.active;
-    });
+const emit = defineEmits<{
+  (e: "update:expanded", value: boolean): void;
+  (e: "update:active", value: boolean): void;
+}>();
 
-    watchEffect(() => {
-      newExpanded.value = props.expanded;
-    });
+const active = ref(props.active);
+const expanded = ref(props.expanded);
+const content = ref<HTMLElement | null>(null);
 
-    const onClick = () => {
-      // TODO Disable previous active item
-      if (props.disabled) return;
+// Sync with props
+watchEffect(() => {
+  active.value = props.active;
+  expanded.value = props.expanded;
+});
 
-      newExpanded.value = !newExpanded.value;
-      emit("update:expanded", newExpanded.value);
-      emit("update:active", newActive.value);
-      // newActive.value = true
-    };
+const onClick = (event: Event) => {
+  if (props.disabled) {
+    event.preventDefault();
+    return;
+  }
 
-    return { newActive, newExpanded, onClick, content };
-  },
+  // Toggle expansion state
+  const newExpanded = !expanded.value;
+  const newActive = !active.value;
+  expanded.value = newExpanded;
+  active.value = newActive;
+  // Emit changes to parent
+  emit("update:expanded", newExpanded);
+  if (newActive) {
+    emit("update:active", newActive);
+  }
 };
 </script>
 
 <template>
-  <li class="li" :role="ariaRole" ref="content">
-    <component
-      :is="tag"
-      v-bind="$attrs"
-      :class="{
-        'is-flex': icon,
-        'is-active': newActive,
-        'is-disabled': disabled
-      }"
-      @click="onClick($event)">
-      <span v-if="icon" class="pr-2">{{ icon }} </span>
-      <span v-if="label">
-        {{ label }}</span>
-      <slot
-        v-else
-        name="label"
-        :expanded="newExpanded"
-        :active="newActive" />
+  <li class="li" :role="ariaRole" ref="content" :aria-expanded="expanded">
+    <component :is="tag" v-bind="$attrs" :class="{
+      'is-flex': icon,
+      'is-active': active,
+      'is-disabled': disabled
+    }" :aria-disabled="disabled" @click="onClick" @keydown.enter="onClick">
+      <span v-if="icon" class="pr-2">{{ icon }}</span>
+      <span v-if="label">{{ label }}</span>
+      <slot v-else name="label" :expanded="expanded" :active="active" />
     </component>
+
     <template v-if="$slots.default">
-      <!-- <transition name="slide"> -->
-      <ul class="ul" v-show="newExpanded">
-        <slot />
-      </ul>
-      <!-- </transition> -->
+      <transition name="slide">
+        <ul v-show="expanded" class="ul" role="menu">
+          <slot />
+        </ul>
+      </transition>
     </template>
   </li>
 </template>

@@ -1,16 +1,21 @@
-/* eslint-disable promise/prefer-await-to-callbacks -- ignore */
-// eslint-disable-next-line no-shadow -- ignore */
-class Event {
+// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+type Callback = (data?: any) => void;
+
+type Queue = Record<string, Callback[]>;
+
+class EventBus {
+  queue: Queue;
+
   constructor() {
     this.queue = {};
   }
 
-  $on(name, callback) {
+  $on(name: string, callback: Callback) {
     this.queue[name] = this.queue[name] || [];
     this.queue[name].push(callback);
   }
 
-  $off(name, callback) {
+  $off(name: string, callback: Callback) {
     if (this.queue[name]) {
       for (let i = 0; i < this.queue[name].length; i++) {
         if (this.queue[name][i] === callback) {
@@ -21,7 +26,8 @@ class Event {
     }
   }
 
-  $emit(name, data) {
+  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+  $emit(name: string, data?: any) {
     if (this.queue[name]) {
       for (const callback of this.queue[name]) {
         callback(data);
@@ -30,4 +36,4 @@ class Event {
   }
 }
 
-export default new Event();
+export default new EventBus();

@@ -1,91 +1,58 @@
-<script>
-import { computed, inject, provide, ref, watchEffect } from "vue";
+<script setup lang="ts">
+// todo tests
+import type { Tab, TabsState } from "@/types/component-types";
+import { provideTabsStore } from "@/utils/tabs-store";
+import { computed, watchEffect } from "vue";
 
-const TabsSymbol = Symbol("Tabs");
+const props = defineProps<{
+  modelValue: number | string; // required
+  size?: "is-small" | "is-medium" | "is-large";
+  type?: "is-boxed" | "is-toggle" | "is-toggle-rounded"; // todo update docs: add "is-toggle-rounded" to table
+  expanded?: boolean;
+  position?: "is-centered" | "is-right";
+  vertical?: boolean; // TODO
+  vanimated?: boolean; // todo update docs: remove true as default
+  animated?: boolean; // todo update docs: remove true as default
+}>();
 
-export function provideStore(store) {
-  const storeRef = ref(store);
-  provide(TabsSymbol, storeRef);
-  return storeRef;
-}
+const emit = defineEmits(["update:modelValue", "change"]);
 
-export function useStore() {
-  const store = inject(TabsSymbol);
-  if (!store) {
-    // throw error, no store provided
-  }
-  return store;
-}
+const tabs = provideTabsStore<TabsState>({
+  activeTab: 0,
+  activeHeight: null,
+  tabs: [],
+  animated: props.animated,
+  vanimated: props.vanimated,
+});
 
-export function addToStore(tab) {
-  const tabs = useStore();
-  tabs.value.tabs.push(tab);
-}
-
-export default {
-  name: "VTabs",
-  props: {
-    modelValue: {
-      type: [Number, String],
-      required: true,
-    },
-    size: String,
-    type: String,
-    expanded: Boolean,
-    position: String,
-    vertical: Boolean, // TODO
-    vanimated: Boolean,
-    animated: Boolean,
-  },
-  emits: ["update:modelValue", "change"],
-  setup(props, { emit }) {
-    const tabs = provideStore({
-      activeTab: 0,
-      activeHeight: null,
-      tabs: [],
-      animated: props.animated,
-      vanimated: props.vanimated,
-    });
-
-    const setActiveTabID = (id) => {
-      tabs.value.activeTab = id;
-    };
-
-    const setActiveTab = (t) => {
-      if (!t.disabled) {
-        setActiveTabID(t.id);
-      }
-    };
-
-    const contentHeight = computed(() => {
-      return `height:${tabs.value.activeHeight}px`;
-    });
-
-    watchEffect(() => {
-      setActiveTabID(props.modelValue);
-    });
-
-    watchEffect(() => {
-      emit("update:modelValue", tabs.value.activeTab);
-      emit("change", tabs.value.activeTab);
-    });
-
-    const isHorizontal = computed(() => props.position && !props.vertical);
-
-    const rounded = computed(() => props.type === "is-toggle-rounded");
-
-    const isTabActive = (t) => tabs.value.activeTab === t.id;
-
-    return {
-      contentHeight,
-      setActiveTab,
-      tabs,
-      isHorizontal,
-      rounded,
-      isTabActive,
-    };
-  },
+const setActiveTabID = (id: number | string) => {
+  tabs.value.activeTab = id;
 };
+
+const setActiveTab = (t: Tab) => {
+  if (!t.disabled) {
+    setActiveTabID(t.id);
+  }
+};
+
+const contentHeight = computed(() => {
+  return `height:${tabs.value.activeHeight}px`;
+});
+
+watchEffect(() => {
+  setActiveTabID(props.modelValue);
+});
+
+watchEffect(() => {
+  emit("update:modelValue", tabs.value.activeTab);
+  emit("change", tabs.value.activeTab);
+});
+
+const isHorizontal = computed(() => props.position && !props.vertical);
+
+const rounded = computed(() => props.type === "is-toggle-rounded");
+
+const isTabActive = (t: Tab) => tabs.value.activeTab === t.id;
 </script>
 
 <template>
@@ -96,27 +63,22 @@ export default {
         type,
         size,
         {
-          [position]: isHorizontal,
+          [position ?? '']: isHorizontal,
           'is-fullwidth': expanded,
           'is-toggle-rounded is-toggle': rounded,
         },
       ]">
       <ul class="ul">
-        <template v-for="t in tabs.tabs" :key="t">
-          <li
-            class="li"
-            :class="{
-              'is-active': isTabActive(t),
-            }"
-            @click="setActiveTab(t)">
-            <a
-              :class="{
-                'is-disabled': t.disabled,
-              }">
-              {{ t.label }}
-            </a>
-          </li>
-        </template>
+        <li
+          v-for="(t, idx) in tabs.tabs"
+          :key="idx"
+          class="li"
+          :class="{ 'is-active': isTabActive(t) }"
+          @click="setActiveTab(t)">
+          <a :class="{ 'is-disabled': t.disabled }">
+            {{ t.label }}
+          </a>
+        </li>
       </ul>
     </nav>
     <div :class="{ 'is-height-animated': vanimated }" :style="contentHeight">

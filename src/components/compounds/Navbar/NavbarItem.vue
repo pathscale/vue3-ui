@@ -1,15 +1,17 @@
-<script>
-export default {
-  name: "VNavbarItem",
+<script setup lang="ts">
+defineOptions({
   inheritAttrs: false,
-  props: {
-    tag: {
-      type: String,
-      default: "a",
-    },
-    active: Boolean,
+});
+
+withDefaults(
+  defineProps<{
+    tag?: string;
+    active?: boolean;
+  }>(),
+  {
+    tag: "a",
   },
-};
+);
 </script>
 
 <template>

@@ -1,12 +1,6 @@
 <script setup lang="ts">
-import {
-  defineModel,
-  onBeforeUnmount,
-  onMounted,
-  reactive,
-  useTemplateRef,
-} from "vue";
-
+import { onClickOutside } from "@/utils/onClickOutside";
+import { reactive, useTemplateRef } from "vue";
 import VField from "../Field/Field.vue";
 import VInput from "../Input/Input.vue";
 
@@ -75,21 +69,7 @@ const handleClickOutside = () => {
 
 const dropdownWrapper = useTemplateRef<HTMLElement>("dropdown-wrapper");
 
-const detectOutsideClick = (event: MouseEvent) => {
-  const wrapperEl = dropdownWrapper.value;
-  if (wrapperEl && !wrapperEl.contains(event.target as Node)) {
-    // Clicked outside!
-    handleClickOutside();
-  }
-};
-
-onMounted(() => {
-  document.addEventListener("click", detectOutsideClick);
-});
-
-onBeforeUnmount(() => {
-  document.removeEventListener("click", detectOutsideClick);
-});
+onClickOutside(dropdownWrapper, handleClickOutside);
 </script>
 
 <template>

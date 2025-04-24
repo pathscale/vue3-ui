@@ -27,26 +27,14 @@ const focus = () => {
 </script>
 
 <template>
-  <label
-    class="v-checkbox checkbox"
-    :class="[ size, { 'is-disabled': disabled }]"
-    ref="label"
-    :disabled="disabled"
-    @click="focus"
-    @keydown.prevent.enter="label?.click()">
-    <input
-      v-model="value"
-      :indeterminate.prop="indeterminate"
-      type="checkbox"
-      ref="input"
-      @click.stop
-      :disabled="disabled"
-      :required="required"
-      :name="name"
-      :value="nativeValue"
-      :true-value="trueValue"
+  <label class="v-checkbox checkbox" :class="[size, { 'is-disabled': disabled }]" ref="label"
+    v-bind="disabled ? { disabled: true } : {}" @click="focus" @keydown.prevent.enter="label?.click()">
+    <input v-model="value" :indeterminate.prop="indeterminate" type="checkbox" ref="input" @click.stop
+      :disabled="disabled" :required="required" :name="name" :value="nativeValue" :true-value="trueValue"
       :false-value="falseValue" />
     <span class="check" :class="type" />
-    <span class="control-label"><slot /></span>
+    <span class="control-label">
+      <slot />
+    </span>
   </label>
 </template>

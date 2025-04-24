@@ -54,30 +54,19 @@ const passiveClass = computed<string | undefined>(() => {
 </script>
 
 <template>
-  <label
-    class="switch"
-    :class="[
-      size,
-      {
-        'is-disabled': disabled,
-        'is-rounded': rounded,
-        'is-outlined': outlined,
-      }
-    ]"
-    :disabled="disabled">
-    <input
-      v-model="value"
-      type="checkbox"
-      @click.stop
-      :disabled="disabled"
-      :name="name"
-      :required="required"
-      :value="nativeValue"
-      :true-value="trueValue"
-      :false-value="falseValue" />
-    <span
-      class="check"
-      :class="[passiveClass, type]" />
-    <span class="control-label"><slot /></span>
+  <label class="switch" :class="[
+    size,
+    {
+      'is-disabled': disabled,
+      'is-rounded': rounded,
+      'is-outlined': outlined,
+    }
+  ]" v-bind="disabled ? { disabled: true } : {}">
+    <input v-model="value" type="checkbox" @click.stop :disabled="disabled" :name="name" :required="required"
+      :value="nativeValue" :true-value="trueValue" :false-value="falseValue" />
+    <span class="check" :class="[passiveClass, type]" />
+    <span class="control-label">
+      <slot />
+    </span>
   </label>
 </template>

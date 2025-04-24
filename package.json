@@ -1,9 +1,13 @@
 {
   "name": "@pathscale/vue3-ui",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "description": "Very clean Vue3 components styled with love and care.",
   "type": "module",
-  "keywords": ["vue", "vue3", "ui"],
+  "keywords": [
+    "vue",
+    "vue3",
+    "ui"
+  ],
   "homepage": "https://github.com/pathscale/vue3-ui#readme",
   "bugs": {
     "url": "https://github.com/pathscale/vue3-ui/issues"
@@ -40,7 +44,9 @@
     "not OperaMini all"
   ],
   "lint-staged": {
-    "*.{js,ts,vue,spec.ts}": ["biome check --write"]
+    "*.{js,ts,vue,spec.ts}": [
+      "biome check --write"
+    ]
   },
   "devDependencies": {
     "@babel/core": "^7.26.10",

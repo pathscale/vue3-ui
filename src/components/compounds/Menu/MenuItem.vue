@@ -28,13 +28,11 @@ const emit = defineEmits<{
   (e: "update:active", value: boolean): void;
 }>();
 
-const active = ref(props.active);
 const expanded = ref(props.expanded);
 const content = ref<HTMLElement | null>(null);
 
 // Sync with props
 watchEffect(() => {
-  active.value = props.active;
   expanded.value = props.expanded;
 });
 
@@ -46,13 +44,11 @@ const onClick = (event: Event) => {
 
   // Toggle expansion state
   const newExpanded = !expanded.value;
-  const newActive = !active.value;
   expanded.value = newExpanded;
-  active.value = newActive;
   // Emit changes to parent
   emit("update:expanded", newExpanded);
-  if (newActive) {
-    emit("update:active", newActive);
+  if (!props.active) {
+    emit("update:active", true);
   }
 };
 </script>

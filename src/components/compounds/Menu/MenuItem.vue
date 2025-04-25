@@ -1,9 +1,5 @@
 <script setup lang="ts">
-import { ref, watchEffect } from "vue";
-
-defineOptions({
-  inheritAttrs: false,
-});
+import { ref, useSlots, watchEffect } from "vue";
 
 const props = withDefaults(
   defineProps<{
@@ -23,19 +19,27 @@ const props = withDefaults(
   },
 );
 
+// Notice we add the "click" event here.
 const emit = defineEmits<{
   (e: "update:expanded", value: boolean): void;
   (e: "update:active", value: boolean): void;
+  (e: "click", event: Event): void;
 }>();
 
-const active = ref(props.active);
-const expanded = ref(props.expanded);
 const content = ref<HTMLElement | null>(null);
+const expanded = ref(props.expanded);
+// Create a local state for active so that once activated it stays true.
+const activeLocal = ref(props.active);
+const slots = useSlots();
 
-// Sync with props
+// Keep the local expanded state in sync with the prop.
 watchEffect(() => {
-  active.value = props.active;
   expanded.value = props.expanded;
+});
+
+// Also update the local active state if the parent prop changes:
+watchEffect(() => {
+  activeLocal.value = props.active;
 });
 
 const onClick = (event: Event) => {
@@ -44,26 +48,36 @@ const onClick = (event: Event) => {
     return;
   }
 
-  // Toggle expansion state
+  // Emit the native click event so that the test can detect it.
+  emit("click", event);
+
+  // Always toggle the expanded state (regardless of whether a default slot exists).
   const newExpanded = !expanded.value;
-  const newActive = !active.value;
   expanded.value = newExpanded;
-  active.value = newActive;
-  // Emit changes to parent
   emit("update:expanded", newExpanded);
-  if (newActive) {
-    emit("update:active", newActive);
+
+  // Emit update:active only if we aren’t already active.
+  if (!activeLocal.value) {
+    activeLocal.value = true;
+    emit("update:active", true);
   }
 };
 </script>
 
 <template>
   <li class="li" :role="ariaRole" ref="content" :aria-expanded="expanded">
-    <component :is="tag" v-bind="$attrs" :class="{
-      'is-flex': icon,
-      'is-active': active,
-      'is-disabled': disabled
-    }" :aria-disabled="disabled" @click="onClick" @keydown.enter="onClick">
+    <component
+      :is="tag"
+      v-bind="$attrs"
+      :class="{
+        'is-flex': icon,
+        'is-active': active,
+        'is-disabled': disabled
+      }"
+      :aria-disabled="disabled"
+      @click="onClick"
+      @keydown.enter="onClick"
+    >
       <span v-if="icon" class="pr-2">{{ icon }}</span>
       <span v-if="label">{{ label }}</span>
       <slot v-else name="label" :expanded="expanded" :active="active" />
